@@ -4,7 +4,7 @@ import * as UI from "./style";
 const PostCard = () => {
   return (
     <UI.Container>
-      <UI.Img src="/camping.avif" />
+      <UI.Img src="/assets/images/camping.avif" />
       <UI.FlexLayout>
         <div>
           <div>좋은 캠핑</div>
