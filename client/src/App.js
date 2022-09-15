@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Main from "./pages/Main";
-import Detail from "./pages/Detail";
+import Main from "./pages/Main/Main";
+import Detail from "./pages/Detail/Detail";
 import Login from "./pages/Login";
 import Join from "./pages/Join";
 
