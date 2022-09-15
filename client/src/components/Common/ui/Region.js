@@ -13,7 +13,7 @@ const Region = ({ region, idx }) => {
 const Container = styled.li`
   display: flex;
   justify-content: space-between;
-  flex: 1 0 120px;
+  flex: 1 0 100px;
   border-bottom: 1px solid #e5e5e5;
   padding: 5px;
 
