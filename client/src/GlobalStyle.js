@@ -10,10 +10,14 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
-  /* a {
+  body {
+    background-color: #e5e5e5;
+  }
+
+  a {
     text-decoration: none;
     color: black;
-  } */
+  }
 `;
 
 export default GlobalStyle;
