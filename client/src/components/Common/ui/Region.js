@@ -5,7 +5,7 @@ const Region = ({ region, idx }) => {
   return (
     <Container>
       <label htmlFor={`regionChk${idx}`}>{region}</label>
-      <input type="checkbox" id={`regionChk${idx}`} />
+      <input type="checkbox" id={`regionChk${idx}`} name="region" />
     </Container>
   );
 };
