@@ -1,14 +1,18 @@
 import React from "react";
-import styled from "styled-components";
+import RegionFilter from "../../Molecules/RegionFilter/RegionFilter";
+import * as UI from "./style";
 
 const Aside = () => {
-  return <Container>Aside</Container>;
+  return (
+    <UI.Container>
+      <div>지역선택</div>
+      <RegionFilter />
+      <div>날짜 선택</div>
+      <div>가격순 정렬</div>
+      <div>별점순 정렬</div>
+      <div>리뷰순 정렬</div>
+    </UI.Container>
+  );
 };
-
-const Container = styled.aside`
-  width: 300px;
-  height: 100%;
-  background-color: beige;
-`;
 
 export default Aside;
