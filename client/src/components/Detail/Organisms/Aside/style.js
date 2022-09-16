@@ -4,6 +4,7 @@ export const AsideContainer = styled.aside`
   width: 300px;
   padding: 30px;
   background-color: #ffffff;
+  border-radius: 5px;
 
   display: flex;
   flex-direction: column;

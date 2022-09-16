@@ -18,6 +18,7 @@ const Img = styled.img.attrs({
   width: 100%;
   height: 300px;
   display: block;
+  border-radius: 5px 5px 0 0;
 `;
 
 export default Carousel;
