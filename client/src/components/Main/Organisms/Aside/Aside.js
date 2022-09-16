@@ -32,6 +32,7 @@ const Aside = () => {
           onChange={(e) => setDate(e.target.value)}
           id="date"
           name="date"
+          title="두 달 내로만 선택할 수 있습니다."
         />
       </fieldset>
 
