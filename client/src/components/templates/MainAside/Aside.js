@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import RegionFilter from "../../Molecules/RegionFilter/RegionFilter";
+import RegionFilter from "../../organisms/MainRegionFilter/RegionFilter";
+import todayGenerator from "../../../utils/date";
 import * as S from "./style";
-import todayGenerator from "../../../../utils/date";
 
 const Aside = () => {
   let { today, todayPlusTwoMonth } = todayGenerator();

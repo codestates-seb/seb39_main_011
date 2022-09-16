@@ -1,5 +1,5 @@
 import React from "react";
-import PostCard from "../../Molecules/PostCard/PostCard";
+import PostCard from "./../../organisms/MainPostCard/PostCard";
 import * as S from "./style";
 
 const PostsList = () => {
