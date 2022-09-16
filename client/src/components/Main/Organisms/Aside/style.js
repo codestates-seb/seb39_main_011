@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
-export const Container = styled.aside`
+export const AsideContainer = styled.aside`
   width: 300px;
   padding: 30px;
+  border-radius: 5px;
   background-color: #ffffff;
+
+  @media (max-width: 670px) {
+    display: none;
+  }
 `;
 
 export const Label = styled.label`

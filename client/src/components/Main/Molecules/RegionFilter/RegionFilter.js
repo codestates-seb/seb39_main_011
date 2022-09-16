@@ -1,6 +1,6 @@
 import React from "react";
 import Region from "../../../../stories/Region";
-import * as UI from "./style";
+import * as S from "./style";
 
 const RegionFilter = () => {
   const region = [
@@ -23,11 +23,11 @@ const RegionFilter = () => {
   ];
 
   return (
-    <UI.Container>
+    <S.RegionContainer>
       {region.map((el, idx) => {
         return <Region region={el} key={idx} idx={idx} />;
       })}
-    </UI.Container>
+    </S.RegionContainer>
   );
 };
 

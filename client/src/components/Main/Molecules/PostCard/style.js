@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const CardContainer = styled.div`
   width: 300px;
   // 상위에 flex-wrap 때문에 반응형 같은 효과가 나타남
   flex-grow: 1;

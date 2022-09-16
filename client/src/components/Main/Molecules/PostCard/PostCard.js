@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as UI from "./style";
+import * as S from "./style";
 
 const PostCard = () => {
   return (
-    <UI.Container>
+    <S.CardContainer>
       <Link to="/detail">
-        <UI.Img src="/assets/images/camping.avif" alt="이미지" />
-        <UI.FlexLayout>
+        <S.Img src="/assets/images/camping.avif" alt="이미지" />
+        <S.FlexLayout>
           <div>
             <div>좋은 캠핑</div>
             <div>경기도 가평군 가평읍 개곡리</div>
@@ -18,9 +18,9 @@ const PostCard = () => {
             <div>리뷰 11</div>
             <div>찜 12</div>
           </div>
-        </UI.FlexLayout>
+        </S.FlexLayout>
       </Link>
-    </UI.Container>
+    </S.CardContainer>
   );
 };
 

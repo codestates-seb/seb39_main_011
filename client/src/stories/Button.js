@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ButtonPrimary = styled.button`
+export const ButtonPrimary = styled.button`
   color: ${(props) => props.color || "#000000"};
   background: ${(props) => props.bgc || "#ffffff"};
   border: 1px solid ${(props) => props.border || "#e5e5e5"};
