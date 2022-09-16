@@ -1,5 +1,5 @@
 import React from "react";
-import Banner from "../../components/Main/Organisms/Banner/Banner";
+import Nav from "../../components/Main/Organisms/Nav/Nav";
 import PostList from "../../components/Main/Organisms/PostList/PostList";
 import Aside from "../../components/Main/Organisms/Aside/Aside";
 import * as UI from "./style";
@@ -7,7 +7,7 @@ import * as UI from "./style";
 const Main = () => {
   return (
     <UI.MainContainer>
-      <Banner />
+      <Nav />
       <UI.FlexLayout>
         <PostList />
         <Aside />

@@ -6,4 +6,8 @@ export const Container = styled.section`
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
+
+  @media (max-width: 670px) {
+    width: 100%;
+  }
 `;
