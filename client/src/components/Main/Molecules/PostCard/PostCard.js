@@ -4,8 +4,8 @@ import * as UI from "./style";
 
 const PostCard = () => {
   return (
-    <Link to="/detail">
-      <UI.Container>
+    <UI.Container>
+      <Link to="/detail">
         <UI.Img src="/assets/images/camping.avif" alt="이미지" />
         <UI.FlexLayout>
           <div>
@@ -19,8 +19,8 @@ const PostCard = () => {
             <div>찜 12</div>
           </div>
         </UI.FlexLayout>
-      </UI.Container>
-    </Link>
+      </Link>
+    </UI.Container>
   );
 };
 
