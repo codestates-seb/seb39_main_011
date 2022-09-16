@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import { ButtonPrimary } from "../../../../stories/Button";
+import { ButtonPrimary } from "../../atoms/Button";
 
 const Nav = () => {
   return (

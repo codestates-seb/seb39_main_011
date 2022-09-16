@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import * as S from "./style";
-import { ButtonPrimary } from "../../../../stories/Button";
+import { ButtonPrimary } from "../../../../src/components/atoms/Button";
 
-const Aside = () => {
+const DetailAside = () => {
   return (
     <S.AsideContainer>
       <Calendar />
@@ -26,4 +26,4 @@ const Calendar = styled.div`
   margin: -30px -30px 0px -30px;
 `;
 
-export default Aside;
+export default DetailAside;

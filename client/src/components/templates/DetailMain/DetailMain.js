@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Carousel from "../../Molecules/Carousel/Carousel";
+import Carousel from "../../organisms/DetailCarousel/Carousel";
 import * as S from "./style";
 
 const DetailMain = () => {

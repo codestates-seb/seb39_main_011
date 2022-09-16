@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from '../components/atoms/Button';
 
 export default {
   title: "Practice/Button",

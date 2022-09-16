@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "../../components/Main/Organisms/Nav/Nav";
+import Nav from "../../components/templates/MainNav/Nav";
 import PostList from "../../components/Main/Organisms/PostList/PostList";
 import Aside from "../../components/Main/Organisms/Aside/Aside";
 import * as S from "./style";
