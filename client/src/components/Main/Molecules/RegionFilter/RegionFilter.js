@@ -1,5 +1,5 @@
 import React from "react";
-import Region from "../../../Common/ui/Region";
+import Region from "../../../../stories/Region";
 import * as UI from "./style";
 
 const RegionFilter = () => {
