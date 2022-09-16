@@ -4,7 +4,7 @@ export const ButtonPrimary = styled.button`
   color: ${(props) => props.color || "#000000"};
   background: ${(props) => props.bgc || "#ffffff"};
   border: 1px solid ${(props) => props.border || "#e5e5e5"};
-  border-radius: 3px;
+  border-radius: ${(props) => props.radius || "3px"};
   width: ${(props) => props.width || "auto"};
   height: ${(props) => props.height || "auto"};
   padding: ${(props) => props.padding || "8px 10.4px"};
@@ -22,9 +22,11 @@ const Button = ({
   color,
   bgc,
   border,
+  radius,
   width,
   height,
   padding,
+  margin,
   hoverbgc,
 }) => {
   return (
@@ -32,9 +34,11 @@ const Button = ({
       color={color}
       bgc={bgc}
       border={border}
+      radius={radius}
       width={width}
       height={height}
       padding={padding}
+      margin={margin}
       hoverbgc={hoverbgc}
     >
       {text}
