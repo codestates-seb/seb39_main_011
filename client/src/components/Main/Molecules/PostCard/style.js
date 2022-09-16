@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 300px;
-  height: 300px;
-  cursor: pointer;
+  // 상위에 flex-wrap 때문에 반응형 같은 효과가 나타남
+  flex-grow: 1;
 `;
 
 export const Img = styled.img`
-  width: 300px;
-  height: 200px;
+  width: 100%;
   display: block;
   border-radius: 5px 5px 0 0;
 `;
