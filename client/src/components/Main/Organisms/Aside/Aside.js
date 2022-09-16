@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RegionFilter from "../../Molecules/RegionFilter/RegionFilter";
-import * as UI from "./style";
+import * as S from "./style";
 import todayGenerator from "../../../../utils/date";
 
 const Aside = () => {
@@ -14,16 +14,16 @@ const Aside = () => {
   // };
 
   return (
-    <UI.Container>
+    <S.AsideContainer>
       <fieldset>
-        <UI.Label>지역 선택</UI.Label>
+        <S.Label>지역 선택</S.Label>
         <RegionFilter />
       </fieldset>
 
       <fieldset>
-        <UI.Label htmlFor="date" title="두 달 내로만 선택할 수 있습니다.">
+        <S.Label htmlFor="date" title="두 달 내로만 선택할 수 있습니다.">
           날짜 선택
-        </UI.Label>
+        </S.Label>
         <input
           type="date"
           value={date}
@@ -37,20 +37,20 @@ const Aside = () => {
       </fieldset>
 
       <fieldset>
-        <UI.FlexLayout>
-          <UI.Label htmlFor="price">가격 정렬</UI.Label>
+        <S.FlexLayout>
+          <S.Label htmlFor="price">가격 정렬</S.Label>
           <input type="radio" id="price" name="sorting" />
-        </UI.FlexLayout>
-        <UI.FlexLayout>
-          <UI.Label htmlFor="vote">별점 정렬</UI.Label>
+        </S.FlexLayout>
+        <S.FlexLayout>
+          <S.Label htmlFor="vote">별점 정렬</S.Label>
           <input type="radio" id="vote" name="sorting" />
-        </UI.FlexLayout>
-        <UI.FlexLayout>
-          <UI.Label htmlFor="review">리뷰 정렬</UI.Label>
+        </S.FlexLayout>
+        <S.FlexLayout>
+          <S.Label htmlFor="review">리뷰 정렬</S.Label>
           <input type="radio" id="review" name="sorting" />
-        </UI.FlexLayout>
+        </S.FlexLayout>
       </fieldset>
-    </UI.Container>
+    </S.AsideContainer>
   );
 };
 

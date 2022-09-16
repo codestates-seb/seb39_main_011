@@ -1,10 +1,10 @@
 import React from "react";
 import PostCard from "../../Molecules/PostCard/PostCard";
-import * as UI from "./style";
+import * as S from "./style";
 
 const PostsList = () => {
   return (
-    <UI.Container>
+    <S.PostContainer>
       <PostCard />
       <PostCard />
       <PostCard />
@@ -12,7 +12,7 @@ const PostsList = () => {
       <PostCard />
       <PostCard />
       <PostCard />
-    </UI.Container>
+    </S.PostContainer>
   );
 };
 

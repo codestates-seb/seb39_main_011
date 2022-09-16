@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const NavContainer = styled.div`
   display: none;
   height: 50px;
   padding: 0 8px;

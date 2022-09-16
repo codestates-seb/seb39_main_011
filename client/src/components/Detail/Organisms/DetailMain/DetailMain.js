@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Carousel from "../../Molecules/Carousel/Carousel";
+import * as S from "./style";
 
 const DetailMain = () => {
   return (
-    <DetailMainContainer>
+    <S.DetailMainContainer>
       <Carousel />
       <Tab></Tab>
-      <Content>
+      <S.Content>
         <div className="important">
           <div className="important_img"></div>
           <div className="important_content">
@@ -30,40 +31,14 @@ const DetailMain = () => {
             주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항주의사항
           </div>
         </div>
-      </Content>
-    </DetailMainContainer>
+      </S.Content>
+    </S.DetailMainContainer>
   );
 };
-
-const DetailMainContainer = styled.section`
-  width: calc(100% - 320px);
-  gap: 20px;
-`;
 
 const Tab = styled.div`
   height: 50px;
   border: 1px solid red;
-`;
-
-const Content = styled.div`
-  padding: 20px;
-
-  .important {
-    display: flex;
-    gap: 20px;
-  }
-
-  .important_img {
-    width: 200px;
-    height: 130px;
-    border: 1px solid red;
-  }
-
-  .important_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
 `;
 
 export default DetailMain;

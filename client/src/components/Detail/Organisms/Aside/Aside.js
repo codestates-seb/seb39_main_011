@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import * as S from "./style";
 import { ButtonPrimary } from "../../../../stories/Button";
 
 const Aside = () => {
   return (
-    <AsideContainer>
+    <S.AsideContainer>
       <Calendar />
       <div>예약 날짜: 22.08.12 ~ 22.08.13</div>
       <div>체크인: 15:00</div>
@@ -14,25 +15,9 @@ const Aside = () => {
       <div>요청 사항</div>
       <textarea />
       <ButtonPrimary>예약하기</ButtonPrimary>
-    </AsideContainer>
+    </S.AsideContainer>
   );
 };
-
-const AsideContainer = styled.aside`
-  width: 300px;
-  padding: 30px;
-  background-color: #ffffff;
-
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-
-  > textarea {
-    width: 100%;
-    height: 100px;
-    border: 1px solid #e5e5e5;
-  }
-`;
 
 const Calendar = styled.div`
   width: 300px;

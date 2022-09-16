@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.ul`
+export const RegionContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 15px;
