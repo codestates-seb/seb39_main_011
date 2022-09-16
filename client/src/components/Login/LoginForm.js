@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import LoginInput from "../Common/ui/LoginInput";
-import { LoginButton } from "../Common/ui/Button";
+import LoginInput from "../../stories/LoginInput";
+import ButtonPrimary from "../../stories/Button";
 
 const LoginForm = () => {
   return (
@@ -22,12 +22,29 @@ const LoginForm = () => {
       </SubBox>
 
       <LoginButtonBox>
-        <LoginButton>로그인</LoginButton>
+        <ButtonPrimary
+          width="100%"
+          color="#fffff"
+          bgc="#D9D9D9"
+          border="#D9D9D9"
+          radius="5px"
+          padding="10px 0"
+          margin="10px 0"
+          text="로그인"
+        />
       </LoginButtonBox>
 
       <JoinBox>
         <span>아직 BearMello 회원이 아니신가요?</span>
-        <LoginButton background="#fff">회원가입</LoginButton>
+        <ButtonPrimary
+          width="100%"
+          color="#fffff"
+          border="#D9D9D9"
+          radius="5px"
+          padding="10px 0"
+          margin="10px 0"
+          text="회원가입"
+        />
       </JoinBox>
     </FormContainer>
   );
@@ -39,12 +56,14 @@ const FormContainer = styled.div`
   width: 420px;
   height: 550px;
   background-color: #fff;
+  border-radius: 10px;
   margin: 2rem;
   padding: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
 
 const LogoBox = styled.div`
