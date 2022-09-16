@@ -1,5 +1,18 @@
-import React from "react";
+import styled from "styled-components";
 
-export const Button = () => {
-  return <div>Button</div>;
-};
+export const ButtonPrimary = styled.button`
+  color: ${(props) => props.color || "#000000"};
+  background: ${(props) => props.background || "#ffffff"};
+  border: 1px solid ${(props) => props.border || "#e5e5e5"};
+  border-radius: 3px;
+  width: ${(props) => props.width || "auto"};
+  height: ${(props) => props.height || "auto"};
+  padding: ${(props) => props.padding || "8px 10.4px"};
+  margin: ${(props) => props.margin || "none"};
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background-color: ${(props) => props.hoverbackground || "#e5e5e5"};
+  }
+`;
