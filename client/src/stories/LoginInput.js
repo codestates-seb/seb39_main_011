@@ -5,7 +5,12 @@ import { TextField } from "@mui/material";
 const LoginInput = ({ label }) => {
   return (
     <InputContainer>
-      <TextFieldStyle id="standard-basic" label={label} variant="standard" />
+      <TextFieldStyle
+        id="standard-basic"
+        label={label}
+        variant="standard"
+        size="small"
+      />
     </InputContainer>
   );
 };
@@ -13,7 +18,7 @@ const LoginInput = ({ label }) => {
 export default LoginInput;
 
 const InputContainer = styled.div`
-  margin-top: 1rem;
+  margin-top: 10px;
 `;
 
 const TextFieldStyle = styled(TextField)({
