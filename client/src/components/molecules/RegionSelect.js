@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Region = ({ region, idx }) => {
+const RegionSelect = ({ region, idx }) => {
   return (
     <Container>
       <label htmlFor={`regionChk${idx}`}>{region}</label>
@@ -26,4 +26,4 @@ const Container = styled.li`
   }
 `;
 
-export default Region;
+export default RegionSelect;

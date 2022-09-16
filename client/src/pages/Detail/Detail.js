@@ -1,13 +1,13 @@
 import React from "react";
 import * as S from "./style";
-import DetailMain from "../../components/Detail/Organisms/DetailMain/DetailMain";
-import Aside from "../../components/Detail/Organisms/Aside/Aside";
+import DetailMain from "../../components/templates/DetailMain/DetailMain";
+import DetailAside from "../../components/templates/DetailAside/DetailAside";
 
 const Detail = () => {
   return (
     <S.DetailContainer>
       <DetailMain />
-      <Aside />
+      <DetailAside />
     </S.DetailContainer>
   );
 };

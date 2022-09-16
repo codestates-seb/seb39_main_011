@@ -1,7 +1,7 @@
 import React from "react";
-import Nav from "../../components/Main/Organisms/Nav/Nav";
-import PostList from "../../components/Main/Organisms/PostList/PostList";
-import Aside from "../../components/Main/Organisms/Aside/Aside";
+import Nav from "../../components/templates/MainNav/Nav";
+import PostList from "../../components/templates/MainPostList/PostList";
+import Aside from "../../components/templates/MainAside/Aside";
 import * as S from "./style";
 
 const Main = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import Region from "../../../../stories/Region";
+import RegionSelect from "../../molecules/RegionSelect";
 import * as S from "./style";
 
 const RegionFilter = () => {
@@ -25,7 +25,7 @@ const RegionFilter = () => {
   return (
     <S.RegionContainer>
       {region.map((el, idx) => {
-        return <Region region={el} key={idx} idx={idx} />;
+        return <RegionSelect region={el} key={idx} idx={idx} />;
       })}
     </S.RegionContainer>
   );
