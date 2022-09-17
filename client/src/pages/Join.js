@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import JoinForm from "../components/Join/JoinForm";
+import JoinForm from "../components/templates/JoinForm";
 
 const Join = () => {
   return (

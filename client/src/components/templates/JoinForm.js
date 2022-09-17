@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import LoginInput from "../../stories/LoginInput";
-import ButtonPrimary from "../../stories/Button";
+import ButtonPrimary from "../atoms/Button";
 
 const JoinForm = () => {
   return (
