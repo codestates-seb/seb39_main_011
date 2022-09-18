@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import * as S from "./style";
+import DetailTabInfo from "../../molecules/DetailTabInfo/DetailTabInfo";
+import DetailTabReview from "../../molecules/DetailTabReview/DetailTabReview";
 
 const DetailTab = () => {
   const [currentTab, setCurrentTab] = useState(0);
 
   const tabMenu = [
-    { title: "기본정보", content: <div>기본정보 컨텐츠</div> },
-    { title: "후기", content: <div>후기 컨텐츠</div> },
+    { title: "기본정보", content: <DetailTabInfo /> },
+    { title: "후기", content: <DetailTabReview /> },
   ];
 
   const handleTab = (idx) => {
@@ -14,8 +16,8 @@ const DetailTab = () => {
   };
 
   return (
-    <TabContainer>
-      <TabBtn>
+    <S.TabContainer>
+      <S.TabBtn>
         {tabMenu.map((el, idx) => {
           return (
             <div
@@ -27,26 +29,10 @@ const DetailTab = () => {
             </div>
           );
         })}
-      </TabBtn>
+      </S.TabBtn>
       {tabMenu[currentTab].content}
-    </TabContainer>
+    </S.TabContainer>
   );
 };
-
-const TabContainer = styled.div``;
-
-const TabBtn = styled.div`
-  display: flex;
-
-  > div {
-    padding: 10px;
-    width: 100px;
-    text-align: center;
-  }
-
-  > .border {
-    border-bottom: 1px solid red;
-  }
-`;
 
 export default DetailTab;

@@ -4,7 +4,7 @@ export default {
   title: "organism/DetailTab",
   component: DetailTab,
 
-  argTypes: {},
+  argTypes: { color: { control: "color" } },
 };
 
 export const Tab = (args) => <DetailTab {...args}></DetailTab>;
