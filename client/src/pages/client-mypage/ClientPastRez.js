@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MyPastRezBox from "../../components/organisms/MyPastRezBox";
 
+
 const ClientPastRez = () => {
   return (
     <Container>
