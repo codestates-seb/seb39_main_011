@@ -3,11 +3,15 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const Star = () => {
-  const [starNum, setStarNum] = useState(0);
+const StarClick = () => {
+  const [click, setClick] = useState(0);
+  const [hover, setHover] = useState(0);
   const stars = Array.from({ length: 5 });
-  const handleStar = (idx) => {
-    // idx가 4라면 모든 별에 class 추가
+  const handleClick = (idx) => {
+    setClick(idx);
+  };
+  const handleHover = (idx) => {
+    setHover(idx);
   };
 
   return (
@@ -15,10 +19,13 @@ const Star = () => {
       {stars.map((_, idx) => (
         <FontAwesomeIcon
           icon={faStar}
-          className="star"
+          className={`star ${(idx <= click || idx <= hover) && "clickStar"}`}
           key={idx}
-          onClick={(idx) => {
-            handleStar(idx);
+          onClick={() => {
+            handleClick(idx);
+          }}
+          onMouseOver={() => {
+            handleHover(idx);
           }}
         />
       ))}
@@ -33,8 +40,8 @@ const StarContainer = styled.div`
   }
 
   .clickStar {
-    color: red;
+    color: #f7b603;
   }
 `;
 
-export default Star;
+export default StarClick;

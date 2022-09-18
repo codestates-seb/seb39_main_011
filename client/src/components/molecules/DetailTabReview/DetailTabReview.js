@@ -1,10 +1,10 @@
 import React from "react";
-import Star from "../../atoms/Star";
+import StarRender from "../../atoms/StarRender";
 
 const DetailTabReview = () => {
   return (
     <div>
-      <Star />
+      <StarRender rating={4.5} />
     </div>
   );
 };
