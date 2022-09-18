@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import MyRezBox from "../../components/organisms/MyRezBox";
 
 const ClientRez = () => {
-  return <Container>고객용 예약</Container>;
+  return (
+    <Container>
+      <MyRezBox />
+    </Container>
+  );
 };
 
 export default ClientRez;
 
-const Container = styled.div`
-  width: 940px;
-  height: 100vh;
-`;
+const Container = styled.div``;
