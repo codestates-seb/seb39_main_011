@@ -2,16 +2,33 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const DetailTab = () => {
-  const [tab, setTab] = useState(0);
+  const [currentTab, setCurrentTab] = useState(0);
+
+  const tabMenu = [
+    { title: "기본정보", content: <div>기본정보 컨텐츠</div> },
+    { title: "후기", content: <div>후기 컨텐츠</div> },
+  ];
+
+  const handleTab = (idx) => {
+    setCurrentTab(idx);
+  };
 
   return (
     <TabContainer>
       <TabBtn>
-        <div>기본정보</div>
-        <div>후기</div>
+        {tabMenu.map((el, idx) => {
+          return (
+            <div
+              key={idx}
+              onClick={() => handleTab(idx)}
+              className={currentTab === idx ? "border" : null}
+            >
+              {el.title}
+            </div>
+          );
+        })}
       </TabBtn>
-      <div>기본정보 컨텐츠</div>
-      <div>후기 컨텐츠</div>
+      {tabMenu[currentTab].content}
     </TabContainer>
   );
 };
@@ -24,11 +41,12 @@ const TabBtn = styled.div`
   > div {
     padding: 10px;
     width: 100px;
-    border: 1px solid red;
     text-align: center;
   }
-`;
 
-const TabContent = styled.div``;
+  > .border {
+    border-bottom: 1px solid red;
+  }
+`;
 
 export default DetailTab;
