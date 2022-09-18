@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import MyRezBox from "../../components/organisms/MyRezBox";
+import MyPastRezBox from "../../components/organisms/MyPastRezBox";
 
 const ClientPastRez = () => {
   return (
     <Container>
-      <MyRezBox />
+      <MyPastRezBox />
     </Container>
   );
 };
