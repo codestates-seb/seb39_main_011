@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ButtonPrimary from "../atoms/Button";
+import { useLocation } from "react-router-dom";
 
 const RezItem = ({ item }) => {
+  const { pathname } = useLocation();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openReviewHandler = () => {
+    setIsOpen(!isOpen);
+    alert("open!!");
+    console.log(isOpen);
+  };
+
   return (
     <>
       <ItemBox>
@@ -18,7 +29,7 @@ const RezItem = ({ item }) => {
         </ContentBox>
         <ButtonBox>
           <ButtonPrimary
-            width="70px"
+            width="85px"
             height="35px"
             bgc="#ADADAD"
             color="#fff"
@@ -28,8 +39,11 @@ const RezItem = ({ item }) => {
             margin="10px 0"
             fontSize="13px"
             fontWeight="700"
-            text="예약취소"
+            text={
+              pathname === "/client/mypage/rez" ? "예약취소" : "리뷰 남기기"
+            }
             hoverbgc="#989898"
+            onClick={openReviewHandler}
           />
         </ButtonBox>
       </ItemBox>
@@ -59,6 +73,7 @@ const ContentBox = styled.div`
 
   p {
     margin: 7px;
+    margin-left: 1rem;
   }
 `;
 
