@@ -25,7 +25,7 @@ const MyInfoBox = () => {
           fontSize="15px"
           fontWeight="700"
           text="수정하기"
-          hoverbgc="989898"
+          hoverbgc="#989898"
         />
       </ButtonBox>
     </>
