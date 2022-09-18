@@ -11,6 +11,7 @@ export const TabBtn = styled.div`
     padding: 10px;
     width: 100px;
     text-align: center;
+    cursor: pointer;
   }
 
   > .border {
