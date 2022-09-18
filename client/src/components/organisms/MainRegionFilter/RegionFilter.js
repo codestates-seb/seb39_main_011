@@ -1,5 +1,5 @@
 import React from "react";
-import RegionSelect from "../../molecules/RegionSelect";
+import RegionSelect from "../../molecules/RegionSelect/RegionSelect";
 import * as S from "./style";
 
 const RegionFilter = () => {
