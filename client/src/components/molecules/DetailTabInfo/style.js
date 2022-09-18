@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const Content = styled.div`
-  padding: 20px;
-`;
+  padding: 20px 20px 60px 20px;
 
-export const EssentialInfo = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 
   .important_img {

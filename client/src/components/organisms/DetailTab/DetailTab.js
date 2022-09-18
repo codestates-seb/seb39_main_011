@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import * as S from "./style";
 import DetailTabInfo from "../../molecules/DetailTabInfo/DetailTabInfo";
-import DetailTabReview from "../../molecules/DetailTabReview/DetailTabReview";
+import DetailReviews from "../DetailReviews/DetailReviews";
 
 const DetailTab = () => {
   const [currentTab, setCurrentTab] = useState(0);
 
   const tabMenu = [
     { title: "기본정보", content: <DetailTabInfo /> },
-    { title: "후기", content: <DetailTabReview /> },
+    { title: "후기", content: <DetailReviews /> },
   ];
 
   const handleTab = (idx) => {

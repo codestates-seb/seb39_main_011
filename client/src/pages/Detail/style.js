@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DetailContainer = styled.main`
-  width: 940px;
+  max-width: 940px;
   font-size: 12px;
   margin: 30px;
   display: flex;

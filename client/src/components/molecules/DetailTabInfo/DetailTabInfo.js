@@ -4,15 +4,14 @@ import * as S from "./style";
 const DetailTabInfo = () => {
   return (
     <S.Content>
-      <S.EssentialInfo>
-        <div className="important_img"></div>
-        <div className="important_content">
-          <div>캠핑장: 좋은 탬핑</div>
-          <div>연락처: 010-1234-5678</div>
-          <div>주소: 경기도 가평군 가평읍 개곡리</div>
-          <div>가격: 50,000 원</div>
-        </div>
-      </S.EssentialInfo>
+      <div className="important_img"></div>
+      <div className="important_content">
+        <div>캠핑장: 좋은 탬핑</div>
+        <div>연락처: 010-1234-5678</div>
+        <div>주소: 경기도 가평군 가평읍 개곡리</div>
+        <div>가격: 50,000 원</div>
+      </div>
+
       <div>
         <div>캠핑장 소개</div>
         <div>안녕하세요. 좋은 캠핑장 입니다. 즐거운 캠핑되시길 바랍니다.</div>

@@ -1,4 +1,4 @@
-import RegionSelect from "../components/molecules/RegionSelect";
+import RegionSelect from "../components/molecules/RegionSelect/RegionSelect";
 
 export default {
   title: "molecules/RegionSelect",
