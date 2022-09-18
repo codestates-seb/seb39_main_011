@@ -5,3 +5,8 @@ export const ReviewsInfo = styled.div`
   gap: 10px;
   padding: 20px 10px;
 `;
+
+export const ReviewList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+`;

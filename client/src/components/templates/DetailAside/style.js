@@ -15,4 +15,8 @@ export const AsideContainer = styled.aside`
     height: 100px;
     border: 1px solid #e5e5e5;
   }
+
+  @media (max-width: 820px) {
+    display: none;
+  }
 `;

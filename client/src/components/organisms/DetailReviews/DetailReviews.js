@@ -14,11 +14,11 @@ const DetailReviews = () => {
           <FontAwesomeIcon icon={faStar} color={"#f7b603"} /> 4.9/5
         </div>
       </S.ReviewsInfo>
-      <ul>
+      <S.ReviewList>
         {arr.map((_, idx) => (
           <DetailTabReview key={idx} />
         ))}
-      </ul>
+      </S.ReviewList>
     </>
   );
 };

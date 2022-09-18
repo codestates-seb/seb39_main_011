@@ -7,6 +7,8 @@ export const ReviewContainer = styled.li`
   padding: 10px;
   border-bottom: 1px solid #e5e5e5;
 
+  flex-grow: 1;
+
   span:nth-of-type(1) {
     margin-right: 5px;
   }

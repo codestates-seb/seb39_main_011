@@ -17,6 +17,18 @@ export const ButtonPrimary = styled.button`
   }
 `;
 
+export const ReservationBtn = styled(ButtonPrimary)`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border: 1px solid #000000;
+  display: none;
+
+  @media (max-width: 820px) {
+    display: block;
+  }
+`;
+
 const Button = ({
   text,
   color,
