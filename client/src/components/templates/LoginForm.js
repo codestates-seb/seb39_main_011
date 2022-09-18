@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import LoginInput from "../../stories/LoginInput";
+import LoginInput from "../atoms/LoginInput";
 import ButtonPrimary from "../atoms/Button";
 
 const LoginForm = () => {

@@ -13,6 +13,9 @@ export default {
     border: { control: { type: "text" } },
     text: { control: "text" },
     hoverbgc: { control: "color" },
+    radius: { control: { type: "text" } },
+    fontSize: { control: { type: "text" } },
+    fontWeight: { control: { type: "text" } },
   },
 };
 

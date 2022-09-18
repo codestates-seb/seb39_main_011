@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import SidebarItem from "../molecules/SidebarItem";
 
 const MySideBar = () => {
@@ -15,14 +15,14 @@ const MySideBar = () => {
 
   return (
     <SideBarContainer>
-      {tabs.map((tab, index) => {
+      {tabs.map((tab, idx) => {
         return (
-          <Link to={tab.path} key={index}>
+          <NavLink to={tab.path} key={idx}>
             <SidebarItem
               tab={tab}
               isActive={pathName === tab.path ? true : false}
             />
-          </Link>
+          </NavLink>
         );
       })}
     </SideBarContainer>

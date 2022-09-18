@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import MyInfoBox from "../../components/organisms/MyInfoBox";
 
 const ClientMyInfo = () => {
-  return <Container>고객용 내정보</Container>;
+  return (
+    <Container>
+      <MyInfoBox />
+    </Container>
+  );
 };
 
 export default ClientMyInfo;
 
-const Container = styled.div`
-  width: 940px;
-  height: 100vh;
-`;
+const Container = styled.div``;
