@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-
 import Main from "./pages/Main/Main";
 import Detail from "./pages/Detail/Detail";
 import Login from "./pages/Login";
@@ -15,6 +14,7 @@ import ClientMyInfo from "./pages/client-mypage/ClientMyInfo";
 import ClientRez from "./pages/client-mypage/ClientRez";
 import ClientPastRez from "./pages/client-mypage/ClientPastRez";
 import ClientReview from "./pages/client-mypage/ClientReview";
+import MypageLayout from "./components/templates/MypageLayout";
 
 function App() {
   return (
@@ -24,16 +24,19 @@ function App() {
         <Route path="/detail" element={<Detail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
+        <Route path="/admin/mypage" element={<MypageLayout />}>
+          <Route path="myinfo" element={<AdminMyInfo />} />
+          <Route path="post" element={<AdminPost />} />
+          <Route path="rez" element={<AdminRez />} />
+          <Route path="review" element={<AdminReview />} />
+        </Route>
 
-        <Route path="/admin/mypage/myinfo" element={<AdminMyInfo />} />
-        <Route path="/admin/mypage/post" element={<AdminPost />} />
-        <Route path="/admin/mypage/rez" element={<AdminRez />} />
-        <Route path="/admin/mypage/review" element={<AdminReview />} />
-
-        <Route path="/client/mypage/myinfo" element={<ClientMyInfo />} />
-        <Route path="/client/mypage/rez" element={<ClientRez />} />
-        <Route path="/client/mypage/pastrez" element={<ClientPastRez />} />
-        <Route path="/client/mypage/review" element={<ClientReview />} />
+        <Route path="/client/mypage" element={<MypageLayout />}>
+          <Route path="myinfo" element={<ClientMyInfo />} />
+          <Route path="rez" element={<ClientRez />} />
+          <Route path="pastrez" element={<ClientPastRez />} />
+          <Route path="review" element={<ClientReview />} />
+        </Route>
       </Routes>
     </>
   );
