@@ -9,7 +9,8 @@ export const ButtonPrimary = styled.button`
   height: ${(props) => props.height || "auto"};
   padding: ${(props) => props.padding || "8px 10.4px"};
   margin: ${(props) => props.margin || "none"};
-  font-size: 12px;
+  font-size: ${(props) => props.fontSize || "12px"};
+  font-weight: ${(props) => props.fontWeight || "auto"};
   text-align: center;
   cursor: pointer;
   &:hover {
@@ -28,18 +29,22 @@ const Button = ({
   padding,
   margin,
   hoverbgc,
+  fontSize,
+  fontWeight,
 }) => {
   return (
     <ButtonPrimary
       color={color}
       bgc={bgc}
       border={border}
-      radius={radius}
       width={width}
       height={height}
       padding={padding}
       margin={margin}
       hoverbgc={hoverbgc}
+      radius={radius}
+      fontSize={fontSize}
+      fontWeight={fontWeight}
     >
       {text}
     </ButtonPrimary>

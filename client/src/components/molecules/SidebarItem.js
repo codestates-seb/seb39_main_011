@@ -3,16 +3,24 @@ import styled from "styled-components";
 
 const SidebarItem = ({ tab, isActive }) => {
   return isActive === true ? (
-    <Box className="active">
+    <ActiveBox>
+      <p>{tab.name}</p>
+    </ActiveBox>
+  ) : (
+    <Box>
       <p>{tab.name}</p>
     </Box>
-  ) : (
-    <div>
-      <p>{tab.name}</p>
-    </div>
   );
 };
-
 export default SidebarItem;
 
-const Box = styled.div``;
+const ActiveBox = styled.div`
+  background-color: #f3f3f3;
+  margin: 1rem 0;
+  padding: 1rem 0 1rem 2rem;
+`;
+
+const Box = styled.div`
+  margin: 1rem 0;
+  padding: 1rem 0 1rem 2rem;
+`;
