@@ -6,24 +6,3 @@ export const DetailMainContainer = styled.section`
   gap: 20px;
   border-radius: 5px;
 `;
-
-export const Content = styled.div`
-  padding: 20px;
-
-  .important {
-    display: flex;
-    gap: 20px;
-  }
-
-  .important_img {
-    width: 200px;
-    height: 130px;
-    border: 1px solid red;
-  }
-
-  .important_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-`;
