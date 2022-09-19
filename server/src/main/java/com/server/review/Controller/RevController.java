@@ -1,5 +1,6 @@
 package com.server.review.Controller;
 
+import com.server.review.Dto.ReviewPatchDto;
 import com.server.review.Dto.ReviewPostDto;
 import com.server.review.Entity.Review;
 import com.server.review.Mapper.ReviewMapper;
@@ -8,10 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -36,5 +34,16 @@ public class RevController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    //리뷰수정
+    @PatchMapping("/{rev-id}")
+    public ResponseEntity patchReview(@PathVariable("rev-id") long rev_id,
+                                      @RequestBody ReviewPatchDto reviewPatchDto) {
+        reviewPatchDto.setRev_id(rev_id);
+        reviewService.updateReview(mapper.reviewPatchDtoToReview(reviewPatchDto));
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+
 
 }

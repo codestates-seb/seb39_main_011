@@ -1,5 +1,6 @@
 package com.server.review.Mapper;
 
+import com.server.review.Dto.ReviewPatchDto;
 import com.server.review.Dto.ReviewPostDto;
 import com.server.review.Dto.ReviewResponseDto;
 import com.server.review.Entity.Review;
@@ -19,13 +20,13 @@ public class ReviewMapper {
         );
     }
 
-//    public ReviewResponseDto reviewToReviewResponseDto(Review review) {
-//        return new ReviewResponseDto(
-//                review.getRev_id(),
-//                review.getWriter(),
-//                review.getReview(),
-//                review.getDate(),
-//                review.getVisit(),
-//                review.getStar());
-//    }
+    public Review reviewPatchDtoToReview(ReviewPatchDto reviewPatchDto) {
+        return new Review(reviewPatchDto.getRev_id(),
+                "a",
+                reviewPatchDto.getReview(),
+                LocalDateTime.now(),
+                0,
+                reviewPatchDto.getStar()
+                );
+    }
 }
