@@ -4,8 +4,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import SidebarItem from "../molecules/SidebarItem";
 
 const MySideBar = () => {
-  const [isClient, setIsClient] = useState(true);
-  const pathName = useLocation().pathname;
+  const paths = useLocation().pathname;
+  const pathName = useLocation().pathname.split("/")[1];
 
   console.log(pathName);
   const clientTabs = [
@@ -24,18 +24,16 @@ const MySideBar = () => {
 
   return (
     <SideBarContainer>
-      {(pathName === "/client/mypage/" ? clientTabs : adminTabs).map(
-        (tab, idx) => {
-          return (
-            <NavLink to={tab.path} key={idx}>
-              <SidebarItem
-                tab={tab}
-                isActive={pathName === tab.path ? true : false}
-              />
-            </NavLink>
-          );
-        }
-      )}
+      {(pathName === "client" ? clientTabs : adminTabs).map((tab, idx) => {
+        return (
+          <NavLink to={tab.path} key={idx}>
+            <SidebarItem
+              tab={tab}
+              isActive={paths === tab.path ? true : false}
+            />
+          </NavLink>
+        );
+      })}
     </SideBarContainer>
   );
 };
