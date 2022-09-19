@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import { ButtonPrimary } from "../../atoms/Button";
-import styled from "styled-components";
+import Calendar from "../Calendar/Calendar";
 
 const DetailModal = ({ handleModal }) => {
   return (
@@ -24,12 +24,5 @@ const DetailModal = ({ handleModal }) => {
     </S.ModalContainer>
   );
 };
-
-const Calendar = styled.div`
-  width: 100%;
-  height: 280px;
-  border: 1px solid red;
-  margin: 0 auto;
-`;
 
 export default DetailModal;

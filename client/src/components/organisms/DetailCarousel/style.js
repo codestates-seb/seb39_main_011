@@ -5,7 +5,7 @@ export const CarouselContainer = styled.div`
 `;
 
 export const Img = styled.img.attrs({
-  src: "/assets/images/camping2.jpg",
+  src: `${process.env.PUBLIC_URL + "/assets/images/camping2.jpg"}`,
   alt: "이미지",
 })`
   width: 100%;
