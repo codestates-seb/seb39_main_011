@@ -9,8 +9,6 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 public class ReviewResponseDto {
-    private long rev_id;
-
     private String writer;
 
     private String review;
