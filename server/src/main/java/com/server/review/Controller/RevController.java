@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/custom/rev")
@@ -50,6 +51,13 @@ public class RevController {
         reviewService.deleteReview(rev_id);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    //리뷰가져오기
+    @GetMapping("/{rev-id}")
+    public ResponseEntity<Review> getReview(@PathVariable("rev-id")long rev_id) {
+        Optional<Review> review = reviewService.findReview(rev_id);
+        return new ResponseEntity(review,HttpStatus.OK);
     }
 
 
