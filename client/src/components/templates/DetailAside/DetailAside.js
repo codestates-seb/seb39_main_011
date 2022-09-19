@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import * as S from "./style";
 import { ButtonPrimary } from "../../../../src/components/atoms/Button";
+import Calendar from "../../organisms/Calendar/Calendar";
 
 const DetailAside = () => {
   return (
@@ -18,12 +18,5 @@ const DetailAside = () => {
     </S.AsideContainer>
   );
 };
-
-const Calendar = styled.div`
-  width: 300px;
-  height: 280px;
-  border: 1px solid red;
-  margin: -30px -30px 0px -30px;
-`;
 
 export default DetailAside;
