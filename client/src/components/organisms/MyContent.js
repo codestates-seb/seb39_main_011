@@ -17,4 +17,5 @@ const Container = styled.div`
   height: 570px;
   background-color: #fff;
   border-radius: 5px;
+  overflow: auto;
 `;

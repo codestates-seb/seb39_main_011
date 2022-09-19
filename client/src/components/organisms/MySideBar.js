@@ -22,9 +22,14 @@ const MySideBar = () => {
     { name: "캠핑장 리뷰 관리", path: "/admin/mypage/review" },
   ];
 
+  const Tabs = {
+    client: clientTabs,
+    admin: adminTabs,
+  };
+
   return (
     <SideBarContainer>
-      {(pathName === "client" ? clientTabs : adminTabs).map((tab, idx) => {
+      {Tabs[pathName].map((tab, idx) => {
         return (
           <NavLink to={tab.path} key={idx}>
             <SidebarItem
