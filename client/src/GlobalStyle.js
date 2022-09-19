@@ -21,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: black;
   }
+
+  textarea {
+    resize: none;
+  }
 `;
 
 export default GlobalStyle;

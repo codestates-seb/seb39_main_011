@@ -44,7 +44,7 @@ const StarContainer = styled.div`
 const Yellow = styled.div`
   width: ${(props) => props.percent || "20%"};
   position: absolute;
-  z-index: 999;
+  z-index: 777;
   overflow: hidden;
   display: flex;
   flex-wrap: nowrap;

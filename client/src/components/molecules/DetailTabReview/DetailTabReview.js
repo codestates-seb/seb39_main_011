@@ -14,7 +14,7 @@ const DetailTabReview = () => {
         캠핑장이 너무 좋아요~~ 다음에 또 올게요~~! 너무너무 좋아요 베어멜로 최고
       </div>
       <S.ImgBox>
-        <img src="/assets/images/camping2.jpg" alt="img" />
+        <img src="/assets/images/camping1.jpg" alt="img" />
         <img src="/assets/images/camping3.jpg" alt="img" />
         <img src="/assets/images/camping4.jpg" alt="img" />
       </S.ImgBox>

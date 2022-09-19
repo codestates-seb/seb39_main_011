@@ -7,7 +7,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 const DetailReviews = () => {
   const arr = [1, 2, 3];
   return (
-    <>
+    <S.ReviewContainer>
       <S.ReviewsInfo>
         <div>후기 (3)</div>
         <div>
@@ -19,7 +19,7 @@ const DetailReviews = () => {
           <DetailTabReview key={idx} />
         ))}
       </S.ReviewList>
-    </>
+    </S.ReviewContainer>
   );
 };
 

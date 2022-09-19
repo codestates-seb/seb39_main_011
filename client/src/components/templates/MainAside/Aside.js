@@ -7,12 +7,6 @@ const Aside = () => {
   let { today, todayPlusTwoMonth } = todayGenerator();
   const [date, setDate] = useState(today);
 
-  // const [regionSelect, setRegionSelect] = useState(false);
-
-  // const handleRegionClick = () => {
-  //   setRegionSelect(!regionSelect);
-  // };
-
   return (
     <S.AsideContainer>
       <fieldset>
