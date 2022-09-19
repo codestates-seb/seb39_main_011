@@ -8,6 +8,7 @@ export const NaviContainer = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 999;
 `;
 
 export const Nav = styled.div`
