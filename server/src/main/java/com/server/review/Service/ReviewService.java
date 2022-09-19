@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +30,9 @@ public class ReviewService {
 
     public void deleteReview(long rev_id) {
         reviewRepository.deleteById(rev_id);
+    }
+
+    public Optional<Review> findReview(long rev_id) {
+        return reviewRepository.findById(rev_id);
     }
 }
