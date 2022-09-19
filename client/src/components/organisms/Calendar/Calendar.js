@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { CalendarBtn } from "../../atoms/Button";
 import * as S from "./style";
 
 const Calendar = () => {
   const [selectYear, setSelectYear] = useState(new Date().getFullYear());
-  const [selectMonth, setSelectMonth] = useState(new Date().getMonth());
+  const [selectMonth, setSelectMonth] = useState(new Date().getMonth() + 1);
   const [renderCalendar, setRenderCalendar] = useState([]);
 
   useEffect(() => {
-    calendarGenerator(selectYear, selectMonth);
-  }, []);
+    calendarGenerator(selectYear, selectMonth - 1);
+  }, [selectYear]);
 
-  const 요일 = ["일", "월", "화", "수", "목", "금", "토"];
+  useEffect(() => {
+    calendarGenerator(selectYear, selectMonth - 1);
+  }, [selectMonth]);
+
+  const dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
   const getFirstDay = (year, month) => {
     let firstDay = new Date(year, month, 1).getDay();
@@ -28,7 +33,7 @@ const Calendar = () => {
 
     let firstDay = getFirstDay(year, month);
     for (let i = 0; i < firstDay; i++) {
-      arrCalendar.push(" ");
+      arrCalendar.push("");
     }
 
     let lastDate = getLastDay(year, month);
@@ -37,10 +42,10 @@ const Calendar = () => {
     }
 
     let remainDate = arrCalendar.length % 7;
-    if (remainDate < 7) {
+    if (remainDate < 7 && remainDate !== 0) {
       let length = 7 - remainDate;
       for (let i = 0; i < length; i++) {
-        arrCalendar.push(" ");
+        arrCalendar.push("");
       }
     }
 
@@ -53,23 +58,40 @@ const Calendar = () => {
     setRenderCalendar(result);
   };
 
+  const handleYear = (e) => {
+    setSelectYear(e.target.value);
+  };
+
+  const handleMonth = (e) => {
+    setSelectMonth(e.target.value);
+  };
+
   return (
     <S.CalendarContainer>
-      <button>◀</button>
-      <input type="number" value={selectYear} />
-      <select defaultValue={selectMonth}>
-        {Array.from(new Array(12), (_, i) => i + 1).map((el) => (
-          <option key={el} value={el}>
-            {el}
-          </option>
-        ))}
-      </select>
-      <button>▶</button>
+      <S.Header>
+        <div>
+          <input
+            type="number"
+            min="1991"
+            defaultValue={selectYear}
+            onChange={handleYear}
+          />
+          <select defaultValue={selectMonth} onChange={handleMonth}>
+            {Array.from(new Array(12), (_, i) => i + 1).map((el) => (
+              <option key={el} value={el}>
+                {el}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <CalendarBtn height={"17px"}>오늘</CalendarBtn>
+        </div>
+      </S.Header>
       <S.Table>
-        <caption>Calendar</caption>
         <thead>
           <tr>
-            {요일.map((el, idx) => (
+            {dayOfTheWeek.map((el, idx) => (
               <th key={idx}>{el}</th>
             ))}
           </tr>
@@ -79,7 +101,11 @@ const Calendar = () => {
             return (
               <tr key={idx}>
                 {el.map((item, idx) => {
-                  return <td key={idx}>{item}</td>;
+                  return (
+                    <td key={idx} className={item !== "" ? "on" : null}>
+                      {item}
+                    </td>
+                  );
                 })}
               </tr>
             );

@@ -47,6 +47,10 @@ export const ReservationBtn = styled(ButtonPrimary)`
   }
 `;
 
+export const CalendarBtn = styled(ButtonPrimary)`
+  line-height: 3px;
+`;
+
 const Button = ({
   text,
   color,
