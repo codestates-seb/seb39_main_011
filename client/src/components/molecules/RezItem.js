@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import ButtonPrimary from "../atoms/Button";
+import ButtonPrimary, { TemporaryButton } from "../atoms/Button";
 import { useLocation } from "react-router-dom";
+import PostReview from "../atoms/PostReview";
 
-const RezItem = ({ item }) => {
+const RezItem = ({ item, openReviewHandler, isOpen }) => {
   const { pathname } = useLocation();
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openReviewHandler = () => {
-    setIsOpen(!isOpen);
-    alert("open!!");
-    console.log(isOpen);
+  const onOpen = () => {
+    openReviewHandler(item.id);
   };
 
   return (
@@ -28,7 +25,7 @@ const RezItem = ({ item }) => {
           <p>요청 사항: {item.note}</p>
         </ContentBox>
         <ButtonBox>
-          <ButtonPrimary
+          {/* <ButtonPrimary
             width="85px"
             height="35px"
             bgc="#ADADAD"
@@ -43,11 +40,18 @@ const RezItem = ({ item }) => {
               pathname === "/client/mypage/rez" ? "예약취소" : "리뷰 남기기"
             }
             hoverbgc="#989898"
-            onClick={openReviewHandler}
-          />
+            onClick={onOpen}
+          /> */}
+          <TemporaryButton
+            onClick={pathname === "/client/mypage/rez" ? null : onOpen}
+          >
+            {pathname === "/client/mypage/review" ? "리뷰 남기기" : "예약 취소"}
+          </TemporaryButton>
         </ButtonBox>
       </ItemBox>
+
       <hr />
+      {isOpen && <PostReview />}
     </>
   );
 };

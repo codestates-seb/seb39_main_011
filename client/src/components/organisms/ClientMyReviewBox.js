@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import ReviewItem from "../molecules/ReviewItem";
+import ClientReviewItem from "../molecules/ClientReviewItem";
 
-const MyReviewBox = () => {
+const ClientMyReviewBox = () => {
   const rezData = [
     {
       name: "좋은 캠핑",
@@ -21,12 +21,18 @@ const MyReviewBox = () => {
   return (
     <Container>
       {rezData.map((item, idx) => {
-        return <ReviewItem key={idx} item={item} />;
+        return <ClientReviewItem key={idx} item={item} />;
       })}
     </Container>
   );
 };
 
-export default MyReviewBox;
+export default ClientMyReviewBox;
 
-const Container = styled.div``;
+const Container = styled.div`
+  hr {
+    border: 0;
+    height: 1px;
+    background: #d9d9d9;
+  }
+`;

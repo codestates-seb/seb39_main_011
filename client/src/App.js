@@ -26,6 +26,7 @@ function App() {
         <Route path="/detail" element={<Detail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
+
         <Route path="/admin/mypage" element={<MypageLayout />}>
           <Route path="myinfo" element={<AdminMyInfo />} />
           <Route path="post" element={<AdminPost />} />

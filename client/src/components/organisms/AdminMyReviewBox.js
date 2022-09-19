@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import RezItem from "../molecules/RezItem";
 import styled from "styled-components";
+import AdminReviewItem from "../molecules/AdminReviewItem";
 
-const MyPastRezBox = () => {
-  const rezData = [
+const AdminMyReviewBox = () => {
+  const reviewData = [
     {
-      id: 1,
-      name: "좋은 캠핑",
-      phone: "010-1234-1234",
-      date: "22.08.10 ~ 22.08.11",
-      price: "50,000 원",
-      note: "요청사항 없습니다.",
-      photo: "/assets/images/camping.avif",
+      id: "1",
+      writer: "김코딩",
+      date: "22.09.01",
+      revPhoto: "/assets/images/camping.avif",
+      review: "시설도 깨끗하고 좋네요~! 다음에 또 방문하고 싶어요.",
     },
   ];
 
@@ -26,9 +24,9 @@ const MyPastRezBox = () => {
 
   return (
     <Container>
-      {rezData.map((item, idx) => {
+      {reviewData.map((item, idx) => {
         return (
-          <RezItem
+          <AdminReviewItem
             key={idx}
             item={item}
             openReviewHandler={(id) => openReviewHandler(id)}
@@ -40,11 +38,9 @@ const MyPastRezBox = () => {
   );
 };
 
-export default MyPastRezBox;
+export default AdminMyReviewBox;
 
 const Container = styled.div`
-  width: 100%;
-
   hr {
     border: 0;
     height: 1px;

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import MyReviewBox from "../../components/organisms/MyReviewBox";
+import ClientMyReviewBox from "../../components/organisms/ClientMyReviewBox";
 
 const ClientReview = () => {
   return (
     <Container>
-      <MyReviewBox />
+      <ClientMyReviewBox />
     </Container>
   );
 };

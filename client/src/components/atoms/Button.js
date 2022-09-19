@@ -18,6 +18,23 @@ export const ButtonPrimary = styled.button`
   }
 `;
 
+export const TemporaryButton = styled.button`
+  width: 85px;
+  height: 35px;
+  background-color: #adadad;
+  color: #fff;
+  border: 1px solid #adadad;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin: 10px 0;
+  font-size: 13px;
+  font-weight: 700;
+
+  &:hover {
+    background-color: #989898;
+  }
+`;
+
 export const ReservationBtn = styled(ButtonPrimary)`
   position: absolute;
   bottom: 0;
