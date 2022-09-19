@@ -7,7 +7,7 @@ export const ReviewContainer = styled.div`
 export const ReviewsInfo = styled.div`
   display: flex;
   gap: 10px;
-  padding: 20px 10px;
+  padding: 20px;
 `;
 
 export const ReviewList = styled.ul`

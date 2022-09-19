@@ -19,11 +19,10 @@ export const Modal = styled.div`
   background-color: #ffffff;
   width: 400px;
   height: 90%;
+  padding: 30px 20px 20px 20px;
   border-radius: 5px;
   position: relative;
   z-index: 999;
-
-  padding: 40px 30px 30px 30px;
 
   display: flex;
   flex-direction: column;
@@ -40,7 +39,6 @@ export const Modal = styled.div`
     top: 0;
     right: 0;
     font-size: 20px;
-    border: 1px solid red;
     width: 30px;
     height: 30px;
     text-align: center;
