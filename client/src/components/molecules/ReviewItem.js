@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ButtonPrimary from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 
-const ReviewItem = ({ item }) => {
+const ReviewItem = ({ item, onClick }) => {
   return (
     <>
       <ItemBox>
@@ -86,6 +86,10 @@ const ContentBox = styled.div`
 const InnerBox = styled.div`
   display: flex;
   align-items: center;
+
+  p {
+    font-weight: bold;
+  }
 `;
 
 const Img = styled.img`

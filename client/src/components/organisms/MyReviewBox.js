@@ -29,4 +29,10 @@ const MyReviewBox = () => {
 
 export default MyReviewBox;
 
-const Container = styled.div``;
+const Container = styled.div`
+  hr {
+    border: 0;
+    height: 1px;
+    background: #d9d9d9;
+  }
+`;
