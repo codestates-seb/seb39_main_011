@@ -44,6 +44,14 @@ public class RevController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    //리뷰삭제
+    @DeleteMapping("/{rev-id}")
+    public ResponseEntity deleteReview(@PathVariable("rev-id")long rev_id) {
+        reviewService.deleteReview(rev_id);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
 
 
 }
