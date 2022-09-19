@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import RezItem from "../molecules/RezItem";
 import styled from "styled-components";
+import PostReview from "../atoms/PostReview";
 
 const MyPastRezBox = () => {
   const rezData = [
     {
+      id: 1,
       name: "좋은 캠핑",
       phone: "010-1234-1234",
       date: "22.08.10 ~ 22.08.11",
@@ -13,10 +15,27 @@ const MyPastRezBox = () => {
       photo: "/assets/images/camping.avif",
     },
   ];
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openReviewHandler = (id) => {
+    console.log("open!!");
+    setIsOpen(!isOpen);
+    console.log(isOpen);
+    console.log(id);
+  };
+
   return (
     <Container>
       {rezData.map((item, idx) => {
-        return <RezItem key={idx} item={item} />;
+        return (
+          <RezItem
+            key={idx}
+            item={item}
+            openReviewHandler={(id) => openReviewHandler(id)}
+            isOpen={isOpen}
+          />
+        );
       })}
     </Container>
   );
