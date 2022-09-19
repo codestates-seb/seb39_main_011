@@ -45,7 +45,7 @@ const RezItem = ({ item, openReviewHandler, isOpen }) => {
           <TemporaryButton
             onClick={pathname === "/client/mypage/rez" ? null : onOpen}
           >
-            {pathname === "/client/mypage/rez" ? "예약취소" : "리뷰 남기기"}
+            {pathname === "/client/mypage/review" ? "리뷰 남기기" : "예약 취소"}
           </TemporaryButton>
         </ButtonBox>
       </ItemBox>
