@@ -5,11 +5,11 @@ export const CarouselContainer = styled.div`
 `;
 
 export const Img = styled.img.attrs({
-  src: "/assets/images/camping1.jpg",
+  src: "/assets/images/camping2.jpg",
   alt: "이미지",
 })`
   width: 100%;
-  max-height: 300px;
+  max-height: 350px;
   min-height: 280px;
   display: block;
   border-radius: 5px 5px 0 0;
