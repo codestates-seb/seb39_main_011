@@ -4,8 +4,9 @@ import ButtonPrimary, { TemporaryButton } from "../atoms/Button";
 import { useLocation } from "react-router-dom";
 import PostReview from "../atoms/PostReview";
 
-const RezItem = ({ item, openReviewHandler, isOpen }) => {
+const RezItem = ({ item, openReviewHandler, isOpen, idx }) => {
   const { pathname } = useLocation();
+  console.info("idx", idx);
 
   const onOpen = () => {
     openReviewHandler(item.id);
@@ -45,7 +46,9 @@ const RezItem = ({ item, openReviewHandler, isOpen }) => {
           <TemporaryButton
             onClick={pathname === "/client/mypage/rez" ? null : onOpen}
           >
-            {pathname === "/client/mypage/review" ? "리뷰 남기기" : "예약 취소"}
+            {pathname === "/client/mypage/pastrez"
+              ? "리뷰 남기기"
+              : "예약 취소"}
           </TemporaryButton>
         </ButtonBox>
       </ItemBox>

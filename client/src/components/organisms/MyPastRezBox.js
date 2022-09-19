@@ -13,15 +13,25 @@ const MyPastRezBox = () => {
       note: "요청사항 없습니다.",
       photo: "/assets/images/camping.avif",
     },
+    {
+      id: 2,
+      name: "좋은 캠핑",
+      phone: "010-1234-1234",
+      date: "22.08.10 ~ 22.08.11",
+      price: "50,000 원",
+      note: "요청사항 없습니다.",
+      photo: "/assets/images/camping.avif",
+    },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
 
   const openReviewHandler = (id) => {
     console.log("open!!");
+    const filtered = rezData.filter((el) => el.id === id);
+    console.info("filtered", filtered);
     setIsOpen(!isOpen);
-    console.log(isOpen);
-    console.log(id);
+    console.log("id", id);
   };
 
   return (
@@ -33,6 +43,7 @@ const MyPastRezBox = () => {
             item={item}
             openReviewHandler={(id) => openReviewHandler(id)}
             isOpen={isOpen}
+            idx={idx + 1}
           />
         );
       })}
