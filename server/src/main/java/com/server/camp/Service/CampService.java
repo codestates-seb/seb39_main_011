@@ -17,4 +17,8 @@ public class CampService {
         campRepository.save(camp);
     }
 
+    public void updateCamp(Camp camp) {
+        campRepository.save(camp);
+    }
+
 }
