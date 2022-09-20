@@ -36,6 +36,21 @@
       "review": "좋아요",
       "star": 0,
       "id": 5
+    },
+    {
+      "review": "",
+      "star": 0,
+      "id": 6
+    },
+    {
+      "review": "test",
+      "star": 5,
+      "id": 7
+    },
+    {
+      "review": "sdf",
+      "star": 3,
+      "id": 8
     }
   ]
 }
