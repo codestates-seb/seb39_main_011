@@ -1,62 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { CalendarBtn } from "../../atoms/Button";
 import * as S from "./style";
+import { useDispatch } from "react-redux";
+import { changeDate } from "../../../redux/reducers/calendarSlice";
+import { calendarGenerator } from "../../../utils/calenderCreate";
 
 const Calendar = () => {
   const [selectYear, setSelectYear] = useState(new Date().getFullYear());
   const [selectMonth, setSelectMonth] = useState(new Date().getMonth() + 1);
-  const [renderCalendar, setRenderCalendar] = useState([]);
-
-  useEffect(() => {
-    calendarGenerator(selectYear, selectMonth - 1);
-  }, [selectYear]);
-
-  useEffect(() => {
-    calendarGenerator(selectYear, selectMonth - 1);
-  }, [selectMonth]);
-
+  const [selectDate, setSelectDate] = useState(new Date().getDate());
+  const [renderCalendar, setRenderCalendar] = useState(
+    calendarGenerator(selectYear, selectMonth)
+  );
   const dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"];
+  const dispatch = useDispatch();
 
-  const getFirstDay = (year, month) => {
-    let firstDay = new Date(year, month, 1).getDay();
-    return firstDay;
-  };
+  useEffect(() => {
+    let hi = { name: "kim", age: 20 };
+    dispatch(changeDate(hi));
+  }, []);
 
-  const getLastDay = (year, month) => {
-    let selectMonth = month + 1;
-    let lastDate = new Date(year, selectMonth, 0).getDate();
-    return lastDate;
-  };
-
-  const calendarGenerator = (year, month) => {
-    let arrCalendar = [];
-
-    let firstDay = getFirstDay(year, month);
-    for (let i = 0; i < firstDay; i++) {
-      arrCalendar.push("");
-    }
-
-    let lastDate = getLastDay(year, month);
-    for (let i = 1; i <= lastDate; i++) {
-      arrCalendar.push(i);
-    }
-
-    let remainDate = arrCalendar.length % 7;
-    if (remainDate < 7 && remainDate !== 0) {
-      let length = 7 - remainDate;
-      for (let i = 0; i < length; i++) {
-        arrCalendar.push("");
-      }
-    }
-
-    let weeklength = arrCalendar.length / 7;
-    let result = [];
-    for (let i = 0; i < weeklength; i++) {
-      result.push(arrCalendar.slice(i * 7, (i + 1) * 7));
-    }
-
-    setRenderCalendar(result);
-  };
+  useEffect(() => {
+    let newCalendar = calendarGenerator(selectYear, selectMonth - 1);
+    setRenderCalendar(newCalendar);
+  }, [selectMonth, selectYear]);
 
   const handleYear = (e) => {
     setSelectYear(e.target.value);
@@ -64,6 +31,10 @@ const Calendar = () => {
 
   const handleMonth = (e) => {
     setSelectMonth(e.target.value);
+  };
+
+  const handleClickDate = (date) => {
+    setSelectDate(date);
   };
 
   return (
@@ -102,7 +73,13 @@ const Calendar = () => {
               <tr key={idx}>
                 {el.map((item, idx) => {
                   return (
-                    <td key={idx} className={item !== "" ? "on" : null}>
+                    <td
+                      key={idx}
+                      className={item !== "" ? "on" : null}
+                      onClick={() => {
+                        handleClickDate(item);
+                      }}
+                    >
                       {item}
                     </td>
                   );
