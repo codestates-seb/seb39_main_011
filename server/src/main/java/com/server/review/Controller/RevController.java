@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/custom/rev")
+@RequestMapping("/client/rev")
 public class RevController {
     private final ReviewService reviewService;
     private final ReviewMapper mapper;
