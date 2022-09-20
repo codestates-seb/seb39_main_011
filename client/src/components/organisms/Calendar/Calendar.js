@@ -1,62 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { CalendarBtn } from "../../atoms/Button";
 import * as S from "./style";
+import { useDispatch } from "react-redux";
+import { changeDate } from "../../../redux/reducers/calendarSlice";
+import { calendarGenerator } from "../../../utils/calenderCreate";
 
 const Calendar = () => {
   const [selectYear, setSelectYear] = useState(new Date().getFullYear());
   const [selectMonth, setSelectMonth] = useState(new Date().getMonth() + 1);
-  const [renderCalendar, setRenderCalendar] = useState([]);
-
-  useEffect(() => {
-    calendarGenerator(selectYear, selectMonth - 1);
-  }, [selectYear]);
-
-  useEffect(() => {
-    calendarGenerator(selectYear, selectMonth - 1);
-  }, [selectMonth]);
-
+  const [selectDate, setSelectDate] = useState(new Date().getDate());
+  const [renderCalendar, setRenderCalendar] = useState(
+    calendarGenerator(selectYear, selectMonth)
+  );
+  const [checkIn, setCheckIn] = useState(undefined);
+  const [checkOut, setCheckOut] = useState(undefined);
   const dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"];
+  const dispatch = useDispatch();
 
-  const getFirstDay = (year, month) => {
-    let firstDay = new Date(year, month, 1).getDay();
-    return firstDay;
-  };
+  useEffect(() => {
+    dispatch(changeDate({ checkIn: checkIn, checkOut: checkOut }));
+  }, [checkIn, checkOut, dispatch]);
 
-  const getLastDay = (year, month) => {
-    let selectMonth = month + 1;
-    let lastDate = new Date(year, selectMonth, 0).getDate();
-    return lastDate;
-  };
-
-  const calendarGenerator = (year, month) => {
-    let arrCalendar = [];
-
-    let firstDay = getFirstDay(year, month);
-    for (let i = 0; i < firstDay; i++) {
-      arrCalendar.push("");
-    }
-
-    let lastDate = getLastDay(year, month);
-    for (let i = 1; i <= lastDate; i++) {
-      arrCalendar.push(i);
-    }
-
-    let remainDate = arrCalendar.length % 7;
-    if (remainDate < 7 && remainDate !== 0) {
-      let length = 7 - remainDate;
-      for (let i = 0; i < length; i++) {
-        arrCalendar.push("");
-      }
-    }
-
-    let weeklength = arrCalendar.length / 7;
-    let result = [];
-    for (let i = 0; i < weeklength; i++) {
-      result.push(arrCalendar.slice(i * 7, (i + 1) * 7));
-    }
-
-    setRenderCalendar(result);
-  };
+  useEffect(() => {
+    let newCalendar = calendarGenerator(selectYear, selectMonth - 1);
+    setRenderCalendar(newCalendar);
+  }, [selectMonth, selectYear]);
 
   const handleYear = (e) => {
     setSelectYear(e.target.value);
@@ -64,6 +32,36 @@ const Calendar = () => {
 
   const handleMonth = (e) => {
     setSelectMonth(e.target.value);
+  };
+
+  const handleClickDate = (date) => {
+    setSelectDate(date);
+  };
+
+  const handleCheckInOut = (date) => {
+    if (checkIn !== undefined && checkOut !== undefined) {
+      setCheckIn(undefined);
+      setCheckOut(undefined);
+      return;
+    }
+    if (checkIn === undefined) {
+      let checkin = `${selectYear}.${selectMonth}.${date}`;
+      setCheckIn(checkin);
+    } else {
+      let checkout = `${selectYear}.${selectMonth}.${date}`;
+      setCheckOut(checkout);
+    }
+  };
+
+  const cellClass = (date) => {
+    let result = [];
+    if (date === selectDate && date !== "") {
+      result.push("click");
+    }
+    if (date !== "") {
+      result.push("on");
+    }
+    return result.join(" ");
   };
 
   return (
@@ -85,7 +83,16 @@ const Calendar = () => {
           </select>
         </div>
         <div>
-          <CalendarBtn height={"17px"}>오늘</CalendarBtn>
+          <CalendarBtn
+            height={"17px"}
+            onClick={() => {
+              setSelectYear(new Date().getFullYear());
+              setSelectMonth(new Date().getMonth() + 1);
+              setSelectDate(new Date().getDate());
+            }}
+          >
+            오늘
+          </CalendarBtn>
         </div>
       </S.Header>
       <S.Table>
@@ -100,10 +107,17 @@ const Calendar = () => {
           {renderCalendar.map((el, idx) => {
             return (
               <tr key={idx}>
-                {el.map((item, idx) => {
+                {el.map((date, idx) => {
                   return (
-                    <td key={idx} className={item !== "" ? "on" : null}>
-                      {item}
+                    <td
+                      key={idx}
+                      className={cellClass(date)}
+                      onClick={() => {
+                        handleClickDate(date);
+                        handleCheckInOut(date);
+                      }}
+                    >
+                      {date}
                     </td>
                   );
                 })}

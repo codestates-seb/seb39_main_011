@@ -28,6 +28,9 @@ export const Table = styled.table`
     padding: 5px;
   }
 
+  .click {
+    background-color: var(--main-color-3);
+  }
   .on:hover {
     background-color: #e5e5e5;
     cursor: pointer;
