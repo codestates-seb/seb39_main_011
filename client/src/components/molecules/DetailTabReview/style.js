@@ -21,6 +21,5 @@ export const ImgBox = styled.div`
   > img {
     width: 70px;
     height: 70px;
-    margin-top: 10px;
   }
 `;

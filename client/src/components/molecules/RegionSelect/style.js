@@ -14,4 +14,7 @@ export const Container = styled.li`
   > label {
     cursor: pointer;
   }
+  > label:hover {
+    color: red;
+  }
 `;

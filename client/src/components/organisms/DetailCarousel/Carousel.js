@@ -3,11 +3,15 @@ import * as S from "./style";
 
 const Carousel = () => {
   const [count, setCount] = useState(0);
-  // console.log(count);
+  console.log(count);
 
   useEffect(() => {
-    setInterval(() => {
-      setCount(count + 1);
+    setTimeout(() => {
+      if (count < 2) {
+        setCount(count + 1);
+      } else {
+        setCount(0);
+      }
     }, 3000);
 
     return () => {
@@ -17,24 +21,7 @@ const Carousel = () => {
 
   return (
     <S.CarouselContainer>
-      {/* <S.ImgBoxs>
-        <S.ImgBox>
-          <S.Img
-            src={`${process.env.PUBLIC_URL} /assets/images/camping2.jpg`}
-          />
-        </S.ImgBox>
-        <S.ImgBox>
-          <S.Img
-            src={`${process.env.PUBLIC_URL} /assets/images/camping3.jpg`}
-          />
-        </S.ImgBox>
-        <S.ImgBox>
-          <S.Img
-            src={`${process.env.PUBLIC_URL} /assets/images/camping4.jpg`}
-          />
-          </S.ImgBox>
-        </S.ImgBoxs> */}
-      <S.ImgBoxs>
+      <S.ImgBoxs count={count}>
         <S.Img src={`${process.env.PUBLIC_URL} /assets/images/camping2.jpg`} />
         <S.Img src={`${process.env.PUBLIC_URL} /assets/images/camping3.jpg`} />
         <S.Img src={`${process.env.PUBLIC_URL} /assets/images/camping4.jpg`} />
