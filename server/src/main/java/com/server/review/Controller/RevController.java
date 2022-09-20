@@ -37,7 +37,7 @@ public class RevController {
 
     //리뷰수정
     @PutMapping("/{rev-id}")
-    public ResponseEntity patchReview(@PathVariable("rev-id") long rev_id,
+    public ResponseEntity putReview(@PathVariable("rev-id") long rev_id,
                                       @RequestBody ReviewPutDto reviewPutDto) {
         reviewPutDto.setRev_id(rev_id);
         reviewService.updateReview(mapper.reviewPutDtoToReview(reviewPutDto));

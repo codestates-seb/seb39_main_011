@@ -1,6 +1,7 @@
 package com.server.camp.Mapper;
 
 import com.server.camp.DTO.CampPostDto;
+import com.server.camp.DTO.CampPutDto;
 import com.server.camp.Entity.Camp;
 import org.springframework.stereotype.Component;
 
@@ -16,5 +17,18 @@ public class CampMapper {
                 campPostDto.getCapacity(),
                 0
                 );
+    }
+
+    public Camp campPutDtoToCamp(CampPutDto campPutDto) {
+        return new Camp(
+                campPutDto.getCamp_id(),
+                campPutDto.getName(),
+                campPutDto.getPrice(),
+                campPutDto.getNote(),
+                campPutDto.getPlace(),
+                campPutDto.getPhone(),
+                campPutDto.getCapacity(),
+                0
+        );
     }
 }
