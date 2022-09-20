@@ -2,8 +2,11 @@ import React from "react";
 import * as S from "./style";
 import { ButtonPrimary } from "../../atoms/Button";
 import Calendar from "../Calendar/Calendar";
+import { useSelector } from "react-redux";
 
 const DetailModal = ({ handleModal }) => {
+  const { checkIn, checkOut } = useSelector((state) => state.reservationDate);
+
   return (
     <S.ModalContainer>
       <S.Modal>
@@ -12,7 +15,9 @@ const DetailModal = ({ handleModal }) => {
         </div>
 
         <Calendar />
-        <div>예약 날짜: 22.08.12 ~ 22.08.13</div>
+        <div>
+          예약 날짜: {checkIn} ~ {checkOut}
+        </div>
         <div>예약자 이름: 김코딩</div>
         <div>예약자 연락처: 01012345678</div>
         <div>가격: 50,000 원</div>
