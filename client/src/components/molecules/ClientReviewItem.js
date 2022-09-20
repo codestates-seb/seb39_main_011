@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { BasicBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 
-const ClientReviewItem = ({ item, onClick }) => {
+const ClientReviewItem = ({ item, review, star }) => {
   return (
     <>
       <ItemBox>
         <ContentBox>
           <InnerBox>
             <p>{item.name}</p>
-            <StarRender />
+            <StarRender rating={star} />
           </InnerBox>
 
           <p>{item.date}</p>
@@ -19,7 +19,7 @@ const ClientReviewItem = ({ item, onClick }) => {
             <Img src={item.revPhoto} alt="camping" />
             <Img src={item.revPhoto} alt="camping" />
           </ImgBox>
-          <p>{item.review}</p>
+          <p>{review}</p>
         </ContentBox>
         <ButtonBox>
           <BasicBtn width="50px">삭제</BasicBtn>
