@@ -16,6 +16,10 @@ export const Label = styled.label`
   padding-right: 10px;
   display: inline-block;
   cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
 `;
 
 export const FlexLayout = styled.div`
