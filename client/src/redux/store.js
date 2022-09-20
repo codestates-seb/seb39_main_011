@@ -1,7 +1,5 @@
-import { createStore } from "redux";
-import rootReducer from "./redux/reducers";
-// toolkit 적용하기!
+import { configureStore } from "@reduxjs/toolkit";
 
-const store = createStore(rootReducer);
-
-export default store;
+export const store = configureStore({
+  reducer: {},
+});
