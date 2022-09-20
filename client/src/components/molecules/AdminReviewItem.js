@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ButtonPrimary, { TemporaryButton } from "../atoms/Button";
+import { BasicBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 import CommentItem from "./CommentItem";
 
@@ -27,21 +27,7 @@ const AdminReviewItem = ({ item, openReviewHandler, isOpen }) => {
           </ImgBox>
         </ContentBox>
         <ButtonBox>
-          {/* <ButtonPrimary
-            width="75px"
-            height="35px"
-            bgc="#ADADAD"
-            color="#fff"
-            border="#ADADAD"
-            radius="5px"
-            padding="0 10px"
-            margin="10px"
-            fontSize="13px"
-            fontWeight="700"
-            text="댓글 달기"
-            hoverbgc="#989898"
-          /> */}
-          <TemporaryButton onClick={onOpen}>댓글 달기</TemporaryButton>
+          <BasicBtn onClick={onOpen}>댓글 달기</BasicBtn>
         </ButtonBox>
       </ItemBox>
       <hr />

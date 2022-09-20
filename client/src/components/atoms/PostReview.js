@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonPrimary, TemporaryButton } from "./Button";
-import StarRender from "./StarRender";
+import StarClick from "./StarClick";
+import { BasicBtn } from "./Button";
 
 const PostReview = () => {
   return (
@@ -9,7 +9,7 @@ const PostReview = () => {
       <TopBox>
         <p>리뷰 작성</p>
         <div>
-          <StarRender />
+          <StarClick />
         </div>
       </TopBox>
       <ContentBox>
@@ -25,7 +25,7 @@ const PostReview = () => {
           </PhotoBox>
         </div>
         <div>
-          <TemporaryButton>리뷰 등록</TemporaryButton>
+          <BasicBtn>리뷰 등록</BasicBtn>
         </div>
       </BottomBox>
     </Container>

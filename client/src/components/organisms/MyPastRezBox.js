@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RezItem from "../molecules/RezItem";
 import styled from "styled-components";
+import PostReview from "../atoms/PostReview";
 
 const MyPastRezBox = () => {
   const rezData = [
@@ -38,13 +39,20 @@ const MyPastRezBox = () => {
     <Container>
       {rezData.map((item, idx) => {
         return (
-          <RezItem
-            key={idx}
-            item={item}
-            openReviewHandler={(id) => openReviewHandler(id)}
-            isOpen={isOpen}
-            idx={idx + 1}
-          />
+          <>
+            <RezItem
+              key={idx}
+              item={item}
+              openReviewHandler={(id) => openReviewHandler(id)}
+              isOpen={isOpen}
+              idx={idx + 1}
+            />
+            {item.id === idx + 1 ? (
+              isOpen ? (
+                <PostReview key={idx} />
+              ) : null
+            ) : null}
+          </>
         );
       })}
     </Container>

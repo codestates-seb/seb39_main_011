@@ -16,7 +16,8 @@ export default {
     radius: { control: { type: "text" } },
     fontSize: { control: { type: "text" } },
     fontWeight: { control: { type: "text" } },
+    onClick: { action: "clicked" },
   },
 };
 
-export const StorybookButton = (args) => <Button {...args}></Button>;
+export const StorybookButton = (args) => <Button {...args} />;
