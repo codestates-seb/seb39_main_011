@@ -12,13 +12,14 @@ const Calendar = () => {
   const [renderCalendar, setRenderCalendar] = useState(
     calendarGenerator(selectYear, selectMonth)
   );
+  const [checkIn, setCheckIn] = useState(undefined);
+  const [checkOut, setCheckOut] = useState(undefined);
   const dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let hi = { name: "kim", age: 20 };
-    dispatch(changeDate(hi));
-  }, []);
+    dispatch(changeDate({ checkIn: checkIn, checkOut: checkOut }));
+  }, [checkIn, checkOut, dispatch]);
 
   useEffect(() => {
     let newCalendar = calendarGenerator(selectYear, selectMonth - 1);
@@ -35,6 +36,32 @@ const Calendar = () => {
 
   const handleClickDate = (date) => {
     setSelectDate(date);
+  };
+
+  const handleCheckInOut = (date) => {
+    if (checkIn !== undefined && checkOut !== undefined) {
+      setCheckIn(undefined);
+      setCheckOut(undefined);
+      return;
+    }
+    if (checkIn === undefined) {
+      let checkin = `${selectYear}.${selectMonth}.${date}`;
+      setCheckIn(checkin);
+    } else {
+      let checkout = `${selectYear}.${selectMonth}.${date}`;
+      setCheckOut(checkout);
+    }
+  };
+
+  const cellClass = (date) => {
+    let result = [];
+    if (date === selectDate && date !== "") {
+      result.push("click");
+    }
+    if (date !== "") {
+      result.push("on");
+    }
+    return result.join(" ");
   };
 
   return (
@@ -56,7 +83,16 @@ const Calendar = () => {
           </select>
         </div>
         <div>
-          <CalendarBtn height={"17px"}>오늘</CalendarBtn>
+          <CalendarBtn
+            height={"17px"}
+            onClick={() => {
+              setSelectYear(new Date().getFullYear());
+              setSelectMonth(new Date().getMonth() + 1);
+              setSelectDate(new Date().getDate());
+            }}
+          >
+            오늘
+          </CalendarBtn>
         </div>
       </S.Header>
       <S.Table>
@@ -71,16 +107,17 @@ const Calendar = () => {
           {renderCalendar.map((el, idx) => {
             return (
               <tr key={idx}>
-                {el.map((item, idx) => {
+                {el.map((date, idx) => {
                   return (
                     <td
                       key={idx}
-                      className={item !== "" ? "on" : null}
+                      className={cellClass(date)}
                       onClick={() => {
-                        handleClickDate(item);
+                        handleClickDate(date);
+                        handleCheckInOut(date);
                       }}
                     >
-                      {item}
+                      {date}
                     </td>
                   );
                 })}

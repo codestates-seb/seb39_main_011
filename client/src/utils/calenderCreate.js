@@ -36,6 +36,6 @@ export const calendarGenerator = (year, month) => {
   for (let i = 0; i < weeklength; i++) {
     result.push(arrCalendar.slice(i * 7, (i + 1) * 7));
   }
-  console.log(result);
+
   return result;
 };
