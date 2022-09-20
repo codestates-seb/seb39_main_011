@@ -19,20 +19,20 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public void createReview(Review review, MultipartFile file) throws Exception{
+    public void createReview(Review review) {
 
-        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
-
-        UUID uuid = UUID.randomUUID();
-
-        String fileName = uuid + "_" + file.getOriginalFilename();
-
-        File saveFile = new File(projectPath, fileName);
-
-        file.transferTo(saveFile);
-
-        review.setFilename(fileName);
-        review.setFilepath("/files/" + fileName);
+//        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+//
+//        UUID uuid = UUID.randomUUID();
+//
+//        String fileName = uuid + "_" + file.getOriginalFilename();
+//
+//        File saveFile = new File(projectPath, fileName);
+//
+//        file.transferTo(saveFile);
+//
+//        review.setFilename(fileName);
+//        review.setFilepath("/files/" + fileName);
 
         reviewRepository.save(review);
     }
