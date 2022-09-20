@@ -3,7 +3,7 @@ import styled from "styled-components";
 import StarClick from "./StarClick";
 import { BasicBtn } from "./Button";
 
-const PostReview = () => {
+const PostReview = ({ item, key }) => {
   return (
     <Container>
       <TopBox>
