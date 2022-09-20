@@ -8,7 +8,7 @@ const ClientReview = () => {
 
   const getReview = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/reviews");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/reviews`);
       setData(res.data);
       console.log(res.data);
     } catch (error) {

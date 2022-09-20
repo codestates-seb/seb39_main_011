@@ -23,7 +23,10 @@ const PostReview = () => {
     };
 
     try {
-      const res = await axios.post("http://localhost:3001/reviews", reviewData);
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/reviews`,
+        reviewData
+      );
       console.log(res.data);
     } catch (error) {
       console.log(error.data);
