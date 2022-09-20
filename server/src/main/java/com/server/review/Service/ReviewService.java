@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,6 +34,9 @@ public class ReviewService {
     }
 
     public Optional<Review> findReview(long rev_id) {
-        return reviewRepository.findById(rev_id);
+       return reviewRepository.findById(rev_id);}
+
+    public List<Review> findReviews() {
+        return reviewRepository.findAll();
     }
 }
