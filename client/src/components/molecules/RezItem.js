@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ButtonPrimary, { TemporaryButton } from "../atoms/Button";
+import { BasicBtn } from "../atoms/Button";
 import { useLocation } from "react-router-dom";
 import PostReview from "../atoms/PostReview";
 
@@ -13,7 +13,7 @@ const RezItem = ({ item, openReviewHandler, isOpen, idx }) => {
   };
 
   return (
-    <>
+    <div>
       <ItemBox>
         <ImgBox>
           <Img src={item.photo} alt="camping" />
@@ -26,36 +26,18 @@ const RezItem = ({ item, openReviewHandler, isOpen, idx }) => {
           <p>요청 사항: {item.note}</p>
         </ContentBox>
         <ButtonBox>
-          {/* <ButtonPrimary
-            width="85px"
-            height="35px"
-            bgc="#ADADAD"
-            color="#fff"
-            border="#ADADAD"
-            radius="5px"
-            padding="0 10px"
-            margin="10px 0"
-            fontSize="13px"
-            fontWeight="700"
-            text={
-              pathname === "/client/mypage/rez" ? "예약취소" : "리뷰 남기기"
-            }
-            hoverbgc="#989898"
-            onClick={onOpen}
-          /> */}
-          <TemporaryButton
-            onClick={pathname === "/client/mypage/rez" ? null : onOpen}
-          >
+          <BasicBtn onClick={pathname === "/client/mypage/rez" ? null : onOpen}>
             {pathname === "/client/mypage/pastrez"
               ? "리뷰 남기기"
               : "예약 취소"}
-          </TemporaryButton>
+          </BasicBtn>
         </ButtonBox>
       </ItemBox>
 
       <hr />
-      {isOpen && <PostReview />}
-    </>
+
+      {/* {isOpen && <PostReview />} */}
+    </div>
   );
 };
 

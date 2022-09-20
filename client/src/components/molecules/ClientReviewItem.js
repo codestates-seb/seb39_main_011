@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ButtonPrimary from "../atoms/Button";
+import { BasicBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 
 const ClientReviewItem = ({ item, onClick }) => {
@@ -22,34 +22,8 @@ const ClientReviewItem = ({ item, onClick }) => {
           <p>{item.review}</p>
         </ContentBox>
         <ButtonBox>
-          <ButtonPrimary
-            width="50px"
-            height="35px"
-            bgc="#ADADAD"
-            color="#fff"
-            border="#ADADAD"
-            radius="5px"
-            padding="0 10px"
-            margin="10px"
-            fontSize="13px"
-            fontWeight="700"
-            text="삭제"
-            hoverbgc="#989898"
-          />
-          <ButtonPrimary
-            width="50px"
-            height="35px"
-            bgc="#ADADAD"
-            color="#fff"
-            border="#ADADAD"
-            radius="5px"
-            padding="0 10px"
-            margin="10px 0"
-            fontSize="13px"
-            fontWeight="700"
-            text="수정"
-            hoverbgc="#989898"
-          />
+          <BasicBtn width="50px">삭제</BasicBtn>
+          <BasicBtn width="50px">수정</BasicBtn>
         </ButtonBox>
       </ItemBox>
       <hr />
@@ -103,4 +77,5 @@ const ButtonBox = styled.div`
   justify-content: flex-end;
   flex: 1;
   margin-right: 1rem;
+  gap: 10px;
 `;

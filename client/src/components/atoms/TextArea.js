@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonPrimary } from "./Button";
 
-const TextArea = ({ label, height }) => {
+const TextArea = ({ label }) => {
   return (
     <Layout>
       <label>{label}</label>

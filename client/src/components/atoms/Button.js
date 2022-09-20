@@ -18,12 +18,12 @@ export const ButtonPrimary = styled.button`
   }
 `;
 
-export const TemporaryButton = styled.button`
-  width: 85px;
+export const BasicBtn = styled(ButtonPrimary)`
+  width: ${(props) => props.width || "85px"};
   height: 35px;
   background-color: #adadad;
   color: #fff;
-  border: 1px solid #adadad;
+  border: #adadad;
   border-radius: 5px;
   padding: 0 10px;
   margin: 10px 0;
@@ -64,6 +64,7 @@ const Button = ({
   hoverbgc,
   fontSize,
   fontWeight,
+  onClick,
 }) => {
   return (
     <ButtonPrimary
@@ -78,6 +79,7 @@ const Button = ({
       radius={radius}
       fontSize={fontSize}
       fontWeight={fontWeight}
+      onClick={onClick}
     >
       {text}
     </ButtonPrimary>
