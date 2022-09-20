@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -53,11 +54,18 @@ public class RevController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    //리뷰가져오기
+    //리뷰조회
     @GetMapping("/{rev-id}")
     public ResponseEntity<Review> getReview(@PathVariable("rev-id")long rev_id) {
         Optional<Review> review = reviewService.findReview(rev_id);
         return new ResponseEntity(review,HttpStatus.OK);
+    }
+
+    //리뷰전체조회
+    @GetMapping
+    public ResponseEntity getReview() {
+        List<Review> response = reviewService.findReviews();
+        return new ResponseEntity(response,HttpStatus.OK);
     }
 
 
