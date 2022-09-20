@@ -8,16 +8,11 @@ export const CarouselContainer = styled.div`
 export const ImgBoxs = styled.div`
   display: flex;
   width: 300%;
-  /* transform: translateX(-66.6%); */
+  transition: all 1s;
+  transform: ${(props) => `translateX(-${props.count * 33.3}%)`};
 `;
 
-// export const ImgBox = styled.div`
-//   width: 33.3%;
-//   border: 2px solid red;
-// `;
-
 export const Img = styled.img.attrs({
-  // src: `${process.env.PUBLIC_URL + "/assets/images/camping2.jpg"}`,
   alt: "이미지",
 })`
   width: 33.3%;
