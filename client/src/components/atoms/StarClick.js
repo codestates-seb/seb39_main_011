@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const StarClick = () => {
-  const [click, setClick] = useState(0);
+const StarClick = ({ clickStarHandler }) => {
+  const [click, setClick] = useState(-1);
   const [hover, setHover] = useState(0);
   const stars = Array.from({ length: 5 });
+
   const handleClick = (idx) => {
     setClick(idx);
   };
+
   const handleHover = (idx) => {
     setHover(idx);
   };
+
+  useEffect(() => {
+    clickStarHandler(click + 1);
+  }, [click]);
 
   return (
     <StarContainer>
