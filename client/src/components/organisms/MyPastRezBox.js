@@ -16,43 +16,33 @@ const MyPastRezBox = () => {
     },
     {
       id: 2,
-      name: "좋은 캠핑",
-      phone: "010-1234-1234",
+      name: "좋은 캠핑쓰",
+      phone: "010-1234-5678",
       date: "22.08.10 ~ 22.08.11",
-      price: "50,000 원",
-      note: "요청사항 없습니다.",
+      price: "70,000 원",
+      note: "요청사항 없음",
       photo: "/assets/images/camping.avif",
     },
   ];
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState("");
 
   const openReviewHandler = (id) => {
-    console.log("open!!");
-    const filtered = rezData.filter((el) => el.id === id);
-    console.info("filtered", filtered);
-    setIsOpen(!isOpen);
-    console.log("id", id);
+    setIsOpen((el) => (el.isOpen !== id ? id : ""));
+
+    if (isOpen === id) {
+      setIsOpen(false);
+    }
   };
 
   return (
     <Container>
-      {rezData.map((item, idx) => {
+      {rezData.map((item) => {
         return (
-          <>
-            <RezItem
-              key={idx}
-              item={item}
-              openReviewHandler={(id) => openReviewHandler(id)}
-              isOpen={isOpen}
-              idx={idx + 1}
-            />
-            {item.id === idx + 1 ? (
-              isOpen ? (
-                <PostReview key={idx} />
-              ) : null
-            ) : null}
-          </>
+          <div key={item.id}>
+            <RezItem item={item} openReviewHandler={openReviewHandler} />
+            {isOpen === item.id ? <PostReview /> : null}
+          </div>
         );
       })}
     </Container>

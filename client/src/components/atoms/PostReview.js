@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import StarClick from "./StarClick";
 import { BasicBtn } from "./Button";
+import axios from "axios";
 
 const PostReview = () => {
+  const [star, setStar] = useState(0);
+  const [review, setReview] = useState("");
+
+  const onChangeReview = (e) => {
+    setReview(e.target.value);
+  };
+
+  const clickStarHandler = (e) => {
+    setStar(e);
+  };
+
+  const reviewPost = async () => {
+    const reviewData = {
+      review,
+      star,
+    };
+
+    try {
+      const res = await axios.post("http://localhost:3001/reviews", reviewData);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error.data);
+    }
+  };
+
   return (
     <Container>
       <TopBox>
         <p>리뷰 작성</p>
         <div>
-          <StarClick />
+          <StarClick clickStarHandler={clickStarHandler} />
         </div>
       </TopBox>
       <ContentBox>
-        <textarea />
+        <textarea value={review} onChange={onChangeReview} />
       </ContentBox>
       <BottomBox>
         <div>
@@ -25,7 +51,7 @@ const PostReview = () => {
           </PhotoBox>
         </div>
         <div>
-          <BasicBtn>리뷰 등록</BasicBtn>
+          <BasicBtn onClick={reviewPost}>리뷰 등록</BasicBtn>
         </div>
       </BottomBox>
     </Container>

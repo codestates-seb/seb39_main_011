@@ -2,15 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { BasicBtn } from "../atoms/Button";
 import { useLocation } from "react-router-dom";
-import PostReview from "../atoms/PostReview";
 
-const RezItem = ({ item, openReviewHandler, isOpen, idx }) => {
+const RezItem = ({ item, openReviewHandler }) => {
   const { pathname } = useLocation();
-  console.info("idx", idx);
-
-  const onOpen = () => {
-    openReviewHandler(item.id);
-  };
 
   return (
     <div>
@@ -26,17 +20,20 @@ const RezItem = ({ item, openReviewHandler, isOpen, idx }) => {
           <p>요청 사항: {item.note}</p>
         </ContentBox>
         <ButtonBox>
-          <BasicBtn onClick={pathname === "/client/mypage/rez" ? null : onOpen}>
+          <BasicBtn
+            onClick={
+              pathname === "/client/mypage/rez"
+                ? null
+                : () => openReviewHandler(item.id)
+            }
+          >
             {pathname === "/client/mypage/pastrez"
               ? "리뷰 남기기"
               : "예약 취소"}
           </BasicBtn>
         </ButtonBox>
       </ItemBox>
-
       <hr />
-
-      {/* {isOpen && <PostReview />} */}
     </div>
   );
 };
