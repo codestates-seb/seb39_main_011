@@ -1,42 +1,39 @@
-package com.server.review.Entity;
+package com.server.camp.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
-@Getter
 @Entity
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Review {
+public class Camp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long rev_id;
+    private Long camp_id;
 
     @Column(nullable = false)
-    private String writer;
+    private String name;
 
     @Column(nullable = false)
-    private String review;
+    private int price;
 
     @Column(nullable = false)
-    private LocalDateTime date;
+    private String note;
 
     @Column(nullable = false)
-    private int visit;
+    private String place;
 
     @Column(nullable = false)
-    private int star;
+    private String phone;
 
-//    @Column
-//    private String filename;
-//
-//    @Column
-//    private String filepath;
+    @Column(nullable = false)
+    private int capacity;
 
+    @Column(nullable = false)
+    private int star_total;
 }

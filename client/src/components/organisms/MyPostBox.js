@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { TemporaryButton } from "../atoms/Button";
+import { BasicBtn } from "../atoms/Button";
 import RequiredInput from "../atoms/RequiredInput";
 import TextArea from "../atoms/TextArea";
 
@@ -27,7 +27,7 @@ const MyPostBox = () => {
         </div>
         <TextArea label="주의사항" height="50px" />
         <ButtonBox>
-          <TemporaryButton>등록하기</TemporaryButton>
+          <BasicBtn>등록하기</BasicBtn>
         </ButtonBox>
       </Box>
     </Container>

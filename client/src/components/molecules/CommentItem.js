@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ButtonPrimary from "../atoms/Button";
+import { BasicBtn } from "../atoms/Button";
 import TextArea from "../atoms/TextArea";
 
 const CommentItem = () => {
@@ -11,21 +11,9 @@ const CommentItem = () => {
         <div>
           <TextAreaStyle />
         </div>
-
-        <ButtonPrimary
-          width="50px"
-          height="35px"
-          bgc="#ADADAD"
-          color="#fff"
-          border="#ADADAD"
-          radius="5px"
-          padding="0 10px"
-          margin="10px 0"
-          fontSize="13px"
-          fontWeight="700"
-          text="등록"
-          hoverbgc="#989898"
-        />
+        <BasicBtn width="50px" height="35px">
+          등록
+        </BasicBtn>
       </Box>
     </Layout>
   );

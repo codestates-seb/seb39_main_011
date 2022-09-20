@@ -1,21 +1,20 @@
 package com.server.review.Controller;
 
-import com.server.review.Dto.ReviewPatchDto;
+import com.server.review.Dto.ReviewPutDto;
 import com.server.review.Dto.ReviewPostDto;
 import com.server.review.Entity.Review;
 import com.server.review.Mapper.ReviewMapper;
 import com.server.review.Service.ReviewService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/custom/rev")
+@RequestMapping("/client/rev")
 public class RevController {
     private final ReviewService reviewService;
     private final ReviewMapper mapper;
@@ -27,7 +26,7 @@ public class RevController {
 
     //리뷰등록
     @PostMapping
-    public ResponseEntity postReview(@RequestBody ReviewPostDto reviewPostDto) {
+    public ResponseEntity postReview(@RequestBody ReviewPostDto reviewPostDto )  {
 
         Review review = mapper.reviewPostDtoToReview(reviewPostDto);
         reviewService.createReview(review);
@@ -37,11 +36,11 @@ public class RevController {
     }
 
     //리뷰수정
-    @PatchMapping("/{rev-id}")
-    public ResponseEntity patchReview(@PathVariable("rev-id") long rev_id,
-                                      @RequestBody ReviewPatchDto reviewPatchDto) {
-        reviewPatchDto.setRev_id(rev_id);
-        reviewService.updateReview(mapper.reviewPatchDtoToReview(reviewPatchDto));
+    @PutMapping("/{rev-id}")
+    public ResponseEntity putReview(@PathVariable("rev-id") long rev_id,
+                                      @RequestBody ReviewPutDto reviewPutDto) {
+        reviewPutDto.setRev_id(rev_id);
+        reviewService.updateReview(mapper.reviewPutDtoToReview(reviewPutDto));
         return new ResponseEntity(HttpStatus.OK);
     }
 
@@ -53,11 +52,18 @@ public class RevController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    //리뷰가져오기
+    //리뷰조회
     @GetMapping("/{rev-id}")
     public ResponseEntity<Review> getReview(@PathVariable("rev-id")long rev_id) {
         Optional<Review> review = reviewService.findReview(rev_id);
         return new ResponseEntity(review,HttpStatus.OK);
+    }
+
+    //리뷰전체조회
+    @GetMapping
+    public ResponseEntity getReview() {
+        List<Review> response = reviewService.findReviews();
+        return new ResponseEntity(response,HttpStatus.OK);
     }
 
 

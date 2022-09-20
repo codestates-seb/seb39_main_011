@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ReviewPatchDto {
+public class ReviewPutDto {
     private Long rev_id;
     private String review;
     private int star;

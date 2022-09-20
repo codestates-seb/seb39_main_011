@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ButtonPrimary from "../atoms/Button";
+import { BasicBtn } from "../atoms/Button";
 import ReadTextField from "../atoms/ReadTextField";
 
 const MyInfoBox = () => {
@@ -13,20 +13,7 @@ const MyInfoBox = () => {
         <ReadTextField label="연락처" value="010-1234-5678" />
       </InfoBox>
       <ButtonBox>
-        <ButtonPrimary
-          width="75px"
-          height="40px"
-          bgc="#ADADAD"
-          color="#fff"
-          border="#ADADAD"
-          radius="5px"
-          padding="0 10px"
-          margin="10px 0"
-          fontSize="15px"
-          fontWeight="700"
-          text="수정하기"
-          hoverbgc="#989898"
-        />
+        <BasicBtn width="75px">수정하기</BasicBtn>
       </ButtonBox>
     </>
   );
