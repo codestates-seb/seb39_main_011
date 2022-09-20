@@ -34,4 +34,10 @@ public class Review {
     @Column(nullable = false)
     private int star;
 
+    @Column
+    private String filename;
+
+    @Column
+    private String filepath;
+
 }

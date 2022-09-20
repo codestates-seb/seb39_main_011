@@ -1,18 +1,16 @@
 package com.server.review.Service;
 
-import com.server.review.Dto.ReviewPostDto;
-import com.server.review.Dto.ReviewResponseDto;
 import com.server.review.Entity.Review;
 import com.server.review.Repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -21,8 +19,22 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public void createReview(Review review){
-         reviewRepository.save(review);
+    public void createReview(Review review, MultipartFile file) throws Exception{
+
+        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+
+        UUID uuid = UUID.randomUUID();
+
+        String fileName = uuid + "_" + file.getOriginalFilename();
+
+        File saveFile = new File(projectPath, fileName);
+
+        file.transferTo(saveFile);
+
+        review.setFilename(fileName);
+        review.setFilepath("/files/" + fileName);
+
+        reviewRepository.save(review);
     }
 
     public void updateReview(Review review){
