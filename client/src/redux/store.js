@@ -1,7 +1,10 @@
-import { createStore } from "redux";
-import rootReducer from "./redux/reducers";
-// toolkit 적용하기!
+import { configureStore } from "@reduxjs/toolkit";
+import calendarSlice from "./reducers/calendarSlice";
 
-const store = createStore(rootReducer);
+const store = configureStore({
+  reducer: {
+    reservationDate: calendarSlice,
+  },
+});
 
 export default store;
