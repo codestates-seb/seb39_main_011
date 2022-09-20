@@ -1,10 +1,41 @@
 {
-  "user": [
+  "reviews": [
     {
-      "id": "abc"
+      "review": "좋아요~~!",
+      "star": 5,
+      "name": "좋은 캠핑",
+      "date": "2022.09.20",
+      "revPhoto": "/assets/images/camping.avif",
+      "id": 1
     },
     {
-      "id": "def"
+      "review": "굳굳",
+      "star": 4.5,
+      "name": "양평 캠핑장",
+      "date": "2022.09.20",
+      "revPhoto": "/assets/images/camping1.jpg",
+      "id": 2
+    },
+    {
+      "review": "별로임,,",
+      "star": 1,
+      "name": "안녕 캠핑",
+      "date": "2022.09.20",
+      "revPhoto": "/assets/images/camping2.jpg",
+      "id": 3
+    },
+    {
+      "review": "깨끗하네요",
+      "star": 4,
+      "name": "해피 캠핑장",
+      "date": "2022.09.20",
+      "revPhoto": "/assets/images/camping3.jpg",
+      "id": 4
+    },
+    {
+      "review": "좋아요",
+      "star": 0,
+      "id": 5
     }
   ]
 }
