@@ -12,5 +12,6 @@ export const ReviewsInfo = styled.div`
 
 export const ReviewList = styled.ul`
   display: flex;
+  /* flex-direction: column; */
   flex-wrap: wrap;
 `;

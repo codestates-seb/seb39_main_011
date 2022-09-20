@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Content = styled.div`
+export const TabInfoContainer = styled.div`
   padding: 20px 20px 60px 20px;
 
   display: flex;
@@ -12,10 +12,21 @@ export const Content = styled.div`
     height: 130px;
     border: 1px solid red;
   }
+`;
 
-  .important_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+export const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  @media (max-width: 670px) {
+    gap: 10px;
   }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
 `;

@@ -15,6 +15,6 @@ export const TabBtn = styled.div`
   }
 
   > .border {
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #000;
   }
 `;
