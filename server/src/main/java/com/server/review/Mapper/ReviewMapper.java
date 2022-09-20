@@ -15,9 +15,9 @@ public class ReviewMapper {
                 reviewPostDto.getReview(),
                 LocalDateTime.now(),
                 0,
-                reviewPostDto.getStar(),
-                null,
-                null
+                reviewPostDto.getStar()
+//                null,
+//                null
         );
     }
 
@@ -27,9 +27,9 @@ public class ReviewMapper {
                 reviewPatchDto.getReview(),
                 LocalDateTime.now(),
                 0,
-                reviewPatchDto.getStar(),
-                null,
-                null
+                reviewPatchDto.getStar()
+//                null,
+//                null
                 );
     }
 }

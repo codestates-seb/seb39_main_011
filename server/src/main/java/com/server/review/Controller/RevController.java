@@ -26,10 +26,10 @@ public class RevController {
 
     //리뷰등록
     @PostMapping
-    public ResponseEntity postReview(@RequestBody ReviewPostDto reviewPostDto, MultipartFile file) throws Exception {
+    public ResponseEntity postReview(@RequestBody ReviewPostDto reviewPostDto )  {
 
         Review review = mapper.reviewPostDtoToReview(reviewPostDto);
-        reviewService.createReview(review,file);
+        reviewService.createReview(review);
 
 
         return new ResponseEntity<>(HttpStatus.CREATED);
