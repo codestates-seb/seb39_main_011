@@ -54,7 +54,7 @@ public class CampController {
     }
 
     //게시글 조회
-    @GetMapping("/admin/post{camp-id}")
+    @GetMapping("/admin/post/{camp-id}")
     public ResponseEntity getCamp(@PathVariable("camp-id")long camp_id) {
         Optional<Camp> camp = campService.findCamp(camp_id);
         return new ResponseEntity(camp, HttpStatus.OK);
