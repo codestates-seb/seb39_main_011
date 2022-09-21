@@ -38,4 +38,12 @@ public class CampController {
         campService.updateCamp(camp);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    //게시글 삭제
+
+    @DeleteMapping("/{camp-id}")
+    public ResponseEntity deleteCamp(@PathVariable("camp-id")long camp_id){
+        campService.deleteCamp(camp_id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }
