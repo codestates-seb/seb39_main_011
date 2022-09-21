@@ -60,7 +60,7 @@ public class CampController {
         return new ResponseEntity(camp, HttpStatus.OK);
     }
 
-    //메인페이지 게시글 전체조회
+    //메인페이지 게시글조회
     @GetMapping("/main")
     public ResponseEntity getCamps() {
         List<Camp> camps = campService.findCamps();
