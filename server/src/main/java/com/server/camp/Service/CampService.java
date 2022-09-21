@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,5 +31,9 @@ public class CampService {
 
     public Optional<Camp> findCamp(long camp_id) {
         return campRepository.findById(camp_id);}
+
+    public List<Camp> findCamps() {
+        return campRepository.findAll();
+    }
 
 }
