@@ -1,22 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BasicBtn } from "../atoms/Button";
 import RequiredInput from "../atoms/RequiredInput";
 import TextArea from "../atoms/TextArea";
+import axios from "axios";
 
 const MyPostBox = () => {
+  const [camping, setCamping] = useState({});
+
+  const handleChange = (e) => {
+    let input = {};
+    input[e.target.name] = e.target.value;
+    let register = { ...camping, ...input };
+    setCamping(register);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const { data } = await axios.post("/admin/post", camping);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Container>
       <Box>
-        <RequiredInput label="캠핑장 이름" />
-        <RequiredInput label="연락처" />
-        <RequiredInput label="캠핑장 위치" />
-        <RequiredInput label="가격" />
-        <TextArea label="캠핑장 소개" />
+        <RequiredInput
+          label="캠핑장 이름"
+          name="name"
+          onChange={(e) => handleChange(e)}
+        />
+        <RequiredInput
+          label="연락처"
+          name="phone"
+          onChange={(e) => handleChange(e)}
+        />
+        <RequiredInput
+          label="캠핑장 위치"
+          name="place"
+          onChange={(e) => handleChange(e)}
+        />
+        <RequiredInput
+          label="가격"
+          name="price"
+          onChange={(e) => handleChange(e)}
+        />
+        <RequiredInput
+          label="하루 최대 수용 팀"
+          name="capacity"
+          type="number"
+          onChange={(e) => handleChange(e)}
+        />
       </Box>
 
       <Box>
-        <RequiredInput label="하루 최대 수용 팀" type="number" />
         <div>
           <p>사진 추가</p>
           <PhotoBox>
@@ -25,9 +64,13 @@ const MyPostBox = () => {
             <div />
           </PhotoBox>
         </div>
-        <TextArea label="주의사항" height="50px" />
+        <TextArea
+          label="캠핑장 소개"
+          name="note"
+          onChange={(e) => handleChange(e)}
+        />
         <ButtonBox>
-          <BasicBtn>등록하기</BasicBtn>
+          <BasicBtn onClick={handleSubmit}>등록하기</BasicBtn>
         </ButtonBox>
       </Box>
     </Container>
