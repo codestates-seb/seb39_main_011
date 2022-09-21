@@ -2,6 +2,7 @@ package com.server.camp.Mapper;
 
 import com.server.camp.DTO.CampPostDto;
 import com.server.camp.DTO.CampPutDto;
+import com.server.camp.DTO.CampResponseDto;
 import com.server.camp.Entity.Camp;
 import org.springframework.stereotype.Component;
 
@@ -30,5 +31,14 @@ public class CampMapper {
                 campPutDto.getCapacity(),
                 0
         );
+    }
+
+    public CampResponseDto campToCampResponseDto(Camp camp) {
+        return new CampResponseDto(
+                0L,
+                camp.getName(),
+                camp.getPlace(),
+                camp.getPrice(),
+                camp.getStar_total());
     }
 }

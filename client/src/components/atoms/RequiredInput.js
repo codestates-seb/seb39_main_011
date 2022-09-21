@@ -1,9 +1,8 @@
 import React from "react";
-import { Input } from "@mui/material";
 import styled from "styled-components";
 import { TextField } from "@mui/material";
 
-const RequiredInput = ({ type, label, value, placeholder }) => {
+const RequiredInput = ({ type, label, value, placeholder, onChange, name }) => {
   return (
     <Layout>
       <TextField
@@ -14,6 +13,8 @@ const RequiredInput = ({ type, label, value, placeholder }) => {
           shrink: true,
         }}
         variant="standard"
+        onChange={onChange}
+        name={name}
       />
     </Layout>
   );
