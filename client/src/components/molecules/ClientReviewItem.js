@@ -2,8 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { BasicBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
+import moment from "moment";
 
-const ClientReviewItem = ({ item, review, star }) => {
+const ClientReviewItem = ({
+  item,
+  review,
+  star,
+  onRemoveReview,
+  onUpdateReview,
+}) => {
+  const date = moment(item.date).format("YYYY.MM.DD");
+
   return (
     <>
       <ItemBox>
@@ -13,7 +22,7 @@ const ClientReviewItem = ({ item, review, star }) => {
             <StarRender rating={star} />
           </InnerBox>
 
-          <p>{item.date}</p>
+          <p>{date}</p>
           <ImgBox>
             <Img src={item.revPhoto} alt="camping" />
             <Img src={item.revPhoto} alt="camping" />
@@ -22,8 +31,15 @@ const ClientReviewItem = ({ item, review, star }) => {
           <p>{review}</p>
         </ContentBox>
         <ButtonBox>
-          <BasicBtn width="50px">삭제</BasicBtn>
-          <BasicBtn width="50px">수정</BasicBtn>
+          <BasicBtn onClick={() => onRemoveReview(item.rev_id)} width="50px">
+            삭제
+          </BasicBtn>
+          <BasicBtn
+            onClick={() => onUpdateReview(review, star, item.rev_id)}
+            width="50px"
+          >
+            수정
+          </BasicBtn>
         </ButtonBox>
       </ItemBox>
       <hr />
