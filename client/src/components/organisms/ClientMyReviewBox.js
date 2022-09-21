@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ClientReviewItem from "../molecules/ClientReviewItem";
 
-const ClientMyReviewBox = ({ data }) => {
+const ClientMyReviewBox = ({ data, onRemoveReview }) => {
   return (
     <Container>
       {data.map((item, idx) => {
@@ -12,6 +12,7 @@ const ClientMyReviewBox = ({ data }) => {
             item={item}
             review={item.review}
             star={item.star}
+            onRemoveReview={onRemoveReview}
           />
         );
       })}

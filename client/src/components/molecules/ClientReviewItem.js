@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BasicBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 
-const ClientReviewItem = ({ item, review, star }) => {
+const ClientReviewItem = ({ item, review, star, onRemoveReview }) => {
   return (
     <>
       <ItemBox>
@@ -22,7 +22,9 @@ const ClientReviewItem = ({ item, review, star }) => {
           <p>{review}</p>
         </ContentBox>
         <ButtonBox>
-          <BasicBtn width="50px">삭제</BasicBtn>
+          <BasicBtn onClick={() => onRemoveReview(item.id)} width="50px">
+            삭제
+          </BasicBtn>
           <BasicBtn width="50px">수정</BasicBtn>
         </ButtonBox>
       </ItemBox>

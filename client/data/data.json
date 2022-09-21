@@ -31,26 +31,6 @@
       "date": "2022.09.20",
       "revPhoto": "/assets/images/camping3.jpg",
       "id": 4
-    },
-    {
-      "review": "좋아요",
-      "star": 0,
-      "id": 5
-    },
-    {
-      "review": "",
-      "star": 0,
-      "id": 6
-    },
-    {
-      "review": "test",
-      "star": 5,
-      "id": 7
-    },
-    {
-      "review": "sdf",
-      "star": 3,
-      "id": 8
     }
   ]
 }
