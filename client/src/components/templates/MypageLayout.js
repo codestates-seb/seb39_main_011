@@ -16,7 +16,7 @@ export default MypageLayout;
 
 const Layout = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 54px);
   display: flex;
   justify-content: center;
   align-items: center;

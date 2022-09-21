@@ -62,11 +62,9 @@ const JoinForm = () => {
 export default JoinForm;
 
 const FormContainer = styled.div`
-  width: 450px;
   height: 620px;
   background-color: #fff;
   border-radius: 10px;
-  margin: 2rem;
   padding: 3rem;
   display: flex;
   flex-direction: column;

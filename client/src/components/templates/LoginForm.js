@@ -10,17 +10,14 @@ const LoginForm = () => {
         <LogoTitle>BearMello</LogoTitle>
         <span>가자, 캠핑하러! Let’s Camping! 🏕🐻🍡</span>
       </LogoBox>
-
       <InputBox>
         <LoginInput label="아이디" />
         <LoginInput label="비밀번호" />
       </InputBox>
-
       <SubBox>
         <div>로그인 상태 유지</div>
         <div>아이디/비밀번호 찾기</div>
       </SubBox>
-
       <LoginButtonBox>
         <ButtonPrimary
           width="100%"
@@ -33,7 +30,6 @@ const LoginForm = () => {
           text="로그인"
         />
       </LoginButtonBox>
-
       <JoinBox>
         <span>아직 BearMello 회원이 아니신가요?</span>
         <ButtonPrimary
@@ -54,10 +50,9 @@ export default LoginForm;
 
 const FormContainer = styled.div`
   width: 420px;
-  height: 550px;
+  height: 620px;
   background-color: #fff;
   border-radius: 10px;
-  margin: 2rem;
   padding: 3rem;
   display: flex;
   flex-direction: column;
