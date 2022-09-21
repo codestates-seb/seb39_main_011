@@ -34,7 +34,9 @@ public class CampMapper {
     }
 
     public CampResponseDto campToCampResponseDto(Camp camp) {
-        return new CampResponseDto(camp.getName(),
+        return new CampResponseDto(
+                0L,
+                camp.getName(),
                 camp.getPlace(),
                 camp.getPrice(),
                 camp.getStar_total());
