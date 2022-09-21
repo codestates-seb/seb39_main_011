@@ -21,4 +21,8 @@ public class CampService {
         campRepository.save(camp);
     }
 
+    public void deleteCamp(long camp_id) {
+        campRepository.deleteById(camp_id);
+    }
+
 }
