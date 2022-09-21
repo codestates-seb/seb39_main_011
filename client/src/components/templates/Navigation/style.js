@@ -17,4 +17,5 @@ export const Nav = styled.div`
   padding: 0 30px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
