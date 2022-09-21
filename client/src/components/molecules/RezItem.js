@@ -21,6 +21,7 @@ const RezItem = ({ item, openReviewHandler }) => {
         </ContentBox>
         <ButtonBox>
           <BasicBtn
+            width={"auto"}
             onClick={
               pathname === "/client/mypage/rez"
                 ? null
