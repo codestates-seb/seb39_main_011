@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const StarClick = ({ clickStarHandler }) => {
-  const [click, setClick] = useState(-1);
+const StarClick = ({ clickStarHandler, value, star }) => {
+  const [click, setClick] = useState(star);
   const [hover, setHover] = useState(0);
   const stars = Array.from({ length: 5 });
 
@@ -25,6 +25,7 @@ const StarClick = ({ clickStarHandler }) => {
       {stars.map((_, idx) => (
         <FontAwesomeIcon
           icon={faStar}
+          value={value}
           className={`star ${(idx <= click || idx <= hover) && "clickStar"}`}
           key={idx}
           onClick={() => {
