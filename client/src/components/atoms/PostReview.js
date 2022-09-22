@@ -3,10 +3,12 @@ import styled from "styled-components";
 import StarClick from "./StarClick";
 import { BasicBtn } from "./Button";
 import axios from "axios";
+import ImageUpload from "./ImageUpload";
 
 const PostReview = () => {
   const [star, setStar] = useState(0);
   const [review, setReview] = useState("");
+  const [photo, setPhoto] = useState("");
 
   const onChangeReview = (e) => {
     setReview(e.target.value);
@@ -46,10 +48,9 @@ const PostReview = () => {
       <BottomBox>
         <div>
           <p>사진 추가</p>
+
           <PhotoBox>
-            <div />
-            <div />
-            <div />
+            <ImageUpload photo={photo} setPhoto={setPhoto} />
           </PhotoBox>
         </div>
         <div>
@@ -112,12 +113,6 @@ const BottomBox = styled.div`
 
 const PhotoBox = styled.div`
   display: flex;
-
-  div {
-    width: 65px;
-    height: 65px;
-    border: 1px solid #d9d9d9;
-    margin: 10px 10px 0 0;
-    background-color: #d9d9d9;
-  }
+  justify-content: center;
+  align-items: center;
 `;
