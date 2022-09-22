@@ -27,4 +27,10 @@ public class ReservationController {
         rezService.createRez(reservation);
         return new ResponseEntity(HttpStatus.CREATED);
     }
+
+    @DeleteMapping("client/info/rez/{rez-id}")
+    public ResponseEntity deleteRez(@PathVariable("rez-id")long rez_id) {
+        rezService.deleteRez(rez_id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }
