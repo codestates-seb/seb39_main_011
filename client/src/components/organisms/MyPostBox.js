@@ -15,6 +15,14 @@ const MyPostBox = () => {
     setCamping(register);
   };
 
+  // const handleSubmit = async () => {
+  //   try {
+  //     const { data } = await axios.get("/main", camping);
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const handleSubmit = async () => {
     try {
       const { data } = await axios.post("/admin/post", camping);

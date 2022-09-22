@@ -5,7 +5,6 @@ import LoginForm from "../components/templates/LoginForm";
 const Login = () => {
   return (
     <LoginContainer>
-      {/* <LoginTitle>로그인</LoginTitle> */}
       <LoginForm />
     </LoginContainer>
   );
@@ -20,9 +19,4 @@ const LoginContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const LoginTitle = styled.h1`
-  font-size: 30px;
-  font-weight: bold;
 `;

@@ -22,10 +22,15 @@ const DetailAside = () => {
         <label>예약자 연락처:</label>
         <input type="text"></input>
       </Input>
+      <Input>
+        <label>예약 수량</label>
+        <input type="number"></input>
+      </Input>
       <div>가격: 50,000 원</div>
-      <div>예약 수량: 1</div>
-      <div>요청 사항</div>
-      <textarea />
+      <Input flex={"column"}>
+        <label>요청 사항</label>
+        <textarea />
+      </Input>
       <ButtonPrimary>예약하기</ButtonPrimary>
     </S.AsideContainer>
   );
@@ -33,7 +38,8 @@ const DetailAside = () => {
 
 const Input = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: ${(props) => props.flex || "row"};
+  align-items: ${(props) => (props.flex === "column" ? "none" : "center")};
   gap: 5px;
 
   > input {
