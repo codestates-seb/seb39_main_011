@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const TextArea = ({ label, name, onChange }) => {
+const TextArea = ({ value, label, name, onChange }) => {
   return (
     <Layout>
       <label>{label}</label>
-      <textarea name={name} onChange={onChange} />
+      <textarea value={value} name={name} onChange={onChange} />
     </Layout>
   );
 };

@@ -1,29 +1,114 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BasicBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
+import moment from "moment";
+import TextArea from "../atoms/TextArea";
+import StarClick from "../atoms/StarClick";
 
-const ClientReviewItem = ({ item, review, star }) => {
+const ClientReviewItem = ({
+  item,
+  review,
+  star,
+  onRemoveReview,
+  onUpdateReview,
+}) => {
+  const date = moment(item.date).format("YYYY.MM.DD");
+
+  const [isEdit, setIsEdit] = useState(false);
+
+  const toggleIsEdit = () => {
+    setIsEdit(!isEdit);
+    console.log(isEdit);
+  };
+
+  const [editReview, setEditReview] = useState(review);
+  const [editStar, setEditStar] = useState(star);
+
+  const clickStarHandler = (e) => {
+    setEditStar(e);
+  };
+
+  const handleRemove = () => {
+    if (window.confirm("해당 리뷰를 삭제하시겠습니까?")) {
+      onRemoveReview(item.rev_id);
+      window.location.reload();
+    }
+  };
+
+  // 수정 취소
+  const handleQuitEdit = () => {
+    setIsEdit(false);
+    setEditReview(review);
+  };
+
+  // 수정 완료
+  const handleEdit = () => {
+    onUpdateReview(item.rev_id, editReview, editStar);
+    toggleIsEdit();
+  };
+
   return (
     <>
       <ItemBox>
         <ContentBox>
           <InnerBox>
             <p>{item.name}</p>
-            <StarRender rating={star} />
+
+            {isEdit ? (
+              <>
+                <StarClick
+                  value={editStar}
+                  clickStarHandler={clickStarHandler}
+                  onChange={(e) => setEditStar(e.target.value)}
+                  star={star - 1}
+                />
+              </>
+            ) : (
+              <>
+                <StarRender rating={star} />
+              </>
+            )}
           </InnerBox>
 
-          <p>{item.date}</p>
+          <p>{date}</p>
           <ImgBox>
             <Img src={item.revPhoto} alt="camping" />
             <Img src={item.revPhoto} alt="camping" />
             <Img src={item.revPhoto} alt="camping" />
           </ImgBox>
-          <p>{review}</p>
+          {isEdit ? (
+            <>
+              <TextArea
+                value={editReview}
+                onChange={(e) => setEditReview(e.target.value)}
+              />
+            </>
+          ) : (
+            <p>{review}</p>
+          )}
         </ContentBox>
+
         <ButtonBox>
-          <BasicBtn width="50px">삭제</BasicBtn>
-          <BasicBtn width="50px">수정</BasicBtn>
+          {isEdit ? (
+            <>
+              <BasicBtn onClick={handleQuitEdit} width="50px">
+                취소
+              </BasicBtn>
+              <BasicBtn onClick={handleEdit} width="50px">
+                완료
+              </BasicBtn>
+            </>
+          ) : (
+            <>
+              <BasicBtn onClick={handleRemove} width="50px">
+                삭제
+              </BasicBtn>
+              <BasicBtn onClick={toggleIsEdit} width="50px">
+                수정
+              </BasicBtn>
+            </>
+          )}
         </ButtonBox>
       </ItemBox>
       <hr />

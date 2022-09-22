@@ -11,6 +11,7 @@ export default {
     height: { control: { type: "text" } },
     padding: { control: { type: "text" } },
     border: { control: { type: "text" } },
+    margin: { control: { type: "text" } },
     text: { control: "text" },
     hoverbgc: { control: "color" },
     radius: { control: { type: "text" } },

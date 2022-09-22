@@ -8,23 +8,47 @@ const ClientReview = () => {
 
   const getReview = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/reviews");
+      const res = await axios.get(`/client/rev`);
       setData(res.data);
-      console.log(res.data);
+      console.log("res: ", res.data);
     } catch (error) {
-      console.log(error.data);
+      console.log(error);
     }
   };
 
   useEffect(() => {
     getReview();
+    console.info("data", data);
   }, []);
 
-  console.log(data);
+  const onRemoveReview = async (id) => {
+    try {
+      const res = await axios.delete(`/client/rev/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onUpdateReview = async (id, review, star) => {
+    try {
+      const res = await axios.put(`/client/rev/${id}`, {
+        id,
+        review,
+        star,
+      });
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Container>
-      <ClientMyReviewBox data={data} />
+      <ClientMyReviewBox
+        data={data}
+        onRemoveReview={onRemoveReview}
+        onUpdateReview={onUpdateReview}
+      />
     </Container>
   );
 };

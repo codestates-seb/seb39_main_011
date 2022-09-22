@@ -23,10 +23,12 @@ const PostReview = () => {
     };
 
     try {
-      const res = await axios.post("http://localhost:3001/reviews", reviewData);
+      const res = await axios.post(`/client/rev`, reviewData);
       console.log(res.data);
+      alert("리뷰가 등록되었습니다.");
+      window.location.reload();
     } catch (error) {
-      console.log(error.data);
+      console.log(error);
     }
   };
 
