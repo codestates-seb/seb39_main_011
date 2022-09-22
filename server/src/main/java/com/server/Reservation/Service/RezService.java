@@ -14,4 +14,8 @@ public class RezService {
     public void createRez(Reservation reservation) {
         rezRepository.save(reservation);
     }
+
+    public void deleteRez(long rez_id) {
+        rezRepository.deleteById(rez_id);
+    }
 }
