@@ -4,9 +4,11 @@ import { BasicBtn } from "../atoms/Button";
 import RequiredInput from "../atoms/RequiredInput";
 import TextArea from "../atoms/TextArea";
 import axios from "axios";
+import ImageUpload from "../atoms/ImageUpload";
 
 const MyPostBox = () => {
   const [camping, setCamping] = useState({});
+  const [photo, setPhoto] = useState("");
 
   const handleChange = (e) => {
     let input = {};
@@ -59,9 +61,7 @@ const MyPostBox = () => {
         <div>
           <p>사진 추가</p>
           <PhotoBox>
-            <div />
-            <div />
-            <div />
+            <ImageUpload photo={photo} setPhoto={setPhoto} />
           </PhotoBox>
         </div>
         <TextArea
@@ -106,13 +106,13 @@ const Box = styled.div`
 const PhotoBox = styled.div`
   display: flex;
 
-  div {
+  /* div {
     width: 65px;
     height: 65px;
     border: 1px solid #d9d9d9;
     margin: 10px 10px 0 0;
     background-color: #d9d9d9;
-  }
+  } */
 `;
 
 const ButtonBox = styled.div`
