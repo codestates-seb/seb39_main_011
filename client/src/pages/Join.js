@@ -5,7 +5,6 @@ import JoinForm from "../components/templates/JoinForm";
 const Join = () => {
   return (
     <JoinContainer>
-      {/* <JoinTitle>회원가입</JoinTitle> */}
       <JoinForm />
     </JoinContainer>
   );
@@ -20,9 +19,4 @@ const JoinContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const JoinTitle = styled.h1`
-  font-size: 30px;
-  font-weight: bold;
 `;
