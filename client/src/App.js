@@ -23,7 +23,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
 

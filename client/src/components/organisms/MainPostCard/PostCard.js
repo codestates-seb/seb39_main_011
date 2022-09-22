@@ -2,19 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 
-const PostCard = () => {
+const PostCard = ({ camplist }) => {
   return (
     <S.CardContainer>
-      <Link to="/detail">
+      <Link to={`/detail/${camplist.camp_id}`}>
         <S.Img src="/assets/images/camping.avif" alt="이미지" />
         <S.FlexLayout>
           <div>
-            <div>좋은 캠핑</div>
-            <div>경기도 가평군 가평읍 개곡리</div>
-            <div>캠핑장 가격</div>
+            <div>{camplist.name}</div>
+            <div>{camplist.place}</div>
+            <div>{camplist.price} 원</div>
           </div>
           <div>
-            <div>별점 4.7</div>
+            <div>별점 {camplist.star_total}</div>
             <div>리뷰 11</div>
             <div>찜 12</div>
           </div>
