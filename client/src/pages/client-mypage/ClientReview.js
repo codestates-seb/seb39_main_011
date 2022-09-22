@@ -5,7 +5,6 @@ import ClientMyReviewBox from "../../components/organisms/ClientMyReviewBox";
 
 const ClientReview = () => {
   const [data, setData] = useState([]);
-  const [isEdit, setIsEdit] = useState(false);
 
   const getReview = async () => {
     try {
@@ -25,16 +24,18 @@ const ClientReview = () => {
   const onRemoveReview = async (id) => {
     try {
       const res = await axios.delete(`/client/rev/${id}`);
-      window.location.reload();
-      alert("리뷰가 삭제되었습니다.");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const onUpdateReview = async (review, star, id) => {
+  const onUpdateReview = async (id, review, star) => {
     try {
-      const res = await axios.put(`/client/rev/${id}`, { review, star, id });
+      const res = await axios.put(`/client/rev/${id}`, {
+        id,
+        review,
+        star,
+      });
       window.location.reload();
     } catch (err) {
       console.log(err);
