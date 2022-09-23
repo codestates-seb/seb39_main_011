@@ -2,14 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { TextField } from "@mui/material";
 
-const LoginInput = ({ label }) => {
+const LoginInput = ({ id, label, onChange, valid }) => {
   return (
     <InputContainer>
       <TextFieldStyle
-        id="standard-basic"
+        id={id}
         label={label}
         variant="standard"
         size="small"
+        onChange={onChange}
+        // id="standard-error-helper-text"
+        helperText={valid}
+        // error
       />
     </InputContainer>
   );
