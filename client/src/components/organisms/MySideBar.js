@@ -49,6 +49,6 @@ const SideBarContainer = styled.div`
   width: 220px;
   height: 570px;
   background-color: #fff;
-  margin-right: 20px;
+  margin: 0 15px;
   border-radius: 5px;
 `;

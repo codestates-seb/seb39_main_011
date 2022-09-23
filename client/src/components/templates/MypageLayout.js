@@ -6,7 +6,7 @@ import MyContent from "../organisms/MyContent";
 const MypageLayout = () => {
   return (
     <Layout>
-      <MySideBar />
+      <MySideBar className="hide" />
       <MyContent />
     </Layout>
   );
@@ -20,4 +20,8 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${(props) => props.theme.tablet} {
+    background-color: aliceblue;
+  }
 `;
