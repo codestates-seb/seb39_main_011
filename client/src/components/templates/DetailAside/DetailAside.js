@@ -4,27 +4,39 @@ import { ButtonPrimary } from "../../../../src/components/atoms/Button";
 import Calendar from "../../organisms/Calendar/Calendar";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { changeDate } from "../../../redux/reducers/calendarSlice";
 
 const DetailAside = () => {
   const { checkIn, checkOut } = useSelector((state) => state.reservationDate);
+  const dispatch = useDispatch();
+
+  const handleModify = () => {
+    // if (checkIn !== undefined && checkOut !== undefined) {
+    //   dispatch(changeDate({ checkIn: undefined, checkOut: undefined }));
+    // }
+  };
 
   return (
     <S.AsideContainer>
       <Calendar />
-      <div>
-        예약 날짜: {checkIn} ~ {checkOut}
-      </div>
+      <Input>
+        <label>
+          예약 날짜: {checkIn} ~ {checkOut}
+        </label>
+        <button onClick={handleModify}>변경</button>
+      </Input>
       <Input>
         <label>예약자 이름:</label>
         <input type="text"></input>
       </Input>
       <Input>
         <label>예약자 연락처:</label>
-        <input type="text"></input>
+        <input type="text" placeholder="010 제외"></input>
       </Input>
       <Input>
         <label>예약 수량</label>
-        <input type="number"></input>
+        <input type="number" min="0" max="5"></input>
       </Input>
       <div>가격: 50,000 원</div>
       <Input flex={"column"}>

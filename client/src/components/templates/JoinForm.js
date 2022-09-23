@@ -1,9 +1,93 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LoginInput from "../atoms/LoginInput";
 import ButtonPrimary from "../atoms/Button";
+import {
+  isIdValid,
+  isPwValid,
+  ismatch,
+  isPhoneValid,
+  isEmailValid,
+} from "../../utils/validator";
 
 const JoinForm = () => {
+  const [inputId, setInputId] = useState("");
+  const [validId, setValidId] = useState(false);
+  const [inputPw, setInputPw] = useState("");
+  const [validPw, setValidPw] = useState(false);
+  const [validMatchPw, setValidMatchPw] = useState(false);
+  const [inputPhone, setInputPhone] = useState("");
+  const [validPhone, setValidPhone] = useState(false);
+  const [inputEmail, setInputEmail] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+
+  const idNotValid =
+    inputId !== "" && validId === false
+      ? "소문자 + 숫자 + 언더바/하이픈 허용 4~20자리"
+      : null;
+  const pwNotValid =
+    inputPw !== "" && validPw === false
+      ? "문자, 숫자 1개이상 포함, 8자리 이상"
+      : null;
+  const matchNotValid =
+    inputPw !== "" && validMatchPw === false
+      ? "비밀번호가 일치하지 않습니다."
+      : null;
+  const phoneNotValid =
+    inputPhone !== "" && validPhone === false
+      ? "- 를 빼고 11자리 입력해주세요"
+      : null;
+  const emailNotValid =
+    inputEmail !== "" && validEmail === false
+      ? "이메일이 올바르지 않습니다."
+      : null;
+
+  const handleValid = (e) => {
+    if (e.target.id === "id") {
+      setInputId(e.target.value);
+      if (isIdValid(e.target.value)) {
+        setValidId(true);
+      } else {
+        setValidId(false);
+      }
+    }
+
+    if (e.target.id === "pw") {
+      setInputPw(e.target.value);
+      if (isPwValid(e.target.value)) {
+        setValidPw(true);
+      } else {
+        setValidPw(false);
+      }
+    }
+
+    if (e.target.id === "matchPw") {
+      if (ismatch(inputPw, e.target.value)) {
+        setValidMatchPw(true);
+      } else {
+        setValidMatchPw(false);
+      }
+    }
+
+    if (e.target.id === "phone") {
+      setInputPhone(e.target.value);
+      if (isPhoneValid(e.target.value)) {
+        setValidPhone(true);
+      } else {
+        setValidPhone(false);
+      }
+    }
+
+    if (e.target.id === "email") {
+      setInputEmail(e.target.value);
+      if (isEmailValid(e.target.value)) {
+        setValidEmail(true);
+      } else {
+        setValidEmail(false);
+      }
+    }
+  };
+
   return (
     <FormContainer>
       <LogoBox>
@@ -36,11 +120,36 @@ const JoinForm = () => {
 
       <InputBox>
         <LoginInput label="이름" />
-        <LoginInput label="아이디" />
-        <LoginInput label="비밀번호" />
-        <LoginInput label="비밀번호 확인" />
-        <LoginInput label="이메일" />
-        <LoginInput label="연락처" />
+        <LoginInput
+          id="id"
+          label="아이디"
+          valid={idNotValid}
+          onChange={(e) => handleValid(e)}
+        />
+        <LoginInput
+          id="pw"
+          label="비밀번호"
+          valid={pwNotValid}
+          onChange={(e) => handleValid(e)}
+        />
+        <LoginInput
+          id="matchPw"
+          label="비밀번호 확인"
+          valid={matchNotValid}
+          onChange={(e) => handleValid(e)}
+        />
+        <LoginInput
+          id="email"
+          label="이메일"
+          valid={emailNotValid}
+          onChange={(e) => handleValid(e)}
+        />
+        <LoginInput
+          id="phone"
+          label="연락처"
+          valid={phoneNotValid}
+          onChange={(e) => handleValid(e)}
+        />
       </InputBox>
 
       <JoinButtonBox>
