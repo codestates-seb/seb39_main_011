@@ -21,6 +21,17 @@ const ActiveBox = styled.div`
   padding: 1rem 0 1rem 2rem;
   font-weight: 700;
   font-size: 15px;
+  cursor: pointer;
+
+  @media ${(props) => props.theme.tablet} {
+    padding: 0;
+    margin: 0;
+    background-color: #ffff;
+  }
+
+  @media ${(props) => props.theme.mobile} {
+    font-size: 13px;
+  }
 `;
 
 const Box = styled.div`
@@ -28,4 +39,14 @@ const Box = styled.div`
   padding: 1rem 0 1rem 2rem;
   font-weight: 700;
   font-size: 15px;
+  cursor: pointer;
+
+  @media ${(props) => props.theme.tablet} {
+    padding: 0;
+    margin: 0;
+  }
+
+  @media ${(props) => props.theme.mobile} {
+    font-size: 13px;
+  }
 `;

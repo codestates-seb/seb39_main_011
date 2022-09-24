@@ -20,4 +20,8 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${(props) => props.theme.tablet} {
+    flex-direction: column;
+  }
 `;

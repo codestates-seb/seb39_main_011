@@ -42,6 +42,7 @@ const RezItem = ({ item, openReviewHandler }) => {
 export default RezItem;
 
 const ItemBox = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,12 +63,21 @@ const ContentBox = styled.div`
     margin: 7px;
     margin-left: 1rem;
   }
+
+  @media ${(props) => props.theme.mobile} {
+    font-size: 11px;
+  }
 `;
 
 const Img = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 10px;
+
+  @media ${(props) => props.theme.mobile} {
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 const ButtonBox = styled.div`

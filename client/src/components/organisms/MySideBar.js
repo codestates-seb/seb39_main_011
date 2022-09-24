@@ -49,6 +49,16 @@ const SideBarContainer = styled.div`
   width: 220px;
   height: 570px;
   background-color: #fff;
-  margin-right: 20px;
+  margin: 0 15px;
   border-radius: 5px;
+
+  @media ${(props) => props.theme.tablet} {
+    width: 90%;
+    height: 45px;
+    margin: 15px 15px 10px 15px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 `;

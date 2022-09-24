@@ -18,4 +18,15 @@ const Container = styled.div`
   background-color: #fff;
   border-radius: 5px;
   overflow: auto;
+  margin-right: 15px;
+
+  @media ${(props) => props.theme.tablet} {
+    margin: 0 15px;
+    width: 90%;
+  }
+
+  @media ${(props) => props.theme.mobile} {
+    margin: 0 15px;
+    width: 90%;
+  }
 `;
