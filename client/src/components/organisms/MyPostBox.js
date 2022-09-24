@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BasicBtn } from "../atoms/Button";
+import ButtonPrimary, { BasicBtn } from "../atoms/Button";
 import RequiredInput from "../atoms/RequiredInput";
 import TextArea from "../atoms/TextArea";
 import axios from "axios";
 import ImageUpload from "../atoms/ImageUpload";
+import PopupPostcode from "../molecules/PopupPostcode";
 
 const MyPostBox = () => {
   const [camping, setCamping] = useState({});
   const [photo, setPhoto] = useState("");
+  const [address, setAddress] = useState("");
 
   const handleChange = (e) => {
     let input = {};
@@ -39,11 +41,20 @@ const MyPostBox = () => {
           name="phone"
           onChange={(e) => handleChange(e)}
         />
-        <RequiredInput
-          label="캠핑장 위치"
-          name="place"
-          onChange={(e) => handleChange(e)}
-        />
+        <div className="address">
+          <div className="left">
+            <RequiredInput
+              label="캠핑장 위치"
+              name="place"
+              onChange={(e) => setAddress(e.target.value)}
+              value={address}
+            />
+          </div>
+          <div className="right">
+            <PopupPostcode setAddress={setAddress} />
+          </div>
+        </div>
+
         <RequiredInput
           label="가격"
           name="price"
@@ -101,18 +112,27 @@ const Box = styled.div`
     color: #00000099;
     margin-top: 10px;
   }
+
+  div.address {
+    display: flex;
+    gap: 10px;
+
+    .left {
+      flex: 3.5;
+    }
+
+    .right {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding-bottom: 10px;
+    }
+  }
 `;
 
 const PhotoBox = styled.div`
   display: flex;
-
-  /* div {
-    width: 65px;
-    height: 65px;
-    border: 1px solid #d9d9d9;
-    margin: 10px 10px 0 0;
-    background-color: #d9d9d9;
-  } */
 `;
 
 const ButtonBox = styled.div`

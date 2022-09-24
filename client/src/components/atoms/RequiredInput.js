@@ -12,9 +12,11 @@ const RequiredInput = ({ type, label, value, placeholder, onChange, name }) => {
         InputLabelProps={{
           shrink: true,
         }}
+        inputProps={{ style: { fontSize: 13 } }}
         variant="standard"
         onChange={onChange}
         name={name}
+        value={value}
       />
     </Layout>
   );
