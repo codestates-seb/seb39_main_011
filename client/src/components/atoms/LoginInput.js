@@ -11,9 +11,7 @@ const LoginInput = ({ id, label, onChange, valid }) => {
         variant="standard"
         size="small"
         onChange={onChange}
-        // id="standard-error-helper-text"
         helperText={valid}
-        // error
       />
     </InputContainer>
   );

@@ -15,11 +15,11 @@ const JoinForm = () => {
   const [validId, setValidId] = useState(false);
   const [inputPw, setInputPw] = useState("");
   const [validPw, setValidPw] = useState(false);
-  const [validMatchPw, setValidMatchPw] = useState(false);
   const [inputPhone, setInputPhone] = useState("");
   const [validPhone, setValidPhone] = useState(false);
   const [inputEmail, setInputEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
+  const [validMatchPw, setValidMatchPw] = useState(false);
 
   const idNotValid =
     inputId !== "" && validId === false
@@ -42,7 +42,7 @@ const JoinForm = () => {
       ? "이메일이 올바르지 않습니다."
       : null;
 
-  const handleValid = (e) => {
+  const validHandler = (e) => {
     if (e.target.id === "id") {
       setInputId(e.target.value);
       if (isIdValid(e.target.value)) {
@@ -124,31 +124,31 @@ const JoinForm = () => {
           id="id"
           label="아이디"
           valid={idNotValid}
-          onChange={(e) => handleValid(e)}
+          onChange={(e) => validHandler(e)}
         />
         <LoginInput
           id="pw"
           label="비밀번호"
           valid={pwNotValid}
-          onChange={(e) => handleValid(e)}
+          onChange={(e) => validHandler(e)}
         />
         <LoginInput
           id="matchPw"
           label="비밀번호 확인"
           valid={matchNotValid}
-          onChange={(e) => handleValid(e)}
+          onChange={(e) => validHandler(e)}
         />
         <LoginInput
           id="email"
           label="이메일"
           valid={emailNotValid}
-          onChange={(e) => handleValid(e)}
+          onChange={(e) => validHandler(e)}
         />
         <LoginInput
           id="phone"
           label="연락처"
           valid={phoneNotValid}
-          onChange={(e) => handleValid(e)}
+          onChange={(e) => validHandler(e)}
         />
       </InputBox>
 
