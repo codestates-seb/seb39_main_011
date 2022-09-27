@@ -13,9 +13,9 @@ export const NaviContainer = styled.nav`
 `;
 
 export const Nav = styled.div`
-  max-width: 940px;
+  max-width: 980px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;

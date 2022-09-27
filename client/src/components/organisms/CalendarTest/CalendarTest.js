@@ -53,6 +53,9 @@ const CalendarTest = () => {
         onChange={reservationHanlder}
         locale="en-EN"
         minDate={reservationDate.checkIn}
+        tileDisabled={({ activeStartDate, date, view }) =>
+          console.log(activeStartDate, date, view)
+        }
         // maxDate={}
       />
     </div>
