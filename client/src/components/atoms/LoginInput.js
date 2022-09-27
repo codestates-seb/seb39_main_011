@@ -2,21 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import { TextField } from "@mui/material";
 
-const LoginInput = ({ id, label, onChange, name, value, innerRef }) => {
+const LoginInput = ({ id, label, onChange, name, innerRef, valid }) => {
   return (
     <InputContainer>
       <TextFieldStyle
         id={id}
         label={label}
         variant="standard"
-        size="small"
         onChange={onChange}
         fullWidth
         autoComplete="off"
-        // error={}
-        // helperText={}
+        error={valid ? true : false}
+        helperText={valid ? valid : " "}
         inputRef={innerRef}
         name={name}
+        size="small"
+        sx={{
+          color: "var(--main-color-1)",
+        }}
       />
     </InputContainer>
   );
@@ -31,5 +34,9 @@ const InputContainer = styled.div`
 const TextFieldStyle = styled(TextField)`
   & label.Mui-focused {
     color: var(--main-color-1);
+  }
+
+  p {
+    font-size: 10px;
   }
 `;

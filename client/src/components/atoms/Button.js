@@ -30,6 +30,7 @@ export const LoginBtn = styled(ButtonPrimary)`
   font-weight: ${(props) => props.fontWeight || "700"};
   text-align: center;
   cursor: pointer;
+
   &:hover {
     background-color: ${(props) => props.hoverBgc || "#AD8B73"};
     border: 1px solid ${(props) => props.hoverBorder || "#AD8B73"};

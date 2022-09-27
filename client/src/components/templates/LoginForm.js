@@ -131,6 +131,7 @@ const FormContainer = styled.div`
 
   @media ${(props) => props.theme.loginMobile} {
     width: 90vw;
+    padding: 2rem;
   }
 `;
 
@@ -145,7 +146,6 @@ const LogoBox = styled.div`
 const InputBox = styled.div`
   display: flex;
   flex-direction: column;
-  /* gap: 10px; */
   width: 100%;
   margin-top: 1rem;
 `;
@@ -156,7 +156,8 @@ const SubBox = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
-  margin: 1.5rem 0;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
   color: #8f8f8f;
 `;
 
@@ -170,7 +171,7 @@ const JoinBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 
   span {
     font-size: 12px;

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import LoginInput from "../atoms/LoginInput";
-import ButtonPrimary from "../atoms/Button";
+import { LoginBtn } from "../atoms/Button";
 import {
   isIdValid,
   isPwValid,
-  ismatch,
   isPhoneValid,
   isEmailValid,
 } from "../../utils/validator";
 
 const JoinForm = () => {
+  const [isTab, setIsTab] = useState(0);
   const [inputId, setInputId] = useState("");
   const [validId, setValidId] = useState(false);
   const [inputPw, setInputPw] = useState("");
@@ -19,7 +19,12 @@ const JoinForm = () => {
   const [validPhone, setValidPhone] = useState(false);
   const [inputEmail, setInputEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
-  const [validMatchPw, setValidMatchPw] = useState(false);
+
+  const tabArr = [{ name: "client" }, { name: "admin" }];
+
+  const selectTabHandler = (index) => {
+    setIsTab(index);
+  };
 
   const idNotValid =
     inputId !== "" && validId === false
@@ -28,10 +33,6 @@ const JoinForm = () => {
   const pwNotValid =
     inputPw !== "" && validPw === false
       ? "문자, 숫자 1개이상 포함, 8자리 이상"
-      : null;
-  const matchNotValid =
-    inputPw !== "" && validMatchPw === false
-      ? "비밀번호가 일치하지 않습니다."
       : null;
   const phoneNotValid =
     inputPhone !== "" && validPhone === false
@@ -61,14 +62,6 @@ const JoinForm = () => {
       }
     }
 
-    if (e.target.id === "matchPw") {
-      if (ismatch(inputPw, e.target.value)) {
-        setValidMatchPw(true);
-      } else {
-        setValidMatchPw(false);
-      }
-    }
-
     if (e.target.id === "phone") {
       setInputPhone(e.target.value);
       if (isPhoneValid(e.target.value)) {
@@ -90,80 +83,55 @@ const JoinForm = () => {
 
   return (
     <FormContainer>
-      <LogoBox>
-        <LogoTitle>BearMello</LogoTitle>
-        <span>가자, 캠핑하러! Let’s Camping! 🏕🐻🍡</span>
-      </LogoBox>
-
       <ChooseBox>
-        <ButtonPrimary
-          width="100%"
-          color="#fffff"
-          bgc="#D9D9D9"
-          border="#D9D9D9"
-          radius="5px"
-          padding="10px 0"
-          margin="10px 0"
-          text="고객"
-        />
-        <ButtonPrimary
-          width="100%"
-          color="#fffff"
-          bgc="#D9D9D9"
-          border="#D9D9D9"
-          radius="5px"
-          padding="10px 0"
-          margin="10px 0"
-          text="관리자"
-        />
+        {tabArr.map((item, idx) => (
+          <LoginBtn
+            key={idx}
+            className={`${isTab === idx ? "focused" : ""} `}
+            radius={item.name === "client" ? "7px 0 0 0" : "0 7px 0 0"}
+            color="var(--main-color-1)"
+            bgc="#fff"
+            border="var(--main-color-1)"
+            onClick={() => selectTabHandler(idx)}
+          >
+            {item.name === "client" ? "고객" : "관리자"}
+          </LoginBtn>
+        ))}
       </ChooseBox>
 
-      <InputBox>
-        <LoginInput label="이름" />
-        <LoginInput
-          id="id"
-          label="아이디"
-          valid={idNotValid}
-          onChange={(e) => validHandler(e)}
-        />
-        <LoginInput
-          id="pw"
-          label="비밀번호"
-          valid={pwNotValid}
-          onChange={(e) => validHandler(e)}
-        />
-        <LoginInput
-          id="matchPw"
-          label="비밀번호 확인"
-          valid={matchNotValid}
-          onChange={(e) => validHandler(e)}
-        />
-        <LoginInput
-          id="email"
-          label="이메일"
-          valid={emailNotValid}
-          onChange={(e) => validHandler(e)}
-        />
-        <LoginInput
-          id="phone"
-          label="연락처"
-          valid={phoneNotValid}
-          onChange={(e) => validHandler(e)}
-        />
-      </InputBox>
+      <ContentBox>
+        <InputBox>
+          <LoginInput label="이름" />
+          <LoginInput
+            id="id"
+            label="아이디"
+            valid={idNotValid}
+            onChange={(e) => validHandler(e)}
+          />
+          <LoginInput
+            id="pw"
+            label="비밀번호"
+            valid={pwNotValid}
+            onChange={(e) => validHandler(e)}
+          />
+          <LoginInput
+            id="email"
+            label="이메일"
+            valid={emailNotValid}
+            onChange={(e) => validHandler(e)}
+          />
+          <LoginInput
+            id="phone"
+            label="연락처"
+            valid={phoneNotValid}
+            onChange={(e) => validHandler(e)}
+          />
+        </InputBox>
 
-      <JoinButtonBox>
-        <ButtonPrimary
-          width="100%"
-          color="#fffff"
-          bgc="#D9D9D9"
-          border="#D9D9D9"
-          radius="5px"
-          padding="10px 0"
-          margin="10px 0"
-          text="회원가입"
-        />
-      </JoinButtonBox>
+        <JoinButtonBox>
+          <LoginBtn>회원가입</LoginBtn>
+        </JoinButtonBox>
+      </ContentBox>
     </FormContainer>
   );
 };
@@ -171,47 +139,41 @@ const JoinForm = () => {
 export default JoinForm;
 
 const FormContainer = styled.div`
-  height: 620px;
+  width: 400px;
+  height: 520px;
   background-color: #fff;
   border-radius: 10px;
-  padding: 3rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-`;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  margin-bottom: 3rem;
 
-const LogoBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem;
-
-  span {
-    font-size: 15px;
+  @media ${(props) => props.theme.loginMobile} {
+    width: 90vw;
   }
-`;
-
-const LogoTitle = styled.h1`
-  font-size: 40px;
-  font-weight: bold;
-  margin: 10px;
 `;
 
 const ChooseBox = styled.div`
   width: 100%;
   display: flex;
-  gap: 20px;
-  padding: 0 2rem;
+  background-color: aliceblue;
+
+  .focused {
+    background-color: var(--main-color-1);
+    color: #fff;
+  }
 `;
 
-const InputBox = styled.div`
+const ContentBox = styled.div`
   width: 100%;
+  padding: 1rem 3.5rem;
 `;
+
+const InputBox = styled.div``;
 
 const JoinButtonBox = styled.div`
   width: 100%;
-  margin: 20px 0;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
 `;
