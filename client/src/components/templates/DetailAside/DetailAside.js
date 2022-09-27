@@ -6,59 +6,52 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { changeDate } from "../../../redux/reducers/calendarSlice";
+import CalendarTest from "../../organisms/CalendarTest/CalendarTest";
 
 const DetailAside = () => {
   const { checkIn, checkOut } = useSelector((state) => state.reservationDate);
   const dispatch = useDispatch();
 
-  const handleModify = () => {
-    // if (checkIn !== undefined && checkOut !== undefined) {
-    //   dispatch(changeDate({ checkIn: undefined, checkOut: undefined }));
-    // }
-  };
-
   return (
     <S.AsideContainer>
-      <Calendar />
-      <Input>
-        <label>
-          예약 날짜: {checkIn} ~ {checkOut}
-        </label>
-        <button onClick={handleModify}>변경</button>
-      </Input>
-      <Input>
-        <label>예약자 이름:</label>
+      {/* <Calendar /> */}
+      <CalendarTest />
+      <S.Input>
+        <label>😎 예약 날짜</label>
+        <input type="text" value={`${checkIn} ~ ${checkOut}`}></input>
+      </S.Input>
+      <S.Input>
+        <label>😎 예약자 이름</label>
         <input type="text"></input>
-      </Input>
-      <Input>
-        <label>예약자 연락처:</label>
-        <input type="text" placeholder="010 제외"></input>
-      </Input>
-      <Input>
-        <label>예약 수량</label>
+      </S.Input>
+      <S.Input>
+        <label>😎 예약자 연락처</label>
+        <input type="text"></input>
+      </S.Input>
+      <S.Input>
+        <label>😎 예약 수량</label>
         <input type="number" min="0" max="5"></input>
-      </Input>
-      <div>가격: 50,000 원</div>
-      <Input flex={"column"}>
-        <label>요청 사항</label>
+      </S.Input>
+      <S.Input>
+        <label>😎 가격</label>
+        <input type="text"></input>
+      </S.Input>
+      <S.Input flex={"column"}>
+        <label>😎 요청 사항</label>
         <textarea />
-      </Input>
-      <ButtonPrimary>예약하기</ButtonPrimary>
+      </S.Input>
+      <ButtonPrimary
+        bgc={"#AD8B73"}
+        color={"#fff"}
+        radius={"5px"}
+        padding={"10px"}
+        fontWeight={"700"}
+        fontSize={"14px"}
+      >
+        예약하기
+      </ButtonPrimary>
     </S.AsideContainer>
   );
 };
-
-const Input = styled.div`
-  display: flex;
-  flex-direction: ${(props) => props.flex || "row"};
-  align-items: ${(props) => (props.flex === "column" ? "none" : "center")};
-  gap: 5px;
-
-  > input {
-    border: none;
-    border-bottom: 1px solid #e5e5e5;
-    width: 100px;
-  }
-`;
 
 export default DetailAside;
