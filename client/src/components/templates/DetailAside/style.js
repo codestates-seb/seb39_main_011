@@ -10,7 +10,7 @@ export const AsideContainer = styled.aside`
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
 
   position: sticky;
   top: 74px;
