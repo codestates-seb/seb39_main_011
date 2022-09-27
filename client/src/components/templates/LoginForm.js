@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import LoginInput from "../atoms/LoginInput";
-import ButtonPrimary from "../atoms/Button";
-
+import { LoginBtn } from "../atoms/Button";
+import { ReactComponent as CampingPic } from "../../svg/camping.svg";
 const LoginForm = () => {
   return (
     <FormContainer>
       <LogoBox>
-        <LogoTitle>BearMello</LogoTitle>
-        <span>가자, 캠핑하러! Let’s Camping! 🏕🐻🍡</span>
+        <CampingPic viewBox="0 70 350 150" />
       </LogoBox>
       <InputBox>
         <LoginInput label="아이디" />
@@ -19,28 +18,17 @@ const LoginForm = () => {
         <div>아이디/비밀번호 찾기</div>
       </SubBox>
       <LoginButtonBox>
-        <ButtonPrimary
-          width="100%"
-          color="#fffff"
-          bgc="#D9D9D9"
-          border="#D9D9D9"
-          radius="5px"
-          padding="10px 0"
-          margin="10px 0"
-          text="로그인"
-        />
+        <LoginBtn>로그인</LoginBtn>
       </LoginButtonBox>
       <JoinBox>
         <span>아직 BearMello 회원이 아니신가요?</span>
-        <ButtonPrimary
-          width="100%"
-          color="#fffff"
-          border="#D9D9D9"
-          radius="5px"
-          padding="10px 0"
-          margin="10px 0"
-          text="회원가입"
-        />
+        <LoginBtn
+          bgc="#fff"
+          color="var(--main-color-2)"
+          hoverBgc="var(--main-color-2)"
+        >
+          회원가입
+        </LoginBtn>
       </JoinBox>
     </FormContainer>
   );
@@ -49,24 +37,29 @@ const LoginForm = () => {
 export default LoginForm;
 
 const FormContainer = styled.div`
-  width: 420px;
-  height: 620px;
+  width: 400px;
+  height: 520px;
   background-color: #fff;
   border-radius: 10px;
-  padding: 3rem;
+  padding: 3.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-bottom: 3rem;
+
+  @media ${(props) => props.theme.loginMobile} {
+    width: 90vw;
+  }
 `;
 
 const LogoBox = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2rem;
 
   span {
     font-size: 15px;

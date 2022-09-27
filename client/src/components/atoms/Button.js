@@ -18,6 +18,25 @@ export const ButtonPrimary = styled.button`
   }
 `;
 
+export const LoginBtn = styled(ButtonPrimary)`
+  color: ${(props) => props.color || "#fff"};
+  background: ${(props) => props.bgc || "#CEAB93"};
+  height: ${(props) => props.height || "43px"};
+  width: ${(props) => props.height || "100%"};
+  border: 2px solid ${(props) => props.border || "#CEAB93"};
+  border-radius: ${(props) => props.radius || "7px"};
+  margin: ${(props) => props.margin || "none"};
+  font-size: ${(props) => props.fontSize || "18px"};
+  font-weight: ${(props) => props.fontWeight || "700"};
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background-color: ${(props) => props.hoverBgc || "#AD8B73"};
+    border: 1px solid ${(props) => props.hoverBorder || "#AD8B73"};
+    color: ${(props) => props.hoverColor || "#fff"};
+  }
+`;
+
 export const BasicBtn = styled(ButtonPrimary)`
   width: ${(props) => props.width || "85px"};
   height: 35px;
