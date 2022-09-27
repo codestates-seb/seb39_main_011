@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const calendarSlice = createSlice({
   name: "reservationDate",
-  initialState: { checkIn: undefined, checkOut: undefined },
+  initialState: { checkIn: "", checkOut: "" },
   reducers: {
-    changeDate: (state, action) => {
+    reservation: (state, action) => {
       return action.payload;
     },
   },
 });
 
-export const { changeDate } = calendarSlice.actions;
+export const { reservation } = calendarSlice.actions;
 export default calendarSlice.reducer;
