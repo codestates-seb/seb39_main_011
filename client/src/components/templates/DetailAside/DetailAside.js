@@ -1,40 +1,42 @@
 import React from "react";
 import * as S from "./style";
 import { ButtonPrimary } from "../../../../src/components/atoms/Button";
-import Calendar from "../../organisms/Calendar/Calendar";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { changeDate } from "../../../redux/reducers/calendarSlice";
-import CalendarTest from "../../organisms/CalendarTest/CalendarTest";
+import CalendarTTest from "../../organisms/CalendarTTest/CalendarTTest.js";
 
 const DetailAside = () => {
-  const { checkIn, checkOut } = useSelector((state) => state.reservationDate);
-  const dispatch = useDispatch();
+  const reservation = useSelector((state) => state.reservationDate);
 
   return (
     <S.AsideContainer>
-      {/* <Calendar /> */}
-      <CalendarTest />
+      <CalendarTTest />
       <S.Input>
         <label>😎 예약 날짜</label>
-        <input type="text" value={`${checkIn} ~ ${checkOut}`}></input>
+        <input
+          type="text"
+          disabled
+          value={
+            reservation.from && reservation.to
+              ? `${reservation.from.toLocaleDateString()} - ${reservation.to.toLocaleDateString()}`
+              : ""
+          }
+        />
       </S.Input>
       <S.Input>
         <label>😎 예약자 이름</label>
-        <input type="text"></input>
+        <input type="text" />
       </S.Input>
       <S.Input>
         <label>😎 예약자 연락처</label>
-        <input type="text"></input>
+        <input type="text" />
       </S.Input>
       <S.Input>
         <label>😎 예약 수량</label>
-        <input type="number" min="0" max="5"></input>
+        <input type="number" min="0" max="5" />
       </S.Input>
       <S.Input>
         <label>😎 가격</label>
-        <input type="text"></input>
+        <input type="text" />
       </S.Input>
       <S.Input flex={"column"}>
         <label>😎 요청 사항</label>

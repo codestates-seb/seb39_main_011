@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CalendarBtn } from "../../atoms/Button";
 import * as S from "./style";
 import { useDispatch } from "react-redux";
-import { reservation } from "../../../redux/reducers/calendarSlice";
+// import { reservation } from "../../../redux/reducers/calendarSlice";
 import { calendarGenerator } from "../../../utils/calenderCreate";
 
 const Calendar = () => {
@@ -21,9 +21,9 @@ const Calendar = () => {
   // useEffect(() => {
   //   dispatch(reservation({ checkIn: checkIn, checkOut: checkOut }));
   // }, [checkIn, checkOut, dispatch]);
-  useEffect(() => {
-    dispatch(reservation(checkInOut));
-  }, [checkInOut, dispatch]);
+  // useEffect(() => {
+  //   dispatch(reservation(checkInOut));
+  // }, [checkInOut, dispatch]);
 
   useEffect(() => {
     let newCalendar = calendarGenerator(selectYear, selectMonth - 1);

@@ -19,6 +19,23 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  * .rdp {
+    --rdp-cell-size: 37px;
+    --rdp-accent-color: #0000ff;
+    --rdp-background-color: #e7edff;
+    --rdp-accent-color-dark: #3003e1;
+    --rdp-background-color-dark: #180270;
+    --rdp-outline: 2px solid var(--rdp-accent-color);
+    --rdp-outline-selected: 3px solid var(--rdp-accent-color);
+    margin: 0;
+  }
+
+  * .rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
+    color: white;
+    opacity: 1;
+    background-color: #7b6250;
+  }
+
   body {
     display: flex;
     flex-direction: column;

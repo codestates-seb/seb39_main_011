@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const NaviContainer = styled.nav`
   width: 100%;
+
   padding: 10px 0;
   background-color: #ffffff;
   position: fixed;
@@ -14,7 +15,7 @@ export const NaviContainer = styled.nav`
 export const Nav = styled.div`
   max-width: 940px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;

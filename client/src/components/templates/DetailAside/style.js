@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const AsideContainer = styled.aside`
   width: 300px;
-  height: calc(100vh - 94px);
+  /* height: calc(100vh - 94px); */
+  height: 650px;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 5px;
@@ -30,6 +31,7 @@ export const AsideContainer = styled.aside`
 
 export const Input = styled.div`
   display: flex;
+  flex-direction: column;
   flex-direction: ${(props) => props.flex || "row"};
   align-items: ${(props) => (props.flex === "column" ? "none" : "center")};
   gap: 10px;
@@ -40,6 +42,7 @@ export const Input = styled.div`
     font-weight: 700;
   }
   > input {
+    font-size: 12px;
     border: 2px solid #e3caa5;
     border-radius: 5px;
     width: 100px;
