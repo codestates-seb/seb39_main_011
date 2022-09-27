@@ -140,6 +140,10 @@ const LogoBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  span {
+    font-size: 15px;
+  }
 `;
 
 const InputBox = styled.div`
