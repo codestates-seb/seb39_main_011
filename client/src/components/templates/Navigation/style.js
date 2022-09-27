@@ -19,4 +19,10 @@ export const Nav = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;

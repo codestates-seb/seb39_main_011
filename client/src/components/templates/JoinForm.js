@@ -1,51 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import LoginInput from "../atoms/LoginInput";
-import { LoginBtn } from "../atoms/Button";
+import { LoginBtn, LoginTabBtn } from "../atoms/Button";
+import { useNavigate } from "react-router-dom";
 import {
   isIdValid,
   isPwValid,
   isPhoneValid,
   isEmailValid,
 } from "../../utils/validator";
+import axios from "axios";
 
 const JoinForm = () => {
-  const [isTab, setIsTab] = useState(0);
-  const [inputId, setInputId] = useState("");
-  const [validId, setValidId] = useState(false);
-  const [inputPw, setInputPw] = useState("");
-  const [validPw, setValidPw] = useState(false);
-  const [inputPhone, setInputPhone] = useState("");
-  const [validPhone, setValidPhone] = useState(false);
-  const [inputEmail, setInputEmail] = useState("");
-  const [validEmail, setValidEmail] = useState(false);
+  const navigate = useNavigate();
 
+  const nameRef = useRef();
+  const idRef = useRef();
+  const pwdRef = useRef();
+  const emailRef = useRef();
+  const phoneRef = useRef();
+
+  const [isTab, setIsTab] = useState(0);
   const tabArr = [{ name: "client" }, { name: "admin" }];
+
+  const [name, setName] = useState("");
+  const [id, setId] = useState("");
+  const [validId, setValidId] = useState(false);
+  const [pwd, setPwd] = useState("");
+  const [validPwd, setValidPwd] = useState(false);
+  const [email, setEmail] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [validPhone, setValidPhone] = useState(false);
 
   const selectTabHandler = (index) => {
     setIsTab(index);
   };
 
   const idNotValid =
-    inputId !== "" && validId === false
+    id !== "" && !validId
       ? "소문자 + 숫자 + 언더바/하이픈 허용 4~20자리"
       : null;
+
   const pwNotValid =
-    inputPw !== "" && validPw === false
-      ? "문자, 숫자 1개이상 포함, 8자리 이상"
-      : null;
-  const phoneNotValid =
-    inputPhone !== "" && validPhone === false
-      ? "- 를 빼고 11자리 입력해주세요"
-      : null;
+    pwd !== "" && !validPwd && "문자, 숫자 1개이상 포함, 8자리 이상";
+
   const emailNotValid =
-    inputEmail !== "" && validEmail === false
-      ? "이메일이 올바르지 않습니다."
-      : null;
+    email !== "" && !validEmail && "이메일 형식이 올바르지 않습니다.";
+
+  const phoneNotValid =
+    phone !== "" && !validPhone && "- 를 빼고 숫자 11자리 입력해주세요";
 
   const validHandler = (e) => {
-    if (e.target.id === "id") {
-      setInputId(e.target.value);
+    const { name, value } = e.target;
+
+    if (name === "id") {
+      setId(e.target.value);
       if (isIdValid(e.target.value)) {
         setValidId(true);
       } else {
@@ -53,83 +63,134 @@ const JoinForm = () => {
       }
     }
 
-    if (e.target.id === "pw") {
-      setInputPw(e.target.value);
-      if (isPwValid(e.target.value)) {
-        setValidPw(true);
-      } else {
-        setValidPw(false);
-      }
+    if (name === "pwd") {
+      setPwd(value);
+      isPwValid(value) && setValidPwd(true);
     }
 
-    if (e.target.id === "phone") {
-      setInputPhone(e.target.value);
-      if (isPhoneValid(e.target.value)) {
-        setValidPhone(true);
-      } else {
-        setValidPhone(false);
-      }
+    if (name === "email") {
+      setEmail(value);
+      isEmailValid(value) && setValidEmail(true);
     }
 
-    if (e.target.id === "email") {
-      setInputEmail(e.target.value);
-      if (isEmailValid(e.target.value)) {
-        setValidEmail(true);
-      } else {
-        setValidEmail(false);
-      }
+    if (name === "phone") {
+      setPhone(value);
+      isPhoneValid(value) && setValidPhone(true);
     }
+  };
+
+  const handleSubmit = async (e) => {
+    if (name.length < 1) {
+      nameRef.current.focus();
+      return;
+    }
+
+    if (id.length < 1) {
+      idRef.current.focus();
+      return;
+    }
+
+    if (pwd.length < 1) {
+      pwdRef.current.focus();
+      return;
+    }
+
+    if (email.length < 1) {
+      emailRef.current.focus();
+      return;
+    }
+
+    if (phone.length < 1) {
+      phoneRef.current.focus();
+      return;
+    }
+
+    // e.preventDefault();
+
+    // try {
+    //   const response = await axios.post("/user/join", {
+    //     name,
+    //     id,
+    //     pwd,
+    //     email,
+    //     phone,
+    //   });
+    //   navigate("/login");
+    //   alert("회원가입 성공");
+    // } catch (error) {
+    //   if ((res) => res.data.status === 500) {
+    //     console.log("회원가입 실패");
+    //     alert("회원가입에 실패하셨습니다.");
+    //   }
+    // }
+
+    alert(
+      `name: ${name}, id: ${id}, pwd: ${pwd}, email: ${email}, phone: ${phone}`
+    );
+
+    setName("");
+    setId("");
+    setPwd("");
+    setEmail("");
+    setPhone("");
+    window.location.reload();
   };
 
   return (
     <FormContainer>
       <ChooseBox>
         {tabArr.map((item, idx) => (
-          <LoginBtn
+          <LoginTabBtn
             key={idx}
             className={`${isTab === idx ? "focused" : ""} `}
             radius={item.name === "client" ? "7px 0 0 0" : "0 7px 0 0"}
-            color="var(--main-color-1)"
-            bgc="#fff"
-            border="var(--main-color-1)"
             onClick={() => selectTabHandler(idx)}
           >
             {item.name === "client" ? "고객" : "관리자"}
-          </LoginBtn>
+          </LoginTabBtn>
         ))}
       </ChooseBox>
 
       <ContentBox>
         <InputBox>
-          <LoginInput label="이름" />
           <LoginInput
-            id="id"
+            label="이름"
+            name="name"
+            innerRef={nameRef}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <LoginInput
             label="아이디"
+            name="id"
+            innerRef={idRef}
+            onChange={validHandler}
             valid={idNotValid}
-            onChange={(e) => validHandler(e)}
           />
           <LoginInput
-            id="pw"
             label="비밀번호"
+            name="pwd"
+            innerRef={pwdRef}
+            onChange={validHandler}
             valid={pwNotValid}
-            onChange={(e) => validHandler(e)}
           />
           <LoginInput
-            id="email"
             label="이메일"
+            name="email"
+            innerRef={emailRef}
+            onChange={validHandler}
             valid={emailNotValid}
-            onChange={(e) => validHandler(e)}
           />
           <LoginInput
-            id="phone"
             label="연락처"
+            name="phone"
+            innerRef={phoneRef}
+            onChange={validHandler}
             valid={phoneNotValid}
-            onChange={(e) => validHandler(e)}
           />
         </InputBox>
 
         <JoinButtonBox>
-          <LoginBtn>회원가입</LoginBtn>
+          <LoginBtn onClick={handleSubmit}>회원가입</LoginBtn>
         </JoinButtonBox>
       </ContentBox>
     </FormContainer>
@@ -168,6 +229,10 @@ const ChooseBox = styled.div`
 const ContentBox = styled.div`
   width: 100%;
   padding: 1rem 3.5rem;
+
+  @media ${(props) => props.theme.loginMobile} {
+    padding: 1rem 2rem;
+  }
 `;
 
 const InputBox = styled.div``;

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 import { ButtonPrimary } from "../../atoms/Button";
+import { ReactComponent as ProfilePic } from "../../../svg/profile.svg";
 
 const Navigation = () => {
   return (
@@ -23,6 +24,7 @@ const Navigation = () => {
           <Link to="/join">
             <ButtonPrimary>회원가입</ButtonPrimary>
           </Link>
+          <ProfilePic />
         </div>
       </S.Nav>
     </S.NaviContainer>

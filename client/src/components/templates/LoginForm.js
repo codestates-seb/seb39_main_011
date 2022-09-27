@@ -24,14 +24,11 @@ const LoginForm = () => {
 
   const handleChangeUser = (e) => {
     const { name, value } = e.target;
-
     setUser({
       ...user,
       [name]: value,
     });
   };
-
-  console.log(user);
 
   const handleSubmit = async (e) => {
     // e.preventDefault();
@@ -54,18 +51,18 @@ const LoginForm = () => {
     //   }
     // }
 
-    if (user.id.length < 1) {
+    if (id.length < 1) {
       idRef.current.focus();
       return;
     }
 
-    if (user.pwd.length < 1) {
+    if (pwd.length < 1) {
       pwdRef.current.focus();
       return;
     }
 
-    setUser({ id: "", pwd: "" });
     alert(`id: ${id}, pwd: ${pwd}`);
+    setUser({ id: "", pwd: "" });
     window.location.reload();
   };
 
@@ -79,7 +76,6 @@ const LoginForm = () => {
           label="아이디"
           name="id"
           innerRef={idRef}
-          value={id}
           onChange={handleChangeUser}
         />
         <LoginInput
@@ -104,7 +100,7 @@ const LoginForm = () => {
         <LoginBtn
           bgc="#fff"
           color="var(--main-color-2)"
-          hoverBgc="var(--main-color-2)"
+          hoverBgc="var(--main-color-1)"
           onClick={() => navigate("/join")}
         >
           회원가입
