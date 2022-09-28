@@ -8,10 +8,6 @@ export const isPwValid = (pw) => {
   return /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/.test(pw);
 };
 
-export const ismatch = (a, b) => {
-  return a === b;
-};
-
 export const isPhoneValid = (phone) => {
   // 전화번호 숫자만 11자리
   return /^[0-9]{11,11}$/.test(phone);

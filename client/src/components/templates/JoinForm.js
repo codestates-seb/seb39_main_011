@@ -1,50 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import LoginInput from "../atoms/LoginInput";
-import ButtonPrimary from "../atoms/Button";
+import { LoginBtn, LoginTabBtn } from "../atoms/Button";
+import { useNavigate } from "react-router-dom";
 import {
   isIdValid,
   isPwValid,
-  ismatch,
   isPhoneValid,
   isEmailValid,
 } from "../../utils/validator";
+import axios from "axios";
 
 const JoinForm = () => {
-  const [inputId, setInputId] = useState("");
+  const navigate = useNavigate();
+
+  const nameRef = useRef();
+  const idRef = useRef();
+  const pwdRef = useRef();
+  const emailRef = useRef();
+  const phoneRef = useRef();
+
+  const [isTab, setIsTab] = useState(0);
+  const tabArr = [{ name: "client" }, { name: "admin" }];
+
+  const [name, setName] = useState("");
+  const [id, setId] = useState("");
   const [validId, setValidId] = useState(false);
-  const [inputPw, setInputPw] = useState("");
-  const [validPw, setValidPw] = useState(false);
-  const [inputPhone, setInputPhone] = useState("");
-  const [validPhone, setValidPhone] = useState(false);
-  const [inputEmail, setInputEmail] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [validPwd, setValidPwd] = useState(false);
+  const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
-  const [validMatchPw, setValidMatchPw] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [validPhone, setValidPhone] = useState(false);
+
+  const selectTabHandler = (index) => {
+    setIsTab(index);
+  };
 
   const idNotValid =
-    inputId !== "" && validId === false
+    id !== "" && !validId
       ? "소문자 + 숫자 + 언더바/하이픈 허용 4~20자리"
       : null;
+
   const pwNotValid =
-    inputPw !== "" && validPw === false
-      ? "문자, 숫자 1개이상 포함, 8자리 이상"
-      : null;
-  const matchNotValid =
-    inputPw !== "" && validMatchPw === false
-      ? "비밀번호가 일치하지 않습니다."
-      : null;
-  const phoneNotValid =
-    inputPhone !== "" && validPhone === false
-      ? "- 를 빼고 11자리 입력해주세요"
-      : null;
+    pwd !== "" && !validPwd && "문자, 숫자 1개이상 포함, 8자리 이상";
+
   const emailNotValid =
-    inputEmail !== "" && validEmail === false
-      ? "이메일이 올바르지 않습니다."
-      : null;
+    email !== "" && !validEmail && "이메일 형식이 올바르지 않습니다.";
+
+  const phoneNotValid =
+    phone !== "" && !validPhone && "- 를 빼고 숫자 11자리 입력해주세요";
 
   const validHandler = (e) => {
-    if (e.target.id === "id") {
-      setInputId(e.target.value);
+    const { name, value } = e.target;
+
+    if (name === "id") {
+      setId(e.target.value);
       if (isIdValid(e.target.value)) {
         setValidId(true);
       } else {
@@ -52,118 +63,136 @@ const JoinForm = () => {
       }
     }
 
-    if (e.target.id === "pw") {
-      setInputPw(e.target.value);
-      if (isPwValid(e.target.value)) {
-        setValidPw(true);
-      } else {
-        setValidPw(false);
-      }
+    if (name === "pwd") {
+      setPwd(value);
+      isPwValid(value) && setValidPwd(true);
     }
 
-    if (e.target.id === "matchPw") {
-      if (ismatch(inputPw, e.target.value)) {
-        setValidMatchPw(true);
-      } else {
-        setValidMatchPw(false);
-      }
+    if (name === "email") {
+      setEmail(value);
+      isEmailValid(value) && setValidEmail(true);
     }
 
-    if (e.target.id === "phone") {
-      setInputPhone(e.target.value);
-      if (isPhoneValid(e.target.value)) {
-        setValidPhone(true);
-      } else {
-        setValidPhone(false);
-      }
+    if (name === "phone") {
+      setPhone(value);
+      isPhoneValid(value) && setValidPhone(true);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    if (name.length < 1) {
+      nameRef.current.focus();
+      return;
     }
 
-    if (e.target.id === "email") {
-      setInputEmail(e.target.value);
-      if (isEmailValid(e.target.value)) {
-        setValidEmail(true);
-      } else {
-        setValidEmail(false);
-      }
+    if (id.length < 1) {
+      idRef.current.focus();
+      return;
     }
+
+    if (pwd.length < 1) {
+      pwdRef.current.focus();
+      return;
+    }
+
+    if (email.length < 1) {
+      emailRef.current.focus();
+      return;
+    }
+
+    if (phone.length < 1) {
+      phoneRef.current.focus();
+      return;
+    }
+
+    // e.preventDefault();
+
+    // try {
+    //   const response = await axios.post("/user/join", {
+    //     name,
+    //     id,
+    //     pwd,
+    //     email,
+    //     phone,
+    //   });
+    //   navigate("/login");
+    //   alert("회원가입 성공");
+    // } catch (error) {
+    //   if ((res) => res.data.status === 500) {
+    //     console.log("회원가입 실패");
+    //     alert("회원가입에 실패하셨습니다.");
+    //   }
+    // }
+
+    alert(
+      `name: ${name}, id: ${id}, pwd: ${pwd}, email: ${email}, phone: ${phone}`
+    );
+
+    setName("");
+    setId("");
+    setPwd("");
+    setEmail("");
+    setPhone("");
+    window.location.reload();
   };
 
   return (
     <FormContainer>
-      <LogoBox>
-        <LogoTitle>BearMello</LogoTitle>
-        <span>가자, 캠핑하러! Let’s Camping! 🏕🐻🍡</span>
-      </LogoBox>
-
       <ChooseBox>
-        <ButtonPrimary
-          width="100%"
-          color="#fffff"
-          bgc="#D9D9D9"
-          border="#D9D9D9"
-          radius="5px"
-          padding="10px 0"
-          margin="10px 0"
-          text="고객"
-        />
-        <ButtonPrimary
-          width="100%"
-          color="#fffff"
-          bgc="#D9D9D9"
-          border="#D9D9D9"
-          radius="5px"
-          padding="10px 0"
-          margin="10px 0"
-          text="관리자"
-        />
+        {tabArr.map((item, idx) => (
+          <LoginTabBtn
+            key={idx}
+            className={`${isTab === idx ? "focused" : ""} `}
+            radius={item.name === "client" ? "7px 0 0 0" : "0 7px 0 0"}
+            onClick={() => selectTabHandler(idx)}
+          >
+            {item.name === "client" ? "고객" : "관리자"}
+          </LoginTabBtn>
+        ))}
       </ChooseBox>
 
-      <InputBox>
-        <LoginInput label="이름" />
-        <LoginInput
-          id="id"
-          label="아이디"
-          valid={idNotValid}
-          onChange={(e) => validHandler(e)}
-        />
-        <LoginInput
-          id="pw"
-          label="비밀번호"
-          valid={pwNotValid}
-          onChange={(e) => validHandler(e)}
-        />
-        <LoginInput
-          id="matchPw"
-          label="비밀번호 확인"
-          valid={matchNotValid}
-          onChange={(e) => validHandler(e)}
-        />
-        <LoginInput
-          id="email"
-          label="이메일"
-          valid={emailNotValid}
-          onChange={(e) => validHandler(e)}
-        />
-        <LoginInput
-          id="phone"
-          label="연락처"
-          valid={phoneNotValid}
-          onChange={(e) => validHandler(e)}
-        />
-      </InputBox>
+      <ContentBox>
+        <InputBox>
+          <LoginInput
+            label="이름"
+            name="name"
+            innerRef={nameRef}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <LoginInput
+            label="아이디"
+            name="id"
+            innerRef={idRef}
+            onChange={validHandler}
+            valid={idNotValid}
+          />
+          <LoginInput
+            label="비밀번호"
+            name="pwd"
+            innerRef={pwdRef}
+            onChange={validHandler}
+            valid={pwNotValid}
+          />
+          <LoginInput
+            label="이메일"
+            name="email"
+            innerRef={emailRef}
+            onChange={validHandler}
+            valid={emailNotValid}
+          />
+          <LoginInput
+            label="연락처"
+            name="phone"
+            innerRef={phoneRef}
+            onChange={validHandler}
+            valid={phoneNotValid}
+          />
+        </InputBox>
 
-      <JoinButtonBox>
-        <ButtonPrimary
-          width="100%"
-          color="#fffff"
-          bgc="#D9D9D9"
-          border="#D9D9D9"
-          radius="5px"
-          padding="10px 0"
-          margin="10px 0"
-          text="회원가입"
-        />
-      </JoinButtonBox>
+        <JoinButtonBox>
+          <LoginBtn onClick={handleSubmit}>회원가입</LoginBtn>
+        </JoinButtonBox>
+      </ContentBox>
     </FormContainer>
   );
 };
@@ -171,47 +200,45 @@ const JoinForm = () => {
 export default JoinForm;
 
 const FormContainer = styled.div`
-  height: 620px;
+  width: 400px;
+  height: 520px;
   background-color: #fff;
   border-radius: 10px;
-  padding: 3rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-`;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  margin-bottom: 3rem;
 
-const LogoBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem;
-
-  span {
-    font-size: 15px;
+  @media ${(props) => props.theme.loginMobile} {
+    width: 90vw;
   }
-`;
-
-const LogoTitle = styled.h1`
-  font-size: 40px;
-  font-weight: bold;
-  margin: 10px;
 `;
 
 const ChooseBox = styled.div`
   width: 100%;
   display: flex;
-  gap: 20px;
-  padding: 0 2rem;
+  background-color: aliceblue;
+
+  .focused {
+    background-color: var(--main-color-1);
+    color: #fff;
+  }
 `;
 
-const InputBox = styled.div`
+const ContentBox = styled.div`
   width: 100%;
+  padding: 1rem 3.5rem;
+
+  @media ${(props) => props.theme.loginMobile} {
+    padding: 1rem 2rem;
+  }
 `;
+
+const InputBox = styled.div``;
 
 const JoinButtonBox = styled.div`
   width: 100%;
-  margin: 20px 0;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
 `;

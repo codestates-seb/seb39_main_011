@@ -20,10 +20,10 @@ export const ButtonPrimary = styled.button`
 
 export const LoginBtn = styled(ButtonPrimary)`
   color: ${(props) => props.color || "#fff"};
-  background: ${(props) => props.bgc || "#CEAB93"};
+  background: ${(props) => props.bgc || "var(--main-color-2)"};
   height: ${(props) => props.height || "43px"};
   width: ${(props) => props.height || "100%"};
-  border: 2px solid ${(props) => props.border || "#CEAB93"};
+  border: 2px solid ${(props) => props.border || "var(--main-color-2)"};
   border-radius: ${(props) => props.radius || "7px"};
   margin: ${(props) => props.margin || "none"};
   font-size: ${(props) => props.fontSize || "18px"};
@@ -31,10 +31,23 @@ export const LoginBtn = styled(ButtonPrimary)`
   text-align: center;
   cursor: pointer;
   &:hover {
-    background-color: ${(props) => props.hoverBgc || "#AD8B73"};
-    border: 1px solid ${(props) => props.hoverBorder || "#AD8B73"};
+    background-color: ${(props) => props.hoverBgc || "var(--main-color-1)"};
+    border: 1px solid ${(props) => props.hoverBorder || "var(--main-color-1)"};
     color: ${(props) => props.hoverColor || "#fff"};
   }
+`;
+
+export const LoginTabBtn = styled.button`
+  color: var(--main-color-1);
+  background-color: #fff;
+  height: ${(props) => props.height || "43px"};
+  width: ${(props) => props.height || "100%"};
+  border: 2px solid var(--main-color-1);
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  border-radius: ${(props) => props.radius || "7px"};
 `;
 
 export const BasicBtn = styled(ButtonPrimary)`

@@ -1,45 +1,32 @@
 import React from "react";
 import styled from "styled-components";
+import { ReactComponent as MyinfoPic } from "../../svg/myinfo.svg";
 
 const SidebarItem = ({ tab, isActive }) => {
-  return isActive === true ? (
-    <ActiveBox>
-      <p>{tab.name}</p>
-    </ActiveBox>
-  ) : (
+  return (
     <Box>
-      <p>{tab.name}</p>
+      <div className={isActive ? "clicked" : null}>
+        <p>{tab.name}</p>
+      </div>
     </Box>
   );
 };
+
 export default SidebarItem;
-
-const ActiveBox = styled.div`
-  background-color: #f3f3f3;
-  color: #ea5b5b;
-  margin: 1rem 0;
-  padding: 1rem 0 1rem 2rem;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-
-  @media ${(props) => props.theme.tablet} {
-    padding: 0;
-    margin: 0;
-    background-color: #ffff;
-  }
-
-  @media ${(props) => props.theme.mobile} {
-    font-size: 13px;
-  }
-`;
 
 const Box = styled.div`
   margin: 1rem 0;
-  padding: 1rem 0 1rem 2rem;
   font-weight: 700;
   font-size: 15px;
   cursor: pointer;
+  margin: 0 5px;
+
+  .clicked {
+    background-color: var(--main-color-4);
+    padding: 0.9rem 1rem;
+    border-radius: 30px;
+    margin: 0 5px;
+  }
 
   @media ${(props) => props.theme.tablet} {
     padding: 0;

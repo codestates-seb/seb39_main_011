@@ -29,16 +29,19 @@ const MySideBar = () => {
 
   return (
     <SideBarContainer>
-      {Tabs[pathName].map((tab, idx) => {
-        return (
-          <NavLink to={tab.path} key={idx}>
-            <SidebarItem
-              tab={tab}
-              isActive={paths === tab.path ? true : false}
-            />
-          </NavLink>
-        );
-      })}
+      <Title>마이페이지</Title>
+      <TabBox>
+        {Tabs[pathName].map((tab, idx) => {
+          return (
+            <NavLink to={tab.path} key={idx}>
+              <SidebarItem
+                tab={tab}
+                isActive={paths === tab.path ? true : false}
+              />
+            </NavLink>
+          );
+        })}
+      </TabBox>
     </SideBarContainer>
   );
 };
@@ -48,9 +51,11 @@ export default MySideBar;
 const SideBarContainer = styled.div`
   width: 220px;
   height: 570px;
-  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0 15px;
-  border-radius: 5px;
+  border-radius: 20px 0 0 20px;
 
   @media ${(props) => props.theme.tablet} {
     width: 90%;
@@ -61,4 +66,22 @@ const SideBarContainer = styled.div`
     justify-content: space-around;
     align-items: center;
   }
+`;
+
+const TabBox = styled.div`
+  border: 3px solid var(--main-color-3);
+  width: 100%;
+  height: 100%;
+  border-radius: 0 0 0 20px;
+`;
+
+const Title = styled.div`
+  width: 100%;
+  background-color: var(--main-color-3);
+  color: #fff;
+  text-align: center;
+  padding: 1.2rem;
+  border-radius: 20px 0 0 0;
+  font-size: 23px;
+  font-weight: 700;
 `;
