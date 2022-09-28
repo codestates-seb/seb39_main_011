@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
 
   :root {
     /* 아래로 갈수록 연해짐 */
+    --main-color-5 : #846956;
     --main-color-0: #7B6250;
     --main-color-1 : #AD8B73;
     --main-color-2 : #CEAB93;
