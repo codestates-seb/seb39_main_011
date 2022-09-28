@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import RegionFilter from "../../organisms/MainRegionFilter/RegionFilter";
 import todayGenerator from "../../../utils/date";
 import * as S from "./style";
+import { useDispatch } from "react-redux";
+import { sortCheck } from "../../../redux/reducers/sortSlice";
 
 const Aside = () => {
   let { today, todayPlusTwoMonth } = todayGenerator();
   const [date, setDate] = useState(today);
+  const dispatch = useDispatch();
+
+  const sortHandler = (e) => {
+    dispatch(sortCheck(e.target.id));
+  };
 
   return (
     <S.AsideContainer>
@@ -33,15 +40,25 @@ const Aside = () => {
       <fieldset>
         <S.FlexLayout>
           <S.Label htmlFor="price">가격 정렬</S.Label>
-          <input type="radio" id="price" name="sorting" />
+          <input
+            type="radio"
+            id="price"
+            name="sorting"
+            onChange={sortHandler}
+          />
         </S.FlexLayout>
         <S.FlexLayout>
           <S.Label htmlFor="vote">별점 정렬</S.Label>
-          <input type="radio" id="vote" name="sorting" />
+          <input type="radio" id="vote" name="sorting" onChange={sortHandler} />
         </S.FlexLayout>
         <S.FlexLayout>
           <S.Label htmlFor="review">리뷰 정렬</S.Label>
-          <input type="radio" id="review" name="sorting" />
+          <input
+            type="radio"
+            id="review"
+            name="sorting"
+            onChange={sortHandler}
+          />
         </S.FlexLayout>
       </fieldset>
     </S.AsideContainer>
