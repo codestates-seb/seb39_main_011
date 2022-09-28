@@ -22,7 +22,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-
+  
+  /* ========== 캘린더 ========== */
   * .rdp {
     --rdp-cell-size: 37px;
     --rdp-accent-color: #0000ff;
@@ -31,15 +32,15 @@ const GlobalStyle = createGlobalStyle`
     --rdp-background-color-dark: #180270;
     --rdp-outline: 2px solid var(--rdp-accent-color);
     --rdp-outline-selected: 3px solid var(--rdp-accent-color);
-    margin: 0;
+    margin: 0 0 5px 0;
   }
-
   * .rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
     color: white;
     opacity: 1;
     background-color: #7b6250;
   }
-
+  /* =========================== */
+  
   body {
     background-color: #e5e5e5;
     display: flex;
