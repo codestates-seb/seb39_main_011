@@ -7,4 +7,6 @@ export const DetailContainer = styled.main`
   display: flex;
   justify-content: space-between;
   gap: 20px;
+
+  position: relative;
 `;
