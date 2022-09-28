@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { ReactComponent as MyinfoPic } from "../../svg/myinfo.svg";
 
 const SidebarItem = ({ tab, isActive }) => {
   return (
