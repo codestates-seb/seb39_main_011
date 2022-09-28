@@ -13,20 +13,19 @@ const MyContent = () => {
 export default MyContent;
 
 const Container = styled.div`
-  width: 700px;
+  width: 70vw;
   height: 570px;
   background-color: #fff;
-  border-radius: 5px;
+  border: 3px solid var(--main-color-3);
+  border-radius: 0px 20px 20px 0px;
   overflow: auto;
-  margin-right: 15px;
+  margin-right: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
-  @media ${(props) => props.theme.tablet} {
+  @media ${(props) => props.theme.mypageTablet} {
     margin: 0 15px;
-    width: 90%;
-  }
-
-  @media ${(props) => props.theme.mobile} {
-    margin: 0 15px;
-    width: 90%;
+    width: 95vw;
+    height: 600px;
+    border-radius: 5px;
   }
 `;

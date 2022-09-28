@@ -53,7 +53,7 @@ const MySideBar = () => {
 
   return (
     <SideBarContainer>
-      <Title>마이페이지</Title>
+      <Title className="hide">마이페이지</Title>
       <TabBox>
         {Tabs[pathName].map((tab, idx) => {
           return (
@@ -73,23 +73,26 @@ const MySideBar = () => {
 export default MySideBar;
 
 const SideBarContainer = styled.div`
-  width: 220px;
+  width: 20vw;
   height: 570px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 15px;
+  margin: 0 15px 0 10px;
   border-radius: 20px 0 0 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
-  @media ${(props) => props.theme.tablet} {
-    width: 90%;
-    height: 45px;
-    margin: 15px 15px 10px 15px;
-
+  @media ${(props) => props.theme.mypageTablet} {
+    width: 95vw;
+    height: 70px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    margin: 10px;
+
+    .hide {
+      display: none;
+    }
   }
 `;
 
@@ -103,6 +106,16 @@ const TabBox = styled.div`
   gap: 10px;
   padding-top: 1rem;
   border-radius: 0 0 0 20px;
+  background-color: #fff;
+
+  @media ${(props) => props.theme.mypageTablet} {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 0;
+    border-radius: 5px;
+  }
 `;
 
 const Title = styled.div`

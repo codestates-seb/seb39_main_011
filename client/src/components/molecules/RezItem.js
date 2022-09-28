@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BasicBtn } from "../atoms/Button";
+import { OutlineBtn } from "../atoms/Button";
 import { useLocation } from "react-router-dom";
 
 const RezItem = ({ item, openReviewHandler }) => {
@@ -20,7 +20,7 @@ const RezItem = ({ item, openReviewHandler }) => {
           <p>요청 사항: {item.note}</p>
         </ContentBox>
         <ButtonBox>
-          <BasicBtn
+          <OutlineBtn
             width={"auto"}
             onClick={
               pathname === "/client/mypage/rez"
@@ -31,7 +31,7 @@ const RezItem = ({ item, openReviewHandler }) => {
             {pathname === "/client/mypage/pastrez"
               ? "리뷰 남기기"
               : "예약 취소"}
-          </BasicBtn>
+          </OutlineBtn>
         </ButtonBox>
       </ItemBox>
       <hr />

@@ -50,20 +50,38 @@ export const LoginTabBtn = styled.button`
   border-radius: ${(props) => props.radius || "7px"};
 `;
 
-export const BasicBtn = styled(ButtonPrimary)`
-  width: ${(props) => props.width || "85px"};
-  height: 35px;
-  background-color: #adadad;
+export const FillBtn = styled(ButtonPrimary)`
   color: #fff;
-  border: #adadad;
-  border-radius: 5px;
-  padding: 0 10px;
-  margin: 10px 0;
-  font-size: 13px;
-  font-weight: 700;
+  background: var(--main-color-1);
+  height: ${(props) => props.height || "auto"};
+  width: ${(props) => props.height || "auto"};
+  border: 2px solid var(--main-color-1);
+  border-radius: 7px;
+  margin: ${(props) => props.margin || "none"};
+  font-size: ${(props) => props.fontSize || "15px"};
+  font-weight: ${(props) => props.fontWeight || "600"};
 
   &:hover {
-    background-color: #989898;
+    background-color: ${(props) => props.hoverBgc || "var(--main-color-5)"};
+    border: 2px solid ${(props) => props.hoverBorder || "var(--main-color-5)"};
+  }
+`;
+
+export const OutlineBtn = styled(ButtonPrimary)`
+  color: var(--main-color-1);
+  background: #fff;
+  height: ${(props) => props.height || "auto"};
+  width: ${(props) => props.height || "auto"};
+  border: 2px solid var(--main-color-1);
+  border-radius: 7px;
+  margin: ${(props) => props.margin || "none"};
+  font-size: ${(props) => props.fontSize || "15px"};
+  font-weight: ${(props) => props.fontWeight || "600"};
+
+  &:hover {
+    color: ${(props) => props.hoverColor || "#fff"};
+    background-color: ${(props) => props.hoverBgc || "var(--main-color-5)"};
+    border: 2px solid ${(props) => props.hoverBorder || "var(--main-color-5)"};
   }
 `;
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ButtonPrimary, { BasicBtn } from "../atoms/Button";
+import { OutlineBtn } from "../atoms/Button";
 import RequiredInput from "../atoms/RequiredInput";
 import TextArea from "../atoms/TextArea";
 import axios from "axios";
@@ -81,7 +81,7 @@ const MyPostBox = () => {
           onChange={(e) => handleChange(e)}
         />
         <ButtonBox>
-          <BasicBtn onClick={handleSubmit}>등록하기</BasicBtn>
+          <OutlineBtn onClick={handleSubmit}>등록하기</OutlineBtn>
         </ButtonBox>
       </Box>
     </Container>
