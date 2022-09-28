@@ -6,6 +6,12 @@ import * as S from "./style";
 const Aside = () => {
   let { today, todayPlusTwoMonth } = todayGenerator();
   const [date, setDate] = useState(today);
+  const [click, setClick] = useState(false);
+
+  const clickHandler = () => {
+    console.log("실행");
+    setClick(!click);
+  };
 
   return (
     <S.AsideContainer>

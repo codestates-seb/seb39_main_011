@@ -4,6 +4,7 @@ import * as S from "./style";
 
 const RegionFilter = () => {
   const region = [
+    "전체",
     "서울",
     "경기",
     "인천",
