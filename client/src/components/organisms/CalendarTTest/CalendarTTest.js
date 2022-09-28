@@ -3,11 +3,24 @@ import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { useDispatch } from "react-redux";
 import { reservationHandler } from "../../../redux/reducers/calendarSlice";
+import { addMonths, isSameMonth } from "date-fns";
 
 function CalendarTTest() {
   const [range, setRange] = useState();
   const disabledDays = [{ from: new Date(0), to: new Date() }];
   const dispatch = useDispatch();
+  const today = new Date();
+  const nextMonth = addMonths(new Date(), 1);
+  const [month, setMonth] = useState(nextMonth);
+
+  const footer = (
+    <button
+      disabled={isSameMonth(today, month)}
+      onClick={() => setMonth(today)}
+    >
+      Go to Today
+    </button>
+  );
 
   useEffect(() => {
     dispatch(reservationHandler(range));
@@ -21,6 +34,9 @@ function CalendarTTest() {
       selected={range}
       onSelect={setRange}
       disabled={disabledDays}
+      month={month}
+      onMonthChange={setMonth}
+      footer={footer}
     />
   );
 }
