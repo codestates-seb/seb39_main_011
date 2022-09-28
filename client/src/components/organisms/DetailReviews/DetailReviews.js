@@ -30,11 +30,11 @@ const DetailReviews = () => {
     // });
   }, []);
 
-  const arr = [1, 2, 3];
+  const arr = [1, 2, 3, 4];
   return (
     <S.ReviewContainer>
       <S.ReviewsInfo>
-        <div>후기 (3)</div>
+        <div>😎 캠핑장 후기 (4)</div>
         <div>
           <FontAwesomeIcon icon={faStar} color={"#f7b603"} /> 4.9/5
         </div>
