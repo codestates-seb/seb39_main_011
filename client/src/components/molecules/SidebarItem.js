@@ -5,7 +5,8 @@ import { ReactComponent as MyinfoPic } from "../../svg/myinfo.svg";
 const SidebarItem = ({ tab, isActive }) => {
   return (
     <Box>
-      <div className={isActive ? "clicked" : null}>
+      <div className={isActive && "clicked"}>
+        <p>{tab.icon}</p>
         <p>{tab.name}</p>
       </div>
     </Box>
@@ -15,17 +16,30 @@ const SidebarItem = ({ tab, isActive }) => {
 export default SidebarItem;
 
 const Box = styled.div`
-  margin: 1rem 0;
+  height: 45px;
   font-weight: 700;
   font-size: 15px;
   cursor: pointer;
-  margin: 0 5px;
+  display: flex;
+
+  div {
+    margin-left: 15px;
+    width: 170px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    color: var(--main-color-5);
+    font-weight: 700;
+    font-size: 17px;
+  }
 
   .clicked {
+    margin-left: 0;
     background-color: var(--main-color-4);
-    padding: 0.9rem 1rem;
+    width: 200px;
+    padding-left: 1.4rem;
     border-radius: 30px;
-    margin: 0 5px;
   }
 
   @media ${(props) => props.theme.tablet} {

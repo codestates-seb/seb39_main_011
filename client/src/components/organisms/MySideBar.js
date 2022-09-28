@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
 import SidebarItem from "../molecules/SidebarItem";
+import { ReactComponent as MyinfoPic } from "../../svg/myinfo.svg";
+import { ReactComponent as RezPic } from "../../svg/rezpen.svg";
+import { ReactComponent as PastRezPic } from "../../svg/pastrezbook.svg";
+import { ReactComponent as RevPic } from "../../svg/revstar.svg";
 
 const MySideBar = () => {
   const paths = useLocation().pathname;
@@ -9,17 +13,37 @@ const MySideBar = () => {
 
   console.log(pathName);
   const clientTabs = [
-    { name: "내 정보", path: "/client/mypage/myinfo" },
-    { name: "예약 조회", path: "/client/mypage/rez" },
-    { name: "이전 예약 조회", path: "/client/mypage/pastrez" },
-    { name: "내 리뷰 보기", path: "/client/mypage/review" },
+    { name: "내 정보", path: "/client/mypage/myinfo", icon: <MyinfoPic /> },
+    { name: "예약 조회", path: "/client/mypage/rez", icon: <RezPic /> },
+    {
+      name: "이전 예약 조회",
+      path: "/client/mypage/pastrez",
+      icon: <PastRezPic />,
+    },
+    {
+      name: "내 리뷰 보기",
+      path: "/client/mypage/review",
+      icon: <RevPic />,
+    },
   ];
 
   const adminTabs = [
-    { name: "내 정보", path: "/admin/mypage/myinfo" },
-    { name: "캠핑장 등록 및 관리", path: "/admin/mypage/post" },
-    { name: "캠핑장 예약 관리", path: "/admin/mypage/rez" },
-    { name: "캠핑장 리뷰 관리", path: "/admin/mypage/review" },
+    { name: "내 정보", path: "/admin/mypage/myinfo", icon: <MyinfoPic /> },
+    {
+      name: "캠핑장 등록/관리",
+      path: "/admin/mypage/post",
+      icon: <RezPic />,
+    },
+    {
+      name: "예약 관리",
+      path: "/admin/mypage/rez",
+      icon: <PastRezPic />,
+    },
+    {
+      name: "리뷰 관리",
+      path: "/admin/mypage/review",
+      icon: <RevPic />,
+    },
   ];
 
   const Tabs = {
@@ -56,6 +80,7 @@ const SideBarContainer = styled.div`
   align-items: center;
   margin: 0 15px;
   border-radius: 20px 0 0 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
   @media ${(props) => props.theme.tablet} {
     width: 90%;
@@ -72,6 +97,11 @@ const TabBox = styled.div`
   border: 3px solid var(--main-color-3);
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 1rem;
   border-radius: 0 0 0 20px;
 `;
 
@@ -82,6 +112,6 @@ const Title = styled.div`
   text-align: center;
   padding: 1.2rem;
   border-radius: 20px 0 0 0;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 700;
 `;
