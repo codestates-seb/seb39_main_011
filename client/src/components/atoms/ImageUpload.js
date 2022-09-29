@@ -86,6 +86,16 @@ const ImageContainer = styled.div`
       width: 65px;
       height: 65px;
       border-radius: 5px;
+
+      @media ${(props) => props.theme.mobile} {
+        width: 55px;
+        height: 55px;
+      }
+    }
+
+    @media ${(props) => props.theme.postMobile} {
+      width: 50px;
+      height: 50px;
     }
   }
 `;

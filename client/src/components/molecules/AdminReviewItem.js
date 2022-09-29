@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BasicBtn } from "../atoms/Button";
+import { OutlineBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 import CommentItem from "./CommentItem";
 
@@ -27,7 +27,7 @@ const AdminReviewItem = ({ item, openReviewHandler, isOpen }) => {
           </ImgBox>
         </ContentBox>
         <ButtonBox>
-          <BasicBtn onClick={onOpen}>댓글 달기</BasicBtn>
+          <OutlineBtn onClick={onOpen}>댓글 달기</OutlineBtn>
         </ButtonBox>
       </ItemBox>
       <hr />

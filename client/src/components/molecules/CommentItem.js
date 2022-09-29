@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BasicBtn } from "../atoms/Button";
+import { OutlineBtn } from "../atoms/Button";
 import TextArea from "../atoms/TextArea";
 
 const CommentItem = () => {
@@ -11,9 +11,9 @@ const CommentItem = () => {
         <div>
           <TextAreaStyle />
         </div>
-        <BasicBtn width="50px" height="35px">
+        <OutlineBtn width="50px" height="35px">
           등록
-        </BasicBtn>
+        </OutlineBtn>
       </Box>
     </Layout>
   );

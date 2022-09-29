@@ -15,13 +15,13 @@ const MypageLayout = () => {
 export default MypageLayout;
 
 const Layout = styled.div`
-  width: 100vw;
+  max-width: 940px;
   height: calc(100vh - 54px);
   display: flex;
   justify-content: center;
   align-items: center;
 
-  @media ${(props) => props.theme.tablet} {
+  @media ${(props) => props.theme.mypageTablet} {
     flex-direction: column;
   }
 `;

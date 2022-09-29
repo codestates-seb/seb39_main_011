@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BasicBtn } from "../atoms/Button";
+import { OutlineBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 import moment from "moment";
 import TextArea from "../atoms/TextArea";
@@ -92,21 +92,21 @@ const ClientReviewItem = ({
         <ButtonBox>
           {isEdit ? (
             <>
-              <BasicBtn onClick={handleQuitEdit} width="50px">
+              <OutlineBtn onClick={handleQuitEdit} width="50px">
                 취소
-              </BasicBtn>
-              <BasicBtn onClick={handleEdit} width="50px">
+              </OutlineBtn>
+              <OutlineBtn onClick={handleEdit} width="50px">
                 완료
-              </BasicBtn>
+              </OutlineBtn>
             </>
           ) : (
             <>
-              <BasicBtn onClick={handleRemove} width="50px">
+              <OutlineBtn onClick={handleRemove} width="50px">
                 삭제
-              </BasicBtn>
-              <BasicBtn onClick={toggleIsEdit} width="50px">
+              </OutlineBtn>
+              <OutlineBtn onClick={toggleIsEdit} width="50px">
                 수정
-              </BasicBtn>
+              </OutlineBtn>
             </>
           )}
         </ButtonBox>

@@ -19,7 +19,7 @@ const Layout = styled.div`
     width: 100%;
     height: 150px;
     padding: 10px;
-    border: 1px solid #d9d9d9;
+    border: 2px solid var(--main-color-2);
     border-radius: 5px;
     font-size: 13px;
     resize: none;

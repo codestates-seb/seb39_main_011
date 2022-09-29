@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import StarClick from "./StarClick";
-import { BasicBtn } from "./Button";
+import { OutlineBtn } from "./Button";
 import axios from "axios";
 import ImageUpload from "./ImageUpload";
 
@@ -54,7 +54,7 @@ const PostReview = () => {
           </PhotoBox>
         </div>
         <div>
-          <BasicBtn onClick={reviewPost}>리뷰 등록</BasicBtn>
+          <OutlineBtn onClick={reviewPost}>리뷰 등록</OutlineBtn>
         </div>
       </BottomBox>
     </Container>
