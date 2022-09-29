@@ -33,7 +33,7 @@ const MyInfoBox = ({ user }) => {
   return (
     <Container>
       <ProfileBox>
-        <ProfilePic width="130" height="130" />
+        <ProfilePic width="130" height="130" fill="var(--main-color-1)" />
       </ProfileBox>
       <InfoBox>
         <Label>
@@ -98,7 +98,7 @@ const MyInfoBox = ({ user }) => {
             <OutlineBtn
               onClick={() => window.confirm("정말로 탈퇴하시겠습니까?")}
             >
-              회원탈퇴
+              회원 탈퇴
             </OutlineBtn>
           </>
         )}

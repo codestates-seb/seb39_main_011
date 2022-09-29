@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDaumPostcodePopup } from "react-daum-postcode";
-import { OutlineBtn } from "../atoms/Button";
+import { OutlineBtnS } from "../atoms/Button";
 
 const PopupPostcode = ({ setAddress }) => {
   const popUp = useDaumPostcodePopup();
@@ -42,9 +42,7 @@ const PopupPostcode = ({ setAddress }) => {
 
   return (
     <Container>
-      <OutlineBtn fontSize="11px" width="66px" onClick={handleClick}>
-        주소 검색
-      </OutlineBtn>
+      <OutlineBtnS onClick={handleClick}>주소 검색</OutlineBtnS>
     </Container>
   );
 };
