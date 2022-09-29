@@ -12,8 +12,6 @@ import java.time.LocalDateTime;
 @Component
 public class ReviewMapper {
 
-    @Autowired
-    private ReviewRepository reviewRepository;
 
     public Review reviewPostDtoToReview(ReviewPostDto reviewPostDto) {
         return new Review(0L,

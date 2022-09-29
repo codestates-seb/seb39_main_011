@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/client/rev")
 public class RevController {
     private final ReviewService reviewService;
     private final ReviewMapper mapper;
@@ -24,7 +23,7 @@ public class RevController {
     }
 
     //리뷰등록
-    @PostMapping
+    @PostMapping("/client/rev")
     public ResponseEntity postReview(@RequestBody ReviewPostDto reviewPostDto )  {
 
         Review review = mapper.reviewPostDtoToReview(reviewPostDto);
@@ -35,7 +34,7 @@ public class RevController {
     }
 
     //리뷰수정
-    @PutMapping("/{rev-id}")
+    @PutMapping("/client/rev/{rev-id}")
     public ResponseEntity putReview(@PathVariable("rev-id") long rev_id,
                                       @RequestBody ReviewPutDto reviewPutDto) {
         reviewPutDto.setRev_id(rev_id);
@@ -44,7 +43,7 @@ public class RevController {
     }
 
     //리뷰삭제
-    @DeleteMapping("/{rev-id}")
+    @DeleteMapping("/client/rev/{rev-id}")
     public ResponseEntity deleteReview(@PathVariable("rev-id")long rev_id) {
         reviewService.deleteReview(rev_id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -58,7 +57,7 @@ public class RevController {
     }
 
     //리뷰전체조회
-    @GetMapping
+    @GetMapping("/admin/rev")
     public ResponseEntity getReview() {
         List<Review> response = reviewService.findReviews();
         return new ResponseEntity(response,HttpStatus.OK);
