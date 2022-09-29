@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping
 public class ReservationController {
@@ -22,7 +24,7 @@ public class ReservationController {
 
 
     @PostMapping("/detail")
-    public ResponseEntity postCamp(@RequestBody RezPostDto rezPostDto) {
+    public ResponseEntity postRez(@RequestBody RezPostDto rezPostDto) {
         Reservation reservation = mapper.rezPostDtoToRez(rezPostDto);
         rezService.createRez(reservation);
         return new ResponseEntity(HttpStatus.CREATED);
@@ -32,5 +34,12 @@ public class ReservationController {
     public ResponseEntity deleteRez(@PathVariable("rez-id")long rez_id) {
         rezService.deleteRez(rez_id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    //예약전체조회
+    @GetMapping("client/info/rez")
+    public ResponseEntity getRez() {
+        List<Reservation> response = rezService.findRez();
+        return new ResponseEntity(response,HttpStatus.OK);
     }
 }
