@@ -1,6 +1,7 @@
 package com.server.Comment.Controller;
 
 import com.server.Comment.DTO.CommentPostDto;
+import com.server.Comment.DTO.CommentPutDto;
 import com.server.Comment.Entity.Comment;
 import com.server.Comment.Mapper.CommentMapper;
 import com.server.Comment.Service.CommentService;
@@ -27,6 +28,14 @@ public class CommentController {
         commentService.createComment(comment);
 
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{comment-id}")
+    public ResponseEntity putComment(@PathVariable("comment-id") long comment_id,
+                                     @RequestBody CommentPutDto commentPutDto) {
+        commentPutDto.setComment_id(comment_id);
+        commentService.updateComment(mapper.commentPutDtoToComment(commentPutDto));
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }

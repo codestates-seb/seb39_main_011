@@ -18,9 +18,9 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long comment_id;
 
-    @Column(nullable = false)
-    private String massage;
+    @Column
+    private String message;
 
-    @Column(nullable = false)
+    @Column
     private LocalDateTime date;
 }
