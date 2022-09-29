@@ -71,9 +71,10 @@ export const OutlineBtn = styled(ButtonPrimary)`
   color: var(--main-color-1);
   background: #fff;
   height: ${(props) => props.height || "auto"};
-  width: ${(props) => props.height || "auto"};
+  width: ${(props) => props.width || "auto"};
   border: 2px solid var(--main-color-1);
   border-radius: 7px;
+  padding: ${(props) => props.padding || "none"};
   margin: ${(props) => props.margin || "none"};
   font-size: ${(props) => props.fontSize || "15px"};
   font-weight: ${(props) => props.fontWeight || "600"};

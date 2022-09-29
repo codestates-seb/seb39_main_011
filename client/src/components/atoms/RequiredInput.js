@@ -17,6 +17,8 @@ const RequiredInput = ({ type, label, value, placeholder, onChange, name }) => {
         onChange={onChange}
         name={name}
         value={value}
+        placeholder={placeholder}
+        fullWidth
       />
     </Layout>
   );
@@ -32,5 +34,10 @@ const Layout = styled.div`
   label {
     font-size: 17px;
     font-weight: bold;
+    color: var(--main-color-5);
+  }
+
+  & label.Mui-focused {
+    color: var(--main-color-0);
   }
 `;

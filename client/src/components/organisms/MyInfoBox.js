@@ -30,7 +30,6 @@ const MyInfoBox = ({ user }) => {
 
   const handleEdit = () => {};
 
-  console.info(isEdit);
   return (
     <Container>
       <ProfileBox>
