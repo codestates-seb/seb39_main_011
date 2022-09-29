@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin/rev")
+@RequestMapping("/rev")
 public class CommentController {
     private final CommentService commentService;
     private final CommentMapper mapper;
@@ -36,6 +36,12 @@ public class CommentController {
         commentPutDto.setComment_id(comment_id);
         commentService.updateComment(mapper.commentPutDtoToComment(commentPutDto));
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @DeleteMapping("{comment-id}")
+    public ResponseEntity deleteComment(@PathVariable("comment-id") long comment_id) {
+        commentService.deleteComment(comment_id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
 }
