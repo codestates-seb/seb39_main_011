@@ -14,4 +14,8 @@ public class CommentService {
     protected CommentRepository commentRepository;
 
     public void createComment(Comment comment) {commentRepository.save(comment);}
+
+    public void updateComment(Comment comment) {
+        commentRepository.save(comment);
+    }
 }
