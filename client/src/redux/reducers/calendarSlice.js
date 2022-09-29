@@ -9,20 +9,6 @@ const calendarSlice = createSlice({
     },
   },
 });
-// const calendarSlice = createSlice({
-//   name: "reservationDate",
-//   initialState: { checkIn: "", checkOut: "" },
-//   reducers: {
-//     checkInHandler: (state, action) => {
-//       // return action.payload;
-//       state.checkIn = action.payload;
-//     },
-//     checkOutHandler: (state, action) => {
-//       // return action.payload;
-//       state.checkOut = action.payload;
-//     },
-//   },
-// });
 
 export const { reservationHandler } = calendarSlice.actions;
 export default calendarSlice.reducer;

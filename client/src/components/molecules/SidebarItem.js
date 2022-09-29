@@ -47,6 +47,7 @@ const Box = styled.div`
   }
 
   .clicked {
+    margin-left: 0;
     background-color: var(--main-color-4);
     width: 100%;
     padding: 0 1rem;

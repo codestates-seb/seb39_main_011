@@ -1,0 +1,37 @@
+package com.server.Review.Service;
+
+import com.server.Review.Entity.Review;
+import com.server.Review.Repository.ReviewRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@RequiredArgsConstructor
+public class ReviewService {
+
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+    public void createReview(Review review) {
+        reviewRepository.save(review);
+    }
+
+    public void updateReview(Review review){
+        reviewRepository.save(review);
+    }
+
+    public void deleteReview(long rev_id) {
+        reviewRepository.deleteById(rev_id);
+    }
+
+    public Optional<Review> findReview(long rev_id) {
+       return reviewRepository.findById(rev_id);}
+
+    public List<Review> findReviews() {
+        return reviewRepository.findAll();
+    }
+}

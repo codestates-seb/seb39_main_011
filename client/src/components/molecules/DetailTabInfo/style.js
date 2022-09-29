@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const TabInfoContainer = styled.div`
-  padding: 20px 20px 60px 20px;
+  padding: 20px;
 
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  border: 2px solid var(--main-color-3);
+  border-radius: 0 5px 5px 5px;
 
   .important_img {
     width: 200px;
