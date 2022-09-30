@@ -2,7 +2,7 @@ import React from "react";
 import StarRender from "../../atoms/StarRender";
 import * as S from "./style";
 
-const DetailTabReview = () => {
+const DetailReview = () => {
   return (
     <S.ReviewContainer>
       <S.Info>
@@ -31,4 +31,4 @@ const DetailTabReview = () => {
   );
 };
 
-export default DetailTabReview;
+export default DetailReview;

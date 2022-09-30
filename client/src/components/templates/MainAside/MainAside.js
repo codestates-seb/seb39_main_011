@@ -40,7 +40,7 @@ const MainAside = () => {
         id="date"
         name="date"
       >
-        날짜선택
+        날짜 선택
       </InputLabel>
       <InputLabel
         icon={<CoinIcon />}

@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const InputLabel = (props) => {
   const onInput = props.on;
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (props.disable === "true") inputRef.current.disabled = true;
+  });
 
   return (
-    <Container>
+    <Container textarea={props.textarea}>
       {props.icon}
       <label htmlFor={props.id}>{props.children}</label>
       {!onInput ? (
@@ -17,7 +22,12 @@ const InputLabel = (props) => {
           value={props.value}
           max={props.max}
           min={props.min}
-        ></input>
+          ref={inputRef}
+          required
+        />
+      ) : null}
+      {props.textarea ? (
+        <textarea onChange={props.onChange} id={props.id} name={props.name} />
       ) : null}
     </Container>
   );
@@ -25,6 +35,7 @@ const InputLabel = (props) => {
 
 const Container = styled.fieldset`
   display: flex;
+  flex-wrap: ${(props) => (props.textarea ? "wrap" : null)};
   align-items: center;
   gap: 5px;
 
@@ -33,10 +44,9 @@ const Container = styled.fieldset`
   }
 
   > label {
+    width: 80px;
     color: var(--main-color-0);
-    font-weight: 600;
-    /* padding: 15px 0; */
-    padding-right: 10px;
+    font-weight: 700;
     display: inline-block;
     cursor: pointer;
   }
@@ -47,7 +57,21 @@ const Container = styled.fieldset`
     border-radius: 5px;
     width: 100px;
     padding: 5px;
-    /* flex-grow: 1; */
+
+    &:focus {
+      outline: none;
+      border-color: var(--main-color-1);
+    }
+  }
+
+  > input[type="text"],
+  input[type="number"] {
+    font-size: 12px;
+    border: 2px solid var(--main-color-3);
+    border-radius: 5px;
+    width: 100px;
+    padding: 5px;
+    flex-grow: 1;
 
     &:focus {
       outline: none;
@@ -57,6 +81,18 @@ const Container = styled.fieldset`
 
   > input[type="radio"]:checked {
     accent-color: var(--main-color-1);
+  }
+
+  > textarea {
+    width: 100%;
+    height: 80px;
+    border: 2px solid #e3caa5;
+    border-radius: 5px;
+
+    &:focus {
+      outline: none;
+      border-color: var(--main-color-1);
+    }
   }
 `;
 

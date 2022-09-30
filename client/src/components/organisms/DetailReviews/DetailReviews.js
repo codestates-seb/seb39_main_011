@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import DetailTabReview from "../../molecules/DetailTabReview/DetailTabReview";
+import DetailReview from "../../molecules/DetailReview/DetailReview";
 import * as S from "./style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -41,7 +41,7 @@ const DetailReviews = () => {
       </S.ReviewsInfo>
       <S.ReviewList>
         {arr.map((_, idx) => (
-          <DetailTabReview key={idx} />
+          <DetailReview key={idx} />
         ))}
       </S.ReviewList>
     </S.ReviewContainer>

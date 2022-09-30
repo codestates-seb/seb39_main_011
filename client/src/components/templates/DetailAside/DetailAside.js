@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { ButtonPrimary } from "../../../../src/components/atoms/Button";
 import { useSelector } from "react-redux";
-import CalendarTTest from "../../organisms/CalendarTTest/CalendarTTest.js";
+import Calendar from "../../organisms/Calendar/Calendar.js";
+import InputLabel from "../../atoms/InputLabel";
+
+import { ReactComponent as UserIcon } from "./../../../svg/profile.svg";
+import { ReactComponent as CalendarIcon } from "./../../../svg/calendar.svg";
+import { ReactComponent as PhoneIcon } from "./../../../svg/phone.svg";
+import { ReactComponent as CountIcon } from "./../../../svg/revcount.svg";
+import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
+import { ReactComponent as RequestIcon } from "./../../../svg/review.svg";
 
 const DetailAside = () => {
   const reservation = useSelector((state) => state.reservationDate);
@@ -15,8 +23,6 @@ const DetailAside = () => {
     checkIn: "",
     checkOut: "",
   });
-
-  console.log(reservationInput);
 
   useEffect(() => {
     setReservationInput((preState) => {
@@ -71,53 +77,75 @@ const DetailAside = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    console.log(reservationInput);
   };
 
   return (
     <S.AsideContainer>
-      <CalendarTTest />
+      <Calendar />
       <form onSubmit={submitHandler}>
-        <S.Input>
-          <label>😎 예약 날짜</label>
-          <input
-            type="text"
-            disabled
-            value={
-              reservation.from && reservation.to
-                ? `${reservation.from.toLocaleDateString()} - ${reservation.to.toLocaleDateString()}`
-                : ""
-            }
-          />
-        </S.Input>
-        <S.Input>
-          <label htmlFor="name">😎 예약자 이름</label>
-          <input id="name" type="text" onChange={nameHandler} required />
-        </S.Input>
-        <S.Input>
-          <label htmlFor="phone">😎 예약자 연락처</label>
-          <input id="phone" type="text" onChange={phoneHandler} required />
-        </S.Input>
-        <S.Input>
-          <label htmlFor="quantity">😎 예약 수량</label>
-          <input
-            id="quantity"
-            type="number"
-            min="0"
-            max="5"
-            onChange={quantityHandler}
-            required
-          />
-        </S.Input>
-        <S.Input>
-          <label htmlFor="price">😎 가격</label>
-          <input id="price" type="text" onChange={priceHandler} required />
-        </S.Input>
-        <S.Input flex={"column"}>
-          <label htmlFor="request">😎 요청 사항</label>
-          <textarea id="request" onChange={requestHandler} required />
-        </S.Input>
+        <InputLabel
+          icon={<CalendarIcon />}
+          type="text"
+          id="reservationDate"
+          name="reservationDate"
+          value={
+            reservation.from && reservation.to
+              ? `${reservation.from.toLocaleDateString()} - ${reservation.to.toLocaleDateString()}`
+              : ""
+          }
+          disable="true"
+        >
+          예약 날짜
+        </InputLabel>
+        <InputLabel
+          icon={<UserIcon />}
+          type="text"
+          id="reservationName"
+          name="reservationName"
+          onChange={nameHandler}
+        >
+          예약자 이름
+        </InputLabel>
+        <InputLabel
+          icon={<PhoneIcon />}
+          type="text"
+          id="reservationPhone"
+          name="reservationPhone"
+          onChange={phoneHandler}
+        >
+          예약자 연락처
+        </InputLabel>
+        <InputLabel
+          icon={<CountIcon />}
+          type="number"
+          id="reservationCount"
+          name="reservationCount"
+          onChange={quantityHandler}
+        >
+          예약 수량
+        </InputLabel>
+        <InputLabel
+          icon={<CoinIcon />}
+          type="number"
+          id="reservationPrice"
+          name="reservationPrice"
+          onChange={priceHandler}
+        >
+          예약 가격
+        </InputLabel>
+        <InputLabel
+          icon={<RequestIcon />}
+          on="false"
+          id="reservationRequest"
+          name="reservationRequest"
+          textarea
+          onChange={requestHandler}
+        >
+          요청 사항
+        </InputLabel>
         <ButtonPrimary
-          bgc={"#AD8B73"}
+          bgc={"var(--main-color-1)"}
           color={"#fff"}
           radius={"5px"}
           padding={"10px"}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useDispatch } from "react-redux";
-import { reservation } from "../../../redux/reducers/calendarSlice";
+import { reservation } from "../../src/redux/reducers/calendarSlice";
 
 const CalendarTest = () => {
   const [value, onChange] = useState(new Date());
