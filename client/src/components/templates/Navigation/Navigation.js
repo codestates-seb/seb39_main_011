@@ -24,8 +24,8 @@ const Navigation = () => {
           <Link to="/join">
             <ButtonPrimary>회원가입</ButtonPrimary>
           </Link>
-          <ProfilePic width="50" height="50" fill="var(--main-color-1)" />
         </div>
+        <ProfilePic width="50" height="50" fill="var(--main-color-1)" />
       </S.Nav>
     </S.NaviContainer>
   );

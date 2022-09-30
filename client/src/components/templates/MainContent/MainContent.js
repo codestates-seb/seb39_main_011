@@ -35,48 +35,26 @@ const MainContent = () => {
     }
   }, [selectRegion]);
 
-  // useEffect(() => {
-  //   if (selectSort === "price") {
-  //     const sortArr = campingList.sort((a, b) => {
-  //       if (a.price > b.price) {
-  //         return -1;
-  //       } else if (a.price < b.price) {
-  //         return 1;
-  //       } else {
-  //         return 0;
-  //       }
-  //     });
-  //     setRenderCampingList(sortArr);
-  //   } else if (selectSort === "vote") {
-  //     const sortArr = campingList.sort((a, b) => {
-  //       if (a.vote > b.vote) {
-  //         return -1;
-  //       } else if (a.vote < b.vote) {
-  //         return 1;
-  //       } else {
-  //         return 0;
-  //       }
-  //     });
-  //     setRenderCampingList(sortArr);
-  //   } else if (selectSort === "review") {
-  //     const sortArr = campingList.sort((a, b) => {
-  //       if (a.review > b.review) {
-  //         return -1;
-  //       } else if (a.review < b.review) {
-  //         return 1;
-  //       } else {
-  //         return 0;
-  //       }
-  //     });
-  //     setRenderCampingList(sortArr);
-  //   }
-  // }, [selectSort]);
+  useEffect(() => {
+    if (selectSort === "price") {
+      const sortArr = campingList.sort((a, b) => {
+        return a.price - b.price;
+      });
+      setRenderCampingList(sortArr);
+    } else if (selectSort === "vote") {
+    } else if (selectSort === "review") {
+    }
+  }, [selectSort]);
 
   return (
     <S.PostContainer>
-      {renderCampingList.map((el) => {
-        return <CampingCard key={el.camp_id} camplist={el} />;
-      })}
+      {renderCampingList.length === 0 ? (
+        <div>등록된 캠핑장이 없습니다.</div>
+      ) : (
+        renderCampingList.map((el) => {
+          return <CampingCard key={el.camp_id} camplist={el} />;
+        })
+      )}
     </S.PostContainer>
   );
 };

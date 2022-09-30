@@ -9,7 +9,9 @@ const DetailReview = () => {
   return (
     <S.ReviewContainer>
       <S.Info>
-        <IconText icon={<UserIcon width="20" height="20" />}>
+        <IconText
+          icon={<UserIcon width="20" height="20" fill="var(--main-color-1)" />}
+        >
           김코딩 2022.09.01
         </IconText>
         <StarRender rating={4.5} />
