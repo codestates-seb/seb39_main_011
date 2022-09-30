@@ -6,6 +6,7 @@ import TextArea from "../atoms/TextArea";
 import axios from "axios";
 import ImageUpload from "../atoms/ImageUpload";
 import PopupPostcode from "../molecules/PopupPostcode";
+import instance from "../../apis/axios";
 
 import { ReactComponent as CampIcon } from "../../svg/camp.svg";
 import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
@@ -17,7 +18,7 @@ import { ReactComponent as NoteIcon } from "../../svg/note.svg";
 const MyPostBox = () => {
   const [camping, setCamping] = useState({});
   const [photo, setPhoto] = useState("");
-  const [address, setAddress] = useState("");
+  const [place, setPlace] = useState("");
 
   const handleChange = (e) => {
     let input = {};
@@ -27,9 +28,17 @@ const MyPostBox = () => {
   };
 
   const handleSubmit = async () => {
+    const campingData = {
+      ...camping,
+      photo,
+      place,
+    };
+
     try {
-      const { data } = await axios.post("/admin/post", camping);
-      console.log(data);
+      const res = await axios.post(`/admin/post`, campingData);
+      console.log(res.data);
+      alert("캠핑장이 등록되었습니다.");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -39,7 +48,7 @@ const MyPostBox = () => {
     window.confirm("캠핑장 등록을 취소하시겠습니까?");
     setCamping("");
     setPhoto("");
-    setAddress("");
+    setPlace("");
     window.location.reload();
   };
 
@@ -106,13 +115,13 @@ const MyPostBox = () => {
               <RequiredInput
                 label="캠핑장 위치"
                 name="place"
-                onChange={(e) => setAddress(e.target.value)}
-                value={address}
+                onChange={(e) => setPlace(e.target.value)}
+                value={place}
               />
             </div>
           </div>
           <div className="right">
-            <PopupPostcode setAddress={setAddress} />
+            <PopupPostcode setAddress={setPlace} />
           </div>
         </div>
       </Box>
