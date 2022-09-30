@@ -22,7 +22,9 @@ const CampingCard = ({ camplist }) => {
             </div>
             <div>
               <LocationIcon />
-              {camplist.place}
+              {`${camplist.place.split(" ")[0]} ${
+                camplist.place.split(" ")[1]
+              }`}
             </div>
             <div>
               <CoinIcon />
