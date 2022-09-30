@@ -1,6 +1,7 @@
 const size = {
   loginMobile: "400px",
   postMobile: "450px",
+  rezMobile: "500px",
   mobile: "670px",
   mypageTablet: "750px",
   tablet: "940px",
@@ -12,6 +13,7 @@ const theme = {
   tablet: `(max-width: ${size.tablet})`,
   mypageTablet: `(max-width: ${size.mypageTablet})`,
   postMobile: `(max-width: ${size.postMobile})`,
+  rezMobile: `(max-width: ${size.rezMobile})`,
 };
 
 export default theme;

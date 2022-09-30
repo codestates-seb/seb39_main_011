@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import StarClick from "./StarClick";
-import { OutlineBtn } from "./Button";
+import { FillBtn, OutlineBtn } from "./Button";
 import axios from "axios";
 import ImageUpload from "./ImageUpload";
 
@@ -37,26 +37,33 @@ const PostReview = () => {
   return (
     <Container>
       <TopBox>
-        <p>리뷰 작성</p>
+        <p>Review</p>
         <div>
           <StarClick clickStarHandler={clickStarHandler} />
         </div>
+        <span>※ 별을 클릭하여 별점을 매겨보세요.</span>
       </TopBox>
       <ContentBox>
         <textarea value={review} onChange={onChangeReview} />
-      </ContentBox>
-      <BottomBox>
         <div>
-          <p>사진 추가</p>
-
+          <ButtonBox>
+            <PhotoTitle>Photo</PhotoTitle>
+            <div>
+              <FillBtn width="50px" onClick={reviewPost}>
+                등록
+              </FillBtn>
+            </div>
+          </ButtonBox>
           <PhotoBox>
             <ImageUpload photo={photo} setPhoto={setPhoto} />
+            <ImageUpload photo={photo} setPhoto={setPhoto} />
           </PhotoBox>
+
+          <div className="plus">※ 사진은 최대 2장까지 업로드 가능합니다.</div>
         </div>
-        <div>
-          <OutlineBtn onClick={reviewPost}>리뷰 등록</OutlineBtn>
-        </div>
-      </BottomBox>
+
+        <RightBox></RightBox>
+      </ContentBox>
     </Container>
   );
 };
@@ -67,52 +74,80 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #f7f7f7;
-  padding: 0 1.5rem;
+  padding: 0 0 1.5rem 1.5rem;
   font-size: 15px;
 `;
 
 const TopBox = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
-  display: flex;
   gap: 10px;
   margin: 1rem 0;
 
   p {
-    font-weight: bold;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--main-color-5);
   }
 
-  div {
-    width: auto;
+  span {
+    font-size: 10px;
+    color: #8f8f8f;
   }
 `;
 
 const ContentBox = styled.div`
+  display: flex;
+
   textarea {
-    width: 100%;
-    height: 100px;
+    width: 68%;
+    height: 150px;
     padding: 10px;
-    border: 1px solid #d9d9d9;
+    border: 2px solid var(--main-color-3);
     border-radius: 5px;
     font-size: 13px;
     resize: none;
   }
+
+  div {
+    .plus {
+      color: #8f8f8f;
+      font-size: 11px;
+      margin: 1rem 0 0 1rem;
+    }
+  }
 `;
 
-const BottomBox = styled.div`
+const RightBox = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin: 1rem 0;
-
-  p {
-    font-size: 13px;
-  }
+  flex-direction: column;
 `;
 
 const PhotoBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-left: 1rem;
+  margin-top: 8px;
+`;
+
+const PhotoTitle = styled.div`
+  width: 65px;
+  height: auto;
+  padding: 5px 9px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  background-color: var(--main-color-3);
+  border: 1px solid var(--main-color-3);
+  border-radius: 20px;
+  margin-left: 1rem;
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
 `;
