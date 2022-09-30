@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Carousel from "../../organisms/DetailCarousel/Carousel";
+import Carousel from "../../organisms/Carousel/Carousel";
 import DetailTab from "../../organisms/DetailTab/DetailTab";
 import DetailModal from "../../organisms/DetailModal/DetailModal";
 import { ReservationBtn } from "../../atoms/Button";

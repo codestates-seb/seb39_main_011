@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const NaviContainer = styled.nav`
   width: 100%;
-
   padding: 10px 0;
   background-color: #ffffff;
   position: fixed;
