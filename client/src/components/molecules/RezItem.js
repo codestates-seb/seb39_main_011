@@ -74,9 +74,7 @@ const RezItem = ({ item, openReviewHandler }) => {
                 : () => openReviewHandler(item.id)
             }
           >
-            {pathname === "/client/mypage/pastrez"
-              ? "리뷰 남기기"
-              : "예약 취소"}
+            {pathname === "/client/mypage/pastrez" ? "리뷰 작성" : "예약 취소"}
           </OutlineBtn>
         </ButtonBox>
       </ItemBox>

@@ -67,7 +67,7 @@ export const FillBtn = styled(ButtonPrimary)`
   }
 
   @media ${(props) => props.theme.rezMobile} {
-    width: 65px;
+    width: 55px;
     margin-right: 0;
   }
 `;
@@ -91,7 +91,7 @@ export const OutlineBtn = styled(ButtonPrimary)`
   }
 
   @media ${(props) => props.theme.rezMobile} {
-    width: 60px;
+    width: 55px;
     margin-right: 0;
   }
 `;

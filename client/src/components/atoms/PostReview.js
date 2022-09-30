@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import StarClick from "./StarClick";
-import { OutlineBtn } from "./Button";
+import { FillBtn, OutlineBtn } from "./Button";
 import axios from "axios";
 import ImageUpload from "./ImageUpload";
 
@@ -49,9 +49,9 @@ const PostReview = () => {
           <ButtonBox>
             <PhotoTitle>Photo</PhotoTitle>
             <div>
-              <OutlineBtn width="50px" onClick={reviewPost}>
+              <FillBtn width="50px" onClick={reviewPost}>
                 등록
-              </OutlineBtn>
+              </FillBtn>
             </div>
           </ButtonBox>
           <PhotoBox>
@@ -146,9 +146,8 @@ const PhotoTitle = styled.div`
 `;
 
 const ButtonBox = styled.div`
-  background-color: yellow;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-right: 5px;
+  padding-right: 1rem;
 `;
