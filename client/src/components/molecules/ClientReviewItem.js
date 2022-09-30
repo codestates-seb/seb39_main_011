@@ -6,6 +6,8 @@ import moment from "moment";
 import TextArea from "../atoms/TextArea";
 import StarClick from "../atoms/StarClick";
 
+import { ReactComponent as CampIcon } from "../../svg/camp.svg";
+
 const ClientReviewItem = ({
   item,
   review,
@@ -53,7 +55,10 @@ const ClientReviewItem = ({
       <ItemBox>
         <ContentBox>
           <InnerBox>
-            <p>{item.name}</p>
+            <CampIcon />
+            <span>좋은 캠핑</span>
+            <span className="hide">{date}</span>
+            {/* <p>{item.name}</p> */}
 
             {isEdit ? (
               <>
@@ -69,47 +74,48 @@ const ClientReviewItem = ({
                 <StarRender rating={star} />
               </>
             )}
+
+            <ButtonBox>
+              {isEdit ? (
+                <>
+                  <OutlineBtn
+                    height="35px"
+                    onClick={handleQuitEdit}
+                    width="50px"
+                  >
+                    취소
+                  </OutlineBtn>
+                  <OutlineBtn height="35px" onClick={handleEdit} width="50px">
+                    완료
+                  </OutlineBtn>
+                </>
+              ) : (
+                <>
+                  <OutlineBtn height="35px" onClick={handleRemove} width="50px">
+                    삭제
+                  </OutlineBtn>
+                  <OutlineBtn height="35px" onClick={toggleIsEdit} width="50px">
+                    수정
+                  </OutlineBtn>
+                </>
+              )}
+            </ButtonBox>
           </InnerBox>
 
-          <p>{date}</p>
           <ImgBox>
             <Img src={item.revPhoto} alt="camping" />
             <Img src={item.revPhoto} alt="camping" />
-            <Img src={item.revPhoto} alt="camping" />
-          </ImgBox>
-          {isEdit ? (
-            <>
+
+            {isEdit ? (
               <TextArea
                 value={editReview}
                 onChange={(e) => setEditReview(e.target.value)}
               />
-            </>
-          ) : (
-            <p>{review}</p>
-          )}
+            ) : (
+              <div>{review}</div>
+            )}
+          </ImgBox>
         </ContentBox>
-
-        <ButtonBox>
-          {isEdit ? (
-            <>
-              <OutlineBtn onClick={handleQuitEdit} width="50px">
-                취소
-              </OutlineBtn>
-              <OutlineBtn onClick={handleEdit} width="50px">
-                완료
-              </OutlineBtn>
-            </>
-          ) : (
-            <>
-              <OutlineBtn onClick={handleRemove} width="50px">
-                삭제
-              </OutlineBtn>
-              <OutlineBtn onClick={toggleIsEdit} width="50px">
-                수정
-              </OutlineBtn>
-            </>
-          )}
-        </ButtonBox>
       </ItemBox>
       <hr />
     </>
@@ -128,26 +134,49 @@ const ImgBox = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 20px;
-  padding-left: 1rem;
-  margin: 1rem 0;
-`;
+  margin: 10px 0;
 
-const ContentBox = styled.div`
-  flex: 3;
-  font-size: 12px;
+  div {
+    width: 50%;
+    margin-right: 5px;
 
-  p {
-    margin: 7px;
-    margin-left: 1rem;
+    @media ${(props) => props.theme.postMobile} {
+      width: 60%;
+      height: 80px;
+    }
+  }
+
+  @media ${(props) => props.theme.postMobile} {
+    gap: 10px;
   }
 `;
 
+const ContentBox = styled.div`
+  flex: 4;
+  font-size: 12px;
+`;
+
 const InnerBox = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
 
-  p {
-    font-weight: bold;
+  span {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--main-color-0);
+    margin: 0 5px;
+
+    @media ${(props) => props.theme.postMobile} {
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+
+  .hide {
+    @media ${(props) => props.theme.postMobile} {
+      display: none;
+    }
   }
 `;
 
@@ -155,6 +184,12 @@ const Img = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 10px;
+  background-color: aliceblue;
+
+  @media ${(props) => props.theme.postMobile} {
+    width: 75px;
+    height: 75px;
+  }
 `;
 
 const ButtonBox = styled.div`

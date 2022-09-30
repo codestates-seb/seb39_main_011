@@ -65,6 +65,11 @@ export const FillBtn = styled(ButtonPrimary)`
     background-color: ${(props) => props.hoverBgc || "var(--main-color-5)"};
     border: 2px solid ${(props) => props.hoverBorder || "var(--main-color-5)"};
   }
+
+  @media ${(props) => props.theme.rezMobile} {
+    width: 55px;
+    margin-right: 0;
+  }
 `;
 
 export const OutlineBtn = styled(ButtonPrimary)`
@@ -76,13 +81,26 @@ export const OutlineBtn = styled(ButtonPrimary)`
   border-radius: 7px;
   padding: ${(props) => props.padding || "none"};
   margin: ${(props) => props.margin || "none"};
-  font-size: ${(props) => props.fontSize || "15px"};
+  font-size: ${(props) => props.fontSize || "13px"};
   font-weight: ${(props) => props.fontWeight || "600"};
 
   &:hover {
     color: ${(props) => props.hoverColor || "#fff"};
     background-color: ${(props) => props.hoverBgc || "var(--main-color-5)"};
     border: 2px solid ${(props) => props.hoverBorder || "var(--main-color-5)"};
+  }
+
+  @media ${(props) => props.theme.rezMobile} {
+    width: 55px;
+    margin-right: 0;
+  }
+`;
+
+export const OutlineBtnS = styled(OutlineBtn)`
+  font-size: 11px;
+  width: 66px;
+  @media ${(props) => props.theme.rezMobile} {
+    width: 66px;
   }
 `;
 

@@ -13,17 +13,16 @@ const TextArea = ({ value, label, name, onChange }) => {
 export default TextArea;
 
 const Layout = styled.div`
-  margin: 10px 0;
+  width: 100%;
 
   textarea {
     width: 100%;
-    height: 150px;
+    height: 100px;
     padding: 10px;
     border: 2px solid var(--main-color-2);
     border-radius: 5px;
     font-size: 13px;
     resize: none;
-    margin-top: 5px;
   }
 
   label {

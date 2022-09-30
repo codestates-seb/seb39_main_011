@@ -79,6 +79,7 @@ const MyPostBox = () => {
               label="연락처"
               name="phone"
               onChange={(e) => handleChange(e)}
+              placeholder="하이픈(-)을 제외한 숫자 11자리만 입력해주세요."
             />
           </div>
           <div className="right_box">
@@ -267,6 +268,7 @@ const PhotoBox = styled.div`
 const Photos = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 5px;
 
   div {
     margin-top: 1.1rem;
