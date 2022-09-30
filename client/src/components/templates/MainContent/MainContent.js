@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import PostCard from "./../../organisms/MainPostCard/PostCard";
+import PostCard from "../../organisms/MainPostCard/PostCard";
 import * as S from "./style";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-const PostsList = () => {
+const MainContent = () => {
   const [renderCampingList, setRenderCampingList] = useState([]);
   const [campingList, setCampingList] = useState([]);
   const selectRegion = useSelector((state) => state.region);
@@ -81,4 +81,4 @@ const PostsList = () => {
   );
 };
 
-export default PostsList;
+export default MainContent;

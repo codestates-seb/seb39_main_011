@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../../components/templates/MainNav/Nav";
-import PostList from "../../components/templates/MainPostList/PostList";
-import Aside from "../../components/templates/MainAside/Aside";
+import MainContent from "../../components/templates/MainContent/MainContent";
+import MainAside from "../../components/templates/MainAside/MainAside";
 import * as S from "./style";
 
 const Main = () => {
@@ -9,8 +9,8 @@ const Main = () => {
     <S.MainContainer>
       <Nav />
       <S.FlexLayout>
-        <PostList />
-        <Aside />
+        <MainContent />
+        <MainAside />
       </S.FlexLayout>
     </S.MainContainer>
   );

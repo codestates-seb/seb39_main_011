@@ -2,6 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 
+import { ReactComponent as LocationIcon } from "./../../../svg/location.svg";
+import { ReactComponent as CampIcon } from "./../../../svg/camp.svg";
+import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
+import { ReactComponent as StarIcon } from "./../../../svg/yellowstar.svg";
+import { ReactComponent as ReviewIcon } from "./../../../svg/review.svg";
+import { ReactComponent as HeartIcon } from "./../../../svg/heart.svg";
+
 const PostCard = ({ camplist }) => {
   return (
     <S.CardContainer>
@@ -9,14 +16,31 @@ const PostCard = ({ camplist }) => {
         <S.Img src="/assets/images/camping.avif" alt="이미지" />
         <S.FlexLayout>
           <div>
-            <div>{camplist.name}</div>
-            <div>{camplist.place}</div>
-            <div>{camplist.price} 원</div>
+            <div>
+              <CampIcon />
+              {camplist.name}
+            </div>
+            <div>
+              <LocationIcon />
+              {camplist.place}
+            </div>
+            <div>
+              <CoinIcon />
+              {camplist.price} 원
+            </div>
           </div>
           <div>
-            <div>별점 {camplist.star_total}</div>
-            <div>리뷰 11</div>
-            <div>찜 12</div>
+            <div>
+              <StarIcon />
+              별점 {camplist.star_total}
+            </div>
+            <div>
+              <ReviewIcon />
+              리뷰 11
+            </div>
+            <div>
+              <HeartIcon />찜 12
+            </div>
           </div>
         </S.FlexLayout>
       </Link>
