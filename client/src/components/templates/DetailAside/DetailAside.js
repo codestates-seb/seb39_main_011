@@ -80,6 +80,7 @@ const DetailAside = () => {
     console.log(reservationInput);
   };
 
+  const errorPrevention = () => {};
   return (
     <S.AsideContainer>
       <Calendar />
@@ -89,17 +90,18 @@ const DetailAside = () => {
           type="text"
           id="reservationDate"
           name="reservationDate"
-          defaultValue={
+          value={
             reservation.from && reservation.to
               ? `${reservation.from.toLocaleDateString()} - ${reservation.to.toLocaleDateString()}`
               : ""
           }
           disable="true"
+          onChange={errorPrevention}
         >
           예약 날짜
         </InputLabel>
         <InputLabel
-          icon={<UserIcon width="20" height="20" />}
+          icon={<UserIcon width="20" height="20" fill="var(--main-color-0)" />}
           type="text"
           id="reservationName"
           name="reservationName"
@@ -135,7 +137,9 @@ const DetailAside = () => {
           예약 가격
         </InputLabel>
         <InputLabel
-          icon={<RequestIcon width="20" height="20" />}
+          icon={
+            <RequestIcon width="20" height="20" fill="var(--main-color-0)" />
+          }
           on="false"
           id="reservationRequest"
           name="reservationRequest"
