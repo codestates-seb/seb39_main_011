@@ -16,6 +16,7 @@ export const ReviewContainer = styled.li`
 
 export const Info = styled.div`
   display: flex;
+  align-items: center;
   gap: 5px;
 `;
 

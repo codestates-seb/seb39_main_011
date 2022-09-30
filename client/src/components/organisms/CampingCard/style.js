@@ -4,6 +4,7 @@ export const CardContainer = styled.div`
   width: 300px;
   // 상위에 flex-wrap 때문에 반응형 같은 효과가 나타남
   flex-grow: 1;
+  border-radius: 0 0 5px 5px;
 
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
@@ -48,5 +49,15 @@ export const FlexLayout = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  > div > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    > svg {
+      width: 20px;
+    }
   }
 `;

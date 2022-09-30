@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Carousel from "../../organisms/DetailCarousel/Carousel";
 import DetailTab from "../../organisms/DetailTab/DetailTab";
 import DetailModal from "../../organisms/DetailModal/DetailModal";
-import { ReservationBtn } from "../../../../src/components/atoms/Button";
+import { ReservationBtn } from "../../atoms/Button";
 import * as S from "./style";
 
-const DetailMain = () => {
+const DetailContent = () => {
   const [modal, setModal] = useState(false);
   const handleModal = () => {
     setModal(!modal);
@@ -23,4 +23,4 @@ const DetailMain = () => {
   );
 };
 
-export default DetailMain;
+export default DetailContent;

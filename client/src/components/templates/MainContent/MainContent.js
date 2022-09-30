@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import PostCard from "./../../organisms/MainPostCard/PostCard";
+import CampingCard from "../../organisms/CampingCard/CampingCard";
 import * as S from "./style";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-const PostsList = () => {
+const MainContent = () => {
   const [renderCampingList, setRenderCampingList] = useState([]);
   const [campingList, setCampingList] = useState([]);
   const selectRegion = useSelector((state) => state.region);
@@ -75,10 +75,10 @@ const PostsList = () => {
   return (
     <S.PostContainer>
       {renderCampingList.map((el) => {
-        return <PostCard key={el.camp_id} camplist={el} />;
+        return <CampingCard key={el.camp_id} camplist={el} />;
       })}
     </S.PostContainer>
   );
 };
 
-export default PostsList;
+export default MainContent;

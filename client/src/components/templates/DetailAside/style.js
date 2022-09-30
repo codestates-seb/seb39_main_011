@@ -16,49 +16,10 @@ export const AsideContainer = styled.aside`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-
-  textarea {
-    width: 100%;
-    height: 80px;
-    border: 2px solid #e3caa5;
-    border-radius: 5px;
-
-    &:focus {
-      outline: none;
-      border-color: var(--main-color-1);
-    }
+    gap: 7px;
   }
 
   @media (max-width: 820px) {
     display: none;
-  }
-`;
-
-export const Input = styled.div`
-  margin: 5px 0;
-  display: flex;
-  flex-direction: column;
-  flex-direction: ${(props) => props.flex || "row"};
-  align-items: ${(props) => (props.flex === "column" ? "none" : "center")};
-  gap: 10px;
-
-  > label {
-    width: 100px;
-    color: #7b6250;
-    font-weight: 700;
-  }
-  > input {
-    font-size: 12px;
-    border: 2px solid var(--main-color-3);
-    border-radius: 5px;
-    width: 100px;
-    padding: 5px;
-    flex-grow: 1;
-
-    &:focus {
-      outline: none;
-      border-color: var(--main-color-1);
-    }
   }
 `;

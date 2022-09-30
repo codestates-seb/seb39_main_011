@@ -10,7 +10,7 @@ export const TabInfoContainer = styled.div`
   border-radius: 0 5px 5px 5px;
 
   .important_img {
-    width: 200px;
+    width: 250px;
     height: 130px;
     border: 1px solid red;
   }
