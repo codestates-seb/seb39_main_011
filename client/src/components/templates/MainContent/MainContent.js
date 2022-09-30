@@ -29,7 +29,7 @@ const MainContent = () => {
       setRenderCampingList(campingList);
     } else {
       const filteredCampingList = campingList.filter((el) => {
-        return el.place.includes(selectRegion);
+        return el.place.split(" ")[0].includes(selectRegion);
       });
       setRenderCampingList(filteredCampingList);
     }
