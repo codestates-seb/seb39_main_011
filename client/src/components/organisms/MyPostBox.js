@@ -20,6 +20,9 @@ const MyPostBox = () => {
   const [photo, setPhoto] = useState("");
   const [place, setPlace] = useState("");
 
+  const [isShow, setIsShow] = useState(false);
+
+  console.log(camping);
   const handleChange = (e) => {
     let input = {};
     input[e.target.name] = e.target.value;
@@ -38,7 +41,9 @@ const MyPostBox = () => {
       const res = await axios.post(`/admin/post`, campingData);
       console.log(res.data);
       alert("캠핑장이 등록되었습니다.");
-      window.location.reload();
+      // window.location.reload();
+      setIsShow(true);
+      console.log(isShow);
     } catch (error) {
       console.log(error);
     }
@@ -52,6 +57,16 @@ const MyPostBox = () => {
     window.location.reload();
   };
 
+  // const getPost = async () => {
+  //   try {
+  //     const res = await axios.get(`/admin/post/${camp_id}`);
+  //     // setCamping(res.data);
+  //     console.log("res: ", res.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   return (
     <Container>
       <Box>
@@ -61,22 +76,34 @@ const MyPostBox = () => {
               <CampIcon />
             </span>
             <div>
-              <RequiredInput
-                label="캠핑장 이름"
-                name="name"
-                onChange={(e) => handleChange(e)}
-              />
+              {isShow ? (
+                <>캠핑장 이름</>
+              ) : (
+                <>
+                  <RequiredInput
+                    label="캠핑장 이름"
+                    name="name"
+                    onChange={(e) => handleChange(e)}
+                  />
+                </>
+              )}
             </div>
           </div>
           <div className="right_box">
             <span>
               <CoinIcon />
             </span>
-            <RequiredInput
-              label="가격"
-              name="price"
-              onChange={(e) => handleChange(e)}
-            />
+            {isShow ? (
+              <>가격</>
+            ) : (
+              <>
+                <RequiredInput
+                  label="가격"
+                  name="price"
+                  onChange={(e) => handleChange(e)}
+                />
+              </>
+            )}
           </div>
         </div>
         <div>
@@ -84,24 +111,35 @@ const MyPostBox = () => {
             <span>
               <PhoneIcon width="22" height="22" />
             </span>
-            <RequiredInput
-              label="연락처"
-              name="phone"
-              onChange={(e) => handleChange(e)}
-              placeholder="하이픈(-)을 제외한 숫자 11자리만 입력해주세요."
-            />
+            {isShow ? (
+              <>연락처</>
+            ) : (
+              <>
+                <RequiredInput
+                  label="연락처"
+                  name="phone"
+                  onChange={(e) => handleChange(e)}
+                  placeholder="하이픈(-)을 제외한 숫자 11자리만 입력해주세요."
+                />
+              </>
+            )}
           </div>
           <div className="right_box">
             <span>
               <TeamIcon />
             </span>
-
-            <RequiredInput
-              label="하루 최대 수용 팀"
-              name="capacity"
-              type="number"
-              onChange={(e) => handleChange(e)}
-            />
+            {isShow ? (
+              <>하루 최대 수용 팀</>
+            ) : (
+              <>
+                <RequiredInput
+                  label="하루 최대 수용 팀"
+                  name="capacity"
+                  type="number"
+                  onChange={(e) => handleChange(e)}
+                />
+              </>
+            )}
           </div>
         </div>
       </Box>
@@ -111,17 +149,23 @@ const MyPostBox = () => {
             <span>
               <MapIcon />
             </span>
-            <div>
-              <RequiredInput
-                label="캠핑장 위치"
-                name="place"
-                onChange={(e) => setPlace(e.target.value)}
-                value={place}
-              />
-            </div>
+            {isShow ? (
+              <>캠핑장 위치</>
+            ) : (
+              <>
+                <div>
+                  <RequiredInput
+                    label="캠핑장 위치"
+                    name="place"
+                    onChange={(e) => setPlace(e.target.value)}
+                    value={place}
+                  />
+                </div>
+              </>
+            )}
           </div>
           <div className="right">
-            <PopupPostcode setAddress={setPlace} />
+            {isShow ? "" : <PopupPostcode setAddress={setPlace} />}
           </div>
         </div>
       </Box>
@@ -132,30 +176,51 @@ const MyPostBox = () => {
           </span>
           <p>캠핑장 소개</p>
         </div>
-        <TextArea name="note" onChange={(e) => handleChange(e)} />
+        {isShow ? (
+          <>소개글</>
+        ) : (
+          <TextArea name="note" onChange={(e) => handleChange(e)} />
+        )}
       </Box>
 
       <Box>
         <Photos>
           <PhotoTitle>Photo</PhotoTitle>
-          <div>※ 사진은 최대 3장까지 업로드 가능합니다.</div>
+          {isShow ? "" : <div>※ 사진은 최대 3장까지 업로드 가능합니다.</div>}
         </Photos>
 
         <PhotoBox>
           <div>
-            <ImageUpload photo={photo} setPhoto={setPhoto} />
-            <ImageUpload photo={photo} setPhoto={setPhoto} />
-            <ImageUpload photo={photo} setPhoto={setPhoto} />
+            {isShow ? (
+              <>업로드 이미지 사진</>
+            ) : (
+              <>
+                <ImageUpload photo={photo} setPhoto={setPhoto} />
+                <ImageUpload photo={photo} setPhoto={setPhoto} />
+                <ImageUpload photo={photo} setPhoto={setPhoto} />
+              </>
+            )}
           </div>
 
-          <div className="button_box">
-            <OutlineBtn width="51px" onClick={handleQuit}>
-              취소
-            </OutlineBtn>
-            <FillBtn width="51px" onClick={handleSubmit}>
-              등록
-            </FillBtn>
-          </div>
+          {isShow ? (
+            <>
+              <div className="button_box">
+                <OutlineBtn width="51px">삭제</OutlineBtn>
+                <OutlineBtn width="51px">수정</OutlineBtn>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="button_box">
+                <OutlineBtn width="51px" onClick={handleQuit}>
+                  취소
+                </OutlineBtn>
+                <FillBtn width="51px" onClick={handleSubmit}>
+                  등록
+                </FillBtn>
+              </div>
+            </>
+          )}
         </PhotoBox>
         <div className="warning">
           ※ 하나 계정으로 하나의 캠핑장 등록이 가능합니다.

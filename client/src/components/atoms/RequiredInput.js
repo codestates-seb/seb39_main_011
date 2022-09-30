@@ -40,4 +40,8 @@ const Layout = styled.div`
   & label.Mui-focused {
     color: var(--main-color-0);
   }
+
+  & input::placeholder {
+    font-size: 10px;
+  }
 `;
