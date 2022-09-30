@@ -7,7 +7,7 @@ const InputLabel = (props) => {
 
   useEffect(() => {
     if (props.disable === "true") inputRef.current.disabled = true;
-  });
+  }, [props.disable]);
 
   return (
     <Container textarea={props.textarea}>

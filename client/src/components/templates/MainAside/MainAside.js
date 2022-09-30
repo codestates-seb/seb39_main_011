@@ -18,9 +18,14 @@ const MainAside = () => {
   const [date, setDate] = useState(today);
   const dispatch = useDispatch();
 
-  console.log(date);
-
-  const sortHandler = (e) => {
+  const priceSortHandler = (e) => {
+    console.log(e.target.id);
+    dispatch(sortCheck(e.target.id));
+  };
+  const voteSortHandler = (e) => {
+    dispatch(sortCheck(e.target.id));
+  };
+  const reviewSortHandler = (e) => {
     dispatch(sortCheck(e.target.id));
   };
 
@@ -47,7 +52,7 @@ const MainAside = () => {
         type="radio"
         id="price"
         name="sorting"
-        onChange={sortHandler}
+        onChange={priceSortHandler}
       >
         가격순 정렬
       </InputLabel>
@@ -56,7 +61,7 @@ const MainAside = () => {
         type="radio"
         id="vote"
         name="sorting"
-        onChange={sortHandler}
+        onChange={voteSortHandler}
       >
         별점순 정렬
       </InputLabel>
@@ -65,7 +70,7 @@ const MainAside = () => {
         type="radio"
         id="review"
         name="sorting"
-        onChange={sortHandler}
+        onChange={reviewSortHandler}
       >
         리뷰순 정렬
       </InputLabel>
