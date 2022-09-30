@@ -3,7 +3,9 @@ import DetailReview from "../../molecules/DetailReview/DetailReview";
 import * as S from "./style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
+import IconText from "../../atoms/IconText";
+
+import { ReactComponent as ReviewIcon } from "./../../../svg/review.svg";
 
 const DetailReviews = () => {
   useEffect(() => {
@@ -34,10 +36,10 @@ const DetailReviews = () => {
   return (
     <S.ReviewContainer>
       <S.ReviewsInfo>
-        <div>😎 캠핑장 후기 (4)</div>
-        <div>
-          <FontAwesomeIcon icon={faStar} color={"#f7b603"} /> 4.9/5
-        </div>
+        <IconText icon={<ReviewIcon />}>캠핑장 후기 (4)</IconText>
+        <IconText icon={<FontAwesomeIcon icon={faStar} color={"#f7b603"} />}>
+          4.9/5
+        </IconText>
       </S.ReviewsInfo>
       <S.ReviewList>
         {arr.map((_, idx) => (

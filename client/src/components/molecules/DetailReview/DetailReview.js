@@ -1,13 +1,17 @@
 import React from "react";
 import StarRender from "../../atoms/StarRender";
 import * as S from "./style";
+import IconText from "../../atoms/IconText";
+
+import { ReactComponent as UserIcon } from "./../../../svg/profile.svg";
 
 const DetailReview = () => {
   return (
     <S.ReviewContainer>
       <S.Info>
-        <span>😎 김코딩</span>
-        <span>2022.09.01</span>
+        <IconText icon={<UserIcon width="20" height="20" />}>
+          김코딩 2022.09.01
+        </IconText>
         <StarRender rating={4.5} />
       </S.Info>
       <S.Content>

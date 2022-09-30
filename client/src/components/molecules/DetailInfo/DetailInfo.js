@@ -13,10 +13,12 @@ const DetailInfo = () => {
     <S.TabInfoContainer>
       <div className="important_img"></div>
       <S.Info>
-        <IconText icon={<CampIcon />}>캠핑장:</IconText>
-        <IconText icon={<PhoneIcon />}>연락처:</IconText>
-        <IconText icon={<LocationIcon />}>주소:</IconText>
-        <IconText icon={<CoinIcon />}>가격:</IconText>
+        <IconText icon={<CampIcon width="20" height="20" />}>캠핑장:</IconText>
+        <IconText icon={<PhoneIcon width="20" height="20" />}>연락처:</IconText>
+        <IconText icon={<LocationIcon width="20" height="20" />}>
+          주소:
+        </IconText>
+        <IconText icon={<CoinIcon width="20" height="20" />}>가격:</IconText>
       </S.Info>
 
       <S.Content>

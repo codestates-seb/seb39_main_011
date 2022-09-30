@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import Calendar from "../../organisms/Calendar/Calendar.js";
 import InputLabel from "../../atoms/InputLabel";
 
-import { ReactComponent as UserIcon } from "./../../../svg/profile.svg";
 import { ReactComponent as CalendarIcon } from "./../../../svg/calendar.svg";
+import { ReactComponent as UserIcon } from "./../../../svg/profile.svg";
 import { ReactComponent as PhoneIcon } from "./../../../svg/phone.svg";
 import { ReactComponent as CountIcon } from "./../../../svg/revcount.svg";
 import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
@@ -85,11 +85,11 @@ const DetailAside = () => {
       <Calendar />
       <form onSubmit={submitHandler}>
         <InputLabel
-          icon={<CalendarIcon />}
+          icon={<CalendarIcon width="20" height="20" />}
           type="text"
           id="reservationDate"
           name="reservationDate"
-          value={
+          defaultValue={
             reservation.from && reservation.to
               ? `${reservation.from.toLocaleDateString()} - ${reservation.to.toLocaleDateString()}`
               : ""
@@ -99,7 +99,7 @@ const DetailAside = () => {
           예약 날짜
         </InputLabel>
         <InputLabel
-          icon={<UserIcon />}
+          icon={<UserIcon width="20" height="20" />}
           type="text"
           id="reservationName"
           name="reservationName"
@@ -108,7 +108,7 @@ const DetailAside = () => {
           예약자 이름
         </InputLabel>
         <InputLabel
-          icon={<PhoneIcon />}
+          icon={<PhoneIcon width="20" height="20" />}
           type="text"
           id="reservationPhone"
           name="reservationPhone"
@@ -117,7 +117,7 @@ const DetailAside = () => {
           예약자 연락처
         </InputLabel>
         <InputLabel
-          icon={<CountIcon />}
+          icon={<CountIcon width="20" height="20" />}
           type="number"
           id="reservationCount"
           name="reservationCount"
@@ -126,7 +126,7 @@ const DetailAside = () => {
           예약 수량
         </InputLabel>
         <InputLabel
-          icon={<CoinIcon />}
+          icon={<CoinIcon width="20" height="20" />}
           type="number"
           id="reservationPrice"
           name="reservationPrice"
@@ -135,7 +135,7 @@ const DetailAside = () => {
           예약 가격
         </InputLabel>
         <InputLabel
-          icon={<RequestIcon />}
+          icon={<RequestIcon width="20" height="20" />}
           on="false"
           id="reservationRequest"
           name="reservationRequest"
