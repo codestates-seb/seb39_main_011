@@ -9,7 +9,7 @@ import { ReactComponent as StarIcon } from "./../../../svg/yellowstar.svg";
 import { ReactComponent as ReviewIcon } from "./../../../svg/review.svg";
 import { ReactComponent as HeartIcon } from "./../../../svg/heart.svg";
 
-const PostCard = ({ camplist }) => {
+const CampingCard = ({ camplist }) => {
   return (
     <S.CardContainer>
       <Link to={`/detail/${camplist.camp_id}`}>
@@ -48,4 +48,4 @@ const PostCard = ({ camplist }) => {
   );
 };
 
-export default PostCard;
+export default CampingCard;
