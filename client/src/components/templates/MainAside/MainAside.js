@@ -66,7 +66,7 @@ const MainAside = () => {
         별점순 정렬
       </InputLabel>
       <InputLabel
-        icon={<ReviewIcon />}
+        icon={<ReviewIcon fill="var(--main-color-1)" />}
         type="radio"
         id="review"
         name="sorting"

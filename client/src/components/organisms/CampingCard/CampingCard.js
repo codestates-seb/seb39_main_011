@@ -37,7 +37,7 @@ const CampingCard = ({ camplist }) => {
               별점 {camplist.star_total}
             </div>
             <div>
-              <ReviewIcon />
+              <ReviewIcon fill="var(--main-color-3)" />
               리뷰 11
             </div>
             <div>

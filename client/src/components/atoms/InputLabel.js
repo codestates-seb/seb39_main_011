@@ -45,7 +45,7 @@ const Container = styled.fieldset`
 
   > label {
     width: 80px;
-    color: var(--main-color-0);
+    color: var(--main-color-1);
     font-weight: 700;
     display: inline-block;
     cursor: pointer;
@@ -53,7 +53,7 @@ const Container = styled.fieldset`
 
   > input[type="date"] {
     font-size: 12px;
-    border: 2px solid var(--main-color-3);
+    border: 2px solid var(--main-color-2);
     border-radius: 5px;
     width: 100px;
     padding: 5px;
@@ -67,7 +67,7 @@ const Container = styled.fieldset`
   > input[type="text"],
   input[type="number"] {
     font-size: 12px;
-    border: 2px solid var(--main-color-3);
+    border: 2px solid var(--main-color-4);
     border-radius: 5px;
     width: 100px;
     padding: 5px;
@@ -75,12 +75,12 @@ const Container = styled.fieldset`
 
     &:focus {
       outline: none;
-      border-color: var(--main-color-1);
+      border-color: var(--main-color-3);
     }
   }
 
   > input[type="radio"]:checked {
-    accent-color: var(--main-color-1);
+    accent-color: var(--main-color-2);
   }
 
   > textarea {
@@ -91,7 +91,7 @@ const Container = styled.fieldset`
 
     &:focus {
       outline: none;
-      border-color: var(--main-color-1);
+      border-color: var(--main-color-3);
     }
   }
 `;

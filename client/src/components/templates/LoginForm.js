@@ -99,8 +99,8 @@ const LoginForm = () => {
         <span>아직 BearMello 회원이 아니신가요?</span>
         <LoginBtn
           bgc="#fff"
-          color="var(--main-color-2)"
-          hoverBgc="var(--main-color-1)"
+          color="var(--main-color-3)"
+          hoverBgc="var(--main-color-3)"
           onClick={() => navigate("/join")}
         >
           회원가입
@@ -171,7 +171,7 @@ const JoinBox = styled.div`
 
   span {
     font-size: 12px;
-    color: var(--main-color-2);
+    color: var(--main-color-3);
     margin-bottom: 10px;
   }
 `;

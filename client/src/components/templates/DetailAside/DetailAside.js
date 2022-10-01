@@ -10,7 +10,7 @@ import { ReactComponent as UserIcon } from "./../../../svg/profile.svg";
 import { ReactComponent as PhoneIcon } from "./../../../svg/phone.svg";
 import { ReactComponent as CountIcon } from "./../../../svg/revcount.svg";
 import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
-import { ReactComponent as RequestIcon } from "./../../../svg/review.svg";
+import { ReactComponent as RequestIcon } from "./../../../svg/note.svg";
 
 const DetailAside = () => {
   const reservation = useSelector((state) => state.reservationDate);
@@ -101,7 +101,7 @@ const DetailAside = () => {
           예약 날짜
         </InputLabel>
         <InputLabel
-          icon={<UserIcon width="20" height="20" fill="var(--main-color-0)" />}
+          icon={<UserIcon width="20" height="20" fill="var(--main-color-1)" />}
           type="text"
           id="reservationName"
           name="reservationName"
@@ -138,7 +138,7 @@ const DetailAside = () => {
         </InputLabel>
         <InputLabel
           icon={
-            <RequestIcon width="20" height="20" fill="var(--main-color-0)" />
+            <RequestIcon width="20" height="20" fill="var(--main-color-1)" />
           }
           on="false"
           id="reservationRequest"
@@ -149,7 +149,7 @@ const DetailAside = () => {
           요청 사항
         </InputLabel>
         <ButtonPrimary
-          bgc={"var(--main-color-1)"}
+          bgc={"var(--main-color-2)"}
           color={"#fff"}
           radius={"5px"}
           padding={"10px"}

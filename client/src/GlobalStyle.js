@@ -6,12 +6,12 @@ const GlobalStyle = createGlobalStyle`
 
   :root {
     /* 아래로 갈수록 연해짐 */
-    --main-color-0: #7B6250;
-    --main-color-1: #AD8B73;
-    --main-color-2: #CEAB93;
-    --main-color-3: #E3CAA5;
-    --main-color-4: #F7EDDB;
-    --main-color-5: #846956;
+    --main-color-0: #846956;
+    --main-color-1: #7B6250;
+    --main-color-2: #AD8B73;
+    --main-color-3: #CEAB93;
+    --main-color-4: #E3CAA5;
+    --main-color-5: #F7EDDB;
   }
 
   * {
@@ -41,7 +41,7 @@ const GlobalStyle = createGlobalStyle`
     .rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
       color: white;
       opacity: 1;
-      background-color: var(--main-color-1);
+      background-color: var(--main-color-2);
     }
     .rdp-caption {
       justify-content: flex-start;
@@ -56,7 +56,7 @@ const GlobalStyle = createGlobalStyle`
       
       button {
         font-size: 12px;
-        background-color: var(--main-color-3);
+        background-color: var(--main-color-2);
         border: none;
         border-radius: 5px;
         padding: 5px;

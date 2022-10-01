@@ -34,11 +34,13 @@ const Layout = styled.div`
   p {
     font-size: 14px;
     font-weight: bold;
+    color: var(--main-color-1);
   }
 `;
 const Box = styled.div`
   display: flex;
   gap: 20px;
+  margin-top: 10px;
 
   div {
     flex: 1;

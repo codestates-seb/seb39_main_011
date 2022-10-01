@@ -36,7 +36,9 @@ const DetailReviews = () => {
   return (
     <S.ReviewContainer>
       <S.ReviewsInfo>
-        <IconText icon={<ReviewIcon />}>캠핑장 후기 (4)</IconText>
+        <IconText icon={<ReviewIcon fill="var(--main-color-1)" />}>
+          캠핑장 후기 (4)
+        </IconText>
         <IconText icon={<FontAwesomeIcon icon={faStar} color={"#f7b603"} />}>
           4.9/5
         </IconText>

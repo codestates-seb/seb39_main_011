@@ -33,7 +33,7 @@ const MyInfoBox = ({ user }) => {
   return (
     <Container>
       <ProfileBox>
-        <ProfilePic width="130" height="130" fill="var(--main-color-1)" />
+        <ProfilePic width="130" height="130" fill="var(--main-color-2)" />
       </ProfileBox>
       <InfoBox>
         <Label>
@@ -50,7 +50,7 @@ const MyInfoBox = ({ user }) => {
             <p>이메일</p>
           </div>
           <div>
-            <PhoneIcon width="30" height="30" />
+            <PhoneIcon width="25" height="25" />
             <p>연락처</p>
           </div>
         </Label>
@@ -138,9 +138,9 @@ const Label = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  color: var(--main-color-0);
+  color: var(--main-color-1);
   font-weight: 600;
-  font-size: 19px;
+  font-size: 17px;
 
   div {
     display: flex;

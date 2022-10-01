@@ -34,10 +34,14 @@ const Layout = styled.div`
   label {
     font-size: 17px;
     font-weight: bold;
-    color: var(--main-color-5);
+    color: var(--main-color-1);
   }
 
   & label.Mui-focused {
-    color: var(--main-color-0);
+    color: var(--main-color-2);
+  }
+
+  & input::placeholder {
+    font-size: 10px;
   }
 `;

@@ -97,7 +97,7 @@ const SideBarContainer = styled.div`
 `;
 
 const TabBox = styled.div`
-  border: 3px solid var(--main-color-3);
+  border: 3px solid var(--main-color-4);
   width: 100%;
   height: 100%;
   display: flex;
@@ -120,7 +120,7 @@ const TabBox = styled.div`
 
 const Title = styled.div`
   width: 100%;
-  background-color: var(--main-color-3);
+  background-color: var(--main-color-4);
   color: #fff;
   text-align: center;
   padding: 1.2rem;

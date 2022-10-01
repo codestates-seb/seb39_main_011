@@ -22,7 +22,7 @@ const JoinContainer = styled.div`
   align-items: center;
 
   h1 {
-    color: var(--main-color-1);
+    color: var(--main-color-2);
     font-size: 35px;
     font-weight: 800;
     margin-bottom: 2rem;

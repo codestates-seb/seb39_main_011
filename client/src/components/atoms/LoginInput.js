@@ -33,7 +33,7 @@ const InputContainer = styled.div`
 
 const TextFieldStyle = styled(TextField)`
   & label.Mui-focused {
-    color: var(--main-color-1);
+    color: var(--main-color-2);
   }
 
   p {
