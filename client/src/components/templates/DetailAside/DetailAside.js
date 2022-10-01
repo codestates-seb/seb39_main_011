@@ -10,7 +10,7 @@ import { ReactComponent as UserIcon } from "./../../../svg/profile.svg";
 import { ReactComponent as PhoneIcon } from "./../../../svg/phone.svg";
 import { ReactComponent as CountIcon } from "./../../../svg/revcount.svg";
 import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
-import { ReactComponent as RequestIcon } from "./../../../svg/review.svg";
+import { ReactComponent as RequestIcon } from "./../../../svg/note.svg";
 
 const DetailAside = () => {
   const reservation = useSelector((state) => state.reservationDate);
