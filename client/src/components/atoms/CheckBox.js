@@ -9,9 +9,9 @@ const CheckBox = ({ label }) => {
           <Checkbox
             size="small"
             sx={{
-              color: "var(--main-color-1)",
+              color: "var(--main-color-2)",
               "&.Mui-checked": {
-                color: "var(--main-color-1)",
+                color: "var(--main-color-2)",
               },
               paddingRight: "3px",
             }}

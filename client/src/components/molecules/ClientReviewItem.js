@@ -164,7 +164,7 @@ const InnerBox = styled.div`
   span {
     font-size: 14px;
     font-weight: 700;
-    color: var(--main-color-0);
+    color: var(--main-color-1);
     margin: 0 5px;
 
     @media ${(props) => props.theme.postMobile} {

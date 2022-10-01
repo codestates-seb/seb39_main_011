@@ -20,7 +20,7 @@ const Container = styled.fieldset`
   }
 
   > div {
-    color: var(--main-color-0);
+    color: var(--main-color-1);
     font-weight: 700;
   }
 `;

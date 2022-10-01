@@ -6,7 +6,7 @@ export const TabInfoContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  border: 2px solid var(--main-color-3);
+  border: 2px solid var(--main-color-4);
   border-radius: 0 5px 5px 5px;
 
   .important_img {

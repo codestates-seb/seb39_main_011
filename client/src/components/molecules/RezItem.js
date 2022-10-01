@@ -34,7 +34,7 @@ const RezItem = ({ item, openReviewHandler }) => {
                 <ProfileIcon
                   width="18"
                   height="18"
-                  fill="var(--main-color-0)"
+                  fill="var(--main-color-1)"
                 />
               </div>
               <div>예약자: 김코딩</div>

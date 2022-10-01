@@ -286,7 +286,7 @@ const Box = styled.div`
   p {
     font-size: 13px;
     font-weight: bold;
-    color: var(--main-color-0);
+    color: var(--main-color-1);
     margin-top: 10px;
 
     @media ${(props) => props.theme.mobile} {
@@ -359,7 +359,7 @@ const PhotoTitle = styled.span`
   font-size: 15px;
   font-weight: 700;
   text-align: center;
-  background-color: var(--main-color-1);
-  border: 1px solid var(--main-color-1);
+  background-color: var(--main-color-3);
+  border: 1px solid var(--main-color-3);
   border-radius: 20px;
 `;

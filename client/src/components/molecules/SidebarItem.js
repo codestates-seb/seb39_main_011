@@ -27,7 +27,7 @@ const Box = styled.div`
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    color: var(--main-color-5);
+    color: var(--main-color-1);
     font-weight: 700;
     font-size: 16px;
 
@@ -48,7 +48,7 @@ const Box = styled.div`
 
   .clicked {
     margin-left: 0;
-    background-color: var(--main-color-4);
+    background-color: var(--main-color-5);
     width: 100%;
     padding: 0 1rem;
     border-radius: 30px;

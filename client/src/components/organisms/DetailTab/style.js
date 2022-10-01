@@ -10,10 +10,11 @@ export const TabBtn = styled.div`
   > div {
     padding: 10px;
     width: 100px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
     text-align: center;
-    color: var(--main-color-3);
-    border: 2px solid var(--main-color-3);
+    color: var(--main-color-4);
+    border: 2px solid var(--main-color-4);
     border-bottom: none;
     cursor: pointer;
 
@@ -26,7 +27,7 @@ export const TabBtn = styled.div`
   }
 
   > .border {
-    background-color: var(--main-color-3);
+    background-color: var(--main-color-4);
     color: #fff;
   }
 `;

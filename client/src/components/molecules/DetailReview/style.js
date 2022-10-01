@@ -5,7 +5,7 @@ export const ReviewContainer = styled.li`
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  border-bottom: 1px solid var(--main-color-4);
+  border-bottom: 1px solid var(--main-color-5);
 
   flex-grow: 1;
 

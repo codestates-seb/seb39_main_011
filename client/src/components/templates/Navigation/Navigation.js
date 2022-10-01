@@ -29,7 +29,7 @@ const Navigation = () => {
             <ButtonPrimary>회원가입</ButtonPrimary>
           </Link>
         </div>
-        <ProfilePic width="50" height="50" fill="var(--main-color-1)" />
+        <ProfilePic width="50" height="50" fill="var(--main-color-2)" />
       </S.Nav>
     </S.NaviContainer>
   );

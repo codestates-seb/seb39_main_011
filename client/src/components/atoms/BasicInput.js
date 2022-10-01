@@ -13,7 +13,7 @@ export default BasicInput;
 
 const Layout = styled.div`
   input {
-    border: 2px solid var(--main-color-3);
+    border: 2px solid var(--main-color-4);
     border-radius: 5px;
     width: ${(props) => props.width || "auto"};
     height: ${(props) => props.height || "auto"};
@@ -22,7 +22,7 @@ const Layout = styled.div`
 
     &:focus {
       outline: none;
-      border-color: var(--main-color-1);
+      border-color: var(--main-color-3);
     }
   }
 `;

@@ -5,9 +5,9 @@ export const Container = styled.li`
     display: inline-block;
     cursor: pointer;
     background-color: #f0eeee;
-    color: var(--main-color-0);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    border-radius: 30%;
+    color: var(--main-color-1);
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.25));
+    border-radius: 230px;
     padding: 10px 15px;
     margin: 5px;
     font-weight: 600;
@@ -19,6 +19,6 @@ export const Container = styled.li`
 
   input:checked + label {
     color: #fff;
-    background-color: var(--main-color-1);
+    background-color: var(--main-color-2);
   }
 `;

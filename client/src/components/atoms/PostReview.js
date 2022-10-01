@@ -8,7 +8,7 @@ import ImageUpload from "./ImageUpload";
 const PostReview = () => {
   const [star, setStar] = useState(0);
   const [review, setReview] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState([]);
 
   const onChangeReview = (e) => {
     setReview(e.target.value);
@@ -87,7 +87,7 @@ const TopBox = styled.div`
   p {
     font-weight: 800;
     font-size: 18px;
-    color: var(--main-color-5);
+    color: var(--main-color-1);
   }
 
   span {
@@ -103,7 +103,7 @@ const ContentBox = styled.div`
     width: 68%;
     height: 150px;
     padding: 10px;
-    border: 2px solid var(--main-color-3);
+    border: 2px solid var(--main-color-4);
     border-radius: 5px;
     font-size: 13px;
     resize: none;
@@ -139,8 +139,8 @@ const PhotoTitle = styled.div`
   font-size: 15px;
   font-weight: 700;
   text-align: center;
-  background-color: var(--main-color-3);
-  border: 1px solid var(--main-color-3);
+  background-color: var(--main-color-4);
+  border: 1px solid var(--main-color-4);
   border-radius: 20px;
   margin-left: 1rem;
 `;

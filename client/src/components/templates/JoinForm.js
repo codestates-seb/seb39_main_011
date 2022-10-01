@@ -221,7 +221,7 @@ const ChooseBox = styled.div`
   background-color: aliceblue;
 
   .focused {
-    background-color: var(--main-color-1);
+    background-color: var(--main-color-2);
     color: #fff;
   }
 `;
