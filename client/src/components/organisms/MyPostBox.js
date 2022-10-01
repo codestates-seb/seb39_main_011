@@ -179,7 +179,7 @@ const MyPostBox = () => {
         {isShow ? (
           <>소개글</>
         ) : (
-          <TextArea name="note" onChange={(e) => handleChange(e)} />
+          <TextArea name="note" onChange={(e) => handleChange(e)} rows="8" />
         )}
       </Box>
 

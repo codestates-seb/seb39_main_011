@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import StarClick from "./StarClick";
-import { FillBtn, OutlineBtn } from "./Button";
+import { FillBtn } from "./Button";
 import axios from "axios";
 import ImageUpload from "./ImageUpload";
 

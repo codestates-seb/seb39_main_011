@@ -31,7 +31,7 @@ const Box = styled.div`
     font-weight: 700;
     font-size: 16px;
 
-    @media ${(props) => props.theme.tablet} {
+    @media ${(props) => props.theme.sidebarTablet} {
       font-size: 15px;
 
       .hide {
