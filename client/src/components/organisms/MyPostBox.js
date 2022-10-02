@@ -4,9 +4,9 @@ import { FillBtn, OutlineBtn } from "../atoms/Button";
 import RequiredInput from "../atoms/RequiredInput";
 import TextArea from "../atoms/TextArea";
 import axios from "axios";
-import ImageUpload from "../atoms/ImageUpload";
+import ImageUploader from "../atoms/ImageUploader";
 import PopupPostcode from "../molecules/PopupPostcode";
-import instance from "../../apis/axios";
+// import instance from "../../apis/axios";
 
 import { ReactComponent as CampIcon } from "../../svg/camp.svg";
 import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
@@ -17,12 +17,13 @@ import { ReactComponent as NoteIcon } from "../../svg/note.svg";
 
 const MyPostBox = () => {
   const [camping, setCamping] = useState({});
-  const [photo, setPhoto] = useState("");
+  const [images, setImages] = useState([]);
   const [place, setPlace] = useState("");
 
   const [isShow, setIsShow] = useState(false);
 
   console.log(camping);
+
   const handleChange = (e) => {
     let input = {};
     input[e.target.name] = e.target.value;
@@ -33,7 +34,7 @@ const MyPostBox = () => {
   const handleSubmit = async () => {
     const campingData = {
       ...camping,
-      photo,
+      file_path: images,
       place,
     };
 
@@ -52,7 +53,7 @@ const MyPostBox = () => {
   const handleQuit = () => {
     window.confirm("캠핑장 등록을 취소하시겠습니까?");
     setCamping("");
-    setPhoto("");
+    setImages("");
     setPlace("");
     window.location.reload();
   };
@@ -191,35 +192,23 @@ const MyPostBox = () => {
 
         <PhotoBox>
           <div>
-            {isShow ? (
-              <>업로드 이미지 사진</>
-            ) : (
-              <>
-                <ImageUpload photo={photo} setPhoto={setPhoto} />
-                <ImageUpload photo={photo} setPhoto={setPhoto} />
-                <ImageUpload photo={photo} setPhoto={setPhoto} />
-              </>
-            )}
+            <ImageUploader images={images} setImages={setImages} />
           </div>
 
           {isShow ? (
-            <>
-              <div className="button_box">
-                <OutlineBtn width="51px">삭제</OutlineBtn>
-                <OutlineBtn width="51px">수정</OutlineBtn>
-              </div>
-            </>
+            <div className="button_box">
+              <OutlineBtn width="51px">삭제</OutlineBtn>
+              <OutlineBtn width="51px">수정</OutlineBtn>
+            </div>
           ) : (
-            <>
-              <div className="button_box">
-                <OutlineBtn width="51px" onClick={handleQuit}>
-                  취소
-                </OutlineBtn>
-                <FillBtn width="51px" onClick={handleSubmit}>
-                  등록
-                </FillBtn>
-              </div>
-            </>
+            <div className="button_box">
+              <OutlineBtn width="51px" onClick={handleQuit}>
+                취소
+              </OutlineBtn>
+              <FillBtn width="51px" onClick={handleSubmit}>
+                등록
+              </FillBtn>
+            </div>
           )}
         </PhotoBox>
         <div className="warning">
@@ -336,6 +325,12 @@ const PhotoBox = styled.div`
   .button_box {
     margin-top: 2rem;
     gap: 10px;
+
+    @media ${(props) => props.theme.postMobile} {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0;
+    }
   }
 `;
 
