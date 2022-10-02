@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faPlus } from "@fortawesome/free-solid-svg-icons";
-// import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { ReactComponent as PlusIcon } from "../../svg/plus.svg";
 import { ReactComponent as CloseIcon } from "../../svg/close.svg";
 import S3 from "react-aws-s3";
+import { v4 as uuidv4 } from "uuid";
 
 const ImageUploader = ({ images, setImages, isReview }) => {
   window.Buffer = window.Buffer || require("buffer").Buffer;
@@ -21,16 +19,19 @@ const ImageUploader = ({ images, setImages, isReview }) => {
 
   const handleAddImages = (e) => {
     const imageLists = e.target.files;
+    const newFileName = uuidv4();
+
     let imageUrlLists = [...images];
 
     for (let i = 0; i < imageLists.length; i++) {
+      console.info(imageLists[i].name);
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
       imageUrlLists.push(currentImageUrl);
 
       // s3에 업로드
-      ReactS3Client.uploadFile(e.target.files[i], e.target.files[i].name)
+      ReactS3Client.uploadFile(imageLists[i], newFileName)
         .then((data) => {
-          console.log(data);
+          console.log(data.location);
         })
         .catch((err) => console.error(err));
     }
