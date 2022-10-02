@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as PlusIcon } from "../../svg/plus.svg";
 import { ReactComponent as CloseIcon } from "../../svg/close.svg";
@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from "uuid";
 
 const ImageUploader = ({ images, setImages, isReview }) => {
   window.Buffer = window.Buffer || require("buffer").Buffer;
+
+  const [previews, setPreviews] = useState([]);
 
   const config = {
     bucketName: process.env.REACT_APP_BUCKET_NAME,
@@ -21,28 +23,30 @@ const ImageUploader = ({ images, setImages, isReview }) => {
     const imageLists = e.target.files;
     const newFileName = uuidv4();
 
-    let imageUrlLists = [...images];
+    let previewLists = [...previews];
+    let imageUrlList = [...images];
 
     for (let i = 0; i < imageLists.length; i++) {
-      console.info(imageLists[i].name);
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      imageUrlLists.push(currentImageUrl);
+      previewLists.push(currentImageUrl);
 
       // s3에 업로드
       ReactS3Client.uploadFile(imageLists[i], newFileName)
         .then((data) => {
-          console.log(data.location);
+          imageUrlList.push(data.location);
+          setImages([...imageUrlList]);
         })
         .catch((err) => console.error(err));
     }
 
     // 최대 이미지 3장까지 업로드 가능 조건
-    if (imageUrlLists.length > 3) {
-      imageUrlLists = imageUrlLists.slice(0, 3);
+    if (previewLists.length > 3) {
+      previewLists = previewLists.slice(0, 3);
     }
-
-    setImages(imageUrlLists);
+    setPreviews(previewLists);
   };
+
+  console.log(images);
 
   const handleDeleteImage = (id) => {
     setImages(images.filter((_, index) => index !== id));
