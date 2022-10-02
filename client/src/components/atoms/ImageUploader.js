@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faPlus } from "@fortawesome/free-solid-svg-icons";
-// import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { ReactComponent as PlusIcon } from "../../svg/plus.svg";
 import { ReactComponent as CloseIcon } from "../../svg/close.svg";
 import S3 from "react-aws-s3";
+import { v4 as uuidv4 } from "uuid";
 
 const ImageUploader = ({ images, setImages, isReview }) => {
   window.Buffer = window.Buffer || require("buffer").Buffer;
+
+  const [previews, setPreviews] = useState([]);
 
   const config = {
     bucketName: process.env.REACT_APP_BUCKET_NAME,
@@ -21,27 +21,32 @@ const ImageUploader = ({ images, setImages, isReview }) => {
 
   const handleAddImages = (e) => {
     const imageLists = e.target.files;
-    let imageUrlLists = [...images];
+    const newFileName = uuidv4();
+
+    let previewLists = [...previews];
+    let imageUrlList = [...images];
 
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      imageUrlLists.push(currentImageUrl);
+      previewLists.push(currentImageUrl);
 
       // s3에 업로드
-      ReactS3Client.uploadFile(e.target.files[i], e.target.files[i].name)
+      ReactS3Client.uploadFile(imageLists[i], newFileName)
         .then((data) => {
-          console.log(data);
+          imageUrlList.push(data.location);
+          setImages([...imageUrlList]);
         })
         .catch((err) => console.error(err));
     }
 
     // 최대 이미지 3장까지 업로드 가능 조건
-    if (imageUrlLists.length > 3) {
-      imageUrlLists = imageUrlLists.slice(0, 3);
+    if (previewLists.length > 3) {
+      previewLists = previewLists.slice(0, 3);
     }
-
-    setImages(imageUrlLists);
+    setPreviews(previewLists);
   };
+
+  console.log(images);
 
   const handleDeleteImage = (id) => {
     setImages(images.filter((_, index) => index !== id));
