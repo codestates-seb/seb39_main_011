@@ -1,19 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import { OutlineBtn } from "../atoms/Button";
+import { FillBtn } from "../atoms/Button";
 import TextArea from "../atoms/TextArea";
+import { ReactComponent as CommentIcon } from "../../svg/review.svg";
 
 const CommentItem = () => {
   return (
     <Layout>
-      <p>ㄴ 댓글 작성</p>
-      <Box>
+      <div className="title_style">
+        <div>ㄴ</div>
         <div>
-          <TextAreaStyle />
+          <CommentIcon fill="var(--main-color-1)" />
         </div>
-        <OutlineBtn width="50px" height="35px">
-          등록
-        </OutlineBtn>
+        <div>댓글 작성</div>
+      </div>
+      <Box>
+        <div className="textarea_style">
+          <TextArea rows="4" />
+          <FillBtn>등록</FillBtn>
+        </div>
       </Box>
     </Layout>
   );
@@ -25,18 +30,23 @@ const Layout = styled.div`
   background-color: #f6f6f6;
   padding: 1rem;
 
-  div {
+  .title_style {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-  }
-
-  p {
-    font-size: 14px;
+    gap: 3px;
+    font-size: 15px;
     font-weight: bold;
     color: var(--main-color-1);
   }
+
+  .textarea_style {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
 `;
+
 const Box = styled.div`
   display: flex;
   gap: 20px;
@@ -45,8 +55,4 @@ const Box = styled.div`
   div {
     flex: 1;
   }
-`;
-
-const TextAreaStyle = styled(TextArea)`
-  background-color: aliceblue;
 `;

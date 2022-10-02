@@ -10,7 +10,7 @@ const Navigation = () => {
   return (
     <S.NaviContainer>
       <S.Nav>
-        <Link to="/">
+        <Link to="/" onClick={() => window.location.reload()}>
           <div>
             <Logo width="180" height="50" viewBox="150 70 190 80" />
           </div>

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const TextArea = ({ value, label, name, onChange }) => {
+const TextArea = ({ value, label, name, onChange, rows }) => {
   return (
     <Layout>
       <label>{label}</label>
-      <textarea value={value} name={name} onChange={onChange} />
+      <textarea value={value} name={name} onChange={onChange} rows={rows} />
     </Layout>
   );
 };
@@ -17,7 +17,6 @@ const Layout = styled.div`
 
   textarea {
     width: 100%;
-    height: 100px;
     padding: 10px;
     border: 2px solid var(--main-color-4);
     border-radius: 5px;

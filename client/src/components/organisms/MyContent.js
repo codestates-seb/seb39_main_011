@@ -16,7 +16,7 @@ const Container = styled.div`
   width: 70vw;
   height: 570px;
   background-color: #fff;
-  border: 3px solid var(--main-color-3);
+  border: 3px solid var(--main-color-4);
   border-radius: 0px 20px 20px 0px;
   overflow: auto;
   margin-right: 10px;
