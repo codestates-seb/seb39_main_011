@@ -14,7 +14,7 @@ const Join = () => {
 export default Join;
 
 const JoinContainer = styled.div`
-  width: 940px;
+  max-width: 940px;
   margin: 40px auto 0 auto;
   display: flex;
   flex-direction: column;
