@@ -39,7 +39,10 @@ const MyPostBox = () => {
     };
 
     try {
-      const res = await axios.post(`/admin/post`, campingData);
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/admin/post`,
+        campingData
+      );
       console.log(res.data);
       alert("캠핑장이 등록되었습니다.");
       // window.location.reload();
