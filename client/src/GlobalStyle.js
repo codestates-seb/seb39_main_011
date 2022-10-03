@@ -71,13 +71,6 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   /* =========================== */
-  
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 54px;
-  }
 
   a {
     text-decoration: none;
