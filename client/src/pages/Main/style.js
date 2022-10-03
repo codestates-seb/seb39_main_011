@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.main`
-  max-width: 940px;
+  max-width: 980px;
   font-size: 12px;
-  margin: 40px 20px 20px 20px;
+  margin: 20px auto 20px auto;
+  padding: 0 20px;
 `;
 
 export const FlexLayout = styled.div`
