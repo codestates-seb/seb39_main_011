@@ -21,7 +21,7 @@ const JoinForm = () => {
   const phoneRef = useRef();
 
   const [isTab, setIsTab] = useState(0);
-  const tabArr = [{ name: "client" }, { name: "admin" }];
+  const tabArr = [{ name: "USER" }, { name: "ADMIN" }];
 
   const [name, setName] = useState("");
   const [id, setId] = useState("");
@@ -36,6 +36,11 @@ const JoinForm = () => {
 
   const selectTabHandler = (index) => {
     setIsTab(index);
+    if (index === 0) {
+      setRole("USER");
+    } else if (index === 1) {
+      setRole("ADMIN");
+    }
   };
 
   const idNotValid =
@@ -121,24 +126,22 @@ const JoinForm = () => {
         }
       );
       navigate("/login");
-      alert("회원가입 성공");
+      alert(
+        `Success!! name: ${name}, id: ${id}, pwd: ${pwd}, email: ${email}, phone: ${phone}, role: ${role}`
+      );
+
+      window.location.reload();
     } catch (error) {
       if ((res) => res.data.status === 500) {
-        console.log("회원가입 실패");
         alert("회원가입에 실패하셨습니다.");
       }
     }
-
-    alert(
-      `name: ${name}, id: ${id}, pwd: ${pwd}, email: ${email}, phone: ${phone}`
-    );
 
     setName("");
     setId("");
     setPwd("");
     setEmail("");
     setPhone("");
-    window.location.reload();
   };
 
   return (
@@ -148,10 +151,10 @@ const JoinForm = () => {
           <LoginTabBtn
             key={idx}
             className={`${isTab === idx ? "focused" : ""} `}
-            radius={item.name === "client" ? "7px 0 0 0" : "0 7px 0 0"}
+            radius={item.name === "USER" ? "7px 0 0 0" : "0 7px 0 0"}
             onClick={() => selectTabHandler(idx)}
           >
-            {item.name === "client" ? "고객" : "관리자"}
+            {item.name === "USER" ? "고객" : "관리자"}
           </LoginTabBtn>
         ))}
       </ChooseBox>
