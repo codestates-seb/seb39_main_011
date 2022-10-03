@@ -76,7 +76,8 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 54px;
+    /* padding-top: 54px; */
+    overflow-x: hidden;
   }
 
   a {
