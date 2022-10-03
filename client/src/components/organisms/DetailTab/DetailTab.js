@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import DetailInfo from "../../molecules/DetailInfo/DetailInfo";
 import DetailReviews from "../DetailReviews/DetailReviews";

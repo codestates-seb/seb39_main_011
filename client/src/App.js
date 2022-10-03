@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/templates/Navigation/Navigation";
 import Main from "./pages/Main/Main";

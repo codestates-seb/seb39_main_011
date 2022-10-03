@@ -71,14 +71,6 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   /* =========================== */
-  
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* padding-top: 54px; */
-    overflow-x: hidden;
-  }
 
   a {
     text-decoration: none;

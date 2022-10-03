@@ -1,14 +1,11 @@
 import styled from "styled-components";
 
 export const NaviContainer = styled.nav`
-  /* width: 100%; */
-  width: 100vw;
+  width: 100%;
   padding: 10px 0;
   background-color: #ffffff;
   position: sticky;
-  /* position: fixed; */
   top: 0;
-  /* left: 0; */
   z-index: 999;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 `;
