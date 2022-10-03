@@ -31,25 +31,28 @@ const LoginForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
-    // try {
-    //   const response = await axios.post("/user/login", {
-    //     id,
-    //     pwd,
-    //   });
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/user/login`,
+        {
+          username: id,
+          password: pwd,
+        }
+      );
 
-    //   localStorage.setItem("token", response.data);
-    //   setIsLogin(true);
-    //   navigate("/");
-    //   console.log("get token!");
-    //   alert("로그인 성공");
-    // } catch (error) {
-    //   if ((res) => res.data.status === 500) {
-    //     console.log("로그인 실패");
-    //     alert("로그인에 실패하셨습니다.");
-    //   }
-    // }
+      sessionStorage.setItem("session", response.data);
+      setIsLogin(true);
+      navigate("/");
+      console.log("get session!");
+      alert("로그인 성공");
+    } catch (error) {
+      if ((res) => res.data.status === 500 || res.data.status === 404) {
+        console.log("로그인 실패");
+        alert("로그인에 실패하셨습니다.");
+      }
+    }
 
     if (id.length < 1) {
       idRef.current.focus();
@@ -61,7 +64,7 @@ const LoginForm = () => {
       return;
     }
 
-    alert(`id: ${id}, pwd: ${pwd}`);
+    // alert(`id: ${id}, pwd: ${pwd}`);
     setUser({ id: "", pwd: "" });
     window.location.reload();
   };

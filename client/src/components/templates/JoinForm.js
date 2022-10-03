@@ -32,6 +32,7 @@ const JoinForm = () => {
   const [validEmail, setValidEmail] = useState(false);
   const [phone, setPhone] = useState("");
   const [validPhone, setValidPhone] = useState(false);
+  const [role, setRole] = useState("USER");
 
   const selectTabHandler = (index) => {
     setIsTab(index);
@@ -105,24 +106,28 @@ const JoinForm = () => {
       return;
     }
 
-    // e.preventDefault();
+    e.preventDefault();
 
-    // try {
-    //   const response = await axios.post("/user/join", {
-    //     name,
-    //     id,
-    //     pwd,
-    //     email,
-    //     phone,
-    //   });
-    //   navigate("/login");
-    //   alert("회원가입 성공");
-    // } catch (error) {
-    //   if ((res) => res.data.status === 500) {
-    //     console.log("회원가입 실패");
-    //     alert("회원가입에 실패하셨습니다.");
-    //   }
-    // }
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/user/join`,
+        {
+          username: id,
+          name,
+          password: pwd,
+          email,
+          phone,
+          role,
+        }
+      );
+      navigate("/login");
+      alert("회원가입 성공");
+    } catch (error) {
+      if ((res) => res.data.status === 500) {
+        console.log("회원가입 실패");
+        alert("회원가입에 실패하셨습니다.");
+      }
+    }
 
     alert(
       `name: ${name}, id: ${id}, pwd: ${pwd}, email: ${email}, phone: ${phone}`
