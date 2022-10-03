@@ -12,7 +12,7 @@ const MainContent = () => {
 
   const getCampingData = async () => {
     try {
-      const { data } = await axios.get("/main");
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/main`);
       setCampingList(data);
       setRenderCampingList(data);
     } catch (error) {
