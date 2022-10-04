@@ -21,5 +21,7 @@ public class RezService {
         rezRepository.deleteById(rez_id);
     }
 
-    public List<Reservation> findRez() {return rezRepository.findAll(); }
+    public List<Reservation> findRez(long userId) {
+            return rezRepository.findByUserId(userId);
+    }
 }

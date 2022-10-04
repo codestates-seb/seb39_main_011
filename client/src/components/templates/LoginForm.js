@@ -6,7 +6,7 @@ import { ReactComponent as CampingPic } from "../../svg/camping.svg";
 import CheckBox from "../atoms/CheckBox";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../redux/reducers/authSlice";
 
 const LoginForm = () => {
@@ -15,7 +15,6 @@ const LoginForm = () => {
   const idRef = useRef();
   const pwdRef = useRef();
 
-  const isLogin = useSelector((state) => state.auth.isLogin);
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
