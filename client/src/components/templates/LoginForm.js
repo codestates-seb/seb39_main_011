@@ -41,8 +41,7 @@ const LoginForm = () => {
           password: pwd,
         }
       );
-
-      sessionStorage.setItem("session", response.data);
+      // sessionStorage.setItem("session", response.headers.Authorization);
       setIsLogin(true);
       navigate("/");
       console.log("get session!");
@@ -66,7 +65,7 @@ const LoginForm = () => {
 
     // alert(`id: ${id}, pwd: ${pwd}`);
     setUser({ id: "", pwd: "" });
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (

@@ -13,7 +13,7 @@ export const AsideContainer = styled.aside`
 
   position: sticky;
   top: 90px;
-  z-index: 999;
+  z-index: 2;
 
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
 
