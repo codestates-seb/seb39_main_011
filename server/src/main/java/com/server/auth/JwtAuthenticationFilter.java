@@ -57,7 +57,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setHeader("Refresh", refreshToken);
 
         Role r = user.getRole();
-        response.getWriter().print(r);
+        Long id = user.getUserId();
+        response.getWriter().println(r);
+        response.getWriter().print("user_id = " + id);
     }
 
     // (5)
