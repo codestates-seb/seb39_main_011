@@ -1,3 +1,4 @@
+// 다중 이미지 업로더
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as PlusIcon } from "../../svg/plus.svg";
@@ -5,7 +6,7 @@ import { ReactComponent as CloseIcon } from "../../svg/close.svg";
 import S3 from "react-aws-s3";
 import { v4 as uuidv4 } from "uuid";
 
-const ImageUploader = ({ images, setImages, isReview }) => {
+const MultiImageUploader = ({ images, setImages, isReview }) => {
   window.Buffer = window.Buffer || require("buffer").Buffer;
 
   const [previews, setPreviews] = useState([]);
@@ -45,8 +46,6 @@ const ImageUploader = ({ images, setImages, isReview }) => {
     }
     setPreviews(previewLists);
   };
-
-  console.log(images);
 
   const handleDeleteImage = (id) => {
     setImages(images.filter((_, index) => index !== id));
@@ -132,7 +131,7 @@ const ImageUploader = ({ images, setImages, isReview }) => {
   );
 };
 
-export default ImageUploader;
+export default MultiImageUploader;
 
 const Container = styled.div`
   width: 100%;

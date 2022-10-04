@@ -4,9 +4,7 @@ import { FillBtn, OutlineBtn } from "../atoms/Button";
 import RequiredInput from "../atoms/RequiredInput";
 import TextArea from "../atoms/TextArea";
 import axios from "axios";
-import ImageUploader from "../atoms/ImageUploader";
 import PopupPostcode from "../molecules/PopupPostcode";
-// import instance from "../../apis/axios";
 
 import { ReactComponent as CampIcon } from "../../svg/camp.svg";
 import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
@@ -14,15 +12,14 @@ import { ReactComponent as MapIcon } from "../../svg/location.svg";
 import { ReactComponent as CoinIcon } from "../../svg/coin.svg";
 import { ReactComponent as TeamIcon } from "../../svg/team.svg";
 import { ReactComponent as NoteIcon } from "../../svg/note.svg";
+import SingleImageUploader from "../atoms/SingleImageUploader";
 
 const MyPostBox = () => {
   const [camping, setCamping] = useState({});
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(null);
   const [place, setPlace] = useState("");
 
   const [isShow, setIsShow] = useState(false);
-
-  console.log(camping);
 
   const handleChange = (e) => {
     let input = {};
@@ -38,12 +35,14 @@ const MyPostBox = () => {
       place,
     };
 
+    console.log(campingData);
+
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/admin/post`,
         campingData
       );
-      console.log(res.data);
+      console.log(`camping: ${camping}, file_path: ${images}, place: ${place}`);
       alert("캠핑장이 등록되었습니다.");
       // window.location.reload();
       setIsShow(true);
@@ -102,6 +101,7 @@ const MyPostBox = () => {
             ) : (
               <>
                 <RequiredInput
+                  type="number"
                   label="가격"
                   name="price"
                   onChange={(e) => handleChange(e)}
@@ -195,7 +195,7 @@ const MyPostBox = () => {
 
         <PhotoBox>
           <div>
-            <ImageUploader images={images} setImages={setImages} />
+            <SingleImageUploader images={images} setImages={setImages} />
           </div>
 
           {isShow ? (

@@ -3,12 +3,12 @@ import styled from "styled-components";
 import StarClick from "./StarClick";
 import { FillBtn } from "./Button";
 import axios from "axios";
-import ImageUploader from "./ImageUploader";
+import SingleImageUploader from "./SingleImageUploader";
 
 const PostReview = () => {
   const [star, setStar] = useState(0);
   const [review, setReview] = useState("");
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(null);
 
   const [isReview, setIsReview] = useState(true);
 
@@ -24,6 +24,7 @@ const PostReview = () => {
     const reviewData = {
       review,
       star,
+      file_path: images,
     };
 
     try {
@@ -31,8 +32,9 @@ const PostReview = () => {
         `${process.env.REACT_APP_API_URL}/client/rev`,
         reviewData
       );
-      console.log(res.data);
-      alert("리뷰가 등록되었습니다.");
+      alert(
+        `리뷰 등록 성공!! review: ${review}, star: ${star}, file_path: ${images}`
+      );
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -60,7 +62,7 @@ const PostReview = () => {
             </div>
           </ButtonBox>
           <PhotoBox>
-            <ImageUploader
+            <SingleImageUploader
               className="image_uploader"
               images={images}
               setImages={setImages}
