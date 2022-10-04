@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 public class RezMapper {
     public Reservation rezPostDtoToRez(RezPostDto rezPostDto) {
         return new Reservation(0L,
+                rezPostDto.getUser_id(),
+                rezPostDto.getCamp_id(),
                 rezPostDto.getName(),
                 rezPostDto.getDate(),
                 rezPostDto.getPhone(),

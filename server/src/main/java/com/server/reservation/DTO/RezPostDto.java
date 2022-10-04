@@ -9,7 +9,8 @@ import javax.validation.constraints.NotBlank;
 @Getter
 public class RezPostDto {
 
-    @NotBlank
+    private Long user_id;
+    private Long camp_id;
     private String name;
     private String date;
     private String phone;
