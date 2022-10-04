@@ -10,7 +10,7 @@ export const AsideContainer = styled.aside`
 
   position: sticky;
   top: 90px;
-  z-index: 999;
+  z-index: 998;
 
   form {
     display: flex;

@@ -8,12 +8,6 @@ export const TabInfoContainer = styled.div`
   gap: 20px;
   border: 2px solid var(--main-color-4);
   border-radius: 0 5px 5px 5px;
-
-  .important_img {
-    width: 250px;
-    height: 130px;
-    border: 1px solid red;
-  }
 `;
 
 export const Info = styled.div`

@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
   width: 300px;
+  /* height: 300px; */
+  max-height: 500px;
   // 상위에 flex-wrap 때문에 반응형 같은 효과가 나타남
   flex-grow: 1;
   border-radius: 0 0 5px 5px;
@@ -33,6 +35,7 @@ export const CardContainer = styled.div`
 
 export const Img = styled.img`
   width: 100%;
+  max-height: 400px;
   display: block;
   border-radius: 5px 5px 0 0;
 `;

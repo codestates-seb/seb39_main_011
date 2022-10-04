@@ -17,6 +17,8 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public String getUsername() {return user.getUsername();}
 
+    public Role getRole() {return user.getRole();}
+
     /* 계정 만료 여부     *  true : 만료 안됨     *  false : 만료     */
     @Override
     public boolean isAccountNonExpired() {
