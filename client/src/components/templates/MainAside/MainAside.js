@@ -19,7 +19,6 @@ const MainAside = () => {
   const dispatch = useDispatch();
 
   const priceSortHandler = (e) => {
-    console.log(e.target.id);
     dispatch(sortCheck(e.target.id));
   };
   const voteSortHandler = (e) => {

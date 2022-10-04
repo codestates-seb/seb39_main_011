@@ -26,6 +26,7 @@ const MainContent = () => {
   }, []);
 
   useEffect(() => {
+    console.info("지역정렬작동");
     if (selectRegion === "전체") {
       setRenderCampingList(campingList);
     } else {
@@ -41,7 +42,8 @@ const MainContent = () => {
       const sortArr = campingList.sort((a, b) => {
         return a.price - b.price;
       });
-      setRenderCampingList(sortArr);
+      console.log(sortArr);
+      setRenderCampingList([...sortArr]);
     } else if (selectSort === "vote") {
     } else if (selectSort === "review") {
     }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { ButtonPrimary } from "../../../../src/components/atoms/Button";
 import { useSelector } from "react-redux";
-import Calendar from "../../organisms/Calendar/Calendar.js";
+import Calendar from "../../atoms/Calendar.js";
 import InputLabel from "../../atoms/InputLabel";
 
 import { ReactComponent as CalendarIcon } from "./../../../svg/calendar.svg";

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DetailReview from "../../molecules/DetailReview/DetailReview";
 import * as S from "./style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,30 +8,6 @@ import IconText from "../../atoms/IconText";
 import { ReactComponent as ReviewIcon } from "./../../../svg/review.svg";
 
 const DetailReviews = () => {
-  useEffect(() => {
-    // let reviewDate = { review: "안녕", star: 4.5 };
-    // axios({
-    //   method: "POST",
-    //   url: "/custom/rev",
-    //   header: { "Content-type": "application/json" },
-    //   data: reviewDate,
-    // }).then((response) => {
-    //   console.log(response);
-    // });
-    // axios({
-    //   method: "GET",
-    //   url: "/custom/rev",
-    // }).then((response) => {
-    //   console.log(response);
-    // });
-    // axios({
-    //   method: "GET",
-    //   url: "/admin/rev",
-    // }).then((response) => {
-    //   console.log(response);
-    // });
-  }, []);
-
   const arr = [1, 2, 3, 4];
   return (
     <S.ReviewContainer>

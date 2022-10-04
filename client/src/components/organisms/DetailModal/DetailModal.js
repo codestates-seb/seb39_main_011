@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import { ButtonPrimary } from "../../atoms/Button";
-import Calendar from "../Calendar/Calendar";
+import Calendar from "../../atoms/Calendar";
 import { useSelector } from "react-redux";
 
 const DetailModal = ({ handleModal }) => {

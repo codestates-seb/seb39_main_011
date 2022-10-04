@@ -120,6 +120,19 @@ export const CalendarBtn = styled(ButtonPrimary)`
   line-height: 3px;
 `;
 
+export const MainBtn = styled(ButtonPrimary)`
+  color: var(--main-color-1);
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  padding: 10px;
+
+  &:hover {
+    background-color: var(--main-color-4);
+    color: #fff;
+  }
+`;
+
 const Button = ({
   text,
   color,
