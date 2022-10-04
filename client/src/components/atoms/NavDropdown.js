@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/reducers/authSlice";
 
 const NavDropdown = ({ isLogin }) => {
-  const handleLogout = () => {};
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    sessionStorage.removeItem("Token");
+  };
 
   return (
     <div>
