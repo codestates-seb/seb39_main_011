@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "./style";
 
 import IconText from "../../atoms/IconText";
+import KakaoMap from "../../atoms/KakaoMap";
 
 import { ReactComponent as CampIcon } from "./../../../svg/camp.svg";
 import { ReactComponent as PhoneIcon } from "./../../../svg/phone.svg";
@@ -11,7 +12,7 @@ import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 const DetailInfo = () => {
   return (
     <S.TabInfoContainer>
-      <div className="important_img"></div>
+      <KakaoMap />
       <S.Info>
         <IconText icon={<CampIcon width="20" height="20" />}>캠핑장:</IconText>
         <IconText icon={<PhoneIcon width="20" height="20" />}>연락처:</IconText>

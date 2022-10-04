@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CampingCard from "../../organisms/CampingCard/CampingCard";
+import MainMessage from "../MainMessage/MainMessage";
 import * as S from "./style";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -49,7 +50,7 @@ const MainContent = () => {
   return (
     <S.PostContainer>
       {renderCampingList.length === 0 ? (
-        <div>등록된 캠핑장이 없습니다.</div>
+        <MainMessage />
       ) : (
         renderCampingList.map((el) => {
           return <CampingCard key={el.camp_id} camplist={el} />;
