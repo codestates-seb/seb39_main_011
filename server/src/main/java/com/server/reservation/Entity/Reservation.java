@@ -16,6 +16,9 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rez_id;
 
+    private Long userId;
+    private Long camp_id;
+
     @Column(nullable = false)
     private String name;
 

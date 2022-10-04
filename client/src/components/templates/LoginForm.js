@@ -6,6 +6,8 @@ import { ReactComponent as CampingPic } from "../../svg/camping.svg";
 import CheckBox from "../atoms/CheckBox";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/reducers/authSlice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -13,7 +15,7 @@ const LoginForm = () => {
   const idRef = useRef();
   const pwdRef = useRef();
 
-  const [isLogin, setIsLogin] = useState(false);
+  const dispatch = useDispatch();
 
   const [user, setUser] = useState({
     id: "",
@@ -41,11 +43,11 @@ const LoginForm = () => {
           password: pwd,
         }
       );
+      console.log(response.headers.authorization);
 
-      sessionStorage.setItem("session", response.data);
-      setIsLogin(true);
+      dispatch(login(id));
+      sessionStorage.setItem("Token", response.headers.authorization);
       navigate("/");
-      console.log("get session!");
       alert("로그인 성공");
     } catch (error) {
       if ((res) => res.data.status === 500 || res.data.status === 404) {
@@ -64,9 +66,8 @@ const LoginForm = () => {
       return;
     }
 
-    // alert(`id: ${id}, pwd: ${pwd}`);
     setUser({ id: "", pwd: "" });
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (

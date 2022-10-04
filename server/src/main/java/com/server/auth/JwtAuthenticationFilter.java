@@ -3,6 +3,8 @@ package com.server.auth;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.server.user.DTO.LoginDto;
 import com.server.user.Entity.CustomUserDetails;
+import com.server.user.Entity.Role;
+import com.server.user.Entity.User;
 import lombok.SneakyThrows;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,6 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.*;
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {  // (1)
@@ -44,14 +47,19 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
                                             FilterChain chain,
-                                            Authentication authResult) {
+                                            Authentication authResult) throws IOException {
         CustomUserDetails user = (CustomUserDetails) authResult.getPrincipal();  // (4-1)
 
         String accessToken = delegateAccessToken(user);   // (4-2)
         String refreshToken = delegateRefreshToken(user); // (4-3)
 
         response.setHeader("Authorization", "Bearer " + accessToken);  // (4-4)
-        response.setHeader("Refresh", refreshToken);                   // (4-5)
+        response.setHeader("Refresh", refreshToken);
+
+        Role r = user.getRole();
+        Long id = user.getUserId();
+        response.getWriter().println(r);
+        response.getWriter().print("user_id = " + id);
     }
 
     // (5)
