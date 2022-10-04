@@ -1,20 +1,20 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 import styled from "styled-components";
-
 import { ButtonPrimary } from "../../atoms/Button";
 import { ReactComponent as ProfilePic } from "../../../svg/profile.svg";
 import { ReactComponent as Logo } from "../../../svg/logo.svg";
 import NavDropdown from "../../atoms/NavDropdown";
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
-  const [isLogin, setLogin] = useState(false);
+  const isLogin = useSelector((state) => state.auth.isLogin);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
-    console.log(isOpen);
   };
 
   return (
@@ -44,7 +44,7 @@ const Navigation = () => {
           <ProfilePic
             width="50"
             height="50"
-            fill="var(--main-color-2)"
+            fill={isLogin ? "var(--main-color-1)" : "var(--main-color-2)"}
             onClick={toggleDropdown}
           />
           {isOpen && <NavDropdown isOpen={isOpen} isLogin={isLogin} />}
