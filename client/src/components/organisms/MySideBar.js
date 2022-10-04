@@ -11,7 +11,6 @@ const MySideBar = () => {
   const paths = useLocation().pathname;
   const pathName = useLocation().pathname.split("/")[1];
 
-  console.log(pathName);
   const clientTabs = [
     { name: "내 정보", path: "/client/mypage/myinfo", icon: <MyinfoPic /> },
     { name: "예약 조회", path: "/client/mypage/rez", icon: <RezPic /> },
