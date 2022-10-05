@@ -11,10 +11,12 @@ const ClientRez = () => {
     Authorization: `${sessionStorage.getItem("authorization")}`,
   };
 
+  const userId = localStorage.getItem("userId");
+
   const getRez = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/client/rev`,
+        `${process.env.REACT_APP_API_URL}/client/rez/${userId}`,
         { headers: headers }
       );
       setData(res.data);
@@ -32,7 +34,8 @@ const ClientRez = () => {
   const onCancelRez = async (id) => {
     try {
       const res = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/client/info/rez/${id}`
+        `${process.env.REACT_APP_API_URL}/client/info/rez/${id}`,
+        { headers: headers }
       );
     } catch (error) {
       console.log(error);
@@ -41,7 +44,7 @@ const ClientRez = () => {
 
   return (
     <Container>
-      <MyRezBox onCancelRez={onCancelRez} />
+      <MyRezBox onCancelRez={onCancelRez} data={data} />
     </Container>
   );
 };
