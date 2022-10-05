@@ -10,7 +10,7 @@ const InputLabel = (props) => {
   }, [props.disable]);
 
   return (
-    <Container textarea={props.textarea}>
+    <Container noneInput={props.none} textarea={props.textarea}>
       {props.icon}
       <label htmlFor={props.id}>{props.children}</label>
       {!onInput ? (
@@ -44,18 +44,30 @@ const Container = styled.fieldset`
   }
 
   > label {
-    width: 80px;
+    width: ${(props) => (props.noneInput ? "auto" : "80px")};
     color: var(--main-color-1);
     font-weight: 700;
     display: inline-block;
     cursor: pointer;
+    padding: ${(props) => (props.noneInput ? "10px" : "auto")};
+    border-radius: ${(props) => (props.noneInput ? "30px" : "none")};
+
+    &:hover {
+      background-color: ${(props) =>
+        props.noneInput ? "var(--main-color-4)" : "none"};
+      color: ${(props) => (props.noneInput ? "#fff" : "none")};
+    }
+  }
+
+  > input {
+    display: ${(props) => (props.noneInput ? "none" : "inline")};
   }
 
   > input[type="date"] {
     font-size: 12px;
     border: 2px solid var(--main-color-2);
     border-radius: 5px;
-    width: 100px;
+    width: 130px;
     padding: 5px;
 
     &:focus {

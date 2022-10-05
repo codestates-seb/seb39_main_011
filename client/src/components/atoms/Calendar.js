@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { useDispatch } from "react-redux";
-import { reservationHandler } from "../../../redux/reducers/calendarSlice";
+import { reservationHandler } from "../../redux/reducers/calendarSlice";
 import { addMonths, isSameMonth } from "date-fns";
 
 function Calendar() {

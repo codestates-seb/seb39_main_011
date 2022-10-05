@@ -84,6 +84,7 @@ const LoginForm = () => {
           onChange={handleChangeUser}
         />
         <LoginInput
+          type="password"
           label="비밀번호"
           innerRef={pwdRef}
           name="pwd"

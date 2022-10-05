@@ -104,20 +104,21 @@ export const OutlineBtnS = styled(OutlineBtn)`
   }
 `;
 
-export const ReservationBtn = styled(ButtonPrimary)`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  border: 1px solid #000000;
-  display: none;
-
-  @media (max-width: 820px) {
-    display: block;
-  }
-`;
-
 export const CalendarBtn = styled(ButtonPrimary)`
   line-height: 3px;
+`;
+
+export const MainBtn = styled(ButtonPrimary)`
+  color: var(--main-color-1);
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  padding: 10px;
+
+  &:hover {
+    background-color: var(--main-color-4);
+    color: #fff;
+  }
 `;
 
 const Button = ({
