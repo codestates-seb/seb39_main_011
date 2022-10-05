@@ -35,19 +35,26 @@ const MyPostBox = () => {
       place,
     };
 
-    console.log(campingData);
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `${sessionStorage.getItem("Token")}`,
+    };
 
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/admin/post`,
-        campingData
+        campingData,
+        {
+          headers: headers,
+        }
       );
-      console.log(`camping: ${camping}, file_path: ${images}, place: ${place}`);
+      console.log(res.data);
       alert("캠핑장이 등록되었습니다.");
-      // window.location.reload();
       setIsShow(true);
-      console.log(isShow);
     } catch (error) {
+      if (error.response.status === 404) {
+        console.log("404 Error");
+      }
       console.log(error);
     }
   };
