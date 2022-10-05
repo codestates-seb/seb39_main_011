@@ -52,6 +52,8 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())   // (1)
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
+                        .antMatchers("/admin/**").hasRole(Role.ADMIN.getKey())
+                        .antMatchers("client/**").hasRole(Role.USER.getKey())
                         .anyRequest().permitAll()
                 );
         return http.build();
