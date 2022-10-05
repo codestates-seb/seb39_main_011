@@ -43,4 +43,11 @@ public class ReservationController {
         List<Reservation> response = rezService.findRez(userId);
         return new ResponseEntity(response,HttpStatus.OK);
     }
+
+    //기업용 예약전체조회
+    @GetMapping("admin/rez/{camp-id}")
+    public ResponseEntity adminRez(@PathVariable("camp-id")long campId) {
+        List<Reservation> response = rezService.findAdminRez(campId);
+        return new ResponseEntity(response,HttpStatus.OK);
+    }
 }
