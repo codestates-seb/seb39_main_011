@@ -4,12 +4,15 @@ import MainMessage from "../MainMessage/MainMessage";
 import * as S from "./style";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { sortCheck } from "../../../redux/reducers/sortSlice";
 
 const MainContent = () => {
   const [renderCampingList, setRenderCampingList] = useState([]);
   const [campingList, setCampingList] = useState([]);
   const selectRegion = useSelector((state) => state.region);
   const selectSort = useSelector((state) => state.sort);
+  const dispatch = useDispatch();
 
   const getCampingData = async () => {
     try {
@@ -43,11 +46,14 @@ const MainContent = () => {
         return a.price - b.price;
       });
       setRenderCampingList([...sortArr]);
+      dispatch(sortCheck(""));
     } else if (selectSort === "vote") {
       alert("서비스 준비중입니다.");
+      dispatch(sortCheck(""));
       return;
     } else if (selectSort === "review") {
       alert("서비스 준비중입니다.");
+      dispatch(sortCheck(""));
       return;
     }
   }, [selectSort]);

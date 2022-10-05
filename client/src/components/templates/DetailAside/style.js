@@ -10,7 +10,7 @@ export const AsideContainer = styled.aside`
 
   position: ${(props) => (props.mobile ? "static" : "sticky")};
   top: 90px;
-  z-index: 998;
+  z-index: 990;
 
   form {
     display: flex;
