@@ -6,10 +6,17 @@ import ClientMyReviewBox from "../../components/organisms/ClientMyReviewBox";
 const ClientReview = () => {
   const [data, setData] = useState([]);
 
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `${sessionStorage.getItem("Token")}`,
+  };
+
   const getReview = async () => {
+    let userId = localStorage.getItem("userId");
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/client/rev`
+        `${process.env.REACT_APP_API_URL}/client/rev/${userId}`,
+        { headers: headers }
       );
       setData(res.data);
       console.log("res: ", res.data);
@@ -26,14 +33,15 @@ const ClientReview = () => {
   const onRemoveReview = async (id) => {
     try {
       const res = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/client/rev/${id}`
+        `${process.env.REACT_APP_API_URL}/client/rev/${id}`,
+        { headers: headers }
       );
     } catch (error) {
       console.log(error);
     }
   };
 
-  const onUpdateReview = async (id, review, star) => {
+  const onUpdateReview = async (id, review, star, file_path) => {
     try {
       const res = await axios.put(
         `${process.env.REACT_APP_API_URL}/client/rev/${id}`,
@@ -41,7 +49,9 @@ const ClientReview = () => {
           id,
           review,
           star,
-        }
+          file_path,
+        },
+        { headers: headers }
       );
       window.location.reload();
     } catch (err) {

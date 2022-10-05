@@ -6,8 +6,8 @@ import { ReactComponent as CampingPic } from "../../svg/camping.svg";
 import CheckBox from "../atoms/CheckBox";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/reducers/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { login, adminHandler } from "../../redux/reducers/authSlice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ const LoginForm = () => {
   const pwdRef = useRef();
 
   const dispatch = useDispatch();
+  // const isAdmin = useSelector((state) => state.auth.adminHandler);
 
   const [user, setUser] = useState({
     id: "",
@@ -43,16 +44,24 @@ const LoginForm = () => {
           password: pwd,
         }
       );
-      console.log(response.headers.authorization);
-      console.log(response.data);
 
-      dispatch(login(id));
+      // if (response.data.role === "ADMIN") {
+      //   dispatch(adminHandler(true));
+      //   console.log(adminHandler(true));
+      // } else if (response.data.role === "USER") {
+      //   dispatch(adminHandler(false));
+      // }
+
+      // dispatch(login(response.data.userId)); // ex. userId: 30, isLogin: true
+
+      localStorage.setItem("userId", response.data.userId);
+      localStorage.setItem("role", response.data.role);
       sessionStorage.setItem("Token", response.headers.authorization);
+      dispatch(login());
       navigate("/");
       alert("로그인 성공");
     } catch (error) {
       if ((res) => res.data.status === 500 || res.data.status === 404) {
-        console.log("로그인 실패");
         alert("로그인에 실패하셨습니다.");
       }
     }
@@ -68,7 +77,6 @@ const LoginForm = () => {
     }
 
     setUser({ id: "", pwd: "" });
-    // window.location.reload();
   };
 
   return (
