@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeConsumer } from "styled-components";
 import { FillBtn, OutlineBtn } from "../atoms/Button";
 import RequiredInput from "../atoms/RequiredInput";
 import TextArea from "../atoms/TextArea";
 import axios from "axios";
 import PopupPostcode from "../molecules/PopupPostcode";
+import { useDispatch, useSelector } from "react-redux";
+import { postHandler } from "../../redux/reducers/postSlice";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as CampIcon } from "../../svg/camp.svg";
 import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
@@ -15,11 +18,14 @@ import { ReactComponent as NoteIcon } from "../../svg/note.svg";
 import SingleImageUploader from "../atoms/SingleImageUploader";
 
 const MyPostBox = () => {
+  const navigate = useNavigate();
+
   const [camping, setCamping] = useState({});
   const [images, setImages] = useState(null);
   const [place, setPlace] = useState("");
 
-  const [isShow, setIsShow] = useState(false);
+  const dispatch = useDispatch();
+  const isShow = useSelector((state) => state.post.isShow);
 
   const handleChange = (e) => {
     let input = {};
@@ -28,13 +34,13 @@ const MyPostBox = () => {
     setCamping(register);
   };
 
-  const handleSubmit = async () => {
-    const campingData = {
-      ...camping,
-      file_path: images,
-      place,
-    };
+  const campingData = {
+    ...camping,
+    file_path: images,
+    place,
+  };
 
+  const handleSubmit = async () => {
     const headers = {
       "Content-Type": "application/json",
       Authorization: `${sessionStorage.getItem("Token")}`,
@@ -50,7 +56,8 @@ const MyPostBox = () => {
       );
       console.log(res.data);
       alert("캠핑장이 등록되었습니다.");
-      setIsShow(true);
+      dispatch(postHandler());
+      console.log(isShow);
     } catch (error) {
       if (error.response.status === 404) {
         console.log("404 Error");
@@ -67,15 +74,20 @@ const MyPostBox = () => {
     window.location.reload();
   };
 
+  console.log(campingData);
+
   // const getPost = async () => {
   //   try {
-  //     const res = await axios.get(`/admin/post/${camp_id}`);
+  //     const res = await axios.get(`/admin/post/${userId}`);
+
   //     // setCamping(res.data);
   //     console.log("res: ", res.data);
   //   } catch (error) {
   //     console.log(error);
   //   }
   // };
+
+  console.log(isShow);
 
   return (
     <Container>
@@ -87,7 +99,10 @@ const MyPostBox = () => {
             </span>
             <div>
               {isShow ? (
-                <>캠핑장 이름</>
+                <>
+                  <>캠핑장 이름</>
+                  {campingData.name}
+                </>
               ) : (
                 <>
                   <RequiredInput
@@ -104,7 +119,10 @@ const MyPostBox = () => {
               <CoinIcon />
             </span>
             {isShow ? (
-              <>가격</>
+              <>
+                <>가격</>
+                {campingData.price}
+              </>
             ) : (
               <>
                 <RequiredInput
@@ -123,7 +141,10 @@ const MyPostBox = () => {
               <PhoneIcon width="22" height="22" />
             </span>
             {isShow ? (
-              <>연락처</>
+              <>
+                <>연락처</>
+                {campingData.phone}
+              </>
             ) : (
               <>
                 <RequiredInput
@@ -140,7 +161,10 @@ const MyPostBox = () => {
               <TeamIcon />
             </span>
             {isShow ? (
-              <>하루 최대 수용 팀</>
+              <>
+                <>하루 최대 수용 팀</>
+                {campingData.capacity}
+              </>
             ) : (
               <>
                 <RequiredInput
@@ -161,7 +185,10 @@ const MyPostBox = () => {
               <MapIcon />
             </span>
             {isShow ? (
-              <>캠핑장 위치</>
+              <>
+                <>캠핑장 위치</>
+                {campingData.place}
+              </>
             ) : (
               <>
                 <div>
@@ -188,7 +215,7 @@ const MyPostBox = () => {
           <p>캠핑장 소개</p>
         </div>
         {isShow ? (
-          <>소개글</>
+          <>{campingData.note}</>
         ) : (
           <TextArea name="note" onChange={(e) => handleChange(e)} rows="8" />
         )}
@@ -201,9 +228,14 @@ const MyPostBox = () => {
         </Photos>
 
         <PhotoBox>
-          <div>
+          {isShow ? (
+            <>
+              <img src={campingData.file_path} />
+            </>
+          ) : (
             <SingleImageUploader images={images} setImages={setImages} />
-          </div>
+          )}
+          <div></div>
 
           {isShow ? (
             <div className="button_box">
