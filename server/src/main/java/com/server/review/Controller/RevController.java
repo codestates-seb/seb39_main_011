@@ -57,10 +57,17 @@ public class RevController {
         return new ResponseEntity(review,HttpStatus.OK);
     }
 
-    //리뷰전체조회
-    @GetMapping("/admin/rev")
-    public ResponseEntity getReview() {
-        List<Review> response = reviewService.findReviews();
+    //기업리뷰전체조회
+    @GetMapping("/admin/rev/{camp-id}")
+    public ResponseEntity getAdminReview(@PathVariable("camp-id") long campId) {
+        List<Review> response = reviewService.findAdminReview(campId);
+        return new ResponseEntity(response,HttpStatus.OK);
+    }
+
+    //유져리뷰전체조회
+    @GetMapping("/client/rev/{user-id}")
+    public ResponseEntity getUserReview(@PathVariable("user-id") long userId) {
+        List<Review> response = reviewService.findUserReview(userId);
         return new ResponseEntity(response,HttpStatus.OK);
     }
 

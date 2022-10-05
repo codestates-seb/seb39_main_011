@@ -7,9 +7,10 @@ import lombok.Setter;
 @Getter
 public class ReviewPostDto {
 
+    private Long campId;
+    private Long userId;
     private String review;
     private int star;
-
     private String file_path;
 
 }

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user_id: null,
   isLogin: false,
+  isAdmin: false,
 };
 
 export const authSlice = createSlice({
@@ -18,8 +19,11 @@ export const authSlice = createSlice({
       state.isLogin = false;
       state.user_id = null;
     },
+    adminHandler: (state) => {
+      state.isAdmin = true;
+    },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, adminHandler } = authSlice.actions;
 export default authSlice.reducer;

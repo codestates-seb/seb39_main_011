@@ -43,6 +43,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     // (4)
+    private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
@@ -56,10 +57,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setHeader("Authorization", "Bearer " + accessToken);  // (4-4)
         response.setHeader("Refresh", refreshToken);
 
-        Role r = user.getRole();
-        Long id = user.getUserId();
-        response.getWriter().println(r);
-        response.getWriter().print("user_id = " + id);
+        HelloData helloData = new HelloData();
+        helloData.setUserId(user.getUserId());
+        helloData.setRole(user.getRole());
+
+        String result = objectMapper.writeValueAsString(helloData);
+        response.getWriter().write(result);
     }
 
     // (5)
