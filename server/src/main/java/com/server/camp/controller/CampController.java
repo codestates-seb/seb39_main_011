@@ -28,7 +28,7 @@ public class CampController {
     }
 
     //게시물 등록
-    @PostMapping("/post")
+    @PostMapping("/admin/post")
     public ResponseEntity postCamp(@RequestBody CampPostDto campPostDto) {
         Camp camp = mapper.campPostDtoToCamp(campPostDto);
         campService.createCamp(camp);
