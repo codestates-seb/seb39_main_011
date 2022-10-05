@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { TextField } from "@mui/material";
 
-const LoginInput = ({ id, label, onChange, name, innerRef, valid }) => {
+const LoginInput = ({ id, label, onChange, name, innerRef, valid, type }) => {
   return (
     <InputContainer>
       <TextFieldStyle
+        type={type}
         id={id}
         label={label}
         variant="standard"

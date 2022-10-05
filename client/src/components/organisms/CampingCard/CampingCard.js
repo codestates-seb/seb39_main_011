@@ -10,6 +10,10 @@ import { ReactComponent as ReviewIcon } from "./../../../svg/review.svg";
 import { ReactComponent as HeartIcon } from "./../../../svg/heart.svg";
 
 const CampingCard = ({ camplist }) => {
+  const voteNum = Math.floor(Math.random() * 6);
+  const heartNum = Math.floor(Math.random() * 15);
+  const reviewNum = Math.floor(Math.random() * 21);
+
   return (
     <S.CardContainer>
       <Link to={`/detail/${camplist.camp_id}`}>
@@ -34,14 +38,15 @@ const CampingCard = ({ camplist }) => {
           <div>
             <div>
               <StarIcon />
-              별점 {camplist.star_total}
+              별점 {voteNum}
+              {/* 별점 {camplist.star_total} */}
             </div>
             <div>
               <ReviewIcon fill="var(--main-color-3)" />
-              리뷰 11
+              리뷰 {reviewNum}
             </div>
             <div>
-              <HeartIcon />찜 12
+              <HeartIcon />찜 {heartNum}
             </div>
           </div>
         </S.FlexLayout>

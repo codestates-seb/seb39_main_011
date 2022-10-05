@@ -6,7 +6,7 @@ export const NaviContainer = styled.nav`
   background-color: #ffffff;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 998;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 `;
 

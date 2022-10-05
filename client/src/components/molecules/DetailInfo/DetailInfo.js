@@ -1,32 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 
 import IconText from "../../atoms/IconText";
 import KakaoMap from "../../atoms/KakaoMap";
+import DetailModal from "../../organisms/DetailModal/DetailModal";
+import { useMediaQuery } from "react-responsive";
+import { ButtonPrimary } from "../../atoms/Button";
 
 import { ReactComponent as CampIcon } from "./../../../svg/camp.svg";
 import { ReactComponent as PhoneIcon } from "./../../../svg/phone.svg";
 import { ReactComponent as LocationIcon } from "./../../../svg/location.svg";
 import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 
-const DetailInfo = () => {
+const DetailInfo = ({ camp }) => {
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 820 });
+  const [modal, setModal] = useState(false);
+  const handleModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <S.TabInfoContainer>
-      <KakaoMap />
+      {modal && isTabletOrMobile ? (
+        <DetailModal handleModal={handleModal} />
+      ) : null}
+      <KakaoMap camp={camp.place} />
       <S.Info>
-        <IconText icon={<CampIcon width="20" height="20" />}>캠핑장:</IconText>
-        <IconText icon={<PhoneIcon width="20" height="20" />}>연락처:</IconText>
-        <IconText icon={<LocationIcon width="20" height="20" />}>
-          주소:
+        <IconText icon={<CampIcon width="20" height="20" />}>
+          캠핑장: {camp.name}
         </IconText>
-        <IconText icon={<CoinIcon width="20" height="20" />}>가격:</IconText>
+        <IconText icon={<PhoneIcon width="20" height="20" />}>
+          연락처: {camp.phone}
+        </IconText>
+        <IconText icon={<LocationIcon width="20" height="20" />}>
+          주소: {camp.place}
+        </IconText>
+        <IconText icon={<CoinIcon width="20" height="20" />}>
+          가격: {camp.price}
+        </IconText>
       </S.Info>
 
       <S.Content>
-        <IconText icon={<CampIcon />}>⭕⭕ 캠핑장을 소개합니다.</IconText>
+        <IconText icon={<CampIcon />}>
+          {camp.name} 캠핑장을 소개합니다.
+        </IconText>
         <div>
           <div>인사말</div>
-          <div>안녕하세요. 좋은 캠핑장 입니다. 즐거운 캠핑되시길 바랍니다.</div>
+          <div>{camp.note}</div>
         </div>
         <div>
           <div>시설 및 레저</div>
@@ -49,6 +69,19 @@ const DetailInfo = () => {
           <div>상대방을 배려하며 캠핑을 즐깁시다.</div>
         </div>
       </S.Content>
+      {isTabletOrMobile ? (
+        <ButtonPrimary
+          bgc={"var(--main-color-2)"}
+          color={"#fff"}
+          radius={"5px"}
+          padding={"10px"}
+          fontWeight={"700"}
+          fontSize={"14px"}
+          onClick={handleModal}
+        >
+          예약하기
+        </ButtonPrimary>
+      ) : null}
     </S.TabInfoContainer>
   );
 };

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,6 +62,13 @@ public class RevController {
     @GetMapping("/admin/rev/{camp-id}")
     public ResponseEntity getAdminReview(@PathVariable("camp-id") long campId) {
         List<Review> response = reviewService.findAdminReview(campId);
+        return new ResponseEntity(response,HttpStatus.OK);
+    }
+
+    //유져리뷰전체조회
+    @GetMapping("/client/rev/{user-id}")
+    public ResponseEntity getUserReview(@PathVariable("user-id") long userId) {
+        List<Review> response = reviewService.findUserReview(userId);
         return new ResponseEntity(response,HttpStatus.OK);
     }
 

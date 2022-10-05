@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
 
 const { kakao } = window;
 
-const KakaoMap = () => {
-  // const [map, setMap] = useState(null);
-
+const KakaoMap = ({ camp }) => {
   useEffect(() => {
     const container = document.getElementById("map");
     const options = {
@@ -19,7 +16,8 @@ const KakaoMap = () => {
     // 주소로 좌표를 검색합니다
     geocoder.addressSearch(
       // "제주특별자치도 제주시 첨단로 242",
-      "부산 해운대구 APEC로 17 (우동, 센텀리더스마크)",
+      // "부산 해운대구 APEC로 17 (우동, 센텀리더스마크)",
+      `${camp}`,
       function (result, status) {
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {
@@ -33,8 +31,7 @@ const KakaoMap = () => {
 
           // 인포윈도우로 장소에 대한 설명을 표시합니다
           var infowindow = new kakao.maps.InfoWindow({
-            content:
-              '<div style="width:150px;text-align:center;padding:6px 0;">캠핑장</div>',
+            content: `<div style="width:150px;text-align:center;padding:6px 0;">캠핑장</div>`,
           });
           infowindow.open(map, marker);
 
@@ -43,7 +40,7 @@ const KakaoMap = () => {
         }
       }
     );
-  }, []);
+  }, [camp]);
 
   return (
     <>
@@ -53,8 +50,3 @@ const KakaoMap = () => {
 };
 
 export default KakaoMap;
-
-const Container = styled.div`
-  width: 500px;
-  height: 400px;
-`;
