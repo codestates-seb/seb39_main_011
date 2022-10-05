@@ -64,6 +64,13 @@ public class RevController {
         return new ResponseEntity(response,HttpStatus.OK);
     }
 
+    //유져리뷰전체조회
+    @GetMapping("/client/rev/{user-id}")
+    public ResponseEntity getUserReview(@PathVariable("user-id") long userId) {
+        List<Review> response = reviewService.findUserReview(userId);
+        return new ResponseEntity(response,HttpStatus.OK);
+    }
+
 
 
 }
