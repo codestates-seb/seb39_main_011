@@ -44,6 +44,7 @@ const LoginForm = () => {
         }
       );
       console.log(response.headers.authorization);
+      console.log(response.data);
 
       dispatch(login(id));
       sessionStorage.setItem("Token", response.headers.authorization);
