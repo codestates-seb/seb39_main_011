@@ -51,7 +51,7 @@ const Layout = styled.div`
   align-items: center;
   padding: 1rem;
   border-radius: 15px;
-  z-index: 3;
+  z-index: 999;
   background-color: #fff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 
