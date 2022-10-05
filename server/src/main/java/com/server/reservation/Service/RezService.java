@@ -24,4 +24,6 @@ public class RezService {
     public List<Reservation> findRez(long userId) {
             return rezRepository.findByUserId(userId);
     }
+
+    public List<Reservation> findAdminRez(long campId) { return rezRepository.findByCampId(campId);}
 }

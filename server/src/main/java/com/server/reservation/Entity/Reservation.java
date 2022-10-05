@@ -14,10 +14,10 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long rez_id;
+    private Long rezId;
 
     private Long userId;
-    private Long camp_id;
+    private Long campId;
 
     @Column(nullable = false)
     private String name;

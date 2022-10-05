@@ -15,7 +15,7 @@ public class CommentMapper {
         Comment comment = new Comment();
         Review review = new Review();
 
-        review.setRev_id(commentPostDto.getRev_id());
+        review.setRevId(commentPostDto.getRev_id());
         comment.setMessage(commentPostDto.getMessage());
         comment.setDate(LocalDateTime.now());
 
