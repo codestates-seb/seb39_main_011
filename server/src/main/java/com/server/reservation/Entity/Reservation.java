@@ -17,7 +17,7 @@ public class Reservation {
     private Long rez_id;
 
     private Long userId;
-    private Long camp_id;
+    private Long campId;
 
     @Column(nullable = false)
     private String name;
