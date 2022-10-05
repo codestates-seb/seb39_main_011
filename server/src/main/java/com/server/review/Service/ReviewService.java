@@ -31,7 +31,7 @@ public class ReviewService {
     public Optional<Review> findReview(long rev_id) {
        return reviewRepository.findById(rev_id);}
 
-    public List<Review> findReviews() {
-        return reviewRepository.findAll();
+    public List<Review> findAdminReview(long campId) {
+        return reviewRepository.findByCampId(campId);
     }
 }
