@@ -36,6 +36,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
+      console.log(id, pwd);
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/user/login`,
         {
