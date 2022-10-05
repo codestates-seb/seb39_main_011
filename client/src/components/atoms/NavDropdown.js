@@ -1,15 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import { logout } from "../../redux/reducers/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-const NavDropdown = ({ isLogin }) => {
+const NavDropdown = () => {
   const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  // const isAdmin = useSelector((state) => state.auth.isAdmin);
+
+  const role = localStorage.getItem("role");
+
+  let path = "";
+  if (role === "ADMIN") {
+    path = "/admin/mypage/myinfo";
+  } else if (role === "USER") {
+    path = "/client/mypage/myinfo";
+  }
+
+  // Redux toolkit -> 새로고침시 값 초기화되는 이슈 발생
+  // if (isAdmin) {
+  //   path = "/admin/mypage/myinfo";
+  // } else {
+  //   path = "/client/mypage/myinfo";
+  // }
 
   const handleLogout = () => {
     dispatch(logout());
     sessionStorage.removeItem("Token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("role");
   };
 
   return (
@@ -26,7 +46,7 @@ const NavDropdown = ({ isLogin }) => {
         </Layout>
       ) : (
         <Layout>
-          <Link to="/client/mypage">
+          <Link to={path}>
             <li>마이페이지</li>
           </Link>
           <hr />

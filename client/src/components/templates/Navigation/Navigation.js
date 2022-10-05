@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
+  console.log(isLogin);
 
   const [isOpen, setIsOpen] = useState(false);
 
