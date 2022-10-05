@@ -8,7 +8,7 @@ export const AsideContainer = styled.aside`
   border-radius: 5px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
 
-  position: sticky;
+  position: ${(props) => (props.mobile ? "static" : "sticky")};
   top: 90px;
   z-index: 998;
 
@@ -17,9 +17,5 @@ export const AsideContainer = styled.aside`
     flex-direction: column;
     justify-content: space-between;
     gap: 7px;
-  }
-
-  @media (max-width: 820px) {
-    display: none;
   }
 `;

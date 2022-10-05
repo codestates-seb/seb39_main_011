@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 
 import IconText from "../../atoms/IconText";
 import KakaoMap from "../../atoms/KakaoMap";
+import DetailModal from "../../organisms/DetailModal/DetailModal";
+import { useMediaQuery } from "react-responsive";
+import { ButtonPrimary } from "../../atoms/Button";
 
 import { ReactComponent as CampIcon } from "./../../../svg/camp.svg";
 import { ReactComponent as PhoneIcon } from "./../../../svg/phone.svg";
@@ -10,9 +13,18 @@ import { ReactComponent as LocationIcon } from "./../../../svg/location.svg";
 import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 
 const DetailInfo = ({ camp }) => {
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 820 });
+  const [modal, setModal] = useState(false);
+  const handleModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <S.TabInfoContainer>
-      <KakaoMap camp={camp} />
+      {modal && isTabletOrMobile ? (
+        <DetailModal handleModal={handleModal} />
+      ) : null}
+      <KakaoMap camp={camp.place} />
       <S.Info>
         <IconText icon={<CampIcon width="20" height="20" />}>
           캠핑장: {camp.name}
@@ -57,6 +69,19 @@ const DetailInfo = ({ camp }) => {
           <div>상대방을 배려하며 캠핑을 즐깁시다.</div>
         </div>
       </S.Content>
+      {isTabletOrMobile ? (
+        <ButtonPrimary
+          bgc={"var(--main-color-2)"}
+          color={"#fff"}
+          radius={"5px"}
+          padding={"10px"}
+          fontWeight={"700"}
+          fontSize={"14px"}
+          onClick={handleModal}
+        >
+          예약하기
+        </ButtonPrimary>
+      ) : null}
     </S.TabInfoContainer>
   );
 };

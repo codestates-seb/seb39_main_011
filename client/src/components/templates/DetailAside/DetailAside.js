@@ -12,7 +12,7 @@ import { ReactComponent as CountIcon } from "./../../../svg/revcount.svg";
 import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 import { ReactComponent as RequestIcon } from "./../../../svg/note.svg";
 
-const DetailAside = () => {
+const DetailAside = (props) => {
   const reservation = useSelector((state) => state.reservationDate);
   const [reservationInput, setReservationInput] = useState({
     name: "",
@@ -82,7 +82,7 @@ const DetailAside = () => {
 
   const errorPrevention = () => {};
   return (
-    <S.AsideContainer>
+    <S.AsideContainer mobile={props.mobile}>
       <Calendar />
       <form onSubmit={submitHandler}>
         <InputLabel

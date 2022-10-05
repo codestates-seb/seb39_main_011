@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const { kakao } = window;
 
-const KakaoMap = () => {
+const KakaoMap = ({ camp }) => {
   useEffect(() => {
     const container = document.getElementById("map");
     const options = {
@@ -16,7 +16,8 @@ const KakaoMap = () => {
     // 주소로 좌표를 검색합니다
     geocoder.addressSearch(
       // "제주특별자치도 제주시 첨단로 242",
-      "부산 해운대구 APEC로 17 (우동, 센텀리더스마크)",
+      // "부산 해운대구 APEC로 17 (우동, 센텀리더스마크)",
+      `${camp}`,
       function (result, status) {
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {
@@ -39,7 +40,7 @@ const KakaoMap = () => {
         }
       }
     );
-  }, []);
+  }, [camp]);
 
   return (
     <>

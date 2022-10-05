@@ -4,7 +4,6 @@ import todayGenerator from "../../../utils/date";
 import * as S from "./style";
 import { useDispatch } from "react-redux";
 import { sortCheck } from "../../../redux/reducers/sortSlice";
-
 import InputLabel from "../../atoms/InputLabel";
 
 import { ReactComponent as LocationIcon } from "./../../../svg/location.svg";
@@ -28,6 +27,27 @@ const MainAside = () => {
     dispatch(sortCheck(e.target.id));
   };
 
+  const sortBtn = [
+    {
+      name: "가격순 정렬",
+      id: "price",
+      icon: <CoinIcon />,
+      handler: priceSortHandler,
+    },
+    {
+      name: "별점순 정렬",
+      id: "vote",
+      icon: <StarIcon />,
+      handler: voteSortHandler,
+    },
+    {
+      name: "리뷰순 정렬",
+      id: "review",
+      icon: <ReviewIcon fill="var(--main-color-1)" />,
+      handler: reviewSortHandler,
+    },
+  ];
+
   return (
     <S.AsideContainer>
       <InputLabel icon={<LocationIcon />} on="false">
@@ -46,33 +66,20 @@ const MainAside = () => {
       >
         날짜 선택
       </InputLabel>
-      <InputLabel
-        icon={<CoinIcon />}
-        type="radio"
-        id="price"
-        name="sorting"
-        onChange={priceSortHandler}
-      >
-        가격순 정렬
-      </InputLabel>
-      <InputLabel
-        icon={<StarIcon />}
-        type="radio"
-        id="vote"
-        name="sorting"
-        onChange={voteSortHandler}
-      >
-        별점순 정렬
-      </InputLabel>
-      <InputLabel
-        icon={<ReviewIcon fill="var(--main-color-1)" />}
-        type="radio"
-        id="review"
-        name="sorting"
-        onChange={reviewSortHandler}
-      >
-        리뷰순 정렬
-      </InputLabel>
+      {sortBtn.map((el, idx) => {
+        return (
+          <InputLabel
+            icon={el.icon}
+            key={idx}
+            type="radio"
+            id={el.id}
+            name="sorting"
+            onChange={el.handler}
+          >
+            {el.name}
+          </InputLabel>
+        );
+      })}
     </S.AsideContainer>
   );
 };

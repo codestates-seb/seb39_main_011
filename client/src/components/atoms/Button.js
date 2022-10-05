@@ -104,18 +104,6 @@ export const OutlineBtnS = styled(OutlineBtn)`
   }
 `;
 
-export const ReservationBtn = styled(ButtonPrimary)`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  border: 1px solid #000000;
-  display: none;
-
-  @media (max-width: 820px) {
-    display: block;
-  }
-`;
-
 export const CalendarBtn = styled(ButtonPrimary)`
   line-height: 3px;
 `;

@@ -24,17 +24,20 @@ const Nav = () => {
     dispatch(sortCheck(e.target.id));
   };
 
-  const filterBtn = [
+  const sortBtn = [
     {
       name: "가격순",
+      id: "price",
       handler: priceSortHandler,
     },
     {
       name: "별점순",
+      id: "vote",
       handler: voteSortHandler,
     },
     {
       name: "리뷰순",
+      id: "review",
       handler: reviewSortHandler,
     },
   ];
@@ -42,12 +45,12 @@ const Nav = () => {
     <S.NavContainer>
       <S.Filter>
         <div>
-          {filterBtn.map((el, idx) => {
+          {sortBtn.map((el, idx) => {
             return (
               <InputLabel
                 key={idx}
                 type="radio"
-                id="price"
+                id={el.id}
                 name="sorting"
                 none
                 onChange={el.handler}

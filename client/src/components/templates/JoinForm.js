@@ -176,6 +176,7 @@ const JoinForm = () => {
           />
           <LoginInput
             label="비밀번호"
+            type="password"
             name="pwd"
             innerRef={pwdRef}
             onChange={validHandler}
