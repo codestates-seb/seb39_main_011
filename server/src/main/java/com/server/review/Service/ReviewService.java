@@ -34,4 +34,8 @@ public class ReviewService {
     public List<Review> findAdminReview(long campId) {
         return reviewRepository.findByCampId(campId);
     }
+
+    public List<Review> findUserReview(long userId) {
+        return  reviewRepository.findByUserId(userId);
+    }
 }
