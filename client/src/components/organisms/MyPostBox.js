@@ -9,6 +9,8 @@ const MyPostBox = () => {
   const [images, setImages] = useState(null);
   const [place, setPlace] = useState("");
 
+  const userId = localStorage.getItem("userId");
+
   const handleChange = (e) => {
     let input = {};
     input[e.target.name] = e.target.value;
@@ -20,24 +22,33 @@ const MyPostBox = () => {
     ...camping,
     file_path: images,
     place,
+    userId,
+  };
+
+  const [resData, setResData] = useState({});
+
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `${sessionStorage.getItem("Token")}`,
   };
 
   // 본인이 작성한 캠핑장 글 조회
   const getPost = async () => {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `${sessionStorage.getItem("Token")}`,
-    };
-
     const userId = localStorage.getItem("userId");
 
     try {
-      const res = await axios.get(`/admin/post/${userId}`, {
-        headers: headers,
-      });
-      setCamping(res.data);
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/admin/post/${userId}`,
+        {
+          headers: headers,
+        }
+      );
 
-      console.log("res: ", res.data);
+      if (res.data.length !== 0) {
+        localStorage.setItem("campId", res.data[0].campId);
+      }
+      setCamping(res.data);
+      setResData(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -47,8 +58,67 @@ const MyPostBox = () => {
     getPost();
   }, []);
 
+  // 게시물 등록 이벤트
+  const handleSubmit = async () => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/admin/post`,
+        campingData,
+        {
+          headers: headers,
+        }
+      );
+      setCamping(res.data);
+      window.location.reload();
+      alert("캠핑장 게시물을 등록하였습니다.");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleQuit = () => {
+    window.confirm("캠핑장 등록을 취소하시겠습니까?");
+    setCamping("");
+    setImages("");
+    setPlace("");
+    window.location.reload();
+  };
+
+  let campIdx = localStorage.getItem("campId");
+
+  // 글 삭제
+  const onRemovePost = async () => {
+    try {
+      const res = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/admin/post/${campIdx}`,
+        { headers: headers }
+      );
+      localStorage.removeItem("campId");
+      alert("삭제 완료");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onUpdatePost = async () => {
+    try {
+      const res = await axios.put(
+        `${process.env.REACT_APP_API_URL}/admin/post/${campIdx}`,
+        {
+          campingData,
+        },
+        { headers: headers }
+      );
+      alert("수정 클릭");
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const showHandler = () => {
-    if (Object.keys(camping).length === 0) {
+    if (resData.length === 0) {
       return (
         <PostCamping
           handleChange={handleChange}
@@ -64,46 +134,11 @@ const MyPostBox = () => {
       return (
         <EditCamping
           campingData={campingData}
-          handleChange={handleChange}
-          place={place}
-          setPlace={setPlace}
-          images={images}
-          setImages={setImages}
-          handleQuit={handleQuit}
-          handleSubmit={handleSubmit}
+          onRemovePost={onRemovePost}
+          onUpdatePost={onUpdatePost}
         />
       );
     }
-  };
-
-  // 게시물 등록 버튼 클릭 이벤트
-  const handleSubmit = async () => {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `${sessionStorage.getItem("Token")}`,
-    };
-
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/admin/post`,
-        campingData,
-        {
-          headers: headers,
-        }
-      );
-      console.log(res.data);
-      alert("캠핑장이 등록되었습니다.");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleQuit = () => {
-    window.confirm("캠핑장 등록을 취소하시겠습니까?");
-    setCamping("");
-    setImages("");
-    setPlace("");
-    window.location.reload();
   };
 
   return <Container>{showHandler()}</Container>;
