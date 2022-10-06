@@ -16,14 +16,16 @@ export const ModalContainer = styled.div`
 
   .closeBtn {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 85px;
     font-size: 20px;
+    font-weight: 600;
     width: 30px;
     height: 30px;
     text-align: center;
     line-height: 30px;
     cursor: pointer;
+    z-index: 999;
   }
 `;
 

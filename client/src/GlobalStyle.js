@@ -67,7 +67,7 @@ const GlobalStyle = createGlobalStyle`
     .rdp-tfoot {
       position: absolute;
       top: 2px;
-      right: 2px;
+      right: 10px;
     }
   }
   /* =========================== */

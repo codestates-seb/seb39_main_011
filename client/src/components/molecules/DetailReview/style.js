@@ -23,6 +23,12 @@ export const Info = styled.div`
 export const Content = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 `;
 
 export const ImgBox = styled.div`
