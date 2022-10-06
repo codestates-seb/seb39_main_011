@@ -98,6 +98,11 @@ const DetailAside = (props) => {
       {modalSwitch ? (
         <Modoal input={reservationInput} onModalHandler={modalHandler} />
       ) : null}
+      {props.mobile ? (
+        <div className="closeBtn" onClick={props.onModalHandler}>
+          X
+        </div>
+      ) : null}
       <Calendar mobile={props.mobile} />
       <form onSubmit={submitHandler}>
         <InputLabel
