@@ -5,10 +5,7 @@ import DetailAside from "../../templates/DetailAside/DetailAside";
 const DetailModal = ({ modalHandler }) => {
   return (
     <S.ModalContainer>
-      <div className="closeBtn" onClick={modalHandler}>
-        X
-      </div>
-      <DetailAside mobile />
+      <DetailAside mobile onModalHandler={modalHandler} />
     </S.ModalContainer>
   );
 };
