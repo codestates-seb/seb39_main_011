@@ -13,9 +13,9 @@ const NavDropdown = () => {
 
   let path = "";
   if (role === "ADMIN") {
-    path = "/admin/mypage/myinfo";
+    path = "/admin/mypage/post";
   } else if (role === "USER") {
-    path = "/client/mypage/myinfo";
+    path = "/client/mypage/rez";
   }
 
   // Redux toolkit -> 새로고침시 값 초기화되는 이슈 발생
