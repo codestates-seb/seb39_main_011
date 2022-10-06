@@ -16,6 +16,7 @@ import { ReactComponent as RequestIcon } from "./../../../svg/note.svg";
 const DetailAside = (props) => {
   const reservation = useSelector((state) => state.reservationDate);
   const [modalSwitch, setModalSwitch] = useState(false);
+  const userRole = localStorage.getItem("role");
   const [reservationInput, setReservationInput] = useState({
     name: "",
     phone: "",
@@ -76,8 +77,15 @@ const DetailAside = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    setModalSwitch(!modalSwitch);
     console.log(reservationInput);
+    if (userRole === "ADMIN") {
+      alert("관리자는 예약할 수 없습니다.");
+      return;
+    } else if (userRole === "USER") {
+      setModalSwitch(!modalSwitch);
+    } else {
+      alert("로그인이 필요합니다.");
+    }
   };
 
   const modalHandler = () => {
