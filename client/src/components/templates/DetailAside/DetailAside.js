@@ -82,9 +82,15 @@ const DetailAside = (props) => {
       alert("관리자는 예약할 수 없습니다.");
       return;
     } else if (userRole === "USER") {
-      setModalSwitch(!modalSwitch);
+      if (reservationInput.checkOut !== undefined) {
+        setModalSwitch(!modalSwitch);
+      } else {
+        alert("예약 날짜를 선택해주세요");
+        return;
+      }
     } else {
       alert("로그인이 필요합니다.");
+      return;
     }
   };
 
@@ -113,7 +119,7 @@ const DetailAside = (props) => {
           value={
             reservation.from && reservation.to
               ? `${reservation.from.toLocaleDateString()} - ${reservation.to.toLocaleDateString()}`
-              : ""
+              : null
           }
           disable="true"
           onChange={errorPrevention}

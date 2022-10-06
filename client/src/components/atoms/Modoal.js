@@ -6,7 +6,7 @@ import IconText from "./IconText";
 
 const Modoal = (props) => {
   const userId = localStorage.getItem("userId");
-  const reservationInfo = props.input;
+  const reservationInfo = { ...props.input };
   reservationInfo.userId = userId;
   reservationInfo.campId = "20";
   reservationInfo.price = props.input.price.toString();
@@ -33,7 +33,7 @@ const Modoal = (props) => {
         }
       );
       console.log(res.data);
-      alert("예약 성공하였습니다.");
+      alert("예약에 성공하였습니다.");
     } catch (error) {
       console.log(error);
       alert("예약 실패하였습니다.");
