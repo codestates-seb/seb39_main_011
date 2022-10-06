@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const { kakao } = window;
 
 const KakaoMap = ({ camp }) => {
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 600 });
   useEffect(() => {
     const container = document.getElementById("map");
     const options = {
@@ -44,7 +46,10 @@ const KakaoMap = ({ camp }) => {
 
   return (
     <>
-      <div id="map" style={{ width: "100%", height: "300px" }}></div>
+      <div
+        id="map"
+        style={{ width: "100%", height: isTabletOrMobile ? "200px" : "300px" }}
+      ></div>
     </>
   );
 };

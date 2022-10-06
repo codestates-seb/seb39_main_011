@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
-import { ButtonPrimary } from "../../../../src/components/atoms/Button";
+import { ReservationBtn } from "../../../../src/components/atoms/Button";
 import { useSelector } from "react-redux";
 import Calendar from "../../atoms/Calendar.js";
 import InputLabel from "../../atoms/InputLabel";
+import Modoal from "../../atoms/Modoal";
 
 import { ReactComponent as CalendarIcon } from "./../../../svg/calendar.svg";
 import { ReactComponent as UserIcon } from "./../../../svg/profile.svg";
@@ -14,15 +15,18 @@ import { ReactComponent as RequestIcon } from "./../../../svg/note.svg";
 
 const DetailAside = (props) => {
   const reservation = useSelector((state) => state.reservationDate);
+  const [modalSwitch, setModalSwitch] = useState(false);
   const [reservationInput, setReservationInput] = useState({
     name: "",
     phone: "",
     quantity: "",
     price: "",
-    request: "",
+    note: "",
     checkIn: "",
     checkOut: "",
   });
+  let hi = 50000;
+  const [reservationPrice, setReservationPrice] = useState(hi);
 
   useEffect(() => {
     setReservationInput((preState) => {
@@ -51,39 +55,42 @@ const DetailAside = (props) => {
     });
   };
   const quantityHandler = (event) => {
+    hi = hi * event.target.value;
+    setReservationPrice(hi);
     setReservationInput((preState) => {
       return {
         ...preState,
         quantity: event.target.value,
+        price: reservationPrice,
       };
     });
   };
-  const priceHandler = (event) => {
+  const noteHandler = (event) => {
     setReservationInput((preState) => {
       return {
         ...preState,
-        price: event.target.value,
-      };
-    });
-  };
-  const requestHandler = (event) => {
-    setReservationInput((preState) => {
-      return {
-        ...preState,
-        request: event.target.value,
+        note: event.target.value,
       };
     });
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
+    setModalSwitch(!modalSwitch);
     console.log(reservationInput);
+  };
+
+  const modalHandler = () => {
+    setModalSwitch(!modalSwitch);
   };
 
   const errorPrevention = () => {};
   return (
     <S.AsideContainer mobile={props.mobile}>
-      <Calendar />
+      {modalSwitch ? (
+        <Modoal input={reservationInput} onModalHandler={modalHandler} />
+      ) : null}
+      <Calendar mobile={props.mobile} />
       <form onSubmit={submitHandler}>
         <InputLabel
           icon={<CalendarIcon width="20" height="20" />}
@@ -124,6 +131,7 @@ const DetailAside = (props) => {
           id="reservationCount"
           name="reservationCount"
           onChange={quantityHandler}
+          min="1"
         >
           예약 수량
         </InputLabel>
@@ -132,7 +140,9 @@ const DetailAside = (props) => {
           type="number"
           id="reservationPrice"
           name="reservationPrice"
-          onChange={priceHandler}
+          onChange={errorPrevention}
+          disable="true"
+          value={reservationPrice}
         >
           예약 가격
         </InputLabel>
@@ -144,21 +154,11 @@ const DetailAside = (props) => {
           id="reservationRequest"
           name="reservationRequest"
           textarea
-          onChange={requestHandler}
+          onChange={noteHandler}
         >
           요청 사항
         </InputLabel>
-        <ButtonPrimary
-          bgc={"var(--main-color-2)"}
-          color={"#fff"}
-          radius={"5px"}
-          padding={"10px"}
-          fontWeight={"700"}
-          fontSize={"14px"}
-          type={"submit"}
-        >
-          예약하기
-        </ButtonPrimary>
+        <ReservationBtn type={"submit"}>예약하기</ReservationBtn>
       </form>
     </S.AsideContainer>
   );

@@ -15,14 +15,14 @@ import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 const DetailInfo = ({ camp }) => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: 820 });
   const [modal, setModal] = useState(false);
-  const handleModal = () => {
+  const modalHandler = () => {
     setModal(!modal);
   };
 
   return (
     <S.TabInfoContainer>
       {modal && isTabletOrMobile ? (
-        <DetailModal handleModal={handleModal} />
+        <DetailModal modalHandler={modalHandler} />
       ) : null}
       <KakaoMap camp={camp.place} />
       <S.Info>
@@ -45,11 +45,11 @@ const DetailInfo = ({ camp }) => {
           {camp.name} 캠핑장을 소개합니다.
         </IconText>
         <div>
-          <div>인사말</div>
+          <div>🙇‍♂️ 인사말</div>
           <div>{camp.note}</div>
         </div>
         <div>
-          <div>시설 및 레저</div>
+          <div>🙋‍♂️ 시설 및 레저</div>
           <ul>
             <li>기본 시설: 화장실, 샤워실, 개수대, 매점</li>
             <li>부가 시설: 수영장, 족구장, 산책로</li>
@@ -57,7 +57,7 @@ const DetailInfo = ({ camp }) => {
           </ul>
         </div>
         <div>
-          <div>이용시간</div>
+          <div>🙆‍♂️ 이용시간</div>
           <ul>
             <li>체크인: 15:00</li>
             <li>체크아웃: 12:00</li>
@@ -65,7 +65,7 @@ const DetailInfo = ({ camp }) => {
           </ul>
         </div>
         <div>
-          <div>주의사항</div>
+          <div>🙅‍♂️ 주의사항</div>
           <div>상대방을 배려하며 캠핑을 즐깁시다.</div>
         </div>
       </S.Content>
@@ -77,7 +77,7 @@ const DetailInfo = ({ camp }) => {
           padding={"10px"}
           fontWeight={"700"}
           fontSize={"14px"}
-          onClick={handleModal}
+          onClick={modalHandler}
         >
           예약하기
         </ButtonPrimary>

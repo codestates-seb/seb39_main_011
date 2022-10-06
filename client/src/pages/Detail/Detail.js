@@ -10,7 +10,7 @@ const Detail = () => {
   return (
     <S.DetailContainer>
       <DetailContent />
-      {isTabletOrMobile ? null : <DetailAside />}
+      {!isTabletOrMobile ? <DetailAside /> : null}
     </S.DetailContainer>
   );
 };

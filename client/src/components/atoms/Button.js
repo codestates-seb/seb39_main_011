@@ -121,6 +121,15 @@ export const MainBtn = styled(ButtonPrimary)`
   }
 `;
 
+export const ReservationBtn = styled(ButtonPrimary)`
+  background-color: var(--main-color-2);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 14px;
+`;
+
 const Button = ({
   text,
   color,

@@ -23,4 +23,6 @@ export const Content = styled.div`
   justify-content: space-between;
   gap: 10px;
   line-height: 1.2rem;
+  border-top: 1px solid var(--main-color-4);
+  padding-top: 20px;
 `;

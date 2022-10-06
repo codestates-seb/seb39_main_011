@@ -27,7 +27,12 @@ const InputLabel = (props) => {
         />
       ) : null}
       {props.textarea ? (
-        <textarea onChange={props.onChange} id={props.id} name={props.name} />
+        <textarea
+          onChange={props.onChange}
+          id={props.id}
+          name={props.name}
+          required
+        />
       ) : null}
     </Container>
   );

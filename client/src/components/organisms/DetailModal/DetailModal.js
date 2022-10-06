@@ -2,10 +2,10 @@ import React from "react";
 import * as S from "./style";
 import DetailAside from "../../templates/DetailAside/DetailAside";
 
-const DetailModal = ({ handleModal }) => {
+const DetailModal = ({ modalHandler }) => {
   return (
     <S.ModalContainer>
-      <div className="closeBtn" onClick={handleModal}>
+      <div className="closeBtn" onClick={modalHandler}>
         X
       </div>
       <DetailAside mobile />
