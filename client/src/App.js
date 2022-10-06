@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/templates/Navigation/Navigation";
 import Main from "./pages/Main/Main";
@@ -16,7 +16,19 @@ import ClientReview from "./pages/client-mypage/ClientReview";
 import MypageLayout from "./components/templates/MypageLayout";
 import MyInfo from "./pages/Myinfo";
 
+import { useDispatch } from "react-redux";
+import { login } from "./redux/reducers/authSlice";
+
 function App() {
+  const dispatch = useDispatch();
+  const Token = sessionStorage.getItem("Token");
+
+  useEffect(() => {
+    if (Token) {
+      dispatch(login());
+    }
+  }, []);
+
   return (
     <>
       <Navigation />

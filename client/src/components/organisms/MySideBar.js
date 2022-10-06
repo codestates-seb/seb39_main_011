@@ -9,7 +9,9 @@ import { ReactComponent as RevPic } from "../../svg/revstar.svg";
 
 const MySideBar = () => {
   const paths = useLocation().pathname;
-  const pathName = useLocation().pathname.split("/")[1];
+  // const pathName = useLocation().pathname.split("/")[1];
+
+  const role = localStorage.getItem("role");
 
   const clientTabs = [
     { name: "내 정보", path: "/client/mypage/myinfo", icon: <MyinfoPic /> },
@@ -45,16 +47,24 @@ const MySideBar = () => {
     },
   ];
 
-  const Tabs = {
-    client: clientTabs,
-    admin: adminTabs,
-  };
+  // const Tabs = {
+  //   client: clientTabs,
+  //   admin: adminTabs,
+  // };
+
+  let sidebarTitle = "";
+
+  if (role === "ADMIN") {
+    sidebarTitle = adminTabs;
+  } else if (role === "USER") {
+    sidebarTitle = clientTabs;
+  }
 
   return (
     <SideBarContainer>
       <Title className="hide">마이페이지</Title>
       <TabBox>
-        {Tabs[pathName].map((tab, idx) => {
+        {sidebarTitle.map((tab, idx) => {
           return (
             <NavLink to={tab.path} key={idx}>
               <SidebarItem
