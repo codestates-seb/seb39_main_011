@@ -10,20 +10,20 @@ const DetailTab = () => {
   const [camp, setCamp] = useState({});
   const camp_id = useParams();
 
-  const getCampingData = async () => {
-    try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/admin/post/${camp_id.id}`
-      );
-      setCamp(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getCampingData = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `${process.env.REACT_APP_API_URL}/admin/post/${camp_id.id}`
+  //     );
+  //     setCamp(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getCampingData();
-  });
+  // useEffect(() => {
+  //   getCampingData();
+  // });
 
   const tabMenu = [
     { title: "기본 정보", content: <DetailInfo camp={camp} /> },
