@@ -133,7 +133,7 @@ const MyPostBox = () => {
     } else {
       return (
         <EditCamping
-          campingData={campingData}
+          resData={resData}
           onRemovePost={onRemovePost}
           onUpdatePost={onUpdatePost}
         />
