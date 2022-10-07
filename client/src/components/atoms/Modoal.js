@@ -8,7 +8,7 @@ const Modoal = (props) => {
   const userId = localStorage.getItem("userId");
   const reservationInfo = { ...props.input };
   reservationInfo.userId = userId;
-  reservationInfo.campId = "111";
+  reservationInfo.campId = "120";
   reservationInfo.price = props.input.price.toString();
   reservationInfo.date = props.input.checkIn
     .split(" ")
