@@ -64,7 +64,7 @@ const MainContent = () => {
         <MainMessage />
       ) : (
         renderCampingList.map((el) => {
-          return <CampingCard key={el.camp_id} camplist={el} />;
+          return <CampingCard key={el.campId} camplist={el} />;
         })
       )}
     </S.PostContainer>

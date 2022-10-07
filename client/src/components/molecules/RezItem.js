@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { OutlineBtn } from "../atoms/Button";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 import { ReactComponent as ProfileIcon } from "../../svg/profile.svg";
 import { ReactComponent as CampingIcon } from "../../svg/camp.svg";
@@ -13,11 +14,28 @@ import { ReactComponent as NoteIcon } from "../../svg/note.svg";
 const RezItem = ({ item, openReviewHandler }) => {
   const { pathname } = useLocation();
 
+  const deleteReservation = async () => {
+    try {
+      const { data } = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/client/info/rez/${item.rezId}`
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const dummyImg = [
+    "/assets/images/camping.avif",
+    "/assets/images/camping.avif",
+    "/assets/images/camping.avif",
+  ];
+
   return (
     <div>
       <ItemBox>
         <ImgBox>
-          <Img src={item.photo} alt="camping" />
+          <Img src={dummyImg[0]} alt="camping" />
         </ImgBox>
         <ContentBox>
           {pathname === "/client/mypage/rez" ||
@@ -26,7 +44,7 @@ const RezItem = ({ item, openReviewHandler }) => {
               <div>
                 <CampingIcon />
               </div>
-              <div> 캠핑장: {item.name}</div>
+              <div> 캠핑장: 한라봉 캠핑장</div>
             </div>
           ) : (
             <div className="inner">
@@ -70,7 +88,7 @@ const RezItem = ({ item, openReviewHandler }) => {
           <OutlineBtn
             onClick={
               pathname === "/client/mypage/rez"
-                ? null
+                ? () => deleteReservation()
                 : () => openReviewHandler(item.id)
             }
           >

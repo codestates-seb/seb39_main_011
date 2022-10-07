@@ -83,7 +83,7 @@ const Container = styled.fieldset`
 
   > input[type="text"],
   input[type="number"] {
-    font-size: 12px;
+    font-size: 11px;
     border: 2px solid var(--main-color-4);
     border-radius: 5px;
     width: 100px;
