@@ -12,6 +12,10 @@ const ClientReviewItem = ({
   item,
   review,
   star,
+  file_path,
+  userId,
+  campId,
+  rezId,
   onRemoveReview,
   onUpdateReview,
 }) => {
@@ -33,7 +37,7 @@ const ClientReviewItem = ({
 
   const handleRemove = () => {
     if (window.confirm("해당 리뷰를 삭제하시겠습니까?")) {
-      onRemoveReview(item.rev_id);
+      onRemoveReview(item.revId);
       window.location.reload();
     }
   };
@@ -46,19 +50,28 @@ const ClientReviewItem = ({
 
   // 수정 완료
   const handleEdit = () => {
-    onUpdateReview(item.rev_id, editReview, editStar);
+    onUpdateReview(
+      item.revId,
+      editReview,
+      editStar,
+      file_path,
+      userId,
+      campId,
+      rezId
+    );
     toggleIsEdit();
   };
 
+  console.log("item", item);
   return (
     <>
       <ItemBox>
         <ContentBox>
           <InnerBox>
             <CampIcon />
-            <span>좋은 캠핑</span>
+            <span>한라봉 캠핑장</span>
             <span className="hide">{date}</span>
-            {/* <p>{item.name}</p> */}
+            <p>{item.name}</p>
 
             {isEdit ? (
               <>
@@ -103,8 +116,7 @@ const ClientReviewItem = ({
           </InnerBox>
 
           <ImgBox>
-            <Img src={item.revPhoto} alt="camping" />
-            <Img src={item.revPhoto} alt="camping" />
+            <Img src={item.file_path} alt="camping" />
 
             {isEdit ? (
               <TextArea
