@@ -13,6 +13,11 @@ export const Container = styled.div`
   > p {
     padding: 50px 0 100px 0;
     font-size: 1.5rem;
+    font-weight: 500;
     color: var(--main-color-4);
+
+    @media (max-width: 400px) {
+      font-size: 15px;
+    }
   }
 `;
