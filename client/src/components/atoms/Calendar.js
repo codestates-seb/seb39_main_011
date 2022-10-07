@@ -34,7 +34,7 @@ function Calendar() {
       selected={range}
       onSelect={setRange}
       disabled={disabledDays}
-      month={month}
+      month={new Date()}
       onMonthChange={setMonth}
       footer={footer}
     />
