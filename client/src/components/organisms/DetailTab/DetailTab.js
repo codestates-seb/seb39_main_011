@@ -8,22 +8,23 @@ import { useParams } from "react-router-dom";
 const DetailTab = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [camp, setCamp] = useState({});
-  const camp_id = useParams();
+  const campId = useParams();
 
-  // const getCampingData = async () => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       `${process.env.REACT_APP_API_URL}/admin/post/${camp_id.id}`
-  //     );
-  //     setCamp(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const getCampingData = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/admin/post/66`
+        // `${process.env.REACT_APP_API_URL}/admin/post/${campId.id}`
+      );
+      setCamp(data[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   getCampingData();
-  // });
+  useEffect(() => {
+    getCampingData();
+  });
 
   const tabMenu = [
     { title: "기본 정보", content: <DetailInfo camp={camp} /> },

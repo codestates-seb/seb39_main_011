@@ -151,6 +151,7 @@ const DetailAside = (props) => {
           name="reservationCount"
           onChange={quantityHandler}
           min="1"
+          max="10" // 임시
         >
           예약 수량
         </InputLabel>
