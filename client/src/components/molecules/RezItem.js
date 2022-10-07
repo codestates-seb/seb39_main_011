@@ -20,6 +20,8 @@ const RezItem = ({ item, openReviewHandler }) => {
         `${process.env.REACT_APP_API_URL}/client/info/rez/${item.rezId}`
       );
       console.log(data);
+      alert("예약이 취소되었습니다.");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

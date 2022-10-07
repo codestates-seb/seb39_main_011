@@ -36,9 +36,7 @@ const PostReview = () => {
         `${process.env.REACT_APP_API_URL}/client/rev`,
         reviewData
       );
-      alert(
-        `리뷰 등록 성공!! review: ${review}, star: ${star}, file_path: ${images}`
-      );
+      alert("리뷰를 등록하였습니다.");
       window.location.reload();
     } catch (error) {
       console.log(error);
