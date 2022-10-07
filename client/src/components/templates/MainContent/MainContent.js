@@ -6,6 +6,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { sortCheck } from "../../../redux/reducers/sortSlice";
+import BlankCard from "../../atoms/BlankCard";
 
 const MainContent = () => {
   const [renderCampingList, setRenderCampingList] = useState([]);
@@ -67,6 +68,7 @@ const MainContent = () => {
           return <CampingCard key={el.campId} camplist={el} />;
         })
       )}
+      {renderCampingList.length % 2 === 1 ? <BlankCard /> : null}
     </S.PostContainer>
   );
 };
