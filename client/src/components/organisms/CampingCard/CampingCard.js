@@ -17,7 +17,7 @@ const CampingCard = ({ camplist }) => {
   return (
     <S.CardContainer>
       <Link to={`/detail/${camplist.camp_id}`}>
-        <S.Img src="/assets/images/camping.avif" alt="이미지" />
+        <S.Img src={camplist.file_path} alt="이미지" />
         <S.FlexLayout>
           <div>
             <div>

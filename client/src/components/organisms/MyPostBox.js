@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import PostCamping from "../molecules/PostCamping";
-import EditCamping from "../molecules/EditCamping";
+import PostCamping from "../molecules/MyPostCamping/PostCamping";
+import EditCamping from "../molecules/MyPostCamping/EditCamping";
+import ShowCamping from "../molecules/MyPostCamping/ShowCamping";
 
 const MyPostBox = () => {
   const [camping, setCamping] = useState({});
@@ -94,23 +95,20 @@ const MyPostBox = () => {
         { headers: headers }
       );
       localStorage.removeItem("campId");
-      alert("삭제 완료");
+      alert("게시글 삭제가 완료되었습니다.");
       window.location.reload();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const onUpdatePost = async () => {
+  const onUpdatePost = async (id) => {
     try {
       const res = await axios.put(
         `${process.env.REACT_APP_API_URL}/admin/post/${campIdx}`,
-        {
-          campingData,
-        },
+        campingData,
         { headers: headers }
       );
-      alert("수정 클릭");
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -132,7 +130,7 @@ const MyPostBox = () => {
       );
     } else {
       return (
-        <EditCamping
+        <ShowCamping
           resData={resData}
           onRemovePost={onRemovePost}
           onUpdatePost={onUpdatePost}
