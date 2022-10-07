@@ -126,9 +126,7 @@ const JoinForm = () => {
         }
       );
       navigate("/login");
-      alert(
-        `Success!! name: ${name}, id: ${id}, pwd: ${pwd}, email: ${email}, phone: ${phone}, role: ${role}`
-      );
+      alert("베어멜로의 회원이 되신 것을 환영합니다!");
 
       window.location.reload();
     } catch (error) {

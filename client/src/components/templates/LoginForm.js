@@ -59,7 +59,7 @@ const LoginForm = () => {
       sessionStorage.setItem("Token", response.headers.authorization);
       dispatch(login());
       navigate("/");
-      alert("로그인 성공");
+      alert("로그인에 성공하셨습니다.");
     } catch (error) {
       if ((res) => res.data.status === 500 || res.data.status === 404) {
         alert("로그인에 실패하셨습니다.");

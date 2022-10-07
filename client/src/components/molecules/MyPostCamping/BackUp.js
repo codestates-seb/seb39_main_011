@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { OutlineBtn } from "../atoms/Button";
-import { ReactComponent as CampIcon } from "../../svg/camp.svg";
-import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
-import { ReactComponent as MapIcon } from "../../svg/location.svg";
-import { ReactComponent as CoinIcon } from "../../svg/coin.svg";
-import { ReactComponent as TeamIcon } from "../../svg/team.svg";
-import { ReactComponent as NoteIcon } from "../../svg/note.svg";
+import { OutlineBtn } from "../../atoms/Button";
+import { ReactComponent as CampIcon } from "../../../svg/camp.svg";
+import { ReactComponent as PhoneIcon } from "../../../svg/phone.svg";
+import { ReactComponent as MapIcon } from "../../../svg/location.svg";
+import { ReactComponent as CoinIcon } from "../../../svg/coin.svg";
+import { ReactComponent as TeamIcon } from "../../../svg/team.svg";
+import { ReactComponent as NoteIcon } from "../../../svg/note.svg";
 
-const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
-  console.log(resData);
+const ShowCamping = ({ resData, onRemovePost, isEdit, setIsEdit }) => {
+  const toggleIsEdit = () => {
+    setIsEdit(!isEdit);
+  };
+
   return (
     <div>
       <Box>
@@ -92,7 +95,7 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
           <OutlineBtn onClick={onRemovePost} width="51px">
             삭제
           </OutlineBtn>
-          <OutlineBtn onClick={onUpdatePost} width="51px">
+          <OutlineBtn onClick={toggleIsEdit} width="51px">
             수정
           </OutlineBtn>
         </div>
@@ -101,7 +104,7 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
   );
 };
 
-export default EditCamping;
+export default ShowCamping;
 
 const Box = styled.div`
   display: flex;

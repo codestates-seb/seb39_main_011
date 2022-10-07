@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { FillBtn, OutlineBtn } from "../atoms/Button";
-import RequiredInput from "../atoms/RequiredInput";
-import TextArea from "../atoms/TextArea";
-import PopupPostcode from "../molecules/PopupPostcode";
+import { FillBtn, OutlineBtn } from "../../atoms/Button";
+import RequiredInput from "../../atoms/RequiredInput";
+import TextArea from "../../atoms/TextArea";
+import PopupPostcode from "../PopupPostcode";
 
-import { ReactComponent as CampIcon } from "../../svg/camp.svg";
-import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
-import { ReactComponent as MapIcon } from "../../svg/location.svg";
-import { ReactComponent as CoinIcon } from "../../svg/coin.svg";
-import { ReactComponent as TeamIcon } from "../../svg/team.svg";
-import { ReactComponent as NoteIcon } from "../../svg/note.svg";
-import SingleImageUploader from "../atoms/SingleImageUploader";
+import { ReactComponent as CampIcon } from "../../../svg/camp.svg";
+import { ReactComponent as PhoneIcon } from "../../../svg/phone.svg";
+import { ReactComponent as MapIcon } from "../../../svg/location.svg";
+import { ReactComponent as CoinIcon } from "../../../svg/coin.svg";
+import { ReactComponent as TeamIcon } from "../../../svg/team.svg";
+import { ReactComponent as NoteIcon } from "../../../svg/note.svg";
+import SingleImageUploader from "../../atoms/SingleImageUploader";
 
 const PostCamping = ({
   handleChange,
