@@ -16,7 +16,7 @@ const CampingCard = ({ camplist }) => {
 
   return (
     <S.CardContainer>
-      <Link to={`/detail/${camplist.camp_id}`}>
+      <Link to={`/detail/${camplist.campId}`}>
         <S.Img src={camplist.file_path} alt="이미지" />
         <S.FlexLayout>
           <div>

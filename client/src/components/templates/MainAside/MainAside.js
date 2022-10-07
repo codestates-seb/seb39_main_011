@@ -17,6 +17,10 @@ const MainAside = () => {
   const [date, setDate] = useState(today);
   const dispatch = useDispatch();
 
+  const dateHandler = (e) => {
+    setDate(e.target.value);
+    alert("서비스 준비중입니다.");
+  };
   const priceSortHandler = (e) => {
     dispatch(sortCheck(e.target.id));
   };
@@ -60,7 +64,7 @@ const MainAside = () => {
         value={date}
         min={today}
         max={todayPlusTwoMonth}
-        onChange={(e) => setDate(e.target.value)}
+        onChange={dateHandler}
         id="date"
         name="date"
       >

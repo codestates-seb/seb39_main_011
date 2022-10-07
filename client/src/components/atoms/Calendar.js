@@ -29,8 +29,8 @@ function Calendar() {
   return (
     <DayPicker
       mode="range"
-      min={2}
-      max={3}
+      min={1}
+      max={2}
       selected={range}
       onSelect={setRange}
       disabled={disabledDays}
