@@ -7,21 +7,13 @@ const MyPastRezBox = () => {
   const rezData = [
     {
       id: 1,
-      name: "좋은 캠핑",
-      phone: "010-1234-1234",
-      date: "22.08.10 ~ 22.08.11",
-      price: "50,000 원",
+      name: "한라봉 캠핑장",
+      phone: "01012345678",
+      date: "22.10.01 ~ 22.10.02",
+      price: "60,000원",
       note: "요청사항 없습니다.",
-      photo: "/assets/images/camping.avif",
-    },
-    {
-      id: 2,
-      name: "좋은 캠핑쓰",
-      phone: "010-1234-5678",
-      date: "22.08.10 ~ 22.08.11",
-      price: "70,000 원",
-      note: "요청사항 없음",
-      photo: "/assets/images/camping.avif",
+      photo:
+        "https://bear-mello.s3-ap-northeast-2.amazonaws.com/2813fa0d-a395-4635-a714-cdb042501c50.jpeg",
     },
   ];
 

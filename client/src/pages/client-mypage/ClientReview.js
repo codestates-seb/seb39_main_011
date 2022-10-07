@@ -41,15 +41,26 @@ const ClientReview = () => {
     }
   };
 
-  const onUpdateReview = async (id, review, star, file_path) => {
+  const onUpdateReview = async (
+    revId,
+    review,
+    star,
+    file_path,
+    userId,
+    campId,
+    rezId
+  ) => {
     try {
       const res = await axios.put(
-        `${process.env.REACT_APP_API_URL}/client/rev/${id}`,
+        `${process.env.REACT_APP_API_URL}/client/rev/${revId}`,
         {
-          id,
+          revId,
           review,
           star,
           file_path,
+          userId,
+          campId,
+          rezId,
         },
         { headers: headers }
       );

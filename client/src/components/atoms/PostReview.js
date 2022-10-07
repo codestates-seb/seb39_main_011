@@ -20,11 +20,15 @@ const PostReview = () => {
     setStar(e);
   };
 
+  const userId = localStorage.getItem("userId");
   const reviewPost = async () => {
     const reviewData = {
       review,
       star,
       file_path: images,
+      rezId: 10,
+      userId,
+      campId: 69,
     };
 
     try {
