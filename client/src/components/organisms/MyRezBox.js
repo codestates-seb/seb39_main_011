@@ -6,6 +6,7 @@ import axios from "axios";
 const MyRezBox = () => {
   const [myReservation, setMyReservation] = useState([]);
   const userId = localStorage.getItem("userId");
+
   const getReservationData = async () => {
     try {
       const { data } = await axios.get(
