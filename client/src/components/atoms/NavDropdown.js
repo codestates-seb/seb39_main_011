@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 const NavDropdown = () => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.auth.isLogin);
-  // const isAdmin = useSelector((state) => state.auth.isAdmin);
 
   const role = localStorage.getItem("role");
 
@@ -17,13 +16,6 @@ const NavDropdown = () => {
   } else if (role === "USER") {
     path = "/client/mypage/rez";
   }
-
-  // Redux toolkit -> 새로고침시 값 초기화되는 이슈 발생
-  // if (isAdmin) {
-  //   path = "/admin/mypage/myinfo";
-  // } else {
-  //   path = "/client/mypage/myinfo";
-  // }
 
   const handleLogout = () => {
     dispatch(logout());
@@ -63,7 +55,7 @@ const Layout = styled.div`
   width: 150px;
   height: 90px;
   position: absolute;
-  top: 55px;
+  top: 45px;
   right: 0px;
   display: flex;
   flex-direction: column;

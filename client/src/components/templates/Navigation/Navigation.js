@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import * as S from "./style";
 import styled from "styled-components";
 import { ReactComponent as ProfilePic } from "../../../svg/profile.svg";
+import { ReactComponent as NavbarPic } from "../../../svg/navbar.svg";
 import { ReactComponent as Logo } from "../../../svg/logo.svg";
 import NavDropdown from "../../atoms/NavDropdown";
 import { useSelector } from "react-redux";
@@ -25,12 +26,17 @@ const Navigation = () => {
           </div>
         </Link>
         <Box>
-          <ProfilePic
-            width="50"
-            height="50"
-            fill={isLogin ? "var(--main-color-1)" : "var(--main-color-2)"}
-            onClick={toggleDropdown}
-          />
+          {isLogin ? (
+            <ProfilePic
+              width="50"
+              height="50"
+              fill="var(--main-color-1)"
+              onClick={toggleDropdown}
+            />
+          ) : (
+            <NavbarPic onClick={toggleDropdown} />
+          )}
+
           {isOpen && <NavDropdown isOpen={isOpen} isLogin={isLogin} />}
         </Box>
       </S.Nav>
