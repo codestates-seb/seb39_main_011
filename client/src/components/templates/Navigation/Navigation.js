@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 import styled from "styled-components";
@@ -11,11 +11,28 @@ import { useSelector } from "react-redux";
 const Navigation = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
 
+  const dropdownRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleClickOutside = (e) => {
+    if (isOpen && !dropdownRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
 
   return (
     <S.NaviContainer>
@@ -25,7 +42,7 @@ const Navigation = () => {
             <Logo width="180" height="50" viewBox="150 70 190 80" />
           </div>
         </Link>
-        <Box>
+        <Box ref={dropdownRef}>
           {isLogin ? (
             <ProfilePic
               width="50"
@@ -37,7 +54,13 @@ const Navigation = () => {
             <NavbarPic onClick={toggleDropdown} />
           )}
 
-          {isOpen && <NavDropdown isOpen={isOpen} isLogin={isLogin} />}
+          {isOpen && (
+            <NavDropdown
+              toggleDropdown={toggleDropdown}
+              isOpen={isOpen}
+              isLogin={isLogin}
+            />
+          )}
         </Box>
       </S.Nav>
     </S.NaviContainer>
