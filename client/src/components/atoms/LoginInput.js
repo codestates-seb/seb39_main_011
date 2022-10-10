@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 
 const LoginInput = ({ id, label, onChange, name, innerRef, valid, type }) => {
   return (
-    <InputContainer>
+    <>
       <TextFieldStyle
         type={type}
         id={id}
@@ -22,15 +22,11 @@ const LoginInput = ({ id, label, onChange, name, innerRef, valid, type }) => {
           color: "var(--main-color-1)",
         }}
       />
-    </InputContainer>
+    </>
   );
 };
 
 export default LoginInput;
-
-const InputContainer = styled.div`
-  margin-top: 10px;
-`;
 
 const TextFieldStyle = styled(TextField)`
   & label.Mui-focused {

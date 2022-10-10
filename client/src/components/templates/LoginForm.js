@@ -1,22 +1,20 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import LoginInput from "../atoms/LoginInput";
-import { LoginBtn } from "../atoms/Button";
+import { LoginBtn, StrButton } from "../atoms/Button";
 import { ReactComponent as CampingPic } from "../../svg/camping.svg";
 import CheckBox from "../atoms/CheckBox";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { login, adminHandler } from "../../redux/reducers/authSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/reducers/authSlice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const idRef = useRef();
   const pwdRef = useRef();
-
-  const dispatch = useDispatch();
-  // const isAdmin = useSelector((state) => state.auth.adminHandler);
 
   const [user, setUser] = useState({
     id: "",
@@ -45,15 +43,6 @@ const LoginForm = () => {
         }
       );
 
-      // if (response.data.role === "ADMIN") {
-      //   dispatch(adminHandler(true));
-      //   console.log(adminHandler(true));
-      // } else if (response.data.role === "USER") {
-      //   dispatch(adminHandler(false));
-      // }
-
-      // dispatch(login(response.data.userId)); // ex. userId: 30, isLogin: true
-
       localStorage.setItem("userId", response.data.userId);
       localStorage.setItem("role", response.data.role);
       sessionStorage.setItem("Token", response.headers.authorization);
@@ -63,6 +52,7 @@ const LoginForm = () => {
     } catch (error) {
       if ((res) => res.data.status === 500 || res.data.status === 404) {
         alert("로그인에 실패하셨습니다.");
+        window.location.reload();
       }
     }
 
@@ -77,6 +67,40 @@ const LoginForm = () => {
     }
 
     setUser({ id: "", pwd: "" });
+  };
+
+  const handleAdminSubmit = async () => {
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/user/login`,
+      {
+        username: "admintest",
+        password: "admintest123",
+      }
+    );
+
+    localStorage.setItem("userId", response.data.userId);
+    localStorage.setItem("role", response.data.role);
+    sessionStorage.setItem("Token", response.headers.authorization);
+    dispatch(login());
+    navigate("/");
+    alert("관리자용 게스트 모드로 로그인에 성공하셨습니다.");
+  };
+
+  const handleClientSubmit = async () => {
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/user/login`,
+      {
+        username: "customtest123",
+        password: "customtest123",
+      }
+    );
+
+    localStorage.setItem("userId", response.data.userId);
+    localStorage.setItem("role", response.data.role);
+    sessionStorage.setItem("Token", response.headers.authorization);
+    dispatch(login());
+    navigate("/");
+    alert("고객용 게스트 모드로 로그인에 성공하셨습니다.");
   };
 
   return (
@@ -114,12 +138,20 @@ const LoginForm = () => {
         <LoginBtn
           bgc="#fff"
           color="var(--main-color-3)"
-          hoverBgc="var(--main-color-3)"
           onClick={() => navigate("/join")}
         >
           회원가입
         </LoginBtn>
       </JoinBox>
+
+      <GuestBox>
+        <StrButton onClick={handleAdminSubmit} fontSize="12px" height="35px">
+          관리자용 Guest Login
+        </StrButton>
+        <StrButton onClick={handleClientSubmit} fontSize="12px" height="35px">
+          고객용 Guest Login
+        </StrButton>
+      </GuestBox>
     </FormContainer>
   );
 };
@@ -127,11 +159,11 @@ const LoginForm = () => {
 export default LoginForm;
 
 const FormContainer = styled.div`
-  width: 400px;
-  height: 520px;
+  width: 380px;
+  height: 505px;
   background-color: #fff;
   border-radius: 10px;
-  padding: 3.5rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -157,7 +189,7 @@ const InputBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 10px;
 `;
 
 const SubBox = styled.div`
@@ -166,7 +198,6 @@ const SubBox = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
-  margin-top: 0.5rem;
   margin-bottom: 1rem;
   color: #8f8f8f;
 `;
@@ -182,10 +213,19 @@ const JoinBox = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 0.5rem;
+  margin-bottom: 0.4rem;
 
   span {
     font-size: 12px;
     color: var(--main-color-3);
     margin-bottom: 10px;
   }
+`;
+
+const GuestBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+  margin: 10px 0;
 `;

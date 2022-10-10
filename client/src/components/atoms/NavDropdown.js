@@ -22,6 +22,7 @@ const NavDropdown = ({ toggleDropdown }) => {
     sessionStorage.removeItem("Token");
     localStorage.removeItem("userId");
     localStorage.removeItem("role");
+    localStorage.removeItem("campId");
   };
 
   return (

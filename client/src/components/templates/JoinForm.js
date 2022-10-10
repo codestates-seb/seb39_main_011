@@ -151,6 +151,7 @@ const JoinForm = () => {
             className={`${isTab === idx ? "focused" : ""} `}
             radius={item.name === "USER" ? "7px 0 0 0" : "0 7px 0 0"}
             onClick={() => selectTabHandler(idx)}
+            height="50px"
           >
             {item.name === "USER" ? "고객" : "관리자"}
           </LoginTabBtn>
@@ -207,8 +208,8 @@ const JoinForm = () => {
 export default JoinForm;
 
 const FormContainer = styled.div`
-  width: 400px;
-  height: 520px;
+  width: 380px;
+  height: 505px;
   background-color: #fff;
   border-radius: 10px;
   display: flex;
@@ -242,10 +243,13 @@ const ContentBox = styled.div`
   }
 `;
 
-const InputBox = styled.div``;
+const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+`;
 
 const JoinButtonBox = styled.div`
   width: 100%;
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 10px;
 `;
