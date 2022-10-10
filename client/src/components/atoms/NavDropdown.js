@@ -22,6 +22,7 @@ const NavDropdown = ({ toggleDropdown }) => {
     sessionStorage.removeItem("Token");
     localStorage.removeItem("userId");
     localStorage.removeItem("role");
+    localStorage.removeItem("campId");
   };
 
   return (
@@ -42,7 +43,7 @@ const NavDropdown = ({ toggleDropdown }) => {
             <li onClick={toggleDropdown}>마이페이지</li>
           </Link>
           <hr />
-          <li onClick={handleLogout && toggleDropdown}>로그아웃</li>
+          <li onClick={handleLogout}>로그아웃</li>
         </Layout>
       )}
     </div>

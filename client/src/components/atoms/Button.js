@@ -22,7 +22,7 @@ export const LoginBtn = styled(ButtonPrimary)`
   color: ${(props) => props.color || "#fff"};
   background: ${(props) => props.bgc || "var(--main-color-3)"};
   height: ${(props) => props.height || "43px"};
-  width: ${(props) => props.height || "100%"};
+  width: ${(props) => props.width || "100%"};
   border: 2px solid ${(props) => props.border || "var(--main-color-3)"};
   border-radius: ${(props) => props.radius || "7px"};
   margin: ${(props) => props.margin || "none"};
@@ -41,7 +41,7 @@ export const LoginTabBtn = styled.button`
   color: var(--main-color-2);
   background-color: #fff;
   height: ${(props) => props.height || "43px"};
-  width: ${(props) => props.height || "100%"};
+  width: ${(props) => props.width || "100%"};
   border: 2px solid var(--main-color-2);
   font-size: 18px;
   font-weight: 700;
@@ -93,6 +93,19 @@ export const OutlineBtn = styled(ButtonPrimary)`
   @media ${(props) => props.theme.rezMobile} {
     width: 55px;
     margin-right: 0;
+  }
+`;
+
+export const StrButton = styled.button`
+  border: none;
+  background-color: #fff;
+  font-size: 13px;
+  color: #8f8f8f;
+
+  cursor: pointer;
+
+  &:hover {
+    color: var(--main-color-2);
   }
 `;
 
