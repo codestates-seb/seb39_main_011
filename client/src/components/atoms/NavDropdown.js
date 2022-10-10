@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { logout } from "../../redux/reducers/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const NavDropdown = () => {
+const NavDropdown = ({ toggleDropdown }) => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.auth.isLogin);
 
@@ -29,20 +29,20 @@ const NavDropdown = () => {
       {!isLogin ? (
         <Layout>
           <Link to="/login">
-            <li>로그인</li>
+            <li onClick={toggleDropdown}>로그인</li>
           </Link>
           <hr />
           <Link to="/join">
-            <li>회원가입</li>
+            <li onClick={toggleDropdown}>회원가입</li>
           </Link>
         </Layout>
       ) : (
         <Layout>
           <Link to={path}>
-            <li>마이페이지</li>
+            <li onClick={toggleDropdown}>마이페이지</li>
           </Link>
           <hr />
-          <li onClick={handleLogout}>로그아웃</li>
+          <li onClick={handleLogout && toggleDropdown}>로그아웃</li>
         </Layout>
       )}
     </div>
