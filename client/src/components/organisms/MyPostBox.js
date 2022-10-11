@@ -86,7 +86,7 @@ const MyPostBox = () => {
       userId,
       name: data.editName,
       price: data.editPrice,
-      phone: data.editPrice,
+      phone: data.editPhone,
       capacity: data.editCapacity,
       place: data.editAddress,
       note: data.editNote,

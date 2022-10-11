@@ -31,11 +31,11 @@ const PostCamping = ({ handleQuit, handleSubmit }) => {
   const [camping, setCamping] = useState(initialData);
   const data = {
     ...camping,
-    place: address,
-    file_path: images,
+    address,
+    images,
   };
 
-  const { name, price, phone, capacity, place, note, file_path } = camping;
+  const { name, price, phone, capacity, note } = camping;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,7 +43,7 @@ const PostCamping = ({ handleQuit, handleSubmit }) => {
   };
 
   const handleSubmitClick = () => {
-    handleSubmit(name, price, phone, capacity, place, note, file_path);
+    handleSubmit(name, price, phone, capacity, address, note, images);
   };
 
   return (
