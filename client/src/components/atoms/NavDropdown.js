@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logout } from "../../redux/reducers/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 const NavDropdown = ({ toggleDropdown }) => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.auth.isLogin);
+  const navigate = useNavigate();
 
   const role = localStorage.getItem("role");
 
@@ -43,7 +44,15 @@ const NavDropdown = ({ toggleDropdown }) => {
             <li onClick={toggleDropdown}>마이페이지</li>
           </Link>
           <hr />
-          <li onClick={handleLogout}>로그아웃</li>
+          <li
+            onClick={() => {
+              handleLogout();
+              toggleDropdown();
+              navigate("/");
+            }}
+          >
+            로그아웃
+          </li>
         </Layout>
       )}
     </div>
