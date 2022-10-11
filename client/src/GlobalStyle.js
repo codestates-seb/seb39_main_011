@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import "./fonts/fonts.css";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -18,6 +19,12 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Cafe24Oneprettynight'
+   
+  }
+
+  body {
+    font-family: 'Cafe24Oneprettynight'
   }
   
   /* ========== 캘린더 ========== */

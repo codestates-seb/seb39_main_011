@@ -18,7 +18,15 @@ const CheckBox = ({ label }) => {
           />
         }
         label={
-          <span style={{ fontSize: "12px", color: "#8F8F8F" }}>{label}</span>
+          <span
+            style={{
+              fontSize: "12px",
+              color: "#8F8F8F",
+              fontFamily: "Cafe24Oneprettynight",
+            }}
+          >
+            {label}
+          </span>
         }
         color="red"
       />
