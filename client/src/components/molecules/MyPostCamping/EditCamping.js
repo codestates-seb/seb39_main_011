@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { OutlineBtn, FillBtn } from "../../atoms/Button";
+import { FillBtn, OutlineBtn } from "../../atoms/Button";
 import RequiredInput from "../../atoms/RequiredInput";
 import TextArea from "../../atoms/TextArea";
 import PopupPostcode from "../PopupPostcode";
 import SingleImageUploader from "../../atoms/SingleImageUploader";
+
 import { ReactComponent as CampIcon } from "../../../svg/camp.svg";
 import { ReactComponent as PhoneIcon } from "../../../svg/phone.svg";
 import { ReactComponent as MapIcon } from "../../../svg/location.svg";
@@ -12,73 +13,48 @@ import { ReactComponent as CoinIcon } from "../../../svg/coin.svg";
 import { ReactComponent as TeamIcon } from "../../../svg/team.svg";
 import { ReactComponent as NoteIcon } from "../../../svg/note.svg";
 
-const EditCamping = ({ resData, onUpdatePost, getPost, onRemovePost }) => {
-  console.log("Edit", resData);
-
-  const [editName, setEditName] = useState(resData?.name);
-  const [editPrice, setEditPrice] = useState(resData?.price);
-  const [editPhone, setEditPhone] = useState(resData?.phone);
-  const [editCapacity, setEditCapacity] = useState(resData?.capacity);
-  const [editPlace, setEditPlace] = useState(resData?.place);
-  const [editNote, setEditNote] = useState(resData?.note);
-  const [editPhoto, setEditPhoto] = useState(resData?.file_path);
-
-  const userId = localStorage.getItem("userId");
-
-  const editData = {
-    name: editName,
-    price: editPrice,
-    phone: editPhone,
-    capacity: editCapacity,
-    place: editPlace,
-    note: editNote,
-    file_path: editPhoto,
-    userId: userId,
-  };
-
-  console.info("editData", editData);
-
-  console.log("editName", editName);
-
+const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
+  console.log(resData);
   const [isEdit, setIsEdit] = useState(false);
 
-  // 수정 버튼 클릭시 수정 input 화면으로 변경
+  const [editImages, setEditImages] = useState(resData[0].file_path);
+  const [editAddress, setEditAddress] = useState(resData[0].place);
+
+  const initialData = {
+    userId: resData[0].userId,
+    editName: resData[0].name,
+    editPrice: resData[0].price,
+    editPhone: resData[0].phone,
+    editCapacity: resData[0].capacity,
+    editNote: resData[0].note,
+  };
+
+  const [editData, setEditData] = useState(initialData);
+  const data = {
+    ...editData,
+    editAddress,
+    editImages,
+  };
+
+  const { editName, editPrice, editPhone, editCapacity, editNote } = editData;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditData({ ...data, [name]: value });
+  };
+
   const toggleIsEdit = () => {
     setIsEdit(!isEdit);
-    console.log(isEdit);
   };
 
-  // 수정 취소
-  const hanldeQuitEdit = () => {
-    setIsEdit(false);
-    setEditName(resData?.name);
-    setEditPrice(resData?.price);
-    setEditPhone(resData?.phone);
-    setEditCapacity(resData?.capacity);
-    setEditPlace(resData?.place);
-    setEditNote(resData?.note);
-    setEditPhoto(resData?.file_path);
-  };
-
-  console.log("수정 resData", resData.name);
-  console.log("isEdit", isEdit);
-
-  // 수정 완료
-  const handleEdit = () => {
-    onUpdatePost(
-      // editName,
-      // editPrice,
-      // editPhone,
-      // editCapacity,
-      // editPlace,
-      // editNote,
-      // editPhoto
-      editData
-    );
+  const handleQuitEdit = () => {
+    setEditData(initialData);
     toggleIsEdit();
   };
 
-  console.info("name", editName);
+  const handleEdit = () => {
+    onUpdatePost(data);
+  };
 
   return (
     <div>
@@ -89,34 +65,39 @@ const EditCamping = ({ resData, onUpdatePost, getPost, onRemovePost }) => {
               <CampIcon />
             </span>
             {isEdit ? (
-              <>
-                <div>
-                  <RequiredInput
-                    label="캠핑장 이름"
-                    value={editName}
-                    onChange={(e) => setEditName(e.target.value)}
-                  />
-                </div>
-              </>
+              <div>
+                <RequiredInput
+                  label="캠핑장 이름"
+                  name="editName"
+                  value={editName}
+                  onChange={handleChange}
+                />
+              </div>
             ) : (
-              <>
-                <Inner>
-                  <p>캠핑장 이름</p>
-                  <div>{resData?.name}</div>
-                </Inner>
-              </>
+              <Inner>
+                <p>캠핑장 이름</p>
+                <div>{resData[0]?.name}</div>
+              </Inner>
             )}
           </div>
           <div className="right_box">
             <span>
               <CoinIcon />
             </span>
-            <RequiredInput
-              type="number"
-              label="가격"
-              value={editPrice}
-              onChange={(e) => setEditPrice(e.target.value)}
-            />
+            {isEdit ? (
+              <RequiredInput
+                type="number"
+                label="가격"
+                name="editPrice"
+                value={editPrice}
+                onChange={handleChange}
+              />
+            ) : (
+              <Inner>
+                <p>가격</p>
+                <div>{resData[0]?.price}</div>
+              </Inner>
+            )}
           </div>
         </div>
         <div>
@@ -124,95 +105,144 @@ const EditCamping = ({ resData, onUpdatePost, getPost, onRemovePost }) => {
             <span>
               <PhoneIcon width="22" height="22" />
             </span>
-            <RequiredInput
-              label="연락처"
-              value={editPhone}
-              onChange={(e) => setEditPhone(e.target.value)}
-            />
+            {isEdit ? (
+              <RequiredInput
+                label="연락처"
+                name="editPhone"
+                value={editPhone}
+                onChange={handleChange}
+              />
+            ) : (
+              <Inner>
+                <p>연락처</p>
+                <div>{resData[0]?.phone}</div>
+              </Inner>
+            )}
           </div>
           <div className="right_box">
             <span>
               <TeamIcon />
             </span>
-            <RequiredInput
-              label="하루 최대 수용 팀"
-              value={editCapacity}
-              type="number"
-              onChange={(e) => setEditCapacity(e.target.value)}
-            />
+            {isEdit ? (
+              <RequiredInput
+                label="하루 최대 수용 팀"
+                type="number"
+                name="editCapacity"
+                value={editCapacity}
+                onChange={handleChange}
+              />
+            ) : (
+              <Inner>
+                <p>하루 최대 수용 팀</p>
+                <div>7{resData[0]?.capacity}</div>
+              </Inner>
+            )}
           </div>
         </div>
       </Box>
       <Box>
         <div className="address">
-          <div className="left">
-            <span>
-              <MapIcon />
-            </span>
-            <div>
-              <RequiredInput
-                label="캠핑장 위치"
-                name="place"
-                onChange={(e) => setEditPlace(e.target.value)}
-                value={editPlace}
-              />
-            </div>
-          </div>
-          <div className="right">
-            <PopupPostcode setAddress={setEditPlace} />
-          </div>
+          {isEdit ? (
+            <>
+              <div className="left">
+                <span>
+                  <MapIcon />
+                </span>
+                <div>
+                  <RequiredInput
+                    label="캠핑장 위치"
+                    name="editAddress"
+                    onChange={(e) => setEditAddress(e.target.value)}
+                    value={editAddress}
+                  />
+                </div>
+              </div>
+              <div className="right">
+                <PopupPostcode setAddress={setEditAddress} />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="left">
+                <span>
+                  <MapIcon />
+                </span>
+                <Inner>
+                  <p>캠핑장 위치</p>
+                  <div>경기도 성남시 분당구 판교동 {resData[0]?.place}</div>
+                </Inner>
+              </div>
+            </>
+          )}
         </div>
       </Box>
       <Box>
-        <div className="note">
-          <span>
-            <NoteIcon />
-          </span>
-          <p>캠핑장 소개</p>
-        </div>
-
-        <TextArea
-          value={editNote}
-          onChange={(e) => setEditNote(e.target.value)}
-          rows="8"
-        />
+        {isEdit ? (
+          <>
+            <div className="note">
+              <span>
+                <NoteIcon />
+              </span>
+              <p>캠핑장 소개</p>
+            </div>
+            <TextArea
+              name="editNote"
+              value={editNote}
+              onChange={handleChange}
+              rows="8"
+            />
+          </>
+        ) : (
+          <>
+            <div className="note">
+              <span>
+                <NoteIcon />
+              </span>
+              <Inner>
+                <p>캠핑장 소개</p>
+                <div>{resData[0]?.note}</div>
+              </Inner>
+            </div>
+          </>
+        )}
       </Box>
       <Box>
         <Photos>
           <PhotoTitle>Photo</PhotoTitle>
-          <div>※ 사진은 최대 1장까지 업로드 가능합니다.</div>
         </Photos>
 
         <PhotoBox>
           <div>
-            <SingleImageUploader images={editPhoto} setImages={setEditPhoto} />
-          </div>
-          <div className="button_box">
             {isEdit ? (
-              <>
-                {" "}
-                <OutlineBtn width="51px" onClick={hanldeQuitEdit}>
-                  취소
-                </OutlineBtn>
-                <FillBtn width="51px" onClick={handleEdit}>
-                  완료
-                </FillBtn>
-              </>
+              <SingleImageUploader
+                images={editImages}
+                setImages={setEditImages}
+              />
             ) : (
-              <>
-                {" "}
-                <OutlineBtn onClick={onRemovePost} width="51px">
-                  삭제
-                </OutlineBtn>
-                <OutlineBtn onClick={toggleIsEdit} width="51px">
-                  수정
-                </OutlineBtn>
-              </>
+              <img src={resData[0]?.file_path} alt="alt" />
             )}
           </div>
         </PhotoBox>
-        <div className="warning">
-          ※ 하나 계정으로 하나의 캠핑장 등록이 가능합니다.
+        <div className="button_box">
+          {isEdit ? (
+            <>
+              <OutlineBtn width="51px" onClick={handleQuitEdit}>
+                취소
+              </OutlineBtn>
+              <FillBtn width="51px" onClick={handleEdit}>
+                등록
+              </FillBtn>
+            </>
+          ) : (
+            <>
+              <OutlineBtn onClick={onRemovePost} width="51px">
+                삭제
+              </OutlineBtn>
+              <OutlineBtn onClick={toggleIsEdit} width="51px">
+                수정
+              </OutlineBtn>
+            </>
+          )}
         </div>
       </Box>
     </div>
@@ -311,8 +341,8 @@ const PhotoBox = styled.div`
   align-items: flex-end;
 
   img {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     border-radius: 5px;
     margin: 10px;
     background-color: antiquewhite;
