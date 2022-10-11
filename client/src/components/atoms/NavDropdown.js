@@ -19,7 +19,6 @@ const NavDropdown = ({ toggleDropdown }) => {
   }
 
   const handleLogout = () => {
-    console.log("실행");
     dispatch(logout());
     sessionStorage.removeItem("Token");
     localStorage.removeItem("userId");
@@ -54,7 +53,6 @@ const NavDropdown = ({ toggleDropdown }) => {
           >
             로그아웃
           </li>
-          {/* <li onClick={handleLogout && toggleDropdown}>로그아웃</li> */}
         </Layout>
       )}
     </div>
