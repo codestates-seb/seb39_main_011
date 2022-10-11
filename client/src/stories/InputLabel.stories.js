@@ -8,7 +8,7 @@ export default {
     id: { control: { type: "text" } },
     children: { control: { type: "text" } },
     type: { control: { type: "text" } },
-    name: { control: { type: "text" } },
+    icon: { control: { type: "text" } },
   },
 };
 

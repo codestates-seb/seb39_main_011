@@ -13,6 +13,7 @@ const CampingCard = ({ camplist }) => {
   const voteNum = Math.floor(Math.random() * 6);
   const heartNum = Math.floor(Math.random() * 15);
   const reviewNum = Math.floor(Math.random() * 21);
+  const price = camplist.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
     <S.CardContainer>
@@ -32,7 +33,8 @@ const CampingCard = ({ camplist }) => {
             </div>
             <div>
               <CoinIcon />
-              {camplist.price} 원
+              {/* {camplist.price} 원 */}
+              {price} 원
             </div>
           </div>
           <div>

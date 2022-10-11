@@ -29,8 +29,7 @@ const DetailReview = () => {
         </S.ImgBox>
         <div>
           캠핑장이 너무 좋아요~~ 다음에 또 올게요~~! 너무너무 좋아요 베어멜로
-          최고 캠핑장이 너무 좋아요~~ 다음에 또 올게요~~! 너무너무 좋아요
-          베어멜로 최고
+          최고😄
         </div>
       </S.Content>
     </S.ReviewContainer>
