@@ -217,7 +217,7 @@ const JoinBox = styled.div`
 
   span {
     font-size: 12px;
-    color: var(--main-color-3);
+    color: var(--main-color-2);
     margin-bottom: 10px;
   }
 `;

@@ -29,6 +29,11 @@ const LoginInput = ({ id, label, onChange, name, innerRef, valid, type }) => {
 export default LoginInput;
 
 const TextFieldStyle = styled(TextField)`
+  label {
+    font-family: "Cafe24Oneprettynight";
+    color: var(--main-color-1);
+  }
+
   & label.Mui-focused {
     color: var(--main-color-2);
   }

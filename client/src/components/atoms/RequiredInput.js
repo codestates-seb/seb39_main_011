@@ -32,6 +32,7 @@ const Layout = styled.div`
   margin: 10px 0;
 
   label {
+    font-family: "Cafe24Oneprettynight";
     font-size: 17px;
     font-weight: bold;
     color: var(--main-color-1);
