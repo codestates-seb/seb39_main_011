@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
 import * as S from "./style";
 import styled from "styled-components";
 import { ReactComponent as ProfilePic } from "../../../svg/profile.svg";
@@ -37,11 +36,9 @@ const Navigation = () => {
   return (
     <S.NaviContainer>
       <S.Nav>
-        <Link to="/">
-          <div>
-            <Logo width="180" height="50" viewBox="150 70 190 80" />
-          </div>
-        </Link>
+        <a href="/">
+          <Logo width="180" height="50" viewBox="150 70 190 80" />
+        </a>
         <Box ref={dropdownRef}>
           {isLogin ? (
             <ProfilePic
