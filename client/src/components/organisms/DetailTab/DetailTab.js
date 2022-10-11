@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import DetailInfo from "../../molecules/DetailInfo/DetailInfo";
 import DetailReviews from "../DetailReviews/DetailReviews";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { instance } from "../../../apis/instance";
 
