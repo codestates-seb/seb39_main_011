@@ -4,6 +4,7 @@ import DetailInfo from "../../molecules/DetailInfo/DetailInfo";
 import DetailReviews from "../DetailReviews/DetailReviews";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { instance } from "../../../apis/instance";
 
 const DetailTab = () => {
   const [currentTab, setCurrentTab] = useState(0);
@@ -12,8 +13,8 @@ const DetailTab = () => {
 
   const getCampingData = async () => {
     try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/admin/post/66`
+      const { data } = await instance.get(
+        `/admin/post/73`
         // `${process.env.REACT_APP_API_URL}/admin/post/${campId.id}`
       );
       setCamp(data[0]);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FillBtn, OutlineBtn } from "../../atoms/Button";
 import RequiredInput from "../../atoms/RequiredInput";
@@ -13,15 +13,39 @@ import { ReactComponent as TeamIcon } from "../../../svg/team.svg";
 import { ReactComponent as NoteIcon } from "../../../svg/note.svg";
 import SingleImageUploader from "../../atoms/SingleImageUploader";
 
-const PostCamping = ({
-  handleChange,
-  place,
-  setPlace,
-  images,
-  setImages,
-  handleQuit,
-  handleSubmit,
-}) => {
+const PostCamping = ({ handleQuit, handleSubmit }) => {
+  const userId = localStorage.getItem("userId");
+
+  const [images, setImages] = useState(null);
+  const [address, setAddress] = useState("");
+
+  const initialData = {
+    userId,
+    name: "",
+    price: "",
+    phone: "",
+    capacity: 0,
+    note: "",
+  };
+
+  const [camping, setCamping] = useState(initialData);
+  const data = {
+    ...camping,
+    place: address,
+    file_path: images,
+  };
+
+  const { name, price, phone, capacity, place, note, file_path } = camping;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCamping({ ...data, [name]: value });
+  };
+
+  const handleSubmitClick = () => {
+    handleSubmit(name, price, phone, capacity, place, note, file_path);
+  };
+
   return (
     <div>
       <Box>
@@ -34,7 +58,8 @@ const PostCamping = ({
               <RequiredInput
                 label="캠핑장 이름"
                 name="name"
-                onChange={(e) => handleChange(e)}
+                value={name}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -46,7 +71,8 @@ const PostCamping = ({
               type="number"
               label="가격"
               name="price"
-              onChange={(e) => handleChange(e)}
+              value={price}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -58,8 +84,8 @@ const PostCamping = ({
             <RequiredInput
               label="연락처"
               name="phone"
-              onChange={(e) => handleChange(e)}
-              // placeholder="하이픈(-)을 제외한 숫자 11자리만 입력해주세요."
+              value={phone}
+              onChange={handleChange}
             />
           </div>
           <div className="right_box">
@@ -70,7 +96,8 @@ const PostCamping = ({
               label="하루 최대 수용 팀"
               name="capacity"
               type="number"
-              onChange={(e) => handleChange(e)}
+              value={capacity}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -84,14 +111,13 @@ const PostCamping = ({
             <div>
               <RequiredInput
                 label="캠핑장 위치"
-                name="place"
-                onChange={(e) => setPlace(e.target.value)}
-                value={place}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
             </div>
           </div>
           <div className="right">
-            <PopupPostcode setAddress={setPlace} />
+            <PopupPostcode setAddress={setAddress} />
           </div>
         </div>
       </Box>
@@ -103,7 +129,7 @@ const PostCamping = ({
           <p>캠핑장 소개</p>
         </div>
 
-        <TextArea name="note" onChange={(e) => handleChange(e)} rows="8" />
+        <TextArea name="note" value={note} onChange={handleChange} rows="8" />
       </Box>
       <Box>
         <Photos>
@@ -119,7 +145,7 @@ const PostCamping = ({
             <OutlineBtn width="51px" onClick={handleQuit}>
               취소
             </OutlineBtn>
-            <FillBtn width="51px" onClick={handleSubmit}>
+            <FillBtn width="51px" onClick={handleSubmitClick}>
               등록
             </FillBtn>
           </div>

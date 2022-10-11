@@ -1,54 +1,26 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
-import PostCamping from "../molecules/MyPostCamping/PostCamping";
 import EditCamping from "../molecules/MyPostCamping/EditCamping";
-import ShowCamping from "../molecules/MyPostCamping/ShowCamping";
+import PostCamping from "../molecules/MyPostCamping/PostCamping";
+import { instance } from "../../apis/instance";
 
 const MyPostBox = () => {
-  const [camping, setCamping] = useState({});
-  const [images, setImages] = useState(null);
-  const [place, setPlace] = useState("");
-
   const userId = localStorage.getItem("userId");
+  let campId = localStorage.getItem("campId");
+  const [resData, setResData] = useState([]); // 등록된 글이 있는지 판단하는 변수
 
-  const handleChange = (e) => {
-    let input = {};
-    input[e.target.name] = e.target.value;
-    let register = { ...camping, ...input };
-    setCamping(register);
-  };
+  console.log("resData", resData);
 
-  const campingData = {
-    ...camping,
-    file_path: images,
-    place,
-    userId,
-  };
-
-  const [resData, setResData] = useState({});
-
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `${sessionStorage.getItem("Token")}`,
-  };
-
-  // 본인이 작성한 캠핑장 글 조회
+  // 캠핑장 글 조회
   const getPost = async () => {
-    const userId = localStorage.getItem("userId");
-
     try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/admin/post/${userId}`,
-        {
-          headers: headers,
-        }
-      );
+      const res = await instance.get(`/admin/post/${userId}`);
 
+      // 이미 등록된 글이 있으면 campId 저장
       if (res.data.length !== 0) {
         localStorage.setItem("campId", res.data[0].campId);
       }
-      setCamping(res.data);
+
       setResData(res.data);
     } catch (error) {
       console.log(error);
@@ -59,17 +31,30 @@ const MyPostBox = () => {
     getPost();
   }, []);
 
-  // 게시물 등록 이벤트
-  const handleSubmit = async () => {
+  // 게시물 등록
+  const handleSubmit = async (
+    name,
+    price,
+    phone,
+    capacity,
+    place,
+    note,
+    file_path
+  ) => {
+    let campingData = {
+      userId,
+      name,
+      price,
+      phone,
+      capacity,
+      place,
+      note,
+      file_path,
+    };
+
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/admin/post`,
-        campingData,
-        {
-          headers: headers,
-        }
-      );
-      setCamping(res.data);
+      const res = await instance.post(`/admin/post`, campingData);
+      setResData(campingData);
       window.location.reload();
       alert("캠핑장 게시물을 등록하였습니다.");
     } catch (error) {
@@ -79,36 +64,38 @@ const MyPostBox = () => {
 
   const handleQuit = () => {
     window.confirm("캠핑장 등록을 취소하시겠습니까?");
-    setCamping("");
-    setImages("");
-    setPlace("");
+    setResData("");
     window.location.reload();
   };
-
-  let campIdx = localStorage.getItem("campId");
 
   // 글 삭제
   const onRemovePost = async () => {
     try {
-      const res = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/admin/post/${campIdx}`,
-        { headers: headers }
-      );
+      const res = await instance.delete(`/admin/post/${campId}`);
       localStorage.removeItem("campId");
-      alert("게시글 삭제가 완료되었습니다.");
+      setResData("");
       window.location.reload();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const onUpdatePost = async (id) => {
+  // 글 수정
+  const onUpdatePost = async (data) => {
+    const editData = {
+      userId,
+      name: data.editName,
+      price: data.editPrice,
+      phone: data.editPrice,
+      capacity: data.editCapacity,
+      place: data.editAddress,
+      note: data.editNote,
+      file_path: data.editImages,
+    };
+
     try {
-      const res = await axios.put(
-        `${process.env.REACT_APP_API_URL}/admin/post/${campIdx}`,
-        campingData,
-        { headers: headers }
-      );
+      const res = await instance.put(`/admin/post/${campId}`, editData);
+      setResData(editData);
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -118,19 +105,11 @@ const MyPostBox = () => {
   const showHandler = () => {
     if (resData.length === 0) {
       return (
-        <PostCamping
-          handleChange={handleChange}
-          place={place}
-          setPlace={setPlace}
-          images={images}
-          setImages={setImages}
-          handleQuit={handleQuit}
-          handleSubmit={handleSubmit}
-        />
+        <PostCamping handleQuit={handleQuit} handleSubmit={handleSubmit} />
       );
     } else {
       return (
-        <ShowCamping
+        <EditCamping
           resData={resData}
           onRemovePost={onRemovePost}
           onUpdatePost={onUpdatePost}
