@@ -6,7 +6,7 @@ import { ReactComponent as CloseIcon } from "../../svg/close.svg";
 import S3 from "react-aws-s3";
 import { v4 as uuidv4 } from "uuid";
 
-const SingleImageUploader = ({ images, setImages, isReview }) => {
+const SingleImageUploader = ({ images, setImages }) => {
   window.Buffer = window.Buffer || require("buffer").Buffer;
 
   const [previews, setPreviews] = useState([]);

@@ -134,7 +134,7 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
             ) : (
               <Inner>
                 <p>하루 최대 수용 팀</p>
-                <div>7{resData[0]?.capacity}</div>
+                <div>{resData[0]?.capacity}</div>
               </Inner>
             )}
           </div>
@@ -169,7 +169,7 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
                 </span>
                 <Inner>
                   <p>캠핑장 위치</p>
-                  <div>경기도 성남시 분당구 판교동 {resData[0]?.place}</div>
+                  <div>{resData[0]?.place}</div>
                 </Inner>
               </div>
             </>
