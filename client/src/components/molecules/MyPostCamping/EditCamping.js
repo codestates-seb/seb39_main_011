@@ -56,6 +56,12 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
     onUpdatePost(data);
   };
 
+  const handleRemove = () => {
+    if (window.confirm("정말로 게시글을 삭제하시겠습니까?")) {
+      onRemovePost();
+    }
+  };
+
   return (
     <div>
       <Box>
@@ -238,7 +244,7 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
         </PhotoBox>
         {isEdit ? null : (
           <ButtonBox>
-            <OutlineBtn onClick={onRemovePost} width="51px">
+            <OutlineBtn onClick={handleRemove} width="51px">
               삭제
             </OutlineBtn>
             <OutlineBtn onClick={toggleIsEdit} width="51px">

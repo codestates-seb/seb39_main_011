@@ -58,7 +58,7 @@ const SingleImageUploader = ({ images, setImages }) => {
               multiple
               style={{ display: "none" }}
             />
-            <PlusIcon className="plusIcon" />
+            <PlusIcon />
           </label>
         </Box>
       ) : (
@@ -94,10 +94,6 @@ const Box = styled.div`
   align-items: center;
   position: relative;
   margin-top: 5px;
-
-  .plusIcon {
-    background-color: aliceblue;
-  }
 
   img {
     width: 80px;
