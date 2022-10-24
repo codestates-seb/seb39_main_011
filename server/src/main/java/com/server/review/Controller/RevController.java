@@ -1,7 +1,10 @@
 package com.server.review.Controller;
 
+import com.server.comment.Entity.Comment;
+import com.server.comment.Service.CommentService;
 import com.server.review.Dto.ReviewPutDto;
 import com.server.review.Dto.ReviewPostDto;
+import com.server.review.Dto.ReviewResponseDto;
 import com.server.review.Entity.Review;
 import com.server.review.Mapper.ReviewMapper;
 import com.server.review.Service.ReviewService;
@@ -10,17 +13,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class RevController {
     private final ReviewService reviewService;
+    private final CommentService commentService;
     private final ReviewMapper mapper;
 
-    public RevController(ReviewService reviewService, ReviewMapper mapper) {
+    public RevController(ReviewService reviewService, CommentService commentService, ReviewMapper mapper) {
         this.reviewService = reviewService;
+        this.commentService = commentService;
         this.mapper = mapper;
     }
 
@@ -37,24 +42,24 @@ public class RevController {
 
     //리뷰수정
     @PutMapping("/client/rev/{rev-id}")
-    public ResponseEntity putReview(@PathVariable("rev-id") long rev_id,
+    public ResponseEntity putReview(@PathVariable("rev-id") long revId,
                                       @RequestBody ReviewPutDto reviewPutDto) {
-        reviewPutDto.setRev_id(rev_id);
+        reviewPutDto.setRevId(revId);
         reviewService.updateReview(mapper.reviewPutDtoToReview(reviewPutDto));
         return new ResponseEntity(HttpStatus.OK);
     }
 
     //리뷰삭제
     @DeleteMapping("/client/rev/{rev-id}")
-    public ResponseEntity deleteReview(@PathVariable("rev-id")long rev_id) {
-        reviewService.deleteReview(rev_id);
+    public ResponseEntity deleteReview(@PathVariable("rev-id")long revId) {
+        reviewService.deleteReview(revId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     //리뷰조회
     @GetMapping("/{rev-id}")
-    public ResponseEntity<Review> getReview(@Valid @PathVariable("rev-id")long rev_id) {
-        Optional<Review> review = reviewService.findReview(rev_id);
+    public ResponseEntity<Review> getReview(@Valid @PathVariable("rev-id")long revId) {
+        Optional<Review> review = reviewService.findReview(revId);
         return new ResponseEntity(review,HttpStatus.OK);
     }
 
@@ -68,7 +73,8 @@ public class RevController {
     //유져리뷰전체조회
     @GetMapping("/client/rev/{user-id}")
     public ResponseEntity getUserReview(@PathVariable("user-id") long userId) {
-        List<Review> response = reviewService.findUserReview(userId);
+        List<Review> response = reviewService.findUserReview(userId);;
+
         return new ResponseEntity(response,HttpStatus.OK);
     }
 

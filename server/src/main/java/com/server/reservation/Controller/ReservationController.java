@@ -32,8 +32,8 @@ public class ReservationController {
     }
 
     @DeleteMapping("client/info/rez/{rez-id}")
-    public ResponseEntity deleteRez(@PathVariable("rez-id")long rez_id) {
-        rezService.deleteRez(rez_id);
+    public ResponseEntity deleteRez(@PathVariable("rez-id")long rezId) {
+        rezService.deleteRez(rezId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
@@ -49,5 +49,11 @@ public class ReservationController {
     public ResponseEntity adminRez(@PathVariable("camp-id")long campId) {
         List<Reservation> response = rezService.findAdminRez(campId);
         return new ResponseEntity(response,HttpStatus.OK);
+    }
+    //관리자예약취소
+    @DeleteMapping("admin/rez/{rezId}")
+    public ResponseEntity deleteAdmin(@PathVariable("rezId") long rezId) {
+        rezService.deleteRez(rezId);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

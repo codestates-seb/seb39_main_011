@@ -52,7 +52,7 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())   // (1)
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers("/admin/**").hasRole(Role.ADMIN.getKey())
+                        .antMatchers("admin/**").hasRole(Role.ADMIN.getKey())
                         .antMatchers("client/**").hasRole(Role.USER.getKey())
                         .anyRequest().permitAll()
                 );
@@ -73,15 +73,15 @@ public class SecurityConfiguration {
         return source;
     }
 
-    public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {  // (2-1)
+    public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {
         @Override
-        public void configure(HttpSecurity builder) throws Exception {  // (2-2)
-            AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);  // (2-3)
+        public void configure(HttpSecurity builder) throws Exception {
+            AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
 
-            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);  // (2-4)
-            jwtAuthenticationFilter.setFilterProcessesUrl("/user/login");          // (2-5)
+            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
+            jwtAuthenticationFilter.setFilterProcessesUrl("/user/login");
 
-            builder.addFilter(jwtAuthenticationFilter);  // (2-6)
+            builder.addFilter(jwtAuthenticationFilter);
         }
     }
 }

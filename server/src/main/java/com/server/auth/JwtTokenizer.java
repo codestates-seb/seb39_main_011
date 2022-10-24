@@ -21,15 +21,15 @@ import java.util.Map;
 public class JwtTokenizer {
     @Getter
     @Value("${jwt.secret}")
-    private String secretKey;       // (2)
+    private String secretKey;       // secret 키 정보
 
     @Getter
     @Value("${jwt.access-token-expiration-minutes}")
-    private int accessTokenExpirationMinutes;        // (3)
+    private int accessTokenExpirationMinutes;        // Access Token 만료시간정보
 
     @Getter
     @Value("${jwt.refresh-token-expiration-minutes}")
-    private int refreshTokenExpirationMinutes;          // (4)
+    private int refreshTokenExpirationMinutes;          // refresh token 만료시간정보
 
     public String encodeBase64SecretKey(String secretKey) {
         return Encoders.BASE64.encode(secretKey.getBytes(StandardCharsets.UTF_8));
@@ -80,7 +80,7 @@ public class JwtTokenizer {
                 .parseClaimsJws(jws);
     }
 
-    // (5)
+    // jwt 만료일시 지정 메서드(jwt 생성 시 사용)
     public Date getTokenExpiration(int expirationMinutes) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, expirationMinutes);

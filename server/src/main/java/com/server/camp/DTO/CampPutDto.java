@@ -7,7 +7,8 @@ import lombok.Setter;
 @Setter
 public class CampPutDto {
 
-    private Long camp_id;
+    private Long campId;
+    private Long userId;
     private String name;
     private int price;
     private String note;

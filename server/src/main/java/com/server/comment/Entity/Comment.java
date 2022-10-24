@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long comment_id;
+    private Long commentId;
 
     @Column
     private String message;
@@ -25,5 +25,12 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "REV_ID")
     private Review review;
+//    public void setReview(Review review) {
+//        this.review = review;
+//
+//        if(!review.getComments().contains(this)) {
+//            review.getComments().addComment(this);
+//        }
+//    }
     }
 
