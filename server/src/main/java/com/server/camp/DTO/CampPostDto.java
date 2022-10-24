@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 public class CampPostDto {
 
+    private Long userId;
     private String name;
     private int price;
     private String note;

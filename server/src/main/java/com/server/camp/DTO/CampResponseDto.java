@@ -6,10 +6,12 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class CampResponseDto {
-    private Long camp_id;
+    private Long campId;
     private String name;
     private String place;
     private int price;
-    private int star_total;
+    private double starAge;
     private String file_path;
+
+
 }
