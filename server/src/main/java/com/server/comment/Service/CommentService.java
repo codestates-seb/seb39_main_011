@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,6 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    public void deleteComment(long comment_id) { commentRepository.deleteById(comment_id);}
+    public void deleteComment(long commentId) { commentRepository.deleteById(commentId);}
 
-//    public List<Comment> findComment(long rev_id) { return commentRepository.findCommentByRev_id(rev_id);}
 }

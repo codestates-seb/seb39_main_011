@@ -5,7 +5,10 @@ import com.server.reservation.Repository.RezRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RezService {
@@ -17,8 +20,8 @@ public class RezService {
         rezRepository.save(reservation);
     }
 
-    public void deleteRez(long rez_id) {
-        rezRepository.deleteById(rez_id);
+    public void deleteRez(long rezId) {
+        rezRepository.deleteById(rezId);
     }
 
     public List<Reservation> findRez(long userId) {
@@ -26,4 +29,8 @@ public class RezService {
     }
 
     public List<Reservation> findAdminRez(long campId) { return rezRepository.findByCampId(campId);}
+
+    public int findRezByDate(LocalDateTime date) {return rezRepository.findReservationByDate(date);}
+
+    public String findDate(Long rezId) {return rezRepository.findReservationByDate(rezId);}
 }

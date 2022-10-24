@@ -17,44 +17,44 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
-public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {  // (1)
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenizer jwtTokenizer;
 
-    // (2)
+
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtTokenizer jwtTokenizer) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenizer = jwtTokenizer;
     }
 
-    // (3)
+
     @SneakyThrows
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
 
-        ObjectMapper objectMapper = new ObjectMapper();    // (3-1)
-        LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class); // (3-2)
+        ObjectMapper objectMapper = new ObjectMapper();
+        LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class);
 
-        // (3-3)
+
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
 
-        return authenticationManager.authenticate(authenticationToken);  // (3-4)
+        return authenticationManager.authenticate(authenticationToken);
     }
 
-    // (4)
+
     private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException {
-        CustomUserDetails user = (CustomUserDetails) authResult.getPrincipal();  // (4-1)
+        CustomUserDetails user = (CustomUserDetails) authResult.getPrincipal();
 
-        String accessToken = delegateAccessToken(user);   // (4-2)
-        String refreshToken = delegateRefreshToken(user); // (4-3)
+        String accessToken = delegateAccessToken(user);
+        String refreshToken = delegateRefreshToken(user);
 
-        response.setHeader("Authorization", "Bearer " + accessToken);  // (4-4)
+        response.setHeader("Authorization", "Bearer " + accessToken);
         response.setHeader("Refresh", refreshToken);
 
         HelloData helloData = new HelloData();
@@ -65,7 +65,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.getWriter().write(result);
     }
 
-    // (5)
+
     private String delegateAccessToken(CustomUserDetails user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("username", user.getUsername());
@@ -81,7 +81,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         return accessToken;
     }
 
-    // (6)
+
     private String delegateRefreshToken(CustomUserDetails user) {
         String subject = user.getUsername();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());

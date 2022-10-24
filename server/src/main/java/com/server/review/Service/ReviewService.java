@@ -1,5 +1,8 @@
 package com.server.review.Service;
 
+import com.server.camp.service.CampService;
+import com.server.comment.Repository.CommentRepository;
+import com.server.comment.Service.CommentService;
 import com.server.review.Entity.Review;
 import com.server.review.Repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,30 +15,38 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
+    private final CommentService commentService;
+    private final CampService campService;
 
     @Autowired
     private ReviewRepository reviewRepository;
 
     public void createReview(Review review) {
+
         reviewRepository.save(review);
+//        campService.setStar(review.getCampId());
     }
 
     public void updateReview(Review review){
+
         reviewRepository.save(review);
+//        campService.setStar(review.getCampId());
     }
 
-    public void deleteReview(long rev_id) {
-        reviewRepository.deleteById(rev_id);
+    public void deleteReview(long revId) {
+
+        reviewRepository.deleteById(revId);
     }
 
-    public Optional<Review> findReview(long rev_id) {
-       return reviewRepository.findById(rev_id);}
+    public Optional<Review> findReview(long revId) {return reviewRepository.findById(revId);}
 
     public List<Review> findAdminReview(long campId) {
         return reviewRepository.findByCampId(campId);
     }
 
     public List<Review> findUserReview(long userId) {
-        return  reviewRepository.findByUserId(userId);
+        return reviewRepository.findByUserId(userId);
     }
+
+
 }
