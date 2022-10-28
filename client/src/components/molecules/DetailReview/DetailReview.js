@@ -5,7 +5,7 @@ import IconText from "../../atoms/IconText";
 
 import { ReactComponent as UserIcon } from "./../../../svg/profile.svg";
 
-const DetailReview = () => {
+const DetailReview = (campReviews) => {
   return (
     <S.ReviewContainer>
       <S.Info>
