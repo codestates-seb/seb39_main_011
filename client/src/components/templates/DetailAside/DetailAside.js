@@ -25,6 +25,7 @@ const DetailAside = (props) => {
     note: "",
     checkIn: "",
     checkOut: "",
+    campId: props.campId.id,
   });
   let hi = 50000;
   const [reservationPrice, setReservationPrice] = useState(hi);

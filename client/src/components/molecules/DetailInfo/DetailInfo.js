@@ -12,7 +12,7 @@ import { ReactComponent as PhoneIcon } from "./../../../svg/phone.svg";
 import { ReactComponent as LocationIcon } from "./../../../svg/location.svg";
 import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 
-const DetailInfo = ({ camp }) => {
+const DetailInfo = ({ campInfo }) => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: 820 });
   const [modal, setModal] = useState(false);
   const modalHandler = () => {
@@ -24,29 +24,29 @@ const DetailInfo = ({ camp }) => {
       {modal && isTabletOrMobile ? (
         <DetailModal modalHandler={modalHandler} />
       ) : null}
-      <KakaoMap camp={camp.place} />
+      <KakaoMap camp={campInfo.place} />
       <S.Info>
         <IconText icon={<CampIcon width="20" height="20" />}>
-          캠핑장: {camp.name}
+          캠핑장: {campInfo.name}
         </IconText>
         <IconText icon={<PhoneIcon width="20" height="20" />}>
-          연락처: {camp.phone}
+          연락처: {campInfo.phone}
         </IconText>
         <IconText icon={<LocationIcon width="20" height="20" />}>
-          주소: {camp.place}
+          주소: {campInfo.place}
         </IconText>
         <IconText icon={<CoinIcon width="20" height="20" />}>
-          가격: {camp.price}
+          가격: {campInfo.price}
         </IconText>
       </S.Info>
 
       <S.Content>
         <IconText icon={<CampIcon />}>
-          {camp.name} 캠핑장을 소개합니다.
+          {campInfo.name} 캠핑장을 소개합니다.
         </IconText>
         <div>
           <div>🙇‍♂️ 인사말</div>
-          <div>{camp.note}</div>
+          <div>{campInfo.note}</div>
         </div>
         <div>
           <div>🙋‍♂️ 시설 및 레저</div>
