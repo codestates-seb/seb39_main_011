@@ -5,9 +5,9 @@ import BasicInput from "../atoms/BasicInput";
 
 import { ReactComponent as ProfilePic } from "../../svg/profile.svg";
 import { ReactComponent as IdIcon } from "../../svg/id.svg";
-import { ReactComponent as NameIcon } from "../../svg/name.svg";
 import { ReactComponent as EmailIcon } from "../../svg/email.svg";
 import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
+// import { ReactComponent as NameIcon } from "../../svg/name.svg";
 
 const MyInfoBox = ({ user, onEditInfo }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -15,7 +15,6 @@ const MyInfoBox = ({ user, onEditInfo }) => {
   const [editEmail, setEditEmail] = useState("");
   const [editPhone, setEditPhone] = useState("");
 
-  // input란에 초기 데이터 넣어주기
   useEffect(() => {
     setEditName(user.name);
     setEditEmail(user.email);

@@ -5,7 +5,7 @@ import StarRender from "../atoms/StarRender";
 import moment from "moment";
 import TextArea from "../atoms/TextArea";
 import StarClick from "../atoms/StarClick";
-
+import SingleImageUploader from "../atoms/SingleImageUploader";
 import { ReactComponent as CampIcon } from "../../svg/camp.svg";
 
 const ClientReviewItem = ({
@@ -30,6 +30,7 @@ const ClientReviewItem = ({
 
   const [editReview, setEditReview] = useState(review);
   const [editStar, setEditStar] = useState(star);
+  const [editImages, setEditImages] = useState(file_path);
 
   const clickStarHandler = (e) => {
     setEditStar(e);
@@ -48,13 +49,15 @@ const ClientReviewItem = ({
     setEditReview(review);
   };
 
+  console.log(item);
+
   // 수정 완료
   const handleEdit = () => {
     onUpdateReview(
       item.revId,
       editReview,
       editStar,
-      file_path,
+      editImages,
       userId,
       campId,
       rezId
@@ -62,7 +65,6 @@ const ClientReviewItem = ({
     toggleIsEdit();
   };
 
-  console.log("item", item);
   return (
     <>
       <ItemBox>
@@ -116,13 +118,26 @@ const ClientReviewItem = ({
           </InnerBox>
 
           <ImgBox>
-            <Img src={item.file_path} alt="camping" />
+            {isEdit ? (
+              <Uploader>
+                <SingleImageUploader
+                  images={editImages}
+                  setImages={setEditImages}
+                />
+              </Uploader>
+            ) : (
+              <Img src={item?.file_path} alt="camping" />
+            )}
 
             {isEdit ? (
-              <TextArea
-                value={editReview}
-                onChange={(e) => setEditReview(e.target.value)}
-              />
+              <div className="textarea_box">
+                <TextArea
+                  rows="4"
+                  col
+                  value={editReview}
+                  onChange={(e) => setEditReview(e.target.value)}
+                />
+              </div>
             ) : (
               <div>{review}</div>
             )}
@@ -147,15 +162,18 @@ const ImgBox = styled.div`
   justify-content: flex-start;
   gap: 20px;
   margin: 10px 0;
+  background-color: aliceblue;
 
   div {
-    width: 50%;
     margin-right: 5px;
 
     @media ${(props) => props.theme.postMobile} {
-      width: 60%;
       height: 80px;
     }
+  }
+  .textarea_box {
+    width: 100%;
+    margin-top: 0.5rem;
   }
 
   @media ${(props) => props.theme.postMobile} {
@@ -210,4 +228,9 @@ const ButtonBox = styled.div`
   flex: 1;
   margin-right: 1rem;
   gap: 10px;
+`;
+
+const Uploader = styled.div`
+  /* background-color: aqua; */
+  /* width: 100px; */
 `;

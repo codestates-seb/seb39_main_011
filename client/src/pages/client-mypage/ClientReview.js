@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import ClientMyReviewBox from "../../components/organisms/ClientMyReviewBox";
+import { instance } from "../../apis/instance";
 
 const ClientReview = () => {
   const [data, setData] = useState([]);
-
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `${sessionStorage.getItem("Token")}`,
-  };
+  let userId = localStorage.getItem("userId");
 
   const getReview = async () => {
-    let userId = localStorage.getItem("userId");
     try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/client/rev/${userId}`,
-        { headers: headers }
-      );
+      const res = await instance.get(`/client/rev/${userId}`);
       setData(res.data);
-      console.log("res: ", res.data);
     } catch (error) {
       console.log(error);
     }
@@ -27,15 +18,11 @@ const ClientReview = () => {
 
   useEffect(() => {
     getReview();
-    console.info("data", data);
   }, []);
 
   const onRemoveReview = async (id) => {
     try {
-      const res = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/client/rev/${id}`,
-        { headers: headers }
-      );
+      const res = await instance.delete(`/client/rev/${id}`);
     } catch (error) {
       console.log(error);
     }
@@ -51,19 +38,15 @@ const ClientReview = () => {
     rezId
   ) => {
     try {
-      const res = await axios.put(
-        `${process.env.REACT_APP_API_URL}/client/rev/${revId}`,
-        {
-          revId,
-          review,
-          star,
-          file_path,
-          userId,
-          campId,
-          rezId,
-        },
-        { headers: headers }
-      );
+      const res = await instance.put(`/client/rev/${revId}`, {
+        revId,
+        review,
+        star,
+        file_path,
+        userId,
+        campId,
+        rezId,
+      });
       window.location.reload();
     } catch (err) {
       console.log(err);

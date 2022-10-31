@@ -99,7 +99,6 @@ const Box = styled.div`
     width: 80px;
     height: 80px;
     border-radius: 5px;
-    margin-top: 10px;
 
     @media ${(props) => props.theme.postMobile} {
       margin: 7px;
@@ -109,11 +108,11 @@ const Box = styled.div`
   .close_style {
     position: absolute;
     right: 5px;
-    top: 15px;
+    top: 5px;
 
     @media ${(props) => props.theme.postMobile} {
-      right: 7px;
-      top: 7px;
+      right: 11px;
+      top: 5px;
     }
   }
 `;
