@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FillBtn, OutlineBtn } from "../atoms/Button";
 import BasicInput from "../atoms/BasicInput";
@@ -9,26 +9,39 @@ import { ReactComponent as NameIcon } from "../../svg/name.svg";
 import { ReactComponent as EmailIcon } from "../../svg/email.svg";
 import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
 
-const MyInfoBox = ({ user }) => {
+const MyInfoBox = ({ user, onEditInfo }) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [editId, setEditId] = useState(user[0].id);
-  const [editName, setEditName] = useState(user[0].name);
-  const [editEmail, setEditEmail] = useState(user[0].email);
-  const [editPhone, setEditPhone] = useState(user[0].phone);
+  const [editName, setEditName] = useState("");
+  const [editEmail, setEditEmail] = useState("");
+  const [editPhone, setEditPhone] = useState("");
+
+  // input란에 초기 데이터 넣어주기
+  useEffect(() => {
+    setEditName(user.name);
+    setEditEmail(user.email);
+    setEditPhone(user.phone);
+  }, [user]);
 
   const toggleEdit = () => {
-    setIsEdit(true);
+    setIsEdit(!isEdit);
   };
 
   const handleQuitEdit = () => {
     setIsEdit(false);
-    setEditId(user[0].id);
-    setEditName(user[0].name);
-    setEditEmail(user[0].email);
-    setEditPhone(user[0].phone);
+    setEditName(user.name);
+    setEditEmail(user.email);
+    setEditPhone(user.phone);
   };
 
-  const handleEdit = () => {};
+  const userInfoData = {
+    editName,
+    editEmail,
+    editPhone,
+  };
+
+  const handleEdit = () => {
+    onEditInfo(userInfoData);
+  };
 
   return (
     <Container>
@@ -39,10 +52,6 @@ const MyInfoBox = ({ user }) => {
         <Label>
           <div>
             <IdIcon />
-            <p>아이디</p>
-          </div>
-          <div>
-            <NameIcon />
             <p>이름</p>
           </div>
           <div>
@@ -58,14 +67,12 @@ const MyInfoBox = ({ user }) => {
           {isEdit ? (
             <div className="edit">
               <BasicInput
-                value={editId}
-                onChange={(e) => setEditId(e.target.value)}
-              />
-              <BasicInput
+                name="editName"
                 value={editName}
                 onChange={(e) => setEditName(e.target.value)}
               />
               <BasicInput
+                width="200px"
                 value={editEmail}
                 onChange={(e) => setEditEmail(e.target.value)}
               />
@@ -76,10 +83,9 @@ const MyInfoBox = ({ user }) => {
             </div>
           ) : (
             <div className="info">
-              <div>{user[0].id}</div>
-              <div>{user[0].name}</div>
-              <div>{user[0].email}</div>
-              <div>{user[0].phone}</div>
+              <div>{user.name}</div>
+              <div>{user.email}</div>
+              <div>{user.phone}</div>
             </div>
           )}
         </Info>
@@ -88,9 +94,7 @@ const MyInfoBox = ({ user }) => {
         {isEdit ? (
           <>
             <OutlineBtn onClick={handleQuitEdit}>취소</OutlineBtn>
-            <FillBtn onClick={() => alert("회원정보 수정을 완료하였습니다.")}>
-              완료
-            </FillBtn>
+            <FillBtn onClick={handleEdit}>완료</FillBtn>
           </>
         ) : (
           <>
@@ -118,12 +122,14 @@ const Container = styled.div`
 `;
 
 const ProfileBox = styled.div`
-  margin-top: 2rem;
+  margin-top: 4rem;
 `;
 
 const InfoBox = styled.div`
+  width: 340px;
   display: flex;
-  margin: 2.5rem 0;
+  justify-content: center;
+  margin: 2.5rem 0 4rem 0;
 `;
 const ButtonBox = styled.div`
   width: 100%;
@@ -134,10 +140,11 @@ const ButtonBox = styled.div`
 `;
 
 const Label = styled.div`
-  margin-right: 2rem;
+  flex: 1;
+  margin-right: 3rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
   color: var(--main-color-1);
   font-weight: 600;
   font-size: 17px;
@@ -153,6 +160,7 @@ const Label = styled.div`
   }
 `;
 const Info = styled.div`
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -162,12 +170,12 @@ const Info = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 45px;
+    gap: 48px;
   }
 
   .edit {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 23px;
   }
 `;
