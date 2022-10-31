@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { ReservationBtn } from "./Button";
 import IconText from "./IconText";
+import { instance } from "../../apis/instance";
 
 const Modoal = (props) => {
   const userId = localStorage.getItem("userId");
   const reservationInfo = { ...props.input };
   reservationInfo.userId = userId;
-  reservationInfo.campId = "120";
   reservationInfo.price = props.input.price.toString();
   reservationInfo.date = props.input.checkIn
     .split(" ")
@@ -20,18 +19,8 @@ const Modoal = (props) => {
   console.log(reservationInfo);
 
   const reservationHandler = async () => {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `${sessionStorage.getItem("Token")}`,
-    };
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/detail`,
-        reservationInfo,
-        {
-          headers: headers,
-        }
-      );
+      const res = await instance.post(`/detail`, reservationInfo);
       console.log(res.data);
       alert("예약에 성공하였습니다.");
     } catch (error) {

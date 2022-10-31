@@ -7,16 +7,15 @@ import { instance } from "../../../apis/instance";
 
 const DetailTab = () => {
   const [currentTab, setCurrentTab] = useState(0);
-  const [camp, setCamp] = useState({});
+  const [campInfo, setCamp] = useState({});
+  const [campReviews, setCampReviews] = useState([]);
   const campId = useParams();
 
   const getCampingData = async () => {
     try {
-      const { data } = await instance.get(
-        `/admin/post/73`
-        // `${process.env.REACT_APP_API_URL}/admin/post/${campId.id}`
-      );
-      setCamp(data[0]);
+      const { data } = await instance.get(`/detail/${campId.id}`);
+      setCamp(data.dto);
+      setCampReviews(data.reviews);
     } catch (error) {
       console.log(error);
     }
@@ -24,11 +23,11 @@ const DetailTab = () => {
 
   useEffect(() => {
     getCampingData();
-  });
+  }, []);
 
   const tabMenu = [
-    { title: "기본 정보", content: <DetailInfo camp={camp} /> },
-    { title: "후기", content: <DetailReviews camp={camp} /> },
+    { title: "기본 정보", content: <DetailInfo campInfo={campInfo} /> },
+    { title: "후기", content: <DetailReviews campReviews={campReviews} /> },
   ];
 
   const handleTab = (idx) => {
