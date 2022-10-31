@@ -16,10 +16,9 @@ const RezItem = ({ item, openReviewHandler }) => {
 
   const deleteReservation = async () => {
     try {
-      const { data } = await axios.delete(
+      await axios.delete(
         `${process.env.REACT_APP_API_URL}/client/info/rez/${item.rezId}`
       );
-      console.log(data);
       alert("예약이 취소되었습니다.");
       window.location.reload();
     } catch (error) {
@@ -46,7 +45,7 @@ const RezItem = ({ item, openReviewHandler }) => {
               <div>
                 <CampingIcon />
               </div>
-              <div> 캠핑장: 한라봉 캠핑장</div>
+              <div>캠핑장: {item.campName}</div>
             </div>
           ) : (
             <div className="inner">
@@ -57,7 +56,7 @@ const RezItem = ({ item, openReviewHandler }) => {
                   fill="var(--main-color-1)"
                 />
               </div>
-              <div>예약자: 김코딩</div>
+              <div>예약자: {item.name}</div>
             </div>
           )}
 
@@ -89,7 +88,7 @@ const RezItem = ({ item, openReviewHandler }) => {
         <ButtonBox>
           <OutlineBtn
             onClick={
-              pathname === "/client/mypage/rez"
+              pathname === "/client/mypage/rez" || "/admin/mypage/rez"
                 ? () => deleteReservation()
                 : () => openReviewHandler(item.id)
             }
