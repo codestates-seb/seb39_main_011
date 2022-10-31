@@ -1,6 +1,7 @@
 package com.server.user.Service;
 
 import com.server.user.DTO.UserDto;
+import com.server.user.Entity.Role;
 import com.server.user.Entity.User;
 import com.server.user.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,21 @@ public class UserService {
 
     public String getName(Long userId) {return userRepository.findUserByName(userId);}
 
+    public void updateUser(User user) {
+        userRepository.save(user);
     }
+
+    public Optional<User> findUser(long userId) {
+        return userRepository.findById(userId);
+    }
+
+    public String getUserName(Long userId) {return userRepository.findUserByUserName(userId);}
+
+    public String getUserPassword(Long userId) {return userRepository.findUserByPassword(userId);}
+
+    public Role getUserRole(Long userId) {return userRepository.findUserByRole(userId);}
+}
+
+
 
 
