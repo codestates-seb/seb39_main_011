@@ -162,7 +162,6 @@ const ImgBox = styled.div`
   justify-content: flex-start;
   gap: 20px;
   margin: 10px 0;
-  background-color: aliceblue;
 
   div {
     margin-right: 5px;

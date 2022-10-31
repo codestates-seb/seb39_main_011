@@ -344,7 +344,6 @@ const Box = styled.div`
 
 const PhotoBox = styled.div`
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
   align-items: flex-end;
 
@@ -352,8 +351,6 @@ const PhotoBox = styled.div`
     width: 90px;
     height: 90px;
     border-radius: 5px;
-    margin-top: 10px;
-    background-color: antiquewhite;
 
     @media ${(props) => props.theme.postMobile} {
       margin: 7px;
@@ -370,8 +367,7 @@ const PhotoBox = styled.div`
 const Photos = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 5px;
-  margin-left: 4px;
+  margin: 5px 0 10px 3px;
 
   div {
     margin-top: 1.1rem;
