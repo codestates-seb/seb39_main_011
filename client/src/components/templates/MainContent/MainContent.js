@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import CampingCard from "../../organisms/CampingCard/CampingCard";
-import MainMessage from "../MainMessage/MainMessage";
 import * as S from "./style";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { sortCheck } from "../../../redux/reducers/sortSlice";
 import BlankCard from "../../atoms/BlankCard";
+import BlankBox from "../../atoms/BlankBox";
 
 const MainContent = () => {
-  const [renderCampingList, setRenderCampingList] = useState([]);
   const [campingList, setCampingList] = useState([]);
+  const [renderCampingList, setRenderCampingList] = useState([]);
   const selectRegion = useSelector((state) => state.region);
   const selectSort = useSelector((state) => state.sort);
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const MainContent = () => {
   return (
     <S.PostContainer>
       {renderCampingList.length === 0 ? (
-        <MainMessage />
+        <BlankBox />
       ) : (
         renderCampingList.map((el) => {
           return <CampingCard key={el.campId} camplist={el} />;
