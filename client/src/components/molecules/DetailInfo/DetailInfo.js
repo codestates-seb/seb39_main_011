@@ -12,7 +12,7 @@ import { ReactComponent as PhoneIcon } from "./../../../svg/phone.svg";
 import { ReactComponent as LocationIcon } from "./../../../svg/location.svg";
 import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 
-const DetailInfo = ({ campInfo }) => {
+const DetailInfo = ({ campInfo, campId }) => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: 820 });
   const [modal, setModal] = useState(false);
   const modalHandler = () => {
@@ -22,7 +22,7 @@ const DetailInfo = ({ campInfo }) => {
   return (
     <S.TabInfoContainer>
       {modal && isTabletOrMobile ? (
-        <DetailModal modalHandler={modalHandler} />
+        <DetailModal modalHandler={modalHandler} campId={campId} />
       ) : null}
       <KakaoMap camp={campInfo.place} />
       <S.Info>

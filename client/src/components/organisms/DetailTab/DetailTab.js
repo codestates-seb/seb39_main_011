@@ -26,7 +26,10 @@ const DetailTab = () => {
   }, []);
 
   const tabMenu = [
-    { title: "기본 정보", content: <DetailInfo campInfo={campInfo} /> },
+    {
+      title: "기본 정보",
+      content: <DetailInfo campInfo={campInfo} campId={campId} />,
+    },
     { title: "후기", content: <DetailReviews campReviews={campReviews} /> },
   ];
 
