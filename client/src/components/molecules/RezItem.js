@@ -26,17 +26,11 @@ const RezItem = ({ item, openReviewHandler }) => {
     }
   };
 
-  const dummyImg = [
-    "/assets/images/camping.avif",
-    "/assets/images/camping.avif",
-    "/assets/images/camping.avif",
-  ];
-
   return (
     <div>
       <ItemBox>
         <ImgBox>
-          <Img src={dummyImg[0]} alt="camping" />
+          <Img src={item.campFile_path} alt="camping" />
         </ImgBox>
         <ContentBox>
           {pathname === "/client/mypage/rez" ||
@@ -88,9 +82,10 @@ const RezItem = ({ item, openReviewHandler }) => {
         <ButtonBox>
           <OutlineBtn
             onClick={
-              pathname === "/client/mypage/rez" || "/admin/mypage/rez"
+              pathname === "/client/mypage/rez" ||
+              pathname === "/admin/mypage/rez"
                 ? () => deleteReservation()
-                : () => openReviewHandler(item.id)
+                : () => openReviewHandler(item.rezId)
             }
           >
             {pathname === "/client/mypage/pastrez" ? "리뷰 작성" : "예약 취소"}

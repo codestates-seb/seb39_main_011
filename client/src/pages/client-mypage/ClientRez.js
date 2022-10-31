@@ -12,14 +12,21 @@ const ClientRez = () => {
       const { data } = await instance.get(
         `${process.env.REACT_APP_API_URL}/client/info/rez/${userId}`
       );
-      setReservationList(data);
+      return data;
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getReservationData();
+    getReservationData().then((data) => {
+      const reservation = data.filter((el) => {
+        const reservationDate = new Date(el.date);
+        const today = new Date();
+        return reservationDate > today;
+      });
+      setReservationList(reservation);
+    });
   }, []);
 
   return (
