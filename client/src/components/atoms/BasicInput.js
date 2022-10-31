@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const BasicInput = ({ value, onChange }) => {
+const BasicInput = ({ value, onChange, width }) => {
+  console.log(width);
   return (
     <Layout>
-      <input value={value} onChange={onChange} />
+      <input value={value} onChange={onChange} width={width} />
     </Layout>
   );
 };
@@ -15,14 +16,18 @@ const Layout = styled.div`
   input {
     border: 2px solid var(--main-color-4);
     border-radius: 5px;
-    width: ${(props) => props.width || "auto"};
-    height: ${(props) => props.height || "auto"};
-    padding: ${(props) => props.padding || "10px"};
-    font-size: ${(props) => props.fontSize || "14px"};
+    width: 190px;
+    height: auto;
+    padding: 10px;
+    font-size: 14px;
 
     &:focus {
       outline: none;
       border-color: var(--main-color-3);
+    }
+
+    @media ${(props) => props.theme.mobile} {
+      width: 150px;
     }
   }
 `;

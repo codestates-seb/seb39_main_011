@@ -72,7 +72,7 @@ const PostReview = () => {
             />
           </PhotoBox>
 
-          <div className="plus">※ 사진은 최대 2장까지 업로드 가능합니다.</div>
+          <div className="plus">✋ 사진은 최대 2장까지 업로드 가능합니다.</div>
         </div>
       </ContentBox>
     </Container>
@@ -137,8 +137,7 @@ const ContentBox = styled.div`
 
 const PhotoBox = styled.div`
   width: 100%;
-  margin-top: 1rem;
-  padding-left: 7px;
+  padding-left: 15px;
 
   .image_uploader {
     margin-left: 10px;
@@ -162,10 +161,6 @@ const PhotoTitle = styled.div`
   border-radius: 20px;
   margin-left: 1rem;
   margin-right: 5px;
-
-  @media ${(props) => props.theme.postMobile} {
-    margin-left: 5px;
-  }
 `;
 
 const ButtonBox = styled.div`

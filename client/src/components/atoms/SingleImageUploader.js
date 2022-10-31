@@ -96,10 +96,10 @@ const Box = styled.div`
   margin-top: 5px;
 
   img {
-    width: 65px;
-    height: 65px;
+    width: 80px;
+    height: 80px;
     border-radius: 5px;
-    margin: 10px;
+    margin-top: 10px;
 
     @media ${(props) => props.theme.postMobile} {
       margin: 7px;
@@ -108,8 +108,8 @@ const Box = styled.div`
 
   .close_style {
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 5px;
+    top: 15px;
 
     @media ${(props) => props.theme.postMobile} {
       right: 7px;

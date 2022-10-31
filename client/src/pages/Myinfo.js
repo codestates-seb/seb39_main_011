@@ -2,50 +2,42 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MyInfoBox from "../components/organisms/MyInfoBox";
 import axios from "axios";
+import { instance } from "../apis/instance";
 
 const MyInfo = () => {
-  const userData = [
-    {
-      id: "luvcamp123",
-      name: "김코딩",
-      email: "luv123@gmail.com",
-      phone: "010-1234-5678",
-    },
-  ];
+  const userId = localStorage.getItem("userId");
+  const [user, setUser] = useState([]);
 
-  // const [user, setUser] = useState([]);
+  const getInfo = async () => {
+    try {
+      const res = await instance.get(`/user/info/${userId}`);
+      setUser(res.data[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const getInfo = async () => {
-  //   try {
-  //     const res = await axios.get(`/user/info`);
-  //     setUser(res.data);
-  //     console.log("res: ", res.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  useEffect(() => {
+    getInfo();
+  }, []);
 
-  // useEffect(() => {
-  //   getInfo();
-  //   console.info("user", user);
-  // }, []);
-
-  // const onEditInfo = async (id, name, email, phone) => {
-  //   try {
-  //     const res = await axios.put(`/user/edit`, {
-  //       id,
-  //       name,
-  //       email,
-  //       phone,
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const onEditInfo = async (data) => {
+    const editData = {
+      name: data.editName,
+      email: data.editEmail,
+      phone: data.editPhone,
+    };
+    try {
+      const res = await instance.put(`/user/info/${userId}`, editData);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Container>
-      <MyInfoBox user={userData} />
+      <MyInfoBox user={user} onEditInfo={onEditInfo} />
     </Container>
   );
 };

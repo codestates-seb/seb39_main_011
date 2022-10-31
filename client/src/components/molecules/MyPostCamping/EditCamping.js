@@ -56,6 +56,12 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
     onUpdatePost(data);
   };
 
+  const handleRemove = () => {
+    if (window.confirm("정말로 게시글을 삭제하시겠습니까?")) {
+      onRemovePost();
+    }
+  };
+
   return (
     <div>
       <Box>
@@ -222,28 +228,30 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
               <img src={resData[0]?.file_path} alt="alt" />
             )}
           </div>
-        </PhotoBox>
-        <div className="button_box">
+
           {isEdit ? (
-            <>
-              <OutlineBtn width="51px" onClick={handleQuitEdit}>
-                취소
-              </OutlineBtn>
-              <FillBtn width="51px" onClick={handleEdit}>
-                등록
-              </FillBtn>
-            </>
-          ) : (
-            <>
-              <OutlineBtn onClick={onRemovePost} width="51px">
-                삭제
-              </OutlineBtn>
-              <OutlineBtn onClick={toggleIsEdit} width="51px">
-                수정
-              </OutlineBtn>
-            </>
-          )}
-        </div>
+            <div className="button_box">
+              <>
+                <OutlineBtn width="51px" onClick={handleQuitEdit}>
+                  취소
+                </OutlineBtn>
+                <FillBtn width="51px" onClick={handleEdit}>
+                  등록
+                </FillBtn>
+              </>
+            </div>
+          ) : null}
+        </PhotoBox>
+        {isEdit ? null : (
+          <ButtonBox>
+            <OutlineBtn onClick={handleRemove} width="51px">
+              삭제
+            </OutlineBtn>
+            <OutlineBtn onClick={toggleIsEdit} width="51px">
+              수정
+            </OutlineBtn>
+          </ButtonBox>
+        )}
       </Box>
     </div>
   );
@@ -336,7 +344,7 @@ const Box = styled.div`
 
 const PhotoBox = styled.div`
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: space-between;
   align-items: flex-end;
 
@@ -344,7 +352,7 @@ const PhotoBox = styled.div`
     width: 90px;
     height: 90px;
     border-radius: 5px;
-    margin: 10px;
+    margin-top: 10px;
     background-color: antiquewhite;
 
     @media ${(props) => props.theme.postMobile} {
@@ -363,6 +371,7 @@ const Photos = styled.div`
   display: flex;
   align-items: center;
   margin-top: 5px;
+  margin-left: 4px;
 
   div {
     margin-top: 1.1rem;
@@ -393,4 +402,10 @@ const Inner = styled.div`
     margin-bottom: 10px;
     font-size: 15px;
   }
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
 `;

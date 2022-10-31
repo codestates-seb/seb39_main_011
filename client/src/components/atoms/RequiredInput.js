@@ -12,7 +12,9 @@ const RequiredInput = ({ type, label, value, placeholder, onChange, name }) => {
         InputLabelProps={{
           shrink: true,
         }}
-        inputProps={{ style: { fontSize: 13 } }}
+        inputProps={{
+          style: { fontSize: 13, fontFamily: "Cafe24Oneprettynight" },
+        }}
         variant="standard"
         onChange={onChange}
         name={name}
