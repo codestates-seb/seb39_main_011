@@ -1,5 +1,6 @@
 package com.server.reservation.Controller;
 
+import com.server.reservation.DTO.ReservationResponseDto;
 import com.server.reservation.DTO.RezPostDto;
 import com.server.reservation.Entity.Reservation;
 import com.server.reservation.Mapper.RezMapper;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping
@@ -37,10 +39,15 @@ public class ReservationController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    //예약전체조회
+    //고객예약조회
     @GetMapping("client/info/rez/{user-id}")
     public ResponseEntity getRez(@PathVariable("user-id")long userId) {
-        List<Reservation> response = rezService.findRez(userId);
+        List<Reservation> reservations = rezService.findRez(userId);
+
+        List<ReservationResponseDto> response =
+                reservations.stream()
+                        .map(Reservation -> mapper.resercationToResercationResponseDto(Reservation))
+                        .collect(Collectors.toList());
         return new ResponseEntity(response,HttpStatus.OK);
     }
 

@@ -16,4 +16,10 @@ public interface CampRepository extends JpaRepository<Camp, Long> {
     @Query(value = "update camp set starAge =? where camp_Id =?", nativeQuery = true)
     double updateStarAge(UpdateStarDto updateStarDto);
 
+    @Query(value = "SELECT name FROM camp WHERE camp_id=?", nativeQuery = true)
+    String findCampName(Long campId);
+
+    @Query(value = "SELECT file_path FROM camp WHERE camp_id=?", nativeQuery = true)
+    String findFile_Path(Long campId);
+
 }
