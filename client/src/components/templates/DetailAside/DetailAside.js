@@ -78,7 +78,6 @@ const DetailAside = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(reservationInput);
     if (userRole === "ADMIN") {
       alert("관리자는 예약할 수 없습니다.");
       return;

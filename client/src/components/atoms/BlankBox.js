@@ -1,4 +1,15 @@
+import React from "react";
 import styled from "styled-components";
+import { ReactComponent as CampingIcon } from "../../svg/camping.svg";
+
+const BlankBox = () => {
+  return (
+    <Container>
+      <CampingIcon viewBox="10 80 350 120" />
+      <p>등록된 캠핑장이 없습니다.</p>
+    </Container>
+  );
+};
 
 export const Container = styled.div`
   width: 100%;
@@ -21,3 +32,5 @@ export const Container = styled.div`
     }
   }
 `;
+
+export default BlankBox;

@@ -1,23 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RezItem from "../molecules/RezItem";
 import styled from "styled-components";
 import PostReview from "../atoms/PostReview";
+import { instance } from "../../apis/instance";
 
 const MyPastRezBox = () => {
-  const rezData = [
-    {
-      id: 1,
-      name: "한라봉 캠핑장",
-      phone: "01012345678",
-      date: "22.10.01 ~ 22.10.02",
-      price: "60,000원",
-      note: "요청사항 없습니다.",
-      photo:
-        "https://bear-mello.s3-ap-northeast-2.amazonaws.com/2813fa0d-a395-4635-a714-cdb042501c50.jpeg",
-    },
-  ];
-
+  const [reservationList, setReservationList] = useState([]);
+  const userId = localStorage.getItem("userId");
   const [isOpen, setIsOpen] = useState("");
+
+  const getReservationData = async () => {
+    try {
+      const { data } = await instance.get(
+        `${process.env.REACT_APP_API_URL}/client/info/rez/${userId}`
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getReservationData().then((data) => {
+      const pastReservation = data.filter((el) => {
+        const reservationDate = new Date(el.date);
+        const today = new Date();
+        return reservationDate < today;
+      });
+      setReservationList(pastReservation);
+    });
+  }, []);
 
   const openReviewHandler = (id) => {
     setIsOpen((el) => (el.isOpen !== id ? id : ""));
@@ -29,11 +41,11 @@ const MyPastRezBox = () => {
 
   return (
     <Container>
-      {rezData.map((item) => {
+      {reservationList.map((item) => {
         return (
-          <div key={item.id}>
+          <div key={item.rezId}>
             <RezItem item={item} openReviewHandler={openReviewHandler} />
-            {isOpen === item.id ? <PostReview /> : null}
+            {isOpen === item.rezId ? <PostReview /> : null}
           </div>
         );
       })}

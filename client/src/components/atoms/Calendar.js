@@ -33,7 +33,7 @@ function Calendar() {
       max={2}
       selected={range}
       onSelect={setRange}
-      disabled={disabledDays}
+      // disabled={disabledDays}
       month={month}
       onMonthChange={setMonth}
       footer={footer}
