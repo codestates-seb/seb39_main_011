@@ -25,5 +25,9 @@ const Layout = styled.div`
       outline: none;
       border-color: var(--main-color-3);
     }
+
+    @media ${(props) => props.theme.mobile} {
+      width: 150px;
+    }
   }
 `;

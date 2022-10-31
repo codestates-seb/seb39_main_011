@@ -130,6 +130,10 @@ const InfoBox = styled.div`
   display: flex;
   justify-content: center;
   margin: 2.5rem 0 4rem 0;
+
+  @media ${(props) => props.theme.mobile} {
+    width: 290px;
+  }
 `;
 const ButtonBox = styled.div`
   width: 100%;
