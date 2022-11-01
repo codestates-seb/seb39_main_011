@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ReviewContainer = styled.li`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
