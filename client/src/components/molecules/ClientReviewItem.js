@@ -39,7 +39,6 @@ const ClientReviewItem = ({
   const handleRemove = () => {
     if (window.confirm("해당 리뷰를 삭제하시겠습니까?")) {
       onRemoveReview(item.revId);
-      window.location.reload();
     }
   };
 
@@ -48,8 +47,6 @@ const ClientReviewItem = ({
     setIsEdit(false);
     setEditReview(review);
   };
-
-  console.log(item);
 
   // 수정 완료
   const handleEdit = () => {

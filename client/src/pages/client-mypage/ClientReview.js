@@ -20,9 +20,10 @@ const ClientReview = () => {
     getReview();
   }, []);
 
-  const onRemoveReview = async (id) => {
+  const onRemoveReview = async (revId) => {
     try {
-      const res = await instance.delete(`/client/rev/${id}`);
+      const res = await instance.delete(`/client/rev/${revId}`);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
