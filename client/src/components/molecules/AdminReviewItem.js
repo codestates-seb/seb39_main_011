@@ -1,32 +1,60 @@
 import React from "react";
 import styled from "styled-components";
-import { OutlineBtn } from "../atoms/Button";
+import { OutlineBtn, FillBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 import CommentItem from "./CommentItem";
+import moment from "moment";
+import { ReactComponent as CommentIcon } from "../../svg/review.svg";
+import { ReactComponent as IdIcon } from "../../svg/id.svg";
 
 const AdminReviewItem = ({ item, openReviewHandler, isOpen }) => {
+  const date = moment(item.date).format("YYYY.MM.DD");
+
   return (
     <>
       <ItemBox>
         <ContentBox>
-          <StarBox>
-            <StarRender rating={item.star} />
-          </StarBox>
-          <div>
+          <InnerBox>
+            <IdIcon width="20" height="20" />
             <p>{item.writer}</p>
-          </div>
-          <p>{item.review}</p>
+            <span className="hide">{date}</span>
+            <StarRender rating={item.star} />
+          </InnerBox>
+
           <ImgBox>
-            <Img src={item.file_path} alt="camping" />
+            <Img src={item?.file_path} alt="camping" />
+            <div>{item.review}</div>
+            {item.comments.length === 0 && (
+              <ButtonBox>
+                <OutlineBtn
+                  onClick={() => openReviewHandler(item.revId)}
+                  height="40px"
+                  width="70px"
+                  fontSize="12px"
+                >
+                  댓글 달기
+                </OutlineBtn>
+              </ButtonBox>
+            )}
           </ImgBox>
         </ContentBox>
-        <ButtonBox>
-          <OutlineBtn onClick={() => openReviewHandler(item.revId)}>
-            댓글 달기
-          </OutlineBtn>
-        </ButtonBox>
       </ItemBox>
+
       <hr />
+      {item.comments.length !== 0 && (
+        <Layout>
+          <div className="title_style">
+            ㄴ <CommentIcon fill="var(--main-color-1)" /> 댓글
+          </div>
+          <Box>
+            <div>{item.comments[0].message}</div>
+            <div className="button_box">
+              <FillBtn>삭제</FillBtn>
+              <OutlineBtn>수정</OutlineBtn>
+            </div>
+          </Box>
+        </Layout>
+      )}
       {isOpen && <CommentItem />}
     </>
   );
@@ -34,39 +62,107 @@ const AdminReviewItem = ({ item, openReviewHandler, isOpen }) => {
 
 export default AdminReviewItem;
 
+const Layout = styled.div`
+  background-color: #f6f6f6;
+  padding: 1rem;
+
+  .title_style {
+    display: flex;
+    gap: 3px;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--main-color-1);
+  }
+`;
+
+const Box = styled.div`
+  display: flex;
+  gap: 20px;
+
+  div {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: 1rem;
+  }
+
+  .button_box {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+`;
+
 const ItemBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  margin-left: 1rem;
 `;
 
 const ImgBox = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 20px;
-  margin: 1rem 0;
+  margin: 10px 0;
+
+  div {
+    margin-right: 5px;
+    flex: 3;
+
+    @media ${(props) => props.theme.postMobile} {
+      height: 80px;
+    }
+  }
+
+  @media ${(props) => props.theme.postMobile} {
+    gap: 10px;
+  }
 `;
 
 const ContentBox = styled.div`
-  flex: 3;
+  flex: 5;
   font-size: 12px;
-  margin-left: 1rem;
+`;
+
+const InnerBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
 
   p {
-    margin: 7px 10px 0 0;
+    font-size: 15px;
+    margin: 0 3px 0 5px;
   }
 
-  div {
-    display: flex;
+  span {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--main-color-1);
+    margin: 0 7px;
+
+    @media ${(props) => props.theme.postMobile} {
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+
+  .hide {
+    @media ${(props) => props.theme.postMobile} {
+      display: none;
+    }
   }
 `;
 
-const StarBox = styled.div``;
-
 const Img = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 85px;
+  height: 85px;
   border-radius: 10px;
+
+  @media ${(props) => props.theme.postMobile} {
+    width: 75px;
+    height: 75px;
+  }
 `;
 
 const ButtonBox = styled.div`
@@ -74,4 +170,5 @@ const ButtonBox = styled.div`
   justify-content: flex-end;
   align-items: center;
   flex: 1;
+  margin-right: 1rem;
 `;

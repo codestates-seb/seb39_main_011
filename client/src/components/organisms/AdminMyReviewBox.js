@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
 import styled from "styled-components";
-import { instance } from "../../apis/instance";
 import AdminReviewItem from "../molecules/AdminReviewItem";
 import CommentItem from "../molecules/CommentItem";
 
