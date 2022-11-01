@@ -4,26 +4,24 @@ import { OutlineBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 import CommentItem from "./CommentItem";
 
-const AdminReviewItem = ({ item, openReviewHandler, isOpen }) => {
+const AdminReviewItem = ({ review, openReviewHandler, isOpen }) => {
   const onOpen = () => {
-    openReviewHandler(item.id);
+    openReviewHandler(review.id);
   };
   return (
     <>
       <ItemBox>
         <ContentBox>
           <StarBox>
-            <StarRender />
+            <StarRender rating={review.star} />
           </StarBox>
           <div>
-            <p>{item.writer}</p>
-            <p>{item.date}</p>
+            <p>{review.writer}</p>
+            <p>{new Date(review.date).toLocaleString()}</p>
           </div>
-          <p>{item.review}</p>
+          <p>{review.review}</p>
           <ImgBox>
-            <Img src={item.revPhoto} alt="camping" />
-            <Img src={item.revPhoto} alt="camping" />
-            <Img src={item.revPhoto} alt="camping" />
+            <Img src={review.file_path} alt="camping" />
           </ImgBox>
         </ContentBox>
         <ButtonBox>
