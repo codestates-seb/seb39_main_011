@@ -4,33 +4,30 @@ import { OutlineBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 import CommentItem from "./CommentItem";
 
-const AdminReviewItem = ({ review, openReviewHandler, isOpen, revId }) => {
-  const onOpen = () => {
-    openReviewHandler(revId);
-  };
-
+const AdminReviewItem = ({ item, openReviewHandler, isOpen }) => {
   return (
     <>
       <ItemBox>
         <ContentBox>
           <StarBox>
-            <StarRender rating={review.star} />
+            <StarRender rating={item.star} />
           </StarBox>
           <div>
-            <p>{review.writer}</p>
-            <p>{new Date(review.date).toLocaleString()}</p>
+            <p>{item.writer}</p>
           </div>
-          <p>{review.review}</p>
+          <p>{item.review}</p>
           <ImgBox>
-            <Img src={review.file_path} alt="camping" />
+            <Img src={item.file_path} alt="camping" />
           </ImgBox>
         </ContentBox>
         <ButtonBox>
-          <OutlineBtn onClick={onOpen}>댓글 달기</OutlineBtn>
+          <OutlineBtn onClick={() => openReviewHandler(item.revId)}>
+            댓글 달기
+          </OutlineBtn>
         </ButtonBox>
       </ItemBox>
       <hr />
-      {isOpen && <CommentItem revId={revId} />}
+      {isOpen && <CommentItem />}
     </>
   );
 };

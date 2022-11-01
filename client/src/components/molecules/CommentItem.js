@@ -5,18 +5,22 @@ import TextArea from "../atoms/TextArea";
 import { ReactComponent as CommentIcon } from "../../svg/review.svg";
 import { instance } from "../../apis/instance";
 
-const CommentItem = ({ revId }) => {
+const CommentItem = ({ item }) => {
   const [message, setMessage] = useState("");
+  const [isComment, setIsComment] = useState(true);
+
+  const onChangeMessage = (e) => {
+    setMessage(e.target.value);
+  };
 
   const commentPost = async () => {
-    const CommentData = {
-      revId,
+    const commentData = {
+      revId: item.revId,
       message,
     };
 
-    console.log(CommentData);
     try {
-      const res = await instance.post(`/admin/rev`, CommentData);
+      const res = await instance.post(`/admin/rev`, commentData);
       alert("댓글을 등록하였습니다.");
       window.location.reload();
     } catch (error) {
@@ -35,11 +39,7 @@ const CommentItem = ({ revId }) => {
       </div>
       <Box>
         <div className="textarea_style">
-          <TextArea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            rows="4"
-          />
+          <TextArea value={message} onChange={onChangeMessage} rows="4" />
           <FillBtn onClick={commentPost}>등록</FillBtn>
         </div>
       </Box>
