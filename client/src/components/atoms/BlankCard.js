@@ -28,6 +28,10 @@ const Container = styled.div`
     font-size: 1.5rem;
     color: var(--main-color-4);
   }
+
+  @media (max-width: 980px) {
+    display: none;
+  }
 `;
 
 export default BlankCard;
