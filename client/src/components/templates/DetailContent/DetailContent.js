@@ -21,7 +21,7 @@ const DetailContent = ({ campReviews, campInfo, campId }) => {
 
   return (
     <S.DetailMainContainer>
-      <Carousel />
+      <Carousel picture={campInfo.file_path} />
       <S.Tab>
         <S.TabBtn>
           {tabMenu.map((el, idx) => {

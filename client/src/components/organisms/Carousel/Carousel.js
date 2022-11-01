@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 
-const Carousel = () => {
+const Carousel = ({ picture }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Carousel = () => {
   return (
     <S.CarouselContainer>
       <S.ImgBoxs count={count}>
-        <S.Img src={`${process.env.PUBLIC_URL} /assets/images/camping2.jpg`} />
+        <S.Img src={picture} />
         <S.Img src={`${process.env.PUBLIC_URL} /assets/images/camping3.jpg`} />
         <S.Img src={`${process.env.PUBLIC_URL} /assets/images/camping4.jpg`} />
       </S.ImgBoxs>
