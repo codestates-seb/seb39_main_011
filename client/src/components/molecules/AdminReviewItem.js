@@ -2,13 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { OutlineBtn, FillBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
-import CommentItem from "./CommentItem";
 import moment from "moment";
 import { ReactComponent as CommentIcon } from "../../svg/review.svg";
 import { ReactComponent as IdIcon } from "../../svg/id.svg";
 
-const AdminReviewItem = ({ item, openReviewHandler, isOpen }) => {
+const AdminReviewItem = ({ item, openReviewHandler, onRemoveReview }) => {
   const date = moment(item.date).format("YYYY.MM.DD");
+
+  const handleRemove = () => {
+    if (window.confirm("해당 댓글을 삭제하시겠습니까?")) {
+      onRemoveReview(item.comments[0]?.commentId);
+    }
+  };
 
   return (
     <>
@@ -40,7 +45,6 @@ const AdminReviewItem = ({ item, openReviewHandler, isOpen }) => {
         </ContentBox>
       </ItemBox>
 
-      <hr />
       {item.comments.length !== 0 && (
         <Layout>
           <div className="title_style">
@@ -49,13 +53,14 @@ const AdminReviewItem = ({ item, openReviewHandler, isOpen }) => {
           <Box>
             <div>{item.comments[0].message}</div>
             <div className="button_box">
-              <FillBtn>삭제</FillBtn>
-              <OutlineBtn>수정</OutlineBtn>
+              <FillBtn onClick={handleRemove} fontSize="11px">
+                삭제
+              </FillBtn>
+              <OutlineBtn fontSize="11px">수정</OutlineBtn>
             </div>
           </Box>
         </Layout>
       )}
-      {isOpen && <CommentItem />}
     </>
   );
 };
@@ -69,7 +74,7 @@ const Layout = styled.div`
   .title_style {
     display: flex;
     gap: 3px;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: bold;
     color: var(--main-color-1);
   }
@@ -78,6 +83,7 @@ const Layout = styled.div`
 const Box = styled.div`
   display: flex;
   gap: 20px;
+  font-size: 14px;
 
   div {
     display: flex;
@@ -97,7 +103,7 @@ const ItemBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  margin-left: 1rem;
+  margin-left: 5px;
 `;
 
 const ImgBox = styled.div`
@@ -131,7 +137,7 @@ const InnerBox = styled.div`
   align-items: center;
 
   p {
-    font-size: 15px;
+    font-size: 14px;
     margin: 0 3px 0 5px;
   }
 

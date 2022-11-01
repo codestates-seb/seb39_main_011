@@ -54,7 +54,7 @@ export const FillBtn = styled(ButtonPrimary)`
   color: #fff;
   background: var(--main-color-2);
   height: ${(props) => props.height || "auto"};
-  width: ${(props) => props.height || "auto"};
+  width: ${(props) => props.width || "auto"};
   border: 2px solid var(--main-color-2);
   border-radius: 7px;
   margin: ${(props) => props.margin || "none"};

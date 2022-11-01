@@ -20,13 +20,14 @@ const AdminReview = () => {
     getReview();
   }, []);
 
-  // const onRemoveReview = async (id) => {
-  //   try {
-  //     const res = await instance.delete(`/admin/rev/${id}`);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const onRemoveReview = async (id) => {
+    try {
+      const res = await instance.delete(`/admin/rev/${id}`);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // const onUpdateReview = async (
   //   revId,
@@ -45,7 +46,7 @@ const AdminReview = () => {
 
   return (
     <Container>
-      <AdminMyReviewBox reviews={reviews} />
+      <AdminMyReviewBox reviews={reviews} onRemoveReview={onRemoveReview} />
     </Container>
   );
 };

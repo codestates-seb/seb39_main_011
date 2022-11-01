@@ -7,7 +7,6 @@ import { instance } from "../../apis/instance";
 
 const CommentItem = ({ item }) => {
   const [message, setMessage] = useState("");
-  const [isComment, setIsComment] = useState(true);
 
   const onChangeMessage = (e) => {
     setMessage(e.target.value);
@@ -31,11 +30,7 @@ const CommentItem = ({ item }) => {
   return (
     <Layout>
       <div className="title_style">
-        <div>ㄴ</div>
-        <div>
-          <CommentIcon fill="var(--main-color-1)" />
-        </div>
-        <div>댓글 작성</div>
+        ㄴ <CommentIcon fill="var(--main-color-1)" /> 댓글 작성
       </div>
       <Box>
         <div className="textarea_style">

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import AdminReviewItem from "../molecules/AdminReviewItem";
 import CommentItem from "../molecules/CommentItem";
 
-const AdminMyReviewBox = ({ reviews }) => {
+const AdminMyReviewBox = ({ reviews, onRemoveReview }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openReviewHandler = (id) => {
@@ -22,8 +22,10 @@ const AdminMyReviewBox = ({ reviews }) => {
             <AdminReviewItem
               item={item}
               openReviewHandler={openReviewHandler}
+              onRemoveReview={onRemoveReview}
             />
             {isOpen === item.revId ? <CommentItem item={item} /> : null}
+            <hr />
           </div>
         );
       })}
