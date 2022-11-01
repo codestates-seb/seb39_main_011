@@ -7,6 +7,7 @@ import AdminReviewItem from "../molecules/AdminReviewItem";
 const AdminMyReviewBox = () => {
   const campId = localStorage.getItem("campId");
   const [reviews, setReviews] = useState([]);
+  const [id, setId] = useState(0);
 
   const getReviewData = async () => {
     try {
@@ -26,10 +27,8 @@ const AdminMyReviewBox = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openReviewHandler = (id) => {
-    console.log("open!!");
     setIsOpen(!isOpen);
-    console.log(isOpen);
-    console.log(id);
+    setId(id);
   };
 
   return (
@@ -39,8 +38,9 @@ const AdminMyReviewBox = () => {
           <AdminReviewItem
             key={idx}
             review={review}
-            openReviewHandler={(id) => openReviewHandler(id)}
+            openReviewHandler={() => openReviewHandler(review.revId)}
             isOpen={isOpen}
+            revId={id}
           />
         );
       })}

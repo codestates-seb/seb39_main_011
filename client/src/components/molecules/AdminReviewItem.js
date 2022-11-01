@@ -4,10 +4,11 @@ import { OutlineBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 import CommentItem from "./CommentItem";
 
-const AdminReviewItem = ({ review, openReviewHandler, isOpen }) => {
+const AdminReviewItem = ({ review, openReviewHandler, isOpen, revId }) => {
   const onOpen = () => {
-    openReviewHandler(review.id);
+    openReviewHandler(revId);
   };
+
   return (
     <>
       <ItemBox>
@@ -29,7 +30,7 @@ const AdminReviewItem = ({ review, openReviewHandler, isOpen }) => {
         </ButtonBox>
       </ItemBox>
       <hr />
-      {isOpen && <CommentItem />}
+      {isOpen && <CommentItem revId={revId} />}
     </>
   );
 };
