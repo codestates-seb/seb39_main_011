@@ -14,6 +14,7 @@ import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 import { ReactComponent as RequestIcon } from "./../../../svg/note.svg";
 
 const DetailAside = (props) => {
+  console.log(props);
   const reservation = useSelector((state) => state.reservationDate);
   const [modalSwitch, setModalSwitch] = useState(false);
   const userRole = localStorage.getItem("role");
@@ -27,8 +28,7 @@ const DetailAside = (props) => {
     checkOut: "",
     campId: props.campId.id,
   });
-  let hi = 50000;
-  const [reservationPrice, setReservationPrice] = useState(hi);
+  const [reservationPrice, setReservationPrice] = useState(props.campPrice);
 
   useEffect(() => {
     setReservationInput((preState) => {
@@ -57,8 +57,7 @@ const DetailAside = (props) => {
     });
   };
   const quantityHandler = (event) => {
-    hi = hi * event.target.value;
-    setReservationPrice(hi);
+    setReservationPrice(props.campPrice * event.target.value);
     setReservationInput((preState) => {
       return {
         ...preState,
