@@ -45,7 +45,7 @@ const MyPastRezBox = () => {
         return (
           <div key={item.rezId}>
             <RezItem item={item} openReviewHandler={openReviewHandler} />
-            {isOpen === item.rezId ? <PostReview /> : null}
+            {isOpen === item.rezId ? <PostReview item={item} /> : null}
           </div>
         );
       })}

@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import StarClick from "./StarClick";
 import { FillBtn } from "./Button";
-import axios from "axios";
 import SingleImageUploader from "./SingleImageUploader";
+import { instance } from "../../apis/instance";
+import { useNavigate } from "react-router-dom";
 
-const PostReview = () => {
+const PostReview = ({ item }) => {
+  const navigate = useNavigate();
+
   const [star, setStar] = useState(0);
   const [review, setReview] = useState("");
   const [images, setImages] = useState(null);
@@ -26,18 +29,15 @@ const PostReview = () => {
       review,
       star,
       file_path: images,
-      rezId: 10,
+      rezId: item.rezId,
       userId,
-      campId: 69,
+      campId: item.campId,
     };
 
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/client/rev`,
-        reviewData
-      );
+      const res = await instance.post(`/client/rev`, reviewData);
       alert("리뷰를 등록하였습니다.");
-      window.location.reload();
+      navigate("/client/mypage/review");
     } catch (error) {
       console.log(error);
     }
