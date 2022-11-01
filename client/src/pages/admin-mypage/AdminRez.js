@@ -12,7 +12,6 @@ const AdminRez = () => {
       const { data } = await instance.get(
         `${process.env.REACT_APP_API_URL}/admin/rez/${campId}`
       );
-      console.log(data);
       setReservationList(data);
     } catch (error) {
       console.log(error);
