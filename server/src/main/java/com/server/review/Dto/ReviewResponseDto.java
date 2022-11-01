@@ -1,6 +1,7 @@
 package com.server.review.Dto;
 
 import com.server.comment.Entity.Comment;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
 public class ReviewResponseDto {
     private Long revId;
     private Long userId;
@@ -24,8 +25,7 @@ public class ReviewResponseDto {
     private int star;
     private String file_path;
     private List<Comment> comments = new ArrayList<>();
+    private String campFile_path;
 
 
-    public ReviewResponseDto(Long revId, Long userId, Long campId, Long rezId, String writer, String review, LocalDateTime date, String visit, int star, String file_path, List<Comment> comments) {
-    }
 }

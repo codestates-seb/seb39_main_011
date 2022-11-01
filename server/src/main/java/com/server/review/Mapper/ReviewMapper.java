@@ -1,5 +1,7 @@
 package com.server.review.Mapper;
 
+import com.server.camp.repository.CampRepository;
+import com.server.camp.service.CampService;
 import com.server.comment.Repository.CommentRepository;
 import com.server.comment.Service.CommentService;
 import com.server.reservation.Repository.RezRepository;
@@ -23,7 +25,8 @@ public class ReviewMapper {
     private final CommentRepository commentRepository;
     private final UserService userService;
     private final RezService rezService;
-    private final CommentService commentService;
+    private final CampRepository campRepository;
+
 
 
     public Review reviewPostDtoToReview(ReviewPostDto reviewPostDto) {
@@ -69,6 +72,7 @@ public class ReviewMapper {
                 review.getVisit(),
                 review.getStar(),
                 review.getFile_path(),
-                review.getComments());
+                review.getComments(),
+                campRepository.findFile_Path(review.getCampId()));
     }
 }

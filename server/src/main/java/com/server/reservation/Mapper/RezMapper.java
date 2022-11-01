@@ -27,7 +27,7 @@ public class RezMapper {
                 rezPostDto.getQuantity());
     }
 
-    public ReservationResponseDto resercationToResercationResponseDto(Reservation reservation) {
+    public ReservationResponseDto reservationToResercationResponseDto(Reservation reservation) {
         return new ReservationResponseDto(
                 reservation.getRezId(),
                 reservation.getUserId(),

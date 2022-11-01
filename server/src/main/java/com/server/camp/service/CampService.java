@@ -46,9 +46,7 @@ public class CampService {
         return campRepository.findCampName(campId);
     }
 
-    public String getFile_path(Long campId) {
-        return campRepository.findFile_Path(campId);
-    }
+
 
 //    public void setStar(Long campId) {
 //        Double starAvg = campRepository.findStarAvg(campId);

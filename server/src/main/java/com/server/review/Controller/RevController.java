@@ -73,8 +73,12 @@ public class RevController {
     //유져리뷰전체조회
     @GetMapping("/client/rev/{user-id}")
     public ResponseEntity getUserReview(@PathVariable("user-id") long userId) {
-        List<Review> response = reviewService.findUserReview(userId);;
+        List<Review> reviews = reviewService.findUserReview(userId);
 
+        List<ReviewResponseDto> response =
+                reviews.stream()
+                        .map(Review -> mapper.reviewToReviewResponseDto(Review))
+                        .collect(Collectors.toList());
         return new ResponseEntity(response,HttpStatus.OK);
     }
 

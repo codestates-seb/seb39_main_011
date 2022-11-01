@@ -46,7 +46,7 @@ public class ReservationController {
 
         List<ReservationResponseDto> response =
                 reservations.stream()
-                        .map(Reservation -> mapper.resercationToResercationResponseDto(Reservation))
+                        .map(Reservation -> mapper.reservationToResercationResponseDto(Reservation))
                         .collect(Collectors.toList());
         return new ResponseEntity(response,HttpStatus.OK);
     }
