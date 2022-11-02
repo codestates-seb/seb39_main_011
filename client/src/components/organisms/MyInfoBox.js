@@ -50,7 +50,7 @@ const MyInfoBox = ({ user, onEditInfo }) => {
       <InfoBox>
         <Label>
           <div>
-            <IdIcon />
+            <IdIcon width="25" height="25" />
             <p>이름</p>
           </div>
           <div>

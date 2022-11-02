@@ -1,47 +1,32 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
 import styled from "styled-components";
-import { instance } from "../../apis/instance";
 import AdminReviewItem from "../molecules/AdminReviewItem";
+import CommentItem from "../molecules/CommentItem";
 
-const AdminMyReviewBox = () => {
-  const campId = localStorage.getItem("campId");
-  const [reviews, setReviews] = useState([]);
-
-  const getReviewData = async () => {
-    try {
-      const { data } = await instance.get(
-        `${process.env.REACT_APP_API_URL}/admin/rev/${campId}`
-      );
-      setReviews(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getReviewData();
-  }, []);
-
+const AdminMyReviewBox = ({ reviews, onRemoveReview }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openReviewHandler = (id) => {
-    console.log("open!!");
-    setIsOpen(!isOpen);
-    console.log(isOpen);
-    console.log(id);
+    setIsOpen((el) => (el.isOpen !== id ? id : ""));
+
+    if (isOpen === id) {
+      setIsOpen(false);
+    }
   };
 
   return (
     <Container>
-      {reviews.map((review, idx) => {
+      {reviews.map((item) => {
         return (
-          <AdminReviewItem
-            key={idx}
-            review={review}
-            openReviewHandler={(id) => openReviewHandler(id)}
-            isOpen={isOpen}
-          />
+          <div key={item.revId}>
+            <AdminReviewItem
+              item={item}
+              openReviewHandler={openReviewHandler}
+              onRemoveReview={onRemoveReview}
+            />
+            {isOpen === item.revId ? <CommentItem item={item} /> : null}
+            <hr />
+          </div>
         );
       })}
     </Container>

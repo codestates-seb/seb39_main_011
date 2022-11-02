@@ -72,7 +72,7 @@ const PostReview = ({ item }) => {
             />
           </PhotoBox>
 
-          <div className="plus">✋ 사진은 최대 2장까지 업로드 가능합니다.</div>
+          <div className="plus">✋ 사진은 최대 1장만 업로드 가능합니다.</div>
         </div>
       </ContentBox>
     </Container>
