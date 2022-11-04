@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,7 +14,7 @@ public class ReservationResponseDto {
     private Long userId;
     private Long campId;
     private String name;
-    private String date;
+    private LocalDate date;
     private String phone;
     private String note;
     private int price;

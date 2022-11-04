@@ -20,5 +20,5 @@ import java.util.Optional;
 public class DetailDto {
     private List<Review> reviews;
     private Optional<Camp> dto;
-    public Map<String, Integer> map;
+    public Map<LocalDate, Integer> map;
 }

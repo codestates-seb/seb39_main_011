@@ -82,4 +82,6 @@ public class CampController {
         DetailDto dto = detailService.combineCampInfoWithReview(campId);
         return new ResponseEntity(dto, HttpStatus.OK);
     }
+
+
 }
