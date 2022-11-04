@@ -52,7 +52,7 @@ public class CampMapper {
                 camp.getPlace(),
                 camp.getPrice(),
                 camp.getStarAge(),
-                camp.getFile_path());
+                camp.getFile_path(),
+                reviewService.findRevByCount(camp.getCampId()));
     }
-
 }

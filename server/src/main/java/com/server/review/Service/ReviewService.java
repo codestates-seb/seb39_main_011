@@ -48,5 +48,10 @@ public class ReviewService {
         return reviewRepository.findByUserId(userId);
     }
 
+    public int findRevByCount(long campId) {
+        int result = Math.toIntExact(reviewRepository.countByReview(campId));
+        return result;
+    }
+
 
 }

@@ -12,6 +12,7 @@ public class CampResponseDto {
     private int price;
     private double starAge;
     private String file_path;
+    private int reviewCount;
 
 
 }
