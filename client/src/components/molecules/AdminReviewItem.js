@@ -1,18 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { OutlineBtn, FillBtn } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 import moment from "moment";
 import { ReactComponent as CommentIcon } from "../../svg/review.svg";
 import { ReactComponent as IdIcon } from "../../svg/id.svg";
+import TextArea from "../atoms/TextArea";
 
-const AdminReviewItem = ({ item, openReviewHandler, onRemoveReview }) => {
+const AdminReviewItem = ({
+  item,
+  openReviewHandler,
+  onRemoveReview,
+  onUpdateReview,
+}) => {
   const date = moment(item.date).format("YYYY.MM.DD");
+  const [isEdit, setIsEdit] = useState(false);
+
+  const [editComment, setEditComment] = useState(item.comments[0]?.message);
+
+  const toggleIsEdit = () => {
+    setIsEdit(!isEdit);
+  };
 
   const handleRemove = () => {
     if (window.confirm("해당 댓글을 삭제하시겠습니까?")) {
       onRemoveReview(item.comments[0]?.commentId);
     }
+  };
+
+  // 수정 취소
+  const handleQuitEdit = () => {
+    setIsEdit(false);
+    setEditComment(item.comments[0]?.message);
+  };
+
+  // 수정 완료
+  const handleEdit = () => {
+    onUpdateReview(item.comments[0]?.commentId, item.revId, editComment);
+    toggleIsEdit();
   };
 
   return (
@@ -51,12 +76,53 @@ const AdminReviewItem = ({ item, openReviewHandler, onRemoveReview }) => {
             ㄴ <CommentIcon fill="var(--main-color-1)" /> 댓글
           </div>
           <Box>
-            <div>{item.comments[0].message}</div>
+            {isEdit ? (
+              <div className="textarea-style">
+                <TextArea
+                  value={editComment}
+                  onChange={(e) => setEditComment(e.target.value)}
+                  rows="1"
+                />
+              </div>
+            ) : (
+              <>
+                <div className="message-style">{item.comments[0].message}</div>
+              </>
+            )}
+
             <div className="button_box">
-              <FillBtn onClick={handleRemove} fontSize="11px">
-                삭제
-              </FillBtn>
-              <OutlineBtn fontSize="11px">수정</OutlineBtn>
+              {isEdit ? (
+                <>
+                  <FillBtn
+                    onClick={handleQuitEdit}
+                    fontSize="11px"
+                    height="33px"
+                  >
+                    취소
+                  </FillBtn>
+                  <OutlineBtn
+                    fontSize="11px"
+                    onClick={handleEdit}
+                    height="33px"
+                  >
+                    완료
+                  </OutlineBtn>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <FillBtn onClick={handleRemove} fontSize="11px" height="33px">
+                    삭제
+                  </FillBtn>
+                  <OutlineBtn
+                    fontSize="11px"
+                    onClick={toggleIsEdit}
+                    height="33px"
+                  >
+                    수정
+                  </OutlineBtn>
+                </>
+              )}
             </div>
           </Box>
         </Layout>
@@ -82,14 +148,24 @@ const Layout = styled.div`
 
 const Box = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 20px;
   font-size: 14px;
 
-  div {
+  .message-style {
     display: flex;
     align-items: center;
     flex: 1;
     margin-left: 1rem;
+  }
+
+  .textarea-style {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
   }
 
   .button_box {
