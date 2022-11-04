@@ -5,6 +5,7 @@ import com.server.reservation.Repository.RezRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +31,9 @@ public class RezService {
 
     public List<Reservation> findAdminRez(long campId) { return rezRepository.findByCampId(campId);}
 
-    public int findRezByDate(LocalDateTime date) {return rezRepository.findReservationByDate(date);}
+    public int findRezByDate(LocalDate date) {
+        int result = Math.toIntExact( rezRepository.countByDate(date));
+        return result;}
 
     public String findDate(Long rezId) {return rezRepository.findReservationByDate(rezId);}
 }

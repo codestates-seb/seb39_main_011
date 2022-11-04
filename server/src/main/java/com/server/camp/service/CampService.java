@@ -46,6 +46,10 @@ public class CampService {
         return campRepository.findCampName(campId);
     }
 
+    public int getCampCapacity(Long campId) {
+        return campRepository.findCapacity(campId);
+    }
+
 
 
 //    public void setStar(Long campId) {

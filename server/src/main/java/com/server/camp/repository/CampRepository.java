@@ -22,4 +22,7 @@ public interface CampRepository extends JpaRepository<Camp, Long> {
     @Query(value = "SELECT file_path FROM camp WHERE camp_id=?", nativeQuery = true)
     String findFile_Path(Long campId);
 
+    @Query(value = "SELECT capacity FROM camp WHERE camp_id=?", nativeQuery = true)
+    int findCapacity(Long campId);
+
 }
