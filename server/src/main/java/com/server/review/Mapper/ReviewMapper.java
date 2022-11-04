@@ -21,8 +21,6 @@ import java.time.LocalDateTime;
 @Component
 @AllArgsConstructor
 public class ReviewMapper {
-    private final RezRepository rezRepository;
-    private final CommentRepository commentRepository;
     private final UserService userService;
     private final RezService rezService;
     private final CampRepository campRepository;
