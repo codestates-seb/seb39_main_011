@@ -17,4 +17,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query(value = "SELECT star FROM review WHERE camp_id = ?", nativeQuery = true)
     List<Review> findCampIdByStar(Long campId);
 
+    @Query(value = "SELECT COUNT(review) FROM review WHERE camp_id =?", nativeQuery = true)
+    Long countByReview(Long campId);
+
 }
