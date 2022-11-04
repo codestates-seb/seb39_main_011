@@ -4,6 +4,7 @@ import com.server.review.Entity.Review;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -19,18 +20,17 @@ public class Comment {
     @Column
     private String message;
 
+    public Comment(Long commentId, String message, LocalDate date) {
+        this.commentId = commentId;
+        this.message = message;
+        this.date = date;
+    }
+
     @Column
-    private LocalDateTime date;
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "REV_ID")
     private Review review;
-//    public void setReview(Review review) {
-//        this.review = review;
-//
-//        if(!review.getComments().contains(this)) {
-//            review.getComments().addComment(this);
-//        }
-//    }
     }
 

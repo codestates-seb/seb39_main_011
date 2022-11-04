@@ -63,12 +63,4 @@ public class Review {
     @OneToMany(mappedBy = "review")
     @JsonIgnoreProperties({"review"})
     private List<Comment> comments = new ArrayList<>();
-
-//    public void addComment(Comment comment) {
-//        this.comments.add(comment);
-//
-//        if(comment.getReview() != this) {
-//            comment.setReview(this);
-//        }
-//    }
 }
