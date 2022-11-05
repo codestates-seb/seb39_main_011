@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ClientMyReviewBox from "../../components/organisms/ClientMyReviewBox";
 import { instance } from "../../apis/instance";
+import Swal from "sweetalert2";
 
 const ClientReview = () => {
   const [data, setData] = useState([]);
@@ -23,7 +24,13 @@ const ClientReview = () => {
   const onRemoveReview = async (revId) => {
     try {
       const res = await instance.delete(`/client/rev/${revId}`);
-      window.location.reload();
+      Swal.fire({
+        icon: "success",
+        text: "리뷰가 삭제되었습니다.",
+        button: "확인",
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +55,13 @@ const ClientReview = () => {
         campId,
         rezId,
       });
-      window.location.reload();
+      Swal.fire({
+        icon: "success",
+        text: "리뷰를 수정하였습니다.",
+        button: "확인",
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (err) {
       console.log(err);
     }

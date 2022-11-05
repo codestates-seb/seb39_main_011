@@ -10,6 +10,7 @@ import {
   isEmailValid,
 } from "../../utils/validator";
 import axios from "axios";
+import Toast from "../atoms/Toast";
 
 const JoinForm = () => {
   const navigate = useNavigate();
@@ -126,9 +127,10 @@ const JoinForm = () => {
         }
       );
       navigate("/login");
-      alert("베어멜로의 회원이 되신 것을 환영합니다!");
-
-      window.location.reload();
+      Toast.fire({
+        icon: "success",
+        title: "BearMello의 회원이 되신 것을 환영합니다 :>",
+      });
     } catch (error) {
       if ((res) => res.data.status === 500) {
         alert("회원가입에 실패하셨습니다.");

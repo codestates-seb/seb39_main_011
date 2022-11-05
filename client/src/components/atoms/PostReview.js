@@ -5,6 +5,7 @@ import { FillBtn } from "./Button";
 import SingleImageUploader from "./SingleImageUploader";
 import { instance } from "../../apis/instance";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const PostReview = ({ item }) => {
   const navigate = useNavigate();
@@ -36,8 +37,13 @@ const PostReview = ({ item }) => {
 
     try {
       const res = await instance.post(`/client/rev`, reviewData);
-      alert("리뷰를 등록하였습니다.");
-      navigate("/client/mypage/review");
+      Swal.fire({
+        icon: "success",
+        text: "리뷰를 등록하였습니다.",
+        button: "확인",
+      }).then(() => {
+        navigate("/client/mypage/review");
+      });
     } catch (error) {
       console.log(error);
     }

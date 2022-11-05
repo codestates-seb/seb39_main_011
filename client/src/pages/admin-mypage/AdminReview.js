@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AdminMyReviewBox from "../../components/organisms/AdminMyReviewBox";
 import { instance } from "../../apis/instance";
+import Swal from "sweetalert2";
 
 const AdminReview = () => {
   const campId = localStorage.getItem("campId");
@@ -24,6 +25,13 @@ const AdminReview = () => {
     try {
       const res = await instance.delete(`/admin/rev/${id}`);
       window.location.reload();
+      Swal.fire({
+        icon: "success",
+        text: "댓글이 삭제되었습니다.",
+        button: "확인",
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +45,13 @@ const AdminReview = () => {
         revId,
         message,
       });
-      window.location.reload();
+      Swal.fire({
+        icon: "success",
+        text: "댓글을 수정하였습니다.",
+        button: "확인",
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (err) {
       console.log(err);
     }

@@ -4,6 +4,7 @@ import { FillBtn } from "../atoms/Button";
 import TextArea from "../atoms/TextArea";
 import { ReactComponent as CommentIcon } from "../../svg/review.svg";
 import { instance } from "../../apis/instance";
+import Swal from "sweetalert2";
 
 const CommentItem = ({ item }) => {
   const [message, setMessage] = useState("");
@@ -20,8 +21,13 @@ const CommentItem = ({ item }) => {
 
     try {
       const res = await instance.post(`/admin/rev`, commentData);
-      alert("댓글을 등록하였습니다.");
-      window.location.reload();
+      Swal.fire({
+        icon: "success",
+        text: "댓글을 등록하였습니다.",
+        button: "확인",
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (error) {
       console.log(error);
     }

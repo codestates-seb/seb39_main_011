@@ -69,7 +69,6 @@ const Container = styled.fieldset`
   }
 
   > input[type="date"] {
-    /* font-size: 12px; */
     border: 2px solid var(--main-color-2);
     border-radius: 5px;
     width: 130px;
@@ -83,7 +82,6 @@ const Container = styled.fieldset`
 
   > input[type="text"],
   input[type="number"] {
-    /* font-size: 11px; */
     border: 2px solid var(--main-color-4);
     border-radius: 5px;
     width: 100px;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MyInfoBox from "../components/organisms/MyInfoBox";
 import { instance } from "../apis/instance";
+import Swal from "sweetalert2";
 
 const MyInfo = () => {
   const userId = localStorage.getItem("userId");
@@ -28,7 +29,13 @@ const MyInfo = () => {
     };
     try {
       const res = await instance.put(`/user/info/${userId}`, editData);
-      window.location.reload();
+      Swal.fire({
+        icon: "success",
+        text: "회원정보를 수정하였습니다.",
+        button: "확인",
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (err) {
       console.log(err);
     }
