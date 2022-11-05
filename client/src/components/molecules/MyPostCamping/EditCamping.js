@@ -5,6 +5,7 @@ import RequiredInput from "../../atoms/RequiredInput";
 import TextArea from "../../atoms/TextArea";
 import PopupPostcode from "../PopupPostcode";
 import SingleImageUploader from "../../atoms/SingleImageUploader";
+import Swal from "sweetalert2";
 
 import { ReactComponent as CampIcon } from "../../../svg/camp.svg";
 import { ReactComponent as PhoneIcon } from "../../../svg/phone.svg";
@@ -17,16 +18,16 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
   console.log(resData);
   const [isEdit, setIsEdit] = useState(false);
 
-  const [editImages, setEditImages] = useState(resData[0].file_path);
-  const [editAddress, setEditAddress] = useState(resData[0].place);
+  const [editImages, setEditImages] = useState(resData[0]?.file_path);
+  const [editAddress, setEditAddress] = useState(resData[0]?.place);
 
   const initialData = {
-    userId: resData[0].userId,
-    editName: resData[0].name,
-    editPrice: resData[0].price,
-    editPhone: resData[0].phone,
-    editCapacity: resData[0].capacity,
-    editNote: resData[0].note,
+    userId: resData[0]?.userId,
+    editName: resData[0]?.name,
+    editPrice: resData[0]?.price,
+    editPhone: resData[0]?.phone,
+    editCapacity: resData[0]?.capacity,
+    editNote: resData[0]?.note,
   };
 
   const [editData, setEditData] = useState(initialData);
@@ -57,9 +58,20 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
   };
 
   const handleRemove = () => {
-    if (window.confirm("정말로 게시글을 삭제하시겠습니까?")) {
-      onRemovePost();
-    }
+    Swal.fire({
+      icon: "warning",
+      title:
+        "<p style='font-size:18px'>" + "정말로 글을 삭제하시겠습니까?" + "</p>",
+      showCancelButton: true,
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+      confirmButtonColor: "#AD8B73",
+      cancelButtonColor: "#BEBCBA",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onRemovePost();
+      }
+    });
   };
 
   return (

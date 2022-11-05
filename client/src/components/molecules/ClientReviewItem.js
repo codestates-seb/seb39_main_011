@@ -7,6 +7,7 @@ import TextArea from "../atoms/TextArea";
 import StarClick from "../atoms/StarClick";
 import SingleImageUploader from "../atoms/SingleImageUploader";
 import { ReactComponent as CampIcon } from "../../svg/camp.svg";
+import Swal from "sweetalert2";
 
 const ClientReviewItem = ({
   item,
@@ -37,9 +38,20 @@ const ClientReviewItem = ({
   };
 
   const handleRemove = () => {
-    if (window.confirm("해당 리뷰를 삭제하시겠습니까?")) {
-      onRemoveReview(item.revId);
-    }
+    Swal.fire({
+      icon: "warning",
+      title:
+        "<p style='font-size:18px'>" + "해당 리뷰를 삭제하시겠습니까?" + "</p>",
+      showCancelButton: true,
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+      confirmButtonColor: "#AD8B73",
+      cancelButtonColor: "#BEBCBA",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onRemoveReview(item.revId);
+      }
+    });
   };
 
   // 수정 취소

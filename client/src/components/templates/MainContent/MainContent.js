@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { sortCheck } from "../../../redux/reducers/sortSlice";
 import BlankCard from "../../atoms/BlankCard";
 import BlankBox from "../../atoms/BlankBox";
+import Loading from "../../atoms/Loading";
 
 const MainContent = () => {
   const [campingList, setCampingList] = useState([]);
@@ -15,11 +16,14 @@ const MainContent = () => {
   const selectSort = useSelector((state) => state.sort);
   const dispatch = useDispatch();
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const getCampingData = async () => {
     try {
       const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/main`);
       setCampingList(data);
       setRenderCampingList(data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -62,14 +66,20 @@ const MainContent = () => {
   return (
     <S.PostContainer>
       <>
-        {renderCampingList.length === 0 ? (
-          <BlankBox />
+        {isLoading ? (
+          <Loading />
         ) : (
-          renderCampingList.map((el) => {
-            return <CampingCard key={el.campId} camplist={el} />;
-          })
+          <>
+            {renderCampingList.length === 0 ? (
+              <BlankBox />
+            ) : (
+              renderCampingList.map((el) => {
+                return <CampingCard key={el.campId} camplist={el} />;
+              })
+            )}
+            {renderCampingList.length % 2 === 1 ? <BlankCard /> : null}
+          </>
         )}
-        {renderCampingList.length % 2 === 1 ? <BlankCard /> : null}
       </>
     </S.PostContainer>
   );

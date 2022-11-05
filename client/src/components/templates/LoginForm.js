@@ -8,6 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/reducers/authSlice";
+import Toast from "../atoms/Toast";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -48,11 +49,19 @@ const LoginForm = () => {
       sessionStorage.setItem("Token", response.headers.authorization);
       dispatch(login());
       navigate("/");
-      alert("로그인에 성공하셨습니다.");
+      Toast.fire({
+        icon: "success",
+        title: "BearMello에 방문하신 것을 환영합니다 :>",
+      });
     } catch (error) {
       if ((res) => res.data.status === 500 || res.data.status === 404) {
-        alert("로그인에 실패하셨습니다.");
-        window.location.reload();
+        Toast.fire({
+          icon: "error",
+          title: "로그인에 실패하셨습니다.",
+          timer: 1000,
+        }).then(() => {
+          window.location.reload();
+        });
       }
     }
 
@@ -83,7 +92,10 @@ const LoginForm = () => {
     sessionStorage.setItem("Token", response.headers.authorization);
     dispatch(login());
     navigate("/");
-    alert("관리자용 게스트 모드로 로그인에 성공하셨습니다.");
+    Toast.fire({
+      icon: "success",
+      title: "BearMello에 방문하신 것을 환영합니다 :>",
+    });
   };
 
   const handleClientSubmit = async () => {
@@ -100,7 +112,10 @@ const LoginForm = () => {
     sessionStorage.setItem("Token", response.headers.authorization);
     dispatch(login());
     navigate("/");
-    alert("고객용 게스트 모드로 로그인에 성공하셨습니다.");
+    Toast.fire({
+      icon: "success",
+      title: "BearMello에 방문하신 것을 환영합니다 :>",
+    });
   };
 
   return (

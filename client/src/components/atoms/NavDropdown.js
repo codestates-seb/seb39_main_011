@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logout } from "../../redux/reducers/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Toast from "./Toast";
 
 const NavDropdown = ({ toggleDropdown }) => {
   const dispatch = useDispatch();
@@ -24,6 +25,10 @@ const NavDropdown = ({ toggleDropdown }) => {
     localStorage.removeItem("userId");
     localStorage.removeItem("role");
     localStorage.removeItem("campId");
+    Toast.fire({
+      icon: "success",
+      title: "성공적으로 로그아웃되었습니다.",
+    });
   };
 
   return (

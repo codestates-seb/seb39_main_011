@@ -3,13 +3,12 @@ import styled from "styled-components";
 import EditCamping from "../molecules/MyPostCamping/EditCamping";
 import PostCamping from "../molecules/MyPostCamping/PostCamping";
 import { instance } from "../../apis/instance";
+import Swal from "sweetalert2";
 
 const MyPostBox = () => {
   const userId = localStorage.getItem("userId");
   let campId = localStorage.getItem("campId");
   const [resData, setResData] = useState([]); // 등록된 글이 있는지 판단하는 변수
-
-  console.log("resData", resData);
 
   // 캠핑장 글 조회
   const getPost = async () => {
@@ -20,7 +19,6 @@ const MyPostBox = () => {
       if (res.data.length !== 0) {
         localStorage.setItem("campId", res.data[0].campId);
       }
-
       setResData(res.data);
     } catch (error) {
       console.log(error);
@@ -55,17 +53,36 @@ const MyPostBox = () => {
     try {
       const res = await instance.post(`/admin/post`, campingData);
       setResData(campingData);
-      window.location.reload();
-      alert("캠핑장 게시물을 등록하였습니다.");
+      Swal.fire({
+        icon: "success",
+        text: "게시물을 등록하였습니다.",
+        button: "확인",
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleQuit = () => {
-    window.confirm("캠핑장 등록을 취소하시겠습니까?");
-    setResData("");
-    window.location.reload();
+    Swal.fire({
+      icon: "warning",
+      title:
+        "<p style='font-size:18px'>" +
+        "캠핑장 등록을 취소하시겠습니까?" +
+        "</p>",
+      showCancelButton: true,
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+      confirmButtonColor: "#AD8B73",
+      cancelButtonColor: "#BEBCBA",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setResData("");
+        window.location.reload();
+      }
+    });
   };
 
   // 글 삭제
@@ -74,7 +91,11 @@ const MyPostBox = () => {
       const res = await instance.delete(`/admin/post/${campId}`);
       localStorage.removeItem("campId");
       setResData("");
-      window.location.reload();
+      Swal.fire({
+        icon: "success",
+        text: "게시물이 삭제되었습니다.",
+        button: "확인",
+      });
     } catch (error) {
       console.log(error);
     }
@@ -96,7 +117,14 @@ const MyPostBox = () => {
     try {
       const res = await instance.put(`/admin/post/${campId}`, editData);
       setResData(editData);
-      window.location.reload();
+
+      Swal.fire({
+        icon: "success",
+        text: "게시물을 수정하였습니다.",
+        button: "확인",
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (err) {
       console.log(err);
     }

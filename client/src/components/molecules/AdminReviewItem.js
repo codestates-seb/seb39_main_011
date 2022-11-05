@@ -6,6 +6,7 @@ import moment from "moment";
 import { ReactComponent as CommentIcon } from "../../svg/review.svg";
 import { ReactComponent as IdIcon } from "../../svg/id.svg";
 import TextArea from "../atoms/TextArea";
+import Swal from "sweetalert2";
 
 const AdminReviewItem = ({
   item,
@@ -23,9 +24,20 @@ const AdminReviewItem = ({
   };
 
   const handleRemove = () => {
-    if (window.confirm("해당 댓글을 삭제하시겠습니까?")) {
-      onRemoveReview(item.comments[0]?.commentId);
-    }
+    Swal.fire({
+      icon: "warning",
+      title:
+        "<p style='font-size:18px'>" + "해당 댓글을 삭제하시겠습니까?" + "</p>",
+      showCancelButton: true,
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+      confirmButtonColor: "#AD8B73",
+      cancelButtonColor: "#BEBCBA",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onRemoveReview(item.comments[0]?.commentId);
+      }
+    });
   };
 
   // 수정 취소
