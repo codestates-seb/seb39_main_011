@@ -130,7 +130,6 @@ const ClientReviewItem = ({
               <div className="textarea_box">
                 <TextArea
                   rows="4"
-                  col
                   value={editReview}
                   onChange={(e) => setEditReview(e.target.value)}
                 />

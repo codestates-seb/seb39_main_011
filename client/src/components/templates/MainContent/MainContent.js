@@ -61,14 +61,16 @@ const MainContent = () => {
 
   return (
     <S.PostContainer>
-      {renderCampingList.length === 0 ? (
-        <BlankBox />
-      ) : (
-        renderCampingList.map((el) => {
-          return <CampingCard key={el.campId} camplist={el} />;
-        })
-      )}
-      {renderCampingList.length % 2 === 1 ? <BlankCard /> : null}
+      <>
+        {renderCampingList.length === 0 ? (
+          <BlankBox />
+        ) : (
+          renderCampingList.map((el) => {
+            return <CampingCard key={el.campId} camplist={el} />;
+          })
+        )}
+        {renderCampingList.length % 2 === 1 ? <BlankCard /> : null}
+      </>
     </S.PostContainer>
   );
 };

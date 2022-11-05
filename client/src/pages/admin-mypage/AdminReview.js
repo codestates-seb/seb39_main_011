@@ -29,24 +29,27 @@ const AdminReview = () => {
     }
   };
 
-  // const onUpdateReview = async (
-  //   revId,
-  //   message
-  // ) => {
-  //   try {
-  //     const res = await instance.put(`/client/rev/${revId}`, {
-  //       revId,
-  //       message
-  //     });
-  //     window.location.reload();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const onUpdateReview = async (commentId, revId, message) => {
+    console.log(commentId, revId, message);
+    try {
+      const res = await instance.put(`/admin/rev/${commentId}`, {
+        commentId,
+        revId,
+        message,
+      });
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Container>
-      <AdminMyReviewBox reviews={reviews} onRemoveReview={onRemoveReview} />
+      <AdminMyReviewBox
+        reviews={reviews}
+        onRemoveReview={onRemoveReview}
+        onUpdateReview={onUpdateReview}
+      />
     </Container>
   );
 };
