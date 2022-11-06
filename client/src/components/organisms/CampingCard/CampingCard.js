@@ -10,15 +10,13 @@ import { ReactComponent as ReviewIcon } from "./../../../svg/review.svg";
 import { ReactComponent as HeartIcon } from "./../../../svg/heart.svg";
 
 const CampingCard = ({ camplist }) => {
-  const voteNum = Math.floor(Math.random() * 6);
-  const reviewNum = Math.floor(Math.random() * 21);
   const heartNum = Math.floor(Math.random() * 15);
   const price = camplist.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
     <S.CardContainer>
       <Link to={`/detail/${camplist.campId}`}>
-        <S.Img src={camplist.file_path} alt="이미지" />
+        <S.Img src={camplist.file_path} alt="campingImg" />
         <S.FlexLayout>
           <div>
             <div>
@@ -39,12 +37,11 @@ const CampingCard = ({ camplist }) => {
           <div>
             <div>
               <StarIcon />
-              별점 {voteNum}
-              {/* 별점 {camplist.star_total} */}
+              별점 {camplist.starAge}
             </div>
             <div>
               <ReviewIcon fill="var(--main-color-3)" />
-              리뷰 {reviewNum}
+              리뷰 {camplist.reviewCount}
             </div>
             <div>
               <HeartIcon />찜 {heartNum}
