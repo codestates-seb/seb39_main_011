@@ -4,13 +4,24 @@ import DetailInfo from "../../molecules/DetailInfo/DetailInfo";
 import DetailReviews from "../../organisms/DetailReviews/DetailReviews";
 import * as S from "./style";
 
-const DetailContent = ({ campReviews, campInfo, campId }) => {
+const DetailContent = ({
+  campReviews,
+  campInfo,
+  campId,
+  maximumAcceptance,
+}) => {
   const [currentTab, setCurrentTab] = useState(0);
 
   const tabMenu = [
     {
       title: "기본 정보",
-      content: <DetailInfo campInfo={campInfo} campId={campId} />,
+      content: (
+        <DetailInfo
+          campInfo={campInfo}
+          campId={campId}
+          maximumAcceptance={maximumAcceptance}
+        />
+      ),
     },
     { title: "후기", content: <DetailReviews campReviews={campReviews} /> },
   ];

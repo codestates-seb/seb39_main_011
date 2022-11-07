@@ -43,3 +43,9 @@ export const ImgBox = styled.div`
     border-radius: 5px;
   }
 `;
+
+export const Answer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;

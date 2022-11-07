@@ -12,6 +12,7 @@ const Detail = () => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: 820 });
   const [campInfo, setCamp] = useState({});
   const [campReviews, setCampReviews] = useState([]);
+  const [maximumAcceptance, setMaximumAcceptance] = useState({});
   const campId = useParams();
 
   useScrollTop();
@@ -21,6 +22,7 @@ const Detail = () => {
       const { data } = await instance.get(`/detail/${campId.id}`);
       setCamp(data.dto);
       setCampReviews(data.reviews);
+      setMaximumAcceptance(data.map);
     } catch (error) {
       console.log(error);
     }
@@ -36,9 +38,15 @@ const Detail = () => {
         campInfo={campInfo}
         campReviews={campReviews}
         campId={campId}
+        maximumAcceptance={maximumAcceptance}
       />
       {!isTabletOrMobile ? (
-        <DetailAside campId={campId} campPrice={campInfo.price} />
+        <DetailAside
+          campId={campId}
+          campPrice={campInfo.price}
+          capacity={campInfo.capacity}
+          maximumAcceptance={maximumAcceptance}
+        />
       ) : null}
     </S.DetailContainer>
   );

@@ -22,6 +22,10 @@ const DetailReview = ({ review }) => {
         </S.ImgBox>
         <div>{review.review}</div>
       </S.Content>
+      <S.Answer>
+        <div>⨽ 사장님 댓글 {review.comments[0].date}</div>
+        <div>{review.comments[0].message}</div>
+      </S.Answer>
     </S.ReviewContainer>
   );
 };

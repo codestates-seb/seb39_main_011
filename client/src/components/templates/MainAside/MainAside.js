@@ -23,12 +23,15 @@ const MainAside = () => {
   };
   const priceSortHandler = (e) => {
     dispatch(sortCheck(e.target.id));
+    console.log(e.target.id);
   };
   const voteSortHandler = (e) => {
     dispatch(sortCheck(e.target.id));
+    console.log(e.target.id);
   };
   const reviewSortHandler = (e) => {
     dispatch(sortCheck(e.target.id));
+    console.log(e.target.id);
   };
 
   const sortBtn = [

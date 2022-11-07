@@ -16,8 +16,13 @@ const Modoal = (props) => {
     .slice(0, -1);
   delete reservationInfo.checkIn;
   delete reservationInfo.checkOut;
-  console.log(reservationInfo);
+  const test = reservationInfo.date.split("-");
+  if (test[2] < 10) {
+    test[2] = `0${test[2]}`;
+  }
+  reservationInfo.date = test.join("-");
 
+  console.log(reservationInfo);
   const reservationHandler = async () => {
     try {
       const res = await instance.post(`/detail`, reservationInfo);

@@ -14,7 +14,6 @@ import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 import { ReactComponent as RequestIcon } from "./../../../svg/note.svg";
 
 const DetailAside = (props) => {
-  console.log(props);
   const reservation = useSelector((state) => state.reservationDate);
   const [modalSwitch, setModalSwitch] = useState(false);
   const userRole = localStorage.getItem("role");
@@ -29,6 +28,7 @@ const DetailAside = (props) => {
     campId: props.campId.id,
   });
   const [reservationPrice, setReservationPrice] = useState(props.campPrice);
+  const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
     setReservationInput((preState) => {
@@ -40,6 +40,16 @@ const DetailAside = (props) => {
     });
   }, [reservation.from, reservation.to]);
 
+  useEffect(() => {
+    setReservationInput((preState) => {
+      return {
+        ...preState,
+        quantity: quantity,
+        price: reservationPrice,
+      };
+    });
+  }, [quantity, reservationPrice]);
+
   const nameHandler = (event) => {
     setReservationInput((preState) => {
       return {
@@ -48,6 +58,7 @@ const DetailAside = (props) => {
       };
     });
   };
+
   const phoneHandler = (event) => {
     setReservationInput((preState) => {
       return {
@@ -56,16 +67,12 @@ const DetailAside = (props) => {
       };
     });
   };
+
   const quantityHandler = (event) => {
     setReservationPrice(props.campPrice * event.target.value);
-    setReservationInput((preState) => {
-      return {
-        ...preState,
-        quantity: event.target.value,
-        price: reservationPrice,
-      };
-    });
+    setQuantity(event.target.value);
   };
+
   const noteHandler = (event) => {
     setReservationInput((preState) => {
       return {
@@ -108,7 +115,10 @@ const DetailAside = (props) => {
           X
         </div>
       ) : null}
-      <Calendar mobile={props.mobile} />
+      <Calendar
+        mobile={props.mobile}
+        maximumAcceptance={props.maximumAcceptance}
+      />
       <form onSubmit={submitHandler}>
         <InputLabel
           icon={<CalendarIcon width="20" height="20" />}
@@ -150,7 +160,7 @@ const DetailAside = (props) => {
           name="reservationCount"
           onChange={quantityHandler}
           min="1"
-          max="10" // 임시
+          max={props.capacity}
         >
           예약 수량
         </InputLabel>
