@@ -109,6 +109,7 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
                 name="editPrice"
                 value={editPrice}
                 onChange={handleChange}
+                min="0"
               />
             ) : (
               <Inner>
@@ -148,6 +149,8 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
                 name="editCapacity"
                 value={editCapacity}
                 onChange={handleChange}
+                min="1"
+                max="5"
               />
             ) : (
               <Inner>
