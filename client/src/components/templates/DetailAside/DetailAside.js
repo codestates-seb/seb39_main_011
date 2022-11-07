@@ -14,7 +14,6 @@ import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 import { ReactComponent as RequestIcon } from "./../../../svg/note.svg";
 
 const DetailAside = (props) => {
-  console.log(props);
   const reservation = useSelector((state) => state.reservationDate);
   const [modalSwitch, setModalSwitch] = useState(false);
   const userRole = localStorage.getItem("role");
@@ -116,7 +115,10 @@ const DetailAside = (props) => {
           X
         </div>
       ) : null}
-      <Calendar mobile={props.mobile} />
+      <Calendar
+        mobile={props.mobile}
+        maximumAcceptance={props.maximumAcceptance}
+      />
       <form onSubmit={submitHandler}>
         <InputLabel
           icon={<CalendarIcon width="20" height="20" />}

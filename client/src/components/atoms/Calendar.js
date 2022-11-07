@@ -5,9 +5,10 @@ import { useDispatch } from "react-redux";
 import { reservationHandler } from "../../redux/reducers/calendarSlice";
 import { addMonths, isSameMonth } from "date-fns";
 
-function Calendar() {
+function Calendar({ maximumAcceptance }) {
   const [range, setRange] = useState();
-  const disabledDays = [{ from: new Date(0), to: new Date() }];
+  const [disable, setDisable] = useState([]);
+  const disabledDays = [...disable, { from: new Date(0), to: new Date() }];
   const dispatch = useDispatch();
   const today = new Date();
   const nextMonth = addMonths(new Date(), 1);
@@ -15,6 +16,16 @@ function Calendar() {
   const twoMonthLater = new Date(
     new Date().setMonth(new Date().getMonth() + 2)
   );
+  useEffect(() => {
+    let disable = [];
+    for (let key in maximumAcceptance) {
+      const value = maximumAcceptance[key];
+      if (value < 1) {
+        disable.push(new Date(key));
+      }
+      setDisable([...disable]);
+    }
+  }, [maximumAcceptance]);
 
   const footer = (
     <button
