@@ -12,6 +12,9 @@ function Calendar() {
   const today = new Date();
   const nextMonth = addMonths(new Date(), 1);
   const [month, setMonth] = useState(today);
+  const twoMonthLater = new Date(
+    new Date().setMonth(new Date().getMonth() + 2)
+  );
 
   const footer = (
     <button
@@ -33,10 +36,12 @@ function Calendar() {
       max={2}
       selected={range}
       onSelect={setRange}
-      // disabled={disabledDays}
+      disabled={disabledDays}
       month={month}
       onMonthChange={setMonth}
       footer={footer}
+      fromMonth={today}
+      toDate={twoMonthLater}
     />
   );
 }
