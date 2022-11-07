@@ -29,6 +29,7 @@ const DetailAside = (props) => {
     campId: props.campId.id,
   });
   const [reservationPrice, setReservationPrice] = useState(props.campPrice);
+  const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
     setReservationInput((preState) => {
@@ -40,6 +41,16 @@ const DetailAside = (props) => {
     });
   }, [reservation.from, reservation.to]);
 
+  useEffect(() => {
+    setReservationInput((preState) => {
+      return {
+        ...preState,
+        quantity: quantity,
+        price: reservationPrice,
+      };
+    });
+  }, [quantity, reservationPrice]);
+
   const nameHandler = (event) => {
     setReservationInput((preState) => {
       return {
@@ -48,6 +59,7 @@ const DetailAside = (props) => {
       };
     });
   };
+
   const phoneHandler = (event) => {
     setReservationInput((preState) => {
       return {
@@ -56,16 +68,12 @@ const DetailAside = (props) => {
       };
     });
   };
+
   const quantityHandler = (event) => {
     setReservationPrice(props.campPrice * event.target.value);
-    setReservationInput((preState) => {
-      return {
-        ...preState,
-        quantity: event.target.value,
-        price: reservationPrice,
-      };
-    });
+    setQuantity(event.target.value);
   };
+
   const noteHandler = (event) => {
     setReservationInput((preState) => {
       return {
@@ -83,7 +91,6 @@ const DetailAside = (props) => {
     } else if (userRole === "USER") {
       if (reservationInput.checkOut !== undefined) {
         setModalSwitch(!modalSwitch);
-        console.log(reservationInput);
       } else {
         alert("예약 날짜를 선택해주세요");
         return;
@@ -151,7 +158,7 @@ const DetailAside = (props) => {
           name="reservationCount"
           onChange={quantityHandler}
           min="1"
-          max="10" // 임시
+          max={props.capacity}
         >
           예약 수량
         </InputLabel>

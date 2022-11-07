@@ -43,6 +43,7 @@ const Detail = () => {
         <DetailAside
           campId={campId}
           campPrice={campInfo.price}
+          capacity={campInfo.capacity}
           maximumAcceptance={maximumAcceptance}
         />
       ) : null}

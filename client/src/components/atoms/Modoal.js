@@ -22,6 +22,7 @@ const Modoal = (props) => {
   }
   reservationInfo.date = test.join("-");
 
+  console.log(reservationInfo);
   const reservationHandler = async () => {
     try {
       const res = await instance.post(`/detail`, reservationInfo);
