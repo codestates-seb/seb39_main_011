@@ -18,6 +18,7 @@ const DetailInfo = ({ campInfo, campId }) => {
   const modalHandler = () => {
     setModal(!modal);
   };
+  const price = campInfo.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
     <S.TabInfoContainer>
@@ -36,7 +37,7 @@ const DetailInfo = ({ campInfo, campId }) => {
           주소: {campInfo.place}
         </IconText>
         <IconText icon={<CoinIcon width="20" height="20" />}>
-          가격: {campInfo.price}
+          가격: {price} 원
         </IconText>
       </S.Info>
 
