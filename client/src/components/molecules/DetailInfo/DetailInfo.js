@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
 
 import IconText from "../../atoms/IconText";
@@ -12,18 +12,23 @@ import { ReactComponent as PhoneIcon } from "./../../../svg/phone.svg";
 import { ReactComponent as LocationIcon } from "./../../../svg/location.svg";
 import { ReactComponent as CoinIcon } from "./../../../svg/coin.svg";
 
-const DetailInfo = ({ campInfo, campId }) => {
+const DetailInfo = ({ campInfo, campId, maximumAcceptance }) => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: 820 });
   const [modal, setModal] = useState(false);
   const modalHandler = () => {
     setModal(!modal);
   };
-  const price = campInfo.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
     <S.TabInfoContainer>
       {modal && isTabletOrMobile ? (
-        <DetailModal modalHandler={modalHandler} campId={campId} />
+        <DetailModal
+          modalHandler={modalHandler}
+          campId={campId}
+          campPrice={campInfo.price}
+          capacity={campInfo.capacity}
+          maximumAcceptance={maximumAcceptance}
+        />
       ) : null}
       <KakaoMap camp={campInfo.place} />
       <S.Info>
@@ -37,7 +42,7 @@ const DetailInfo = ({ campInfo, campId }) => {
           주소: {campInfo.place}
         </IconText>
         <IconText icon={<CoinIcon width="20" height="20" />}>
-          가격: {price} 원
+          가격: {campInfo.price} 원
         </IconText>
       </S.Info>
 

@@ -38,6 +38,7 @@ const Detail = () => {
         campInfo={campInfo}
         campReviews={campReviews}
         campId={campId}
+        maximumAcceptance={maximumAcceptance}
       />
       {!isTabletOrMobile ? (
         <DetailAside
