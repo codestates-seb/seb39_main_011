@@ -53,11 +53,17 @@ const MainContent = () => {
       setRenderCampingList([...sortArr]);
       dispatch(sortCheck(""));
     } else if (selectSort === "vote") {
-      alert("서비스 준비중입니다.");
+      sortArr = campingList.sort((a, b) => {
+        return b.starAge - a.starAge;
+      });
+      setRenderCampingList([...sortArr]);
       dispatch(sortCheck(""));
       return;
     } else if (selectSort === "review") {
-      alert("서비스 준비중입니다.");
+      sortArr = campingList.sort((a, b) => {
+        return b.reviewCount - a.reviewCount;
+      });
+      setRenderCampingList([...sortArr]);
       dispatch(sortCheck(""));
       return;
     }
