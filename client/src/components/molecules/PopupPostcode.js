@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDaumPostcodePopup } from "react-daum-postcode";
-import { OutlineBtnS } from "../atoms/Button";
+import { OutlineBtn2 } from "../atoms/Button";
 
 const PopupPostcode = ({ setAddress }) => {
   const popUp = useDaumPostcodePopup();
@@ -20,8 +20,6 @@ const PopupPostcode = ({ setAddress }) => {
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
-    // console.info("fullAdress: ", fullAddress);
-    // console.info("data.zonecode: ", data.zonecode);
     setAddress(fullAddress);
   };
 
@@ -42,7 +40,7 @@ const PopupPostcode = ({ setAddress }) => {
 
   return (
     <Container>
-      <OutlineBtnS onClick={handleClick}>주소 검색</OutlineBtnS>
+      <OutlineBtn2 onClick={handleClick}>주소 검색</OutlineBtn2>
     </Container>
   );
 };

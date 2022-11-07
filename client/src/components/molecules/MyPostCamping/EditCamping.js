@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FillBtn, OutlineBtn } from "../../atoms/Button";
+import { FillBtn, OutlineBtn2 } from "../../atoms/Button";
 import RequiredInput from "../../atoms/RequiredInput";
 import TextArea from "../../atoms/TextArea";
 import PopupPostcode from "../PopupPostcode";
@@ -247,9 +247,9 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
           {isEdit ? (
             <div className="button_box">
               <>
-                <OutlineBtn width="51px" onClick={handleQuitEdit}>
+                <OutlineBtn2 width="51px" onClick={handleQuitEdit}>
                   취소
-                </OutlineBtn>
+                </OutlineBtn2>
                 <FillBtn width="51px" onClick={handleEdit}>
                   등록
                 </FillBtn>
@@ -259,12 +259,12 @@ const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
         </PhotoBox>
         {isEdit ? null : (
           <ButtonBox>
-            <OutlineBtn onClick={handleRemove} width="51px">
+            <OutlineBtn2 onClick={handleRemove} width="51px">
               삭제
-            </OutlineBtn>
-            <OutlineBtn onClick={toggleIsEdit} width="51px">
+            </OutlineBtn2>
+            <OutlineBtn2 onClick={toggleIsEdit} width="51px">
               수정
-            </OutlineBtn>
+            </OutlineBtn2>
           </ButtonBox>
         )}
       </Box>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { FillBtn, OutlineBtn } from "../atoms/Button";
+import { FillBtn, OutlineBtn2 } from "../atoms/Button";
 import BasicInput from "../atoms/BasicInput";
 
 import { ReactComponent as ProfilePic } from "../../svg/profile.svg";
@@ -92,17 +92,17 @@ const MyInfoBox = ({ user, onEditInfo }) => {
       <ButtonBox>
         {isEdit ? (
           <>
-            <OutlineBtn onClick={handleQuitEdit}>취소</OutlineBtn>
+            <OutlineBtn2 onClick={handleQuitEdit}>취소</OutlineBtn2>
             <FillBtn onClick={handleEdit}>완료</FillBtn>
           </>
         ) : (
           <>
             <FillBtn onClick={toggleEdit}>수정</FillBtn>
-            <OutlineBtn
+            <OutlineBtn2
               onClick={() => window.confirm("정말로 탈퇴하시겠습니까?")}
             >
               회원 탈퇴
-            </OutlineBtn>
+            </OutlineBtn2>
           </>
         )}
       </ButtonBox>
