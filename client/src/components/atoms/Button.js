@@ -65,11 +65,6 @@ export const FillBtn = styled(ButtonPrimary)`
     background-color: ${(props) => props.hoverBgc || "var(--main-color-1)"};
     border: 2px solid ${(props) => props.hoverBorder || "var(--main-color-1)"};
   }
-
-  @media ${(props) => props.theme.rezMobile} {
-    width: 55px;
-    margin-right: 0;
-  }
 `;
 
 export const OutlineBtn = styled(ButtonPrimary)`
@@ -91,7 +86,16 @@ export const OutlineBtn = styled(ButtonPrimary)`
   }
 
   @media ${(props) => props.theme.rezMobile} {
-    width: 55px;
+    width: 50px;
+    height: 50px;
+    margin-right: 0;
+  }
+`;
+
+export const OutlineBtn2 = styled(OutlineBtn)`
+  @media ${(props) => props.theme.rezMobile} {
+    width: auto;
+    height: auto;
     margin-right: 0;
   }
 `;
@@ -106,14 +110,6 @@ export const StrButton = styled.button`
 
   &:hover {
     color: var(--main-color-2);
-  }
-`;
-
-export const OutlineBtnS = styled(OutlineBtn)`
-  font-size: 11px;
-  width: 66px;
-  @media ${(props) => props.theme.rezMobile} {
-    width: 66px;
   }
 `;
 

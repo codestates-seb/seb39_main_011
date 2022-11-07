@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { OutlineBtn, FillBtn } from "../atoms/Button";
+import { OutlineBtn, FillBtn, OutlineBtn2 } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 import moment from "moment";
 import { ReactComponent as CommentIcon } from "../../svg/review.svg";
@@ -122,17 +122,16 @@ const AdminReviewItem = ({
                 </>
               ) : (
                 <>
-                  {" "}
                   <FillBtn onClick={handleRemove} fontSize="11px" height="33px">
                     삭제
                   </FillBtn>
-                  <OutlineBtn
+                  <OutlineBtn2
                     fontSize="11px"
                     onClick={toggleIsEdit}
                     height="33px"
                   >
                     수정
-                  </OutlineBtn>
+                  </OutlineBtn2>
                 </>
               )}
             </div>

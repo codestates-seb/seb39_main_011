@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { OutlineBtn } from "../atoms/Button";
+import { OutlineBtn2 } from "../atoms/Button";
 import StarRender from "../atoms/StarRender";
 import moment from "moment";
 import TextArea from "../atoms/TextArea";
@@ -80,7 +80,7 @@ const ClientReviewItem = ({
         <ContentBox>
           <InnerBox>
             <CampIcon />
-            <span>한라봉 캠핑장</span>
+            <span className="camping">한라봉 캠핑장</span>
             <span className="hide">{date}</span>
             <p>{item.name}</p>
 
@@ -102,25 +102,33 @@ const ClientReviewItem = ({
             <ButtonBox>
               {isEdit ? (
                 <>
-                  <OutlineBtn
+                  <OutlineBtn2
                     height="35px"
                     onClick={handleQuitEdit}
                     width="50px"
                   >
                     취소
-                  </OutlineBtn>
-                  <OutlineBtn height="35px" onClick={handleEdit} width="50px">
+                  </OutlineBtn2>
+                  <OutlineBtn2 height="35px" onClick={handleEdit} width="50px">
                     완료
-                  </OutlineBtn>
+                  </OutlineBtn2>
                 </>
               ) : (
                 <>
-                  <OutlineBtn height="35px" onClick={handleRemove} width="50px">
+                  <OutlineBtn2
+                    height="35px"
+                    onClick={handleRemove}
+                    width="50px"
+                  >
                     삭제
-                  </OutlineBtn>
-                  <OutlineBtn height="35px" onClick={toggleIsEdit} width="50px">
+                  </OutlineBtn2>
+                  <OutlineBtn2
+                    height="35px"
+                    onClick={toggleIsEdit}
+                    width="50px"
+                  >
                     수정
-                  </OutlineBtn>
+                  </OutlineBtn2>
                 </>
               )}
             </ButtonBox>
@@ -128,12 +136,10 @@ const ClientReviewItem = ({
 
           <ImgBox>
             {isEdit ? (
-              <Uploader>
-                <SingleImageUploader
-                  images={editImages}
-                  setImages={setEditImages}
-                />
-              </Uploader>
+              <SingleImageUploader
+                images={editImages}
+                setImages={setEditImages}
+              />
             ) : (
               <Img src={item?.file_path} alt="camping" />
             )}
@@ -150,6 +156,15 @@ const ClientReviewItem = ({
               <div>{review}</div>
             )}
           </ImgBox>
+          {item?.comments.length !== 0 && (
+            <CommentBox>
+              <div className="top-style">
+                <div className="title">🙋 사장님 댓글</div>
+                <div className="date">{item?.comments[0]?.date}</div>
+              </div>
+              <div className="message">{item?.comments[0]?.message}</div>
+            </CommentBox>
+          )}
         </ContentBox>
       </ItemBox>
       <hr />
@@ -202,11 +217,20 @@ const InnerBox = styled.div`
     font-size: 14px;
     font-weight: 700;
     color: var(--main-color-1);
-    margin: 0 5px;
+    margin-right: 5px;
 
     @media ${(props) => props.theme.postMobile} {
       font-size: 13px;
       font-weight: 500;
+    }
+  }
+
+  > .camping {
+    font-size: 16px;
+
+    @media ${(props) => props.theme.postMobile} {
+      font-size: 13px;
+      font-weight: 600;
     }
   }
 
@@ -237,7 +261,27 @@ const ButtonBox = styled.div`
   gap: 10px;
 `;
 
-const Uploader = styled.div`
-  /* background-color: aqua; */
-  /* width: 100px; */
+const CommentBox = styled.div`
+  margin-top: 1rem;
+
+  > .top-style {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    > .title {
+      color: var(--main-color-0);
+      font-size: 15px;
+      font-weight: 600;
+      margin-right: 7px;
+    }
+
+    > .date {
+      color: gray;
+    }
+  }
+
+  > .message {
+    font-size: 13px;
+  }
 `;

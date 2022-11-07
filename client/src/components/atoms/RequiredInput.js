@@ -2,7 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { TextField } from "@mui/material";
 
-const RequiredInput = ({ type, label, value, placeholder, onChange, name }) => {
+const RequiredInput = ({
+  type,
+  label,
+  value,
+  placeholder,
+  onChange,
+  name,
+  min,
+  max,
+}) => {
   return (
     <Layout>
       <TextField
@@ -14,6 +23,8 @@ const RequiredInput = ({ type, label, value, placeholder, onChange, name }) => {
         }}
         inputProps={{
           style: { fontSize: 13, fontFamily: "Cafe24Oneprettynight" },
+          min,
+          max,
         }}
         variant="standard"
         onChange={onChange}
