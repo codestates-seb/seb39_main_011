@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FillBtn, OutlineBtn2 } from "../atoms/Button";
 import BasicInput from "../atoms/BasicInput";
+import Toast from "../atoms/Toast";
 
 import { ReactComponent as ProfilePic } from "../../svg/profile.svg";
 import { ReactComponent as IdIcon } from "../../svg/id.svg";
 import { ReactComponent as EmailIcon } from "../../svg/email.svg";
 import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
+import Swal from "sweetalert2";
 // import { ReactComponent as NameIcon } from "../../svg/name.svg";
 
 const MyInfoBox = ({ user, onEditInfo }) => {
@@ -40,6 +42,13 @@ const MyInfoBox = ({ user, onEditInfo }) => {
 
   const handleEdit = () => {
     onEditInfo(userInfoData);
+  };
+
+  const userDeleteHandler = () => {
+    Swal.fire({
+      icon: "info",
+      text: "준비중인 기능입니다.",
+    });
   };
 
   return (
@@ -98,11 +107,7 @@ const MyInfoBox = ({ user, onEditInfo }) => {
         ) : (
           <>
             <FillBtn onClick={toggleEdit}>수정</FillBtn>
-            <OutlineBtn2
-              onClick={() => window.confirm("정말로 탈퇴하시겠습니까?")}
-            >
-              회원 탈퇴
-            </OutlineBtn2>
+            <OutlineBtn2 onClick={userDeleteHandler}>회원 탈퇴</OutlineBtn2>
           </>
         )}
       </ButtonBox>

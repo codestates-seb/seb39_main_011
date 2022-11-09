@@ -80,7 +80,7 @@ const ClientReviewItem = ({
         <ContentBox>
           <InnerBox>
             <CampIcon />
-            <span className="camping">한라봉 캠핑장</span>
+            <span className="camping">{item.campName}</span>
             <span className="hide">{date}</span>
             <p>{item.name}</p>
 
