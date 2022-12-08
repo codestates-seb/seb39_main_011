@@ -42,6 +42,11 @@ export const ImgBox = styled.div`
     height: 70px;
     border-radius: 5px;
   }
+
+  .default_image {
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 export const Answer = styled.div`
