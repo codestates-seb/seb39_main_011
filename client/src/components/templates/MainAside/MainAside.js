@@ -5,6 +5,7 @@ import * as S from "./style";
 import { useDispatch } from "react-redux";
 import { sortCheck } from "../../../redux/reducers/sortSlice";
 import InputLabel from "../../atoms/InputLabel";
+import Toast from "../../atoms/Toast";
 
 import { ReactComponent as LocationIcon } from "./../../../svg/location.svg";
 import { ReactComponent as StarIcon } from "./../../../svg/revstar.svg";
@@ -19,7 +20,10 @@ const MainAside = () => {
 
   const dateHandler = (e) => {
     setDate(e.target.value);
-    alert("서비스 준비중입니다.");
+    Toast.fire({
+      icon: "info",
+      title: "서비스 준비중입니다.",
+    });
   };
   const priceSortHandler = (e) => {
     dispatch(sortCheck(e.target.id));

@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { OutlineBtn } from "../atoms/Button";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
+import { instance } from "../../apis/instance";
+import Toast from "../atoms/Toast";
 
 import { ReactComponent as ProfileIcon } from "../../svg/profile.svg";
 import { ReactComponent as CampingIcon } from "../../svg/camp.svg";
@@ -10,17 +11,20 @@ import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
 import { ReactComponent as CalendarIcon } from "../../svg/calendar.svg";
 import { ReactComponent as CoinIcon } from "../../svg/coin.svg";
 import { ReactComponent as NoteIcon } from "../../svg/note.svg";
+import { ReactComponent as CampingPic } from "../../svg/camping.svg";
 
 const RezItem = ({ item, openReviewHandler }) => {
   const { pathname } = useLocation();
 
   const deleteReservation = async () => {
     try {
-      await axios.delete(
-        `${process.env.REACT_APP_API_URL}/client/info/rez/${item.rezId}`
-      );
-      alert("예약이 취소되었습니다.");
-      window.location.reload();
+      await instance.delete(`/client/info/rez/${item.rezId}`);
+      Toast.fire({
+        icon: "success",
+        title: "예약이 취소되었습니다.",
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +34,7 @@ const RezItem = ({ item, openReviewHandler }) => {
     <div>
       <ItemBox>
         <ImgBox>
-          <Img src={item.campFile_path} alt="camping" />
+          <CampingPic viewBox="80 50 210 210" />
         </ImgBox>
         <ContentBox>
           {pathname === "/client/mypage/rez" ||
