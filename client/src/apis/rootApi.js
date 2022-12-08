@@ -12,7 +12,6 @@ const API = {
     CAPMING_SORT_REGION: `${BASE_URL}/main`,
     CAPMING_SORT_PRICE: `${BASE_URL}/main`,
 
-    // 이건 아마 client 쪽인듯? 일단 여기
     CAMPING_POSIBLE_RESERVATION_READ: `${BASE_URL}/client/detail/{post-id}`,
   },
 

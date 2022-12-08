@@ -3,7 +3,6 @@ import styled from "styled-components";
 import ClientReviewItem from "../molecules/ClientReviewItem";
 
 const ClientMyReviewBox = ({ data, onRemoveReview, onUpdateReview }) => {
-  console.log("data", data);
   return (
     <Container>
       {data.map((item, idx) => {
