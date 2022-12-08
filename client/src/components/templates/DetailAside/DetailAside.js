@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Calendar from "../../atoms/Calendar.js";
 import InputLabel from "../../atoms/InputLabel";
 import Modoal from "../../atoms/Modoal";
+import Toast from "../../atoms/Toast";
 
 import { ReactComponent as CalendarIcon } from "./../../../svg/calendar.svg";
 import { ReactComponent as UserIcon } from "./../../../svg/profile.svg";
@@ -85,17 +86,26 @@ const DetailAside = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     if (userRole === "ADMIN") {
-      alert("관리자는 예약할 수 없습니다.");
+      Toast.fire({
+        icon: "error",
+        title: "관리자는 예약할 수 없습니다.",
+      });
       return;
     } else if (userRole === "USER") {
       if (reservationInput.checkOut !== undefined) {
         setModalSwitch(!modalSwitch);
       } else {
-        alert("예약 날짜를 선택해주세요");
+        Toast.fire({
+          icon: "warning",
+          title: "예약 날짜를 선택해주세요.",
+        });
         return;
       }
     } else {
-      alert("로그인이 필요합니다.");
+      Toast.fire({
+        icon: "error",
+        title: "로그인이 필요합니다.",
+      });
       return;
     }
   };

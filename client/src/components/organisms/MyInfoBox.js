@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FillBtn, OutlineBtn2 } from "../atoms/Button";
 import BasicInput from "../atoms/BasicInput";
-import Toast from "../atoms/Toast";
+import Swal from "sweetalert2";
 
 import { ReactComponent as ProfilePic } from "../../svg/profile.svg";
 import { ReactComponent as IdIcon } from "../../svg/id.svg";
 import { ReactComponent as EmailIcon } from "../../svg/email.svg";
 import { ReactComponent as PhoneIcon } from "../../svg/phone.svg";
-import Swal from "sweetalert2";
-// import { ReactComponent as NameIcon } from "../../svg/name.svg";
 
 const MyInfoBox = ({ user, onEditInfo }) => {
   const [isEdit, setIsEdit] = useState(false);

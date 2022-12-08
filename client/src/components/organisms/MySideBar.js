@@ -9,8 +9,6 @@ import { ReactComponent as RevPic } from "../../svg/revstar.svg";
 
 const MySideBar = () => {
   const paths = useLocation().pathname;
-  // const pathName = useLocation().pathname.split("/")[1];
-
   const role = localStorage.getItem("role");
 
   const clientTabs = [
@@ -46,11 +44,6 @@ const MySideBar = () => {
       icon: <RevPic />,
     },
   ];
-
-  // const Tabs = {
-  //   client: clientTabs,
-  //   admin: adminTabs,
-  // };
 
   let sidebarTitle = "";
 

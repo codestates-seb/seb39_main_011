@@ -103,6 +103,7 @@ const Container = styled.fieldset`
     height: 80px;
     border: 2px solid #e3caa5;
     border-radius: 5px;
+    padding: 7px;
 
     &:focus {
       outline: none;

@@ -3,8 +3,12 @@ import styled from "styled-components";
 import { ReservationBtn } from "./Button";
 import IconText from "./IconText";
 import { instance } from "../../apis/instance";
+import Toast from "./Toast";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Modoal = (props) => {
+  const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const reservationInfo = { ...props.input };
   reservationInfo.userId = userId;
@@ -26,13 +30,20 @@ const Modoal = (props) => {
   const reservationHandler = async () => {
     try {
       const res = await instance.post(`/detail`, reservationInfo);
-      console.log(res.data);
-      alert("예약에 성공하였습니다.");
+      Swal.fire({
+        icon: "success",
+        text: "예약이 완료되었습니다.",
+        button: "확인",
+      }).then(() => {
+        window.location.replace("/client/mypage/rez");
+      });
     } catch (error) {
       console.log(error);
-      alert("예약 실패하였습니다.");
+      Toast.fire({
+        icon: "error",
+        title: "예약에 실패하였습니다.",
+      });
     }
-    window.location.reload();
   };
 
   return (

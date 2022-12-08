@@ -2,7 +2,7 @@ import React from "react";
 import StarRender from "../../atoms/StarRender";
 import * as S from "./style";
 import IconText from "../../atoms/IconText";
-
+import { ReactComponent as CampingPic } from "../../../svg/camping.svg";
 import { ReactComponent as UserIcon } from "./../../../svg/profile.svg";
 
 const DetailReview = ({ review }) => {
@@ -18,13 +18,19 @@ const DetailReview = ({ review }) => {
       </S.Info>
       <S.Content>
         <S.ImgBox>
-          <img src={review.file_path} alt="img" />
+          {review.file_path ? (
+            <img src={review.file_path} alt="img" />
+          ) : (
+            <div className="default_image">
+              <CampingPic viewBox="80 50 210 210" />
+            </div>
+          )}
         </S.ImgBox>
         <div>{review.review}</div>
       </S.Content>
       {review.comments.length !== 0 ? (
         <S.Answer>
-          <div>⨽ 사장님 댓글 {review.comments[0].date}</div>
+          <div>🙋‍♂️ 사장님 댓글 {review.comments[0].date}</div>
           <div>{review.comments[0].message}</div>
         </S.Answer>
       ) : null}

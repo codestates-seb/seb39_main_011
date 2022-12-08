@@ -26,8 +26,7 @@ const AdminReviewItem = ({
   const handleRemove = () => {
     Swal.fire({
       icon: "warning",
-      title:
-        "<p style='font-size:18px'>" + "해당 댓글을 삭제하시겠습니까?" + "</p>",
+      text: "해당 댓글을 삭제하시겠습니까?",
       showCancelButton: true,
       confirmButtonText: "확인",
       cancelButtonText: "취소",

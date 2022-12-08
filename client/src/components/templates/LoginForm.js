@@ -2,9 +2,9 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import LoginInput from "../atoms/LoginInput";
 import { LoginBtn, StrButton } from "../atoms/Button";
+import { instance } from "../../apis/instance";
 import { ReactComponent as CampingPic } from "../../svg/camping.svg";
 import CheckBox from "../atoms/CheckBox";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/reducers/authSlice";
@@ -36,13 +36,10 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/user/login`,
-        {
-          username: id,
-          password: pwd,
-        }
-      );
+      const response = await instance.post(`/user/login`, {
+        username: id,
+        password: pwd,
+      });
 
       localStorage.setItem("userId", response.data.userId);
       localStorage.setItem("role", response.data.role);
@@ -79,13 +76,10 @@ const LoginForm = () => {
   };
 
   const handleAdminSubmit = async () => {
-    const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/user/login`,
-      {
-        username: "admintest",
-        password: "admintest123",
-      }
-    );
+    const response = await instance.post(`/user/login`, {
+      username: "admintest",
+      password: "admintest123",
+    });
 
     localStorage.setItem("userId", response.data.userId);
     localStorage.setItem("role", response.data.role);
@@ -99,13 +93,10 @@ const LoginForm = () => {
   };
 
   const handleClientSubmit = async () => {
-    const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/user/login`,
-      {
-        username: "customtest123",
-        password: "customtest123",
-      }
-    );
+    const response = await instance.post(`/user/login`, {
+      username: "tree",
+      password: "tree123!",
+    });
 
     localStorage.setItem("userId", response.data.userId);
     localStorage.setItem("role", response.data.role);

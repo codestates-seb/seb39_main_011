@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Loading = () => {
   return (
     <LoadingDiv>
-      <img src={`${process.env.PUBLIC_URL}/assets/spinner.gif`} alt="" />
+      <img src={`${process.env.PUBLIC_URL}/assets/spinner.gif`} alt="Loading" />
     </LoadingDiv>
   );
 };

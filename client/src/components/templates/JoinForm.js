@@ -9,7 +9,7 @@ import {
   isPhoneValid,
   isEmailValid,
 } from "../../utils/validator";
-import axios from "axios";
+import { instance } from "../../apis/instance";
 import Toast from "../atoms/Toast";
 
 const JoinForm = () => {
@@ -115,17 +115,14 @@ const JoinForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/user/join`,
-        {
-          username: id,
-          name,
-          password: pwd,
-          email,
-          phone,
-          role,
-        }
-      );
+      const response = await instance.post(`/user/join`, {
+        username: id,
+        name,
+        password: pwd,
+        email,
+        phone,
+        role,
+      });
       navigate("/login");
       Toast.fire({
         icon: "success",

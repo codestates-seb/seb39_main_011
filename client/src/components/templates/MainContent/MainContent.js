@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CampingCard from "../../organisms/CampingCard/CampingCard";
 import * as S from "./style";
-import axios from "axios";
+import { instance } from "../../../apis/instance";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { sortCheck } from "../../../redux/reducers/sortSlice";
@@ -20,7 +20,7 @@ const MainContent = () => {
 
   const getCampingData = async () => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/main`);
+      const { data } = await instance.get(`/main`);
       setCampingList(data);
       setRenderCampingList(data);
       setIsLoading(false);
