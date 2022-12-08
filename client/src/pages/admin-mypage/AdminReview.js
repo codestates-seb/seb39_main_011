@@ -38,7 +38,6 @@ const AdminReview = () => {
   };
 
   const onUpdateReview = async (commentId, revId, message) => {
-    console.log(commentId, revId, message);
     try {
       const res = await instance.put(`/admin/rev/${commentId}`, {
         commentId,

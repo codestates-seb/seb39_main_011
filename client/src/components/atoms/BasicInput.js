@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const BasicInput = ({ value, onChange, width }) => {
-  console.log(width);
   return (
     <Layout>
       <input value={value} onChange={onChange} width={width} />

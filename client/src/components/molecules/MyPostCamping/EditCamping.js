@@ -15,9 +15,7 @@ import { ReactComponent as TeamIcon } from "../../../svg/team.svg";
 import { ReactComponent as NoteIcon } from "../../../svg/note.svg";
 
 const EditCamping = ({ resData, onRemovePost, onUpdatePost }) => {
-  console.log(resData);
   const [isEdit, setIsEdit] = useState(false);
-
   const [editImages, setEditImages] = useState(resData[0]?.file_path);
   const [editAddress, setEditAddress] = useState(resData[0]?.place);
 

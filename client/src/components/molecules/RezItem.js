@@ -34,7 +34,11 @@ const RezItem = ({ item, openReviewHandler }) => {
     <div>
       <ItemBox>
         <ImgBox>
-          <CampingPic viewBox="80 50 210 210" />
+          {item?.campFile_path ? (
+            <Img src={item?.campFile_path} alt="camping" />
+          ) : (
+            <CampingPic viewBox="80 50 210 210" />
+          )}
         </ImgBox>
         <ContentBox>
           {pathname === "/client/mypage/rez" ||
