@@ -27,7 +27,6 @@ const ClientReviewItem = ({
 
   const toggleIsEdit = () => {
     setIsEdit(!isEdit);
-    console.log(isEdit);
   };
 
   const [editReview, setEditReview] = useState(review);
