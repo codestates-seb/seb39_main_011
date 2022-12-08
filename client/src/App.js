@@ -1,40 +1,59 @@
-import React from "react";
+import React, { useEffect, Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
+import Navigation from "./components/templates/Navigation/Navigation";
 
-import Main from "./pages/Main";
-import Detail from "./pages/Detail";
-import Login from "./pages/Login";
-import Join from "./pages/Join";
+import { useDispatch } from "react-redux";
+import { login } from "./redux/reducers/authSlice";
+import Loading from "./components/atoms/Loading";
 
-import AdminMyInfo from "./pages/admin-mypage/AdminMyInfo";
-import AdminPost from "./pages/admin-mypage/AdminPost";
-import AdminRez from "./pages/admin-mypage/AdminRez";
-import AdminReview from "./pages/admin-mypage/AdminReview";
-
-import ClientMyInfo from "./pages/client-mypage/ClientMyInfo";
-import ClientRez from "./pages/client-mypage/ClientRez";
-import ClientPastRez from "./pages/client-mypage/ClientPastRez";
-import ClientReview from "./pages/client-mypage/ClientReview";
+const Main = lazy(() => import("./pages/Main/Main"));
+const Detail = lazy(() => import("./pages/Detail/Detail"));
+const Login = lazy(() => import("./pages/Login"));
+const Join = lazy(() => import("./pages/Join"));
+const AdminPost = lazy(() => import("./pages/admin-mypage/AdminPost"));
+const AdminRez = lazy(() => import("./pages/admin-mypage/AdminRez"));
+const AdminReview = lazy(() => import("./pages/admin-mypage/AdminReview"));
+const ClientRez = lazy(() => import("./pages/client-mypage/ClientRez"));
+const ClientPastRez = lazy(() => import("./pages/client-mypage/ClientPastRez"));
+const ClientReview = lazy(() => import("./pages/client-mypage/ClientReview"));
+const MypageLayout = lazy(() => import("./components/templates/MypageLayout"));
+const MyInfo = lazy(() => import("./pages/Myinfo"));
 
 function App() {
+  const dispatch = useDispatch();
+  const Token = sessionStorage.getItem("Token");
+
+  useEffect(() => {
+    if (Token) {
+      dispatch(login());
+    }
+  }, []);
+
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/detail" element={<Detail />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/join" element={<Join />} />
+      <Suspense fallback={<Loading />}>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/join" element={<Join />} />
 
-        <Route path="/admin/mypage/myinfo" element={<AdminMyInfo />} />
-        <Route path="/admin/mypage/post" element={<AdminPost />} />
-        <Route path="/admin/mypage/rez" element={<AdminRez />} />
-        <Route path="/admin/mypage/review" element={<AdminReview />} />
+          <Route path="/admin/mypage" element={<MypageLayout />}>
+            <Route path="myinfo" element={<MyInfo />} />
+            <Route path="post" element={<AdminPost />} />
+            <Route path="rez" element={<AdminRez />} />
+            <Route path="review" element={<AdminReview />} />
+          </Route>
 
-        <Route path="/client/mypage/myinfo" element={<ClientMyInfo />} />
-        <Route path="/client/mypage/rez" element={<ClientRez />} />
-        <Route path="/client/mypage/pastrez" element={<ClientPastRez />} />
-        <Route path="/client/mypage/review" element={<ClientReview />} />
-      </Routes>
+          <Route path="/client/mypage" element={<MypageLayout />}>
+            <Route path="myinfo" element={<MyInfo />} />
+            <Route path="rez" element={<ClientRez />} />
+            <Route path="pastrez" element={<ClientPastRez />} />
+            <Route path="review" element={<ClientReview />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </>
   );
 }

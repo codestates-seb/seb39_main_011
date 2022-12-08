@@ -1,7 +1,22 @@
-import { createStore } from "redux";
-import rootReducer from "./redux/reducers";
-// toolkit 적용하기!
+import { configureStore } from "@reduxjs/toolkit";
+import calendarSlice from "./reducers/calendarSlice";
+import regionSlice from "./reducers/regionSlice";
+import sortSlice from "./reducers/sortSlice";
+import authSlice from "./reducers/authSlice";
+import postSlice from "./reducers/postSlice";
 
-const store = createStore(rootReducer);
+const store = configureStore({
+  reducer: {
+    reservationDate: calendarSlice,
+    region: regionSlice,
+    sort: sortSlice,
+    auth: authSlice,
+    post: postSlice,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
 
 export default store;
