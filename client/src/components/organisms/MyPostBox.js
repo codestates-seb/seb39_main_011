@@ -68,10 +68,7 @@ const MyPostBox = () => {
   const handleQuit = () => {
     Swal.fire({
       icon: "warning",
-      title:
-        "<p style='font-size:18px'>" +
-        "캠핑장 등록을 취소하시겠습니까?" +
-        "</p>",
+      text: "캠핑장 등록을 취소하시겠습니까?",
       showCancelButton: true,
       confirmButtonText: "확인",
       cancelButtonText: "취소",

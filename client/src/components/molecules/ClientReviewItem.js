@@ -8,6 +8,7 @@ import StarClick from "../atoms/StarClick";
 import SingleImageUploader from "../atoms/SingleImageUploader";
 import { ReactComponent as CampIcon } from "../../svg/camp.svg";
 import Swal from "sweetalert2";
+import { ReactComponent as CampingPic } from "../../svg/camping.svg";
 
 const ClientReviewItem = ({
   item,
@@ -40,8 +41,7 @@ const ClientReviewItem = ({
   const handleRemove = () => {
     Swal.fire({
       icon: "warning",
-      title:
-        "<p style='font-size:18px'>" + "해당 리뷰를 삭제하시겠습니까?" + "</p>",
+      text: "해당 리뷰를 삭제하시겠습니까?",
       showCancelButton: true,
       confirmButtonText: "확인",
       cancelButtonText: "취소",
@@ -141,7 +141,15 @@ const ClientReviewItem = ({
                 setImages={setEditImages}
               />
             ) : (
-              <Img src={item?.file_path} alt="camping" />
+              <div>
+                {item?.file_path ? (
+                  <Img src={item?.file_path} alt="camping" />
+                ) : (
+                  <div className="default_image">
+                    <CampingPic viewBox="80 80 210 210" />
+                  </div>
+                )}
+              </div>
             )}
 
             {isEdit ? (
@@ -198,6 +206,11 @@ const ImgBox = styled.div`
     margin-top: 0.5rem;
   }
 
+  .default_image {
+    width: 110px;
+    height: 80px;
+  }
+
   @media ${(props) => props.theme.postMobile} {
     gap: 10px;
   }
@@ -245,7 +258,6 @@ const Img = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 10px;
-  background-color: aliceblue;
 
   @media ${(props) => props.theme.postMobile} {
     width: 75px;
